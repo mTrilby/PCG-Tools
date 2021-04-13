@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -8,23 +8,24 @@ using System.Linq;
 using System.Text;
 
 using Common.Extensions;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchSorting;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
-using PcgTools.PcgToolsResources;
+using Domain.ListGenerator;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.OldParameters;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchDrumKits;
+using Domain.Model.Common.Synth.PatchDrumPatterns;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
+using Domain.Model.Common.Synth.PatchSorting;
+using Domain.Model.Common.Synth.PatchWaveSequences;
+using Domain.PcgToolsResources;
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ListGeneratorPatchList : ListGenerator
+    public class ListGeneratorPatchList : Domain.ListGenerator.ListGenerator
     {
         /// <summary>
         /// 
@@ -149,7 +150,7 @@ namespace PcgTools.ListGenerator
                          setListSlot.UseInList(
                              IgnoreInitSetListSlots, FilterOnText, FilterText,
                              FilterCaseSensitive,
-                             FilterOnFavorites.All, FilterSetListSlotDescription)
+                             ListGeneratorFilterOnFavorites.All, FilterSetListSlotDescription)
                      select setListSlot).Where(setListSlot => setListSlot != null))
                 {
                     _list.Add(setListSlot);
@@ -377,7 +378,7 @@ namespace PcgTools.ListGenerator
             ref string subCategory)
         {
             patchType = "Program";
-            if (((IProgramBank) (program.Parent)).Type != BankType.EType.Gm)
+            if (((IProgramBank) (program.Parent)).Type != BankTypeEType.Gm)
             {
                 isFavorite = (_areFavoritesSupported && program.GetParam(ParameterNames.ProgramParameterName.Favorite).Value) ? "X" : " ";
                 category = program.CategoryAsName;

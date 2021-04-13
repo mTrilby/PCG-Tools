@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -6,19 +6,19 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Domain.Extensions;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.OldParameters;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchPrograms;
 using PcgTools.Common;
-
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ListGeneratorCombiContentList : ListGenerator
+    public class ListGeneratorCombiContentList : Domain.ListGenerator.ListGenerator
     {
         /// <summary>
         /// 
@@ -482,7 +482,7 @@ namespace PcgTools.ListGenerator
             var usedProgram = timbre.UsedProgram;
             var timbreId = (usedProgram == null) ? "???" : timbre.ColumnProgramId;
 
-            var isGmProgram = (usedProgram != null) && ((ProgramBank) (timbre.UsedProgram.Parent)).Type == BankType.EType.Gm;
+            var isGmProgram = (usedProgram != null) && ((ProgramBank) (timbre.UsedProgram.Parent)).Type == BankTypeEType.Gm;
             var byteOffset = (usedProgram == null) ? 0 : timbre.UsedProgram.ByteOffset;
             var name = isGmProgram ? "-" : (byteOffset == 0) ? "???" : timbre.ColumnProgramName;
             var category = isGmProgram ? "-" : (byteOffset == 0) ? "???" : timbre.UsedProgram.CategoryAsName;

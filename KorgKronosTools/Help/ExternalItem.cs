@@ -1,4 +1,5 @@
-﻿using PcgTools.Annotations;
+using Common.Utils;
+using PcgTools.Properties;
 
 namespace PcgTools.Help
 {

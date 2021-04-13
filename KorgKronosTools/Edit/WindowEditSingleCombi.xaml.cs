@@ -1,13 +1,13 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.PcgToolsResources;
+using Domain.Edit;
+using Domain.Model.Common.Synth.Global;
+using Domain.Model.Common.Synth.OldParameters;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.PcgToolsResources;
 
 namespace PcgTools.Edit
 {
@@ -88,7 +88,7 @@ namespace PcgTools.Edit
 
             if (global == null)
             {
-                var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(_patch.Root.Model);
+                var masterPcgMemory = Domain.MasterFiles.MasterFiles.Instances.FindMasterPcg(_patch.Root.Model);
                 if (masterPcgMemory == null)
                 {
                     labelCategory.IsEnabled = false;
@@ -146,7 +146,7 @@ namespace PcgTools.Edit
         {
             Debug.Assert(global != null);
 
-            foreach (var categoryName in global.GetCategoryNames(Global.ECategoryType.Combi))
+            foreach (var categoryName in global.GetCategoryNames(GlobalECategoryType.Combi))
             {
                 comboBoxCategory.Items.Add(categoryName);
             }
@@ -169,7 +169,7 @@ namespace PcgTools.Edit
         {
             comboBoxSubCategory.Items.Clear();
             foreach (var subCategoryName in global.GetSubCategoryNames(
-             Global.ECategoryType.Combi, comboBoxCategory.SelectedIndex))
+             GlobalECategoryType.Combi, comboBoxCategory.SelectedIndex))
             {
                 comboBoxSubCategory.Items.Add(subCategoryName);
             }
@@ -264,7 +264,7 @@ namespace PcgTools.Edit
             {
                 if (_patch.PcgRoot.Global == null)
                 {
-                    var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(_patch.Root.Model);
+                    var masterPcgMemory = Domain.MasterFiles.MasterFiles.Instances.FindMasterPcg(_patch.Root.Model);
                     if (masterPcgMemory != null)
                     {
                         var masterGlobal = masterPcgMemory.Global;

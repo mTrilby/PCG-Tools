@@ -2,9 +2,9 @@
 
 using System.Windows;
 using System.Windows.Controls;
-
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.PcgToolsResources;
+using Domain.Edit;
+using Domain.Model.Common.Synth.PatchSetLists;
+using Domain.PcgToolsResources;
 
 namespace PcgTools.Edit
 {

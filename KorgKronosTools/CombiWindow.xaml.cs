@@ -1,10 +1,12 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.Windows;
 using System.Windows.Data;
+using Common.Windows;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.PatchCombis;
 using PcgTools.Edit;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
 using WPF.MDI;
@@ -31,7 +33,7 @@ namespace PcgTools
         /// <summary>
         /// 
         /// </summary>
-        public MdiChild MdiChild { private get; set; }
+        public IMdiChild MdiChild { private get; set; }
 
 
         /// <summary>
@@ -107,10 +109,11 @@ namespace PcgTools
         /// </summary>
         void CloseWindow()
         {
-            MdiChild.Close();
+            var mdiChild = (MdiChild) MdiChild;
+            mdiChild.Close();
             
-            Settings.Default.UI_CombiWindowWidth = (int) MdiChild.Width;
-            Settings.Default.UI_CombiWindowHeight = (int) MdiChild.Height;
+            Settings.Default.UI_CombiWindowWidth = (int) mdiChild.Width;
+            Settings.Default.UI_CombiWindowHeight = (int) mdiChild.Height;
             Settings.Default.Save();
         }
 

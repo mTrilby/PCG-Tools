@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace Common.Behaviors
+namespace PcgTools.Common.Behaviors
 {
     /// <summary>
     /// A sync behavior for a multiselector.

@@ -1,9 +1,12 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.Linq;
 using System.Windows.Input;
 using Common.Mvvm;
 using Common.Utils;
+using Domain.Interfaces;
+using Domain.MasterFiles;
+using PcgTools.Common.Mvvm;
 using PcgTools.MasterFiles;
 
 namespace PcgTools.ViewModels
@@ -28,7 +31,7 @@ namespace PcgTools.ViewModels
             _mainViewModel = mainViewModel;
 
             // Select first if none selected.
-            var masterFiles = MasterFiles.MasterFiles.Instances;
+            var masterFiles = Domain.MasterFiles.MasterFiles.Instances;
             if ((masterFiles.Count > 0) && (masterFiles.Count(item => item.IsSelected) == 0))
             {
                 masterFiles[0].IsSelected = true;
@@ -38,7 +41,7 @@ namespace PcgTools.ViewModels
 
         private IMasterFile SelectedMasterFile
         {
-            get { return MasterFiles.MasterFiles.Instances.FirstOrDefault(file => file.IsSelected); }
+            get { return Domain.MasterFiles.MasterFiles.Instances.FirstOrDefault(file => file.IsSelected); }
         }
 
 
@@ -89,7 +92,7 @@ namespace PcgTools.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        private bool CanExecuteOpenMasterFileCommand => SelectedMasterFile.FileState == MasterFile.EFileState.Unloaded;
+        private bool CanExecuteOpenMasterFileCommand => SelectedMasterFile.FileState == MasterFileEFileState.Unloaded;
 
 
         /// <summary>
@@ -126,7 +129,7 @@ namespace PcgTools.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        private bool CanExecuteCloseMasterFileCommand => SelectedMasterFile.FileState == MasterFile.EFileState.Loaded;
+        private bool CanExecuteCloseMasterFileCommand => SelectedMasterFile.FileState == MasterFileEFileState.Loaded;
 
 
         /// <summary>
@@ -163,7 +166,7 @@ namespace PcgTools.ViewModels
         /// <summary>
         /// 
         /// </summary>
-        private bool CanExecuteUnassignMasterFileCommand => SelectedMasterFile.FileState != MasterFile.EFileState.Unassigned;
+        private bool CanExecuteUnassignMasterFileCommand => SelectedMasterFile.FileState != MasterFileEFileState.Unassigned;
 
 
         /// <summary>

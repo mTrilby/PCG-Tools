@@ -2,8 +2,9 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.PcgToolsResources;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.PcgToolsResources;
+using Domain.Tools;
 using MessageBox = System.Windows.MessageBox;
 
 namespace PcgTools.Tools

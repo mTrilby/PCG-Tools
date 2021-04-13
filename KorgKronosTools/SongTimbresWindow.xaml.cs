@@ -1,7 +1,9 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.Windows;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Common.Windows;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
 using WPF.MDI;
@@ -28,7 +30,7 @@ namespace PcgTools
         /// <summary>
         /// 
         /// </summary>
-        public MdiChild MdiChild { private get; set; }
+        public IMdiChild MdiChild { private get; set; }
 
 
         /// <summary>
@@ -96,10 +98,11 @@ namespace PcgTools
         /// </summary>
         void CloseWindow()
         {
-            MdiChild.Close();
+            var mdiChild = (MdiChild) MdiChild;
+            mdiChild.Close();
 
-            Settings.Default.UI_SongTimbresWindowWidth = (int)MdiChild.Width;
-            Settings.Default.UI_SongTimbresWindowHeight = (int)MdiChild.Height;
+            Settings.Default.UI_SongTimbresWindowWidth = (int)mdiChild.Width;
+            Settings.Default.UI_SongTimbresWindowHeight = (int)mdiChild.Height;
             Settings.Default.Save();
         }
 

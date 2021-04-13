@@ -1,15 +1,15 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using Domain.ListGenerator;
+using Domain.Model.Common.File;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
 using PcgTools.ListGenerator;
-using PcgTools.Model.Common.File;
-
 
 // (c) 2011 Michel Keijzers
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
 
 namespace PCG_Tools_Unittests
 {

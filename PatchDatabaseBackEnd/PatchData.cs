@@ -1,4 +1,4 @@
-﻿namespace PatchDatabaseBackEnd
+﻿namespace PatchDbBackEnd
 {
     /// <summary>
     /// 

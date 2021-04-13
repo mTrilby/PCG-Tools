@@ -1,5 +1,6 @@
 ﻿using System;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.SongsRelated;
 
 namespace PcgTools.ViewModels
 {

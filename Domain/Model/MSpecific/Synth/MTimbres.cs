@@ -1,0 +1,29 @@
+﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+
+
+using Domain.Model.Common.Synth.PatchCombis;
+
+namespace Domain.Model.MSpecific.Synth
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public abstract class MTimbres : Timbres
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        static int TimbresPerCombiConstant => 16;
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="combi"></param>
+        /// <param name="timbresOffsetConstant"></param>
+        protected MTimbres(ICombi combi, int timbresOffsetConstant)
+            : base(combi, TimbresPerCombiConstant, timbresOffsetConstant)
+        {
+        }
+    }
+}

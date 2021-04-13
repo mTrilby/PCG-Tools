@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using PcgTools.ListGenerator;
-using PcgTools.PcgToolsResources;
+using Domain.PcgToolsResources;
 
 namespace PcgTools
 {
@@ -58,7 +58,7 @@ namespace PcgTools
         /// <summary>
         /// 
         /// </summary>
-        public ListGenerator.ListGenerator ListGenerator { get; private set; }
+        public Domain.ListGenerator.ListGenerator ListGenerator { get; private set; }
 
 
         /// <summary>
@@ -203,11 +203,11 @@ namespace PcgTools
             switch (GetMatch(new List<string> {"COMPACT", "SHORT", "DEFAULT"}, _parameters[2]))
             {
             case "COMPACT":
-                ListGenerator.ListSubType = PcgTools.ListGenerator.ListGenerator.SubType.Compact;
+                ListGenerator.ListSubType = Domain.ListGenerator.ListGenerator.SubType.Compact;
                 break;
 
             case "SHORT":
-                ListGenerator.ListSubType = PcgTools.ListGenerator.ListGenerator.SubType.Short;
+                ListGenerator.ListSubType = Domain.ListGenerator.ListGenerator.SubType.Short;
                 break;
 
             case "DEFAULT":
@@ -485,15 +485,15 @@ namespace PcgTools
             {
                 case "TYPE_BANK_INDEX": // Fall Through
                 case "TB":
-                    ListGenerator.SortMethod = PcgTools.ListGenerator.ListGenerator.Sort.TypeBankIndex;
+                    ListGenerator.SortMethod = Domain.ListGenerator.ListGenerator.Sort.TypeBankIndex;
                     break;
 
                 case "CATEGORICAL":
-                    ListGenerator.SortMethod = PcgTools.ListGenerator.ListGenerator.Sort.Categorical;
+                    ListGenerator.SortMethod = Domain.ListGenerator.ListGenerator.Sort.Categorical;
                     break;
 
                 case "ALPHABETICAL":
-                    ListGenerator.SortMethod = PcgTools.ListGenerator.ListGenerator.Sort.Alphabetical;
+                    ListGenerator.SortMethod = Domain.ListGenerator.ListGenerator.Sort.Alphabetical;
                     break;
             }
         }
@@ -518,21 +518,21 @@ namespace PcgTools
             {
                 case "ASCII_TABLE":
                 case "ASCII":
-                    ListGenerator.ListOutputFormat = PcgTools.ListGenerator.ListGenerator.OutputFormat.AsciiTable;
+                    ListGenerator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.AsciiTable;
                     break;
 
                 case "TEXT": // Fall Through
                 case "TXT":
-                    ListGenerator.ListOutputFormat = PcgTools.ListGenerator.ListGenerator.OutputFormat.Text;
+                    ListGenerator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.Text;
                     break;
 
                 case "COMMA_SEPARATED_VALUES": // Fall through
                 case "CSV":
-                    ListGenerator.ListOutputFormat = PcgTools.ListGenerator.ListGenerator.OutputFormat.Csv;
+                    ListGenerator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.Csv;
                     break;
 
                 case "XML":
-                    ListGenerator.ListOutputFormat = PcgTools.ListGenerator.ListGenerator.OutputFormat.Xml;
+                    ListGenerator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.Xml;
                     break;
             } // break not needed  
         }
@@ -622,12 +622,12 @@ namespace PcgTools
 
             if (!_options.Keys.Contains("-s"))
             {
-                ListGenerator.SortMethod = PcgTools.ListGenerator.ListGenerator.Sort.Alphabetical;
+                ListGenerator.SortMethod = Domain.ListGenerator.ListGenerator.Sort.Alphabetical;
             }
 
             if (!_options.Keys.Contains("-o"))
             {
-                ListGenerator.ListOutputFormat = PcgTools.ListGenerator.ListGenerator.OutputFormat.Text;
+                ListGenerator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.Text;
             }
         }
 

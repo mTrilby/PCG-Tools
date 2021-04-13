@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -7,18 +7,19 @@ using System.Linq;
 using System.Text;
 
 using Common.Extensions;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
+using Domain.ListGenerator;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.OldParameters;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ListGeneratorProgramUsageList : ListGenerator
+    public class ListGeneratorProgramUsageList : Domain.ListGenerator.ListGenerator
     {
         /// <summary>
         /// 
@@ -74,13 +75,13 @@ namespace PcgTools.ListGenerator
                         (PcgMemory.ProgramBanks.BankCollection.IndexOf(bank) != 0) || 
                         (bank.Patches.IndexOf(program) != 0)).Where(
                         program => (!PcgMemory.AreFavoritesSupported ||
-                            ((((ProgramBank)(program.Parent)).Type == BankType.EType.Gm) && 
-                            (ListFilterOnFavorites != FilterOnFavorites.Yes)) ||
+                            ((((ProgramBank)(program.Parent)).Type == BankTypeEType.Gm) && 
+                            (ListFilterOnFavorites != ListGeneratorFilterOnFavorites.Yes)) ||
                             ((IProgram) program).GetParam(ParameterNames.ProgramParameterName.Favorite) == null) ||
-                            (ListFilterOnFavorites == FilterOnFavorites.All) ||
-                            (((ListFilterOnFavorites == FilterOnFavorites.No) && 
+                            (ListFilterOnFavorites == ListGeneratorFilterOnFavorites.All) ||
+                            (((ListFilterOnFavorites == ListGeneratorFilterOnFavorites.No) && 
                             !((IProgram)program).GetParam(ParameterNames.ProgramParameterName.Favorite).Value) || 
-                            ((ListFilterOnFavorites == FilterOnFavorites.Yes) && 
+                            ((ListFilterOnFavorites == ListGeneratorFilterOnFavorites.Yes) && 
                             ((IProgram)program).GetParam(ParameterNames.ProgramParameterName.Favorite).Value))))
                 {
                     var program = (IProgram) patch;
@@ -156,7 +157,7 @@ namespace PcgTools.ListGenerator
                 {
                     switch (((ISetListSlot) setListSlot).SelectedPatchType)
                     {
-                        case SetListSlot.PatchType.Program:
+                        case PatchType.Program:
                         {
                             var usedProgramBank = ((ISetListSlot) setListSlot).UsedPatch.Parent as IProgramBank;
                             var key = new Tuple<IProgramBank, IProgram>(usedProgramBank,

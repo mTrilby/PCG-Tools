@@ -1,19 +1,20 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using Common.Mvvm;
-using PcgTools.ClipBoard;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
-using PcgTools.PcgToolsResources;
+using Domain.ClipBoard;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchDrumKits;
+using Domain.Model.Common.Synth.PatchDrumPatterns;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
+using Domain.Model.Common.Synth.PatchWaveSequences;
+using Domain.PcgToolsResources;
 using PcgTools.Properties;
 
 namespace PcgTools.ViewModels.Commands.PcgCommands
@@ -80,7 +81,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <summary>
         /// 
         /// </summary>
-        PcgViewModel.ScopeSet SelectedScopeSet { get; set; }
+        ScopeSet SelectedScopeSet { get; set; }
 
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <param name="combiBanksSelected"></param>
         /// <param name="drumKitBanksSelected"></param>
         /// /// <param name="drumPatternBanksSelected"></param>
-        public void CopyPasteCopy(IPcgClipBoard pcgClipBoard, IPcgMemory selectedPcgMemory, PcgViewModel.ScopeSet selectedScopeSet,
+        public void CopyPasteCopy(IPcgClipBoard pcgClipBoard, IPcgMemory selectedPcgMemory, ScopeSet selectedScopeSet,
             bool programBanksSelected, bool combiBanksSelected, bool setListsSelected, bool drumKitBanksSelected, 
             bool drumPatternBanksSelected, bool waveSequenceBanksSelected,
             bool allPatchesSelected,
@@ -240,10 +241,10 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <param name="cutPasteAction"></param>
         private void CopyPasteCopyPrograms(bool cutPasteAction)
         {
-            if (SelectedScopeSet == PcgViewModel.ScopeSet.Banks)
+            if (SelectedScopeSet == ScopeSet.Banks)
             {
                 foreach (var program in from IProgramBank bank in Banks.Where(bank => bank.IsSelected)
-                    where bank.Type != BankType.EType.Gm
+                    where bank.Type != BankTypeEType.Gm
                     from IProgram program in bank.Patches
                     where bank.IsLoaded
                     // Also copy INIT programs (for copying single INIT programs)
@@ -270,7 +271,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <param name="cutPasteAction"></param>
         private void CopyPasteCopyCombis(bool cutPasteAction)
         {
-            if (SelectedScopeSet == PcgViewModel.ScopeSet.Banks)
+            if (SelectedScopeSet == ScopeSet.Banks)
             {
                 foreach (var combi in (from ICombiBank bank in Banks.Where(bank => bank.IsSelected)
                     from ICombi combi in bank.Patches
@@ -299,7 +300,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <param name="cutPasteAction"></param>
         private void CopyPasteCopySetLists(bool cutPasteAction)
         {
-            if (SelectedScopeSet == PcgViewModel.ScopeSet.Banks)
+            if (SelectedScopeSet == ScopeSet.Banks)
             {
                 foreach (var setListSlot in (from ISetList setList in Banks.Where(bank => bank.IsSelected)
                     from ISetListSlot setListSlot in setList.Patches
@@ -330,10 +331,10 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <param name="cutPasteAction"></param>
         private void CopyPasteCopyDrumKits(bool cutPasteAction)
         {
-            if (SelectedScopeSet == PcgViewModel.ScopeSet.Banks)
+            if (SelectedScopeSet == ScopeSet.Banks)
             {
                 foreach (var drumKit in from IDrumKitBank bank in Banks.Where(bank => bank.IsSelected)
-                                        where bank.Type != BankType.EType.Gm
+                                        where bank.Type != BankTypeEType.Gm
                                         from IDrumKit drumKit in bank.Patches
                                         where bank.IsLoaded
                                         // Also copy INIT drum kits (for copying single INIT programs)
@@ -360,10 +361,10 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <param name="cutPasteAction"></param>
         private void CopyPasteCopyDrumPatterns(bool cutPasteAction)
         {
-            if (SelectedScopeSet == PcgViewModel.ScopeSet.Banks)
+            if (SelectedScopeSet == ScopeSet.Banks)
             {
                 foreach (var drumPattern in from IDrumPatternBank bank in Banks.Where(bank => bank.IsSelected)
-                                        where bank.Type != BankType.EType.Gm
+                                        where bank.Type != BankTypeEType.Gm
                                         from IDrumPattern drumPattern in bank.Patches
                                         where bank.IsLoaded
                                         // Also copy INIT drum patterns (for copying single INIT programs)
@@ -390,10 +391,10 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <param name="cutPasteAction"></param>
         private void CopyPasteCopyWaveSequences(bool cutPasteAction)
         {
-            if (SelectedScopeSet == PcgViewModel.ScopeSet.Banks)
+            if (SelectedScopeSet == ScopeSet.Banks)
             {
                 foreach (var waveSequence in from IWaveSequenceBank bank in Banks.Where(bank => bank.IsSelected)
-                                        where bank.Type != BankType.EType.Gm
+                                        where bank.Type != BankTypeEType.Gm
                                         from IWaveSequence waveSequence in bank.Patches
                                         where bank.IsLoaded
                                              // Also copy INIT wave sequences (for copying single INIT wave sequences)
@@ -430,7 +431,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         /// <param name="drumKitsSelected"></param>
         /// <param name="drumPatternsSelected"></param>
         /// <returns></returns>
-        public string CopyPastePaste(IPcgClipBoard pcgClipBoard, IPcgMemory selectedPcgMemory, PcgViewModel.ScopeSet selectedScopeSet,
+        public string CopyPastePaste(IPcgClipBoard pcgClipBoard, IPcgMemory selectedPcgMemory, ScopeSet selectedScopeSet,
             bool programBanksSelected, bool combiBanksSelected, bool setListsSelected, bool drumKitsSelected,
             bool drumPatternsSelected, bool waveSequenceBanksSelected,
             bool allPatchesSelected,
@@ -505,9 +506,9 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         {
             if ((!Settings.Default.CopyPaste_PasteDuplicatePrograms) ||
                 ((PcgClipBoard.CopyFileName == SelectedPcgMemory.FileName) &&
-                 (PcgClipBoard.SelectedCopyType != ClipBoard.PcgClipBoard.CopyType.Programs)))
+                 (PcgClipBoard.SelectedCopyType != ClipBoardCopyType.Programs)))
             {
-                for (var index = 0; index < (int) ProgramBank.SynthesisType.Last; index++)
+                for (var index = 0; index < (int) ProgramBankSynthesisType.Last; index++)
                 {
                     FindDuplicatesOfType(PcgClipBoard.Programs[index].CopiedPatches, SelectedPcgMemory.ProgramBanks);
                 }
@@ -522,7 +523,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         {
             if ((!Settings.Default.CopyPaste_PasteDuplicateCombis) ||
                 ((PcgClipBoard.CopyFileName == SelectedPcgMemory.FileName) &&
-                 (PcgClipBoard.SelectedCopyType != ClipBoard.PcgClipBoard.CopyType.Combis)))
+                 (PcgClipBoard.SelectedCopyType != ClipBoardCopyType.Combis)))
             {
                 FindDuplicatesOfType(PcgClipBoard.Combis.CopiedPatches, SelectedPcgMemory.CombiBanks);
             }
@@ -536,7 +537,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         {
             if ((!Settings.Default.CopyPaste_PasteDuplicateDrumKits) ||
                 ((PcgClipBoard.CopyFileName == SelectedPcgMemory.FileName) &&
-                 (PcgClipBoard.SelectedCopyType != ClipBoard.PcgClipBoard.CopyType.DrumKits)))
+                 (PcgClipBoard.SelectedCopyType != ClipBoardCopyType.DrumKits)))
             {
                 FindDuplicatesOfType(PcgClipBoard.DrumKits.CopiedPatches, SelectedPcgMemory.DrumKitBanks);
             }
@@ -550,7 +551,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         {
             if ((!Settings.Default.CopyPaste_PasteDuplicateDrumPatterns) ||
                 ((PcgClipBoard.CopyFileName == SelectedPcgMemory.FileName) &&
-                 (PcgClipBoard.SelectedCopyType != ClipBoard.PcgClipBoard.CopyType.DrumPatterns)))
+                 (PcgClipBoard.SelectedCopyType != ClipBoardCopyType.DrumPatterns)))
             {
                 FindDuplicatesOfType(PcgClipBoard.DrumPatterns.CopiedPatches, SelectedPcgMemory.DrumPatternBanks);
             }
@@ -564,7 +565,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         {
             if ((!Settings.Default.CopyPaste_PasteDuplicateWaveSequences) ||
                 ((PcgClipBoard.CopyFileName == SelectedPcgMemory.FileName) &&
-                 (PcgClipBoard.SelectedCopyType != ClipBoard.PcgClipBoard.CopyType.WaveSequences)))
+                 (PcgClipBoard.SelectedCopyType != ClipBoardCopyType.WaveSequences)))
             {
                 FindDuplicatesOfType(PcgClipBoard.WaveSequences.CopiedPatches, SelectedPcgMemory.WaveSequenceBanks);
             }
@@ -578,7 +579,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         {
             if ((!Settings.Default.CopyPaste_PasteDuplicateSetListSlots) ||
                 ((PcgClipBoard.CopyFileName == SelectedPcgMemory.FileName) &&
-                 (PcgClipBoard.SelectedCopyType != ClipBoard.PcgClipBoard.CopyType.SetListSlots)))
+                 (PcgClipBoard.SelectedCopyType != ClipBoardCopyType.SetListSlots)))
             {
                 FindDuplicatesOfType(PcgClipBoard.SetListSlots.CopiedPatches, SelectedPcgMemory.SetLists);
             }
@@ -591,7 +592,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         private void PastingFinished()
         {
             var count = 0;
-            for (var index = 0; index < (int)ProgramBank.SynthesisType.Last; index++)
+            for (var index = 0; index < (int)ProgramBankSynthesisType.Last; index++)
             {
                 count += PcgClipBoard.Programs[index].CopiedPatches.Count;
             }
@@ -640,7 +641,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         private bool ShouldBankBeSearched(ObservableCollection<IClipBoardPatch> clipBoardPatches, IBank bank)
         {
             return bank.IsFilled && 
-                (bank.Type != BankType.EType.Gm) && // Only can be false for program banks
+                (bank.Type != BankTypeEType.Gm) && // Only can be false for program banks
                    (!(bank is IProgramBank) ||
                     Equals(clipBoardPatches,
                        PcgClipBoard.Programs[(int) (((IProgramBank) bank).BankSynthesisType)].CopiedPatches));
@@ -830,7 +831,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
         {
             bool[] atLeastOnePatchIsPasted = {false};
 
-            if (SelectedScopeSet == PcgViewModel.ScopeSet.Banks)
+            if (SelectedScopeSet == ScopeSet.Banks)
             {
                 // banks are selected for pasting select the banks where the copied patches can be paste in
                 string banksSelected; 

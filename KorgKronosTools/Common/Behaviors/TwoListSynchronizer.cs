@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
+using Common.Behaviors;
 
-namespace Common.Behaviors
+namespace PcgTools.Common.Behaviors
 {
     /// <summary>
     /// Keeps two lists synchronized. 

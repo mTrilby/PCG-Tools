@@ -1,26 +1,28 @@
-﻿using System;
-using Common.Utils;
-using PcgTools.MasterFiles;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.PcgToolsResources;
+using System;
+using Common.Windows;
+using Domain.Interfaces;
+using Domain.MasterFiles;
+using Domain.Model.Common.File;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.SongsRelated;
+using Domain.PcgToolsResources;
+using PcgTools.Common.Utils;
 using PcgTools.Properties;
 using WPF.MDI;
 
-namespace PcgTools.ViewModels.Commands
+namespace PcgTools.ViewModels.Commands.PcgCommands
 {
     /// <summary>
     /// Utility class.
     /// </summary>
     public static class PcgFileCommands
     {
-        private static IMainViewModel _mainViewModel;
+        private static MainViewModel _mainViewModel;
 
 
         public static void LoadFileAndMasterFile(IMainViewModel mainViewModel, string fileName, bool checkAutoLoadMasterFileSetting)
         {
-            _mainViewModel = mainViewModel;
+            _mainViewModel = (MainViewModel)mainViewModel;
 
             // Load file.
             var korgFileReader = new KorgFileReader();
@@ -30,9 +32,9 @@ namespace PcgTools.ViewModels.Commands
                 _mainViewModel.ShowMessageBox(
                     string.Format(Strings.FileTypeNotSupportedForThisWorkstation,
                         Memory.FileTypeAsString(korgFileReader.FileType),
-                        Model.Common.Synth.MemoryAndFactory.Model.ModelTypeAsString(korgFileReader.ModelType)),
-                    Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Error,
-                    WindowUtils.EMessageBoxResult.Ok);
+                        Model.ModelTypeAsString(korgFileReader.ModelType)),
+                    Strings.PcgTools, Utils.EMessageBoxButton.Ok, Utils.EMessageBoxImage.Error,
+                    Utils.EMessageBoxResult.Ok);
                 return;
             }
 
@@ -68,7 +70,7 @@ namespace PcgTools.ViewModels.Commands
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="checkAutoLoadMasterFileSetting"></param>
         /// <param name="loadedPcgFileName"></param>
@@ -77,35 +79,35 @@ namespace PcgTools.ViewModels.Commands
             if (checkAutoLoadMasterFileSetting)
             {
                 // Get master file name.
-                var masterFile = MasterFiles.MasterFiles.Instances.FindMasterFile(_mainViewModel.SelectedMemory.Model);
-                if ((masterFile != null) && (masterFile.FileState == MasterFile.EFileState.Unloaded))
+                var masterFile = Domain.MasterFiles.MasterFiles.Instances.FindMasterFile(_mainViewModel.SelectedMemory.Model);
+                if ((masterFile != null) && (masterFile.FileState == MasterFileEFileState.Unloaded))
                 {
-                    switch ((MasterFiles.MasterFiles.AutoLoadMasterFiles)(Settings.Default.MasterFiles_AutoLoad))
+                    switch ((Domain.MasterFiles.MasterFiles.AutoLoadMasterFiles)(Settings.Default.MasterFiles_AutoLoad))
                     {
-                        case MasterFiles.MasterFiles.AutoLoadMasterFiles.Always:
+                        case Domain.MasterFiles.MasterFiles.AutoLoadMasterFiles.Always:
                             if (masterFile.FileName != loadedPcgFileName)
                             {
                                 LoadFileAndMasterFile(_mainViewModel, masterFile.FileName, false);
                             }
                             break;
 
-                        case MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask:
+                        case Domain.MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask:
                             if (masterFile.FileName != loadedPcgFileName)
                             {
                                 var result = _mainViewModel.ShowMessageBox(
                                     string.Format(Strings.AskForMasterFile, masterFile.FileName),
-                                    Strings.PcgTools, WindowUtils.EMessageBoxButton.YesNo,
-                                    WindowUtils.EMessageBoxImage.Information,
-                                    WindowUtils.EMessageBoxResult.Yes);
+                                    Strings.PcgTools, Utils.EMessageBoxButton.YesNo,
+                                    Utils.EMessageBoxImage.Information,
+                                    Utils.EMessageBoxResult.Yes);
 
-                                if (result == WindowUtils.EMessageBoxResult.Yes)
+                                if (result == Utils.EMessageBoxResult.Yes)
                                 {
                                     LoadFileAndMasterFile(_mainViewModel, masterFile.FileName, false);
                                 }
                             }
                             break;
 
-                        case MasterFiles.MasterFiles.AutoLoadMasterFiles.Never:
+                        case Domain.MasterFiles.MasterFiles.AutoLoadMasterFiles.Never:
                             // Do nothing.
                             break;
 

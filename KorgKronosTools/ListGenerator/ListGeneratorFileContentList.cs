@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -6,23 +6,22 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using PcgTools.Model.Common;
-
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
-using PcgTools.PcgToolsResources;
+using Domain.Model.Common;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchDrumKits;
+using Domain.Model.Common.Synth.PatchDrumPatterns;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
+using Domain.Model.Common.Synth.PatchWaveSequences;
+using Domain.PcgToolsResources;
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ListGeneratorFileContentList : ListGenerator
+    public class ListGeneratorFileContentList : Domain.ListGenerator.ListGenerator
     {
         /// <summary>
         /// 

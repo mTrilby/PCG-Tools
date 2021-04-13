@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -6,12 +6,13 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using Common.Windows;
 using WPF.MDI.Event;
 
 namespace WPF.MDI
 {
     [ContentProperty("Content")]
-    public class MdiChild : Control
+    public class MdiChild : Control, IMdiChild
     { 
         #region Dependency Properties
 

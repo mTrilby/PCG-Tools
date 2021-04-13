@@ -1,8 +1,8 @@
-﻿<Window x:Class="PcgTools.MainWindow"
+<Window x:Class="PcgTools.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mdi="clr-namespace:WPF.MDI;assembly=WPF.MDI"
-        Height="328" Width="996" Name="mainWindow" Icon="/PcgTools;component/Gui/pcgtools.ico" 
+        Height="328" Width="996" Name="mainWindow" Icon="/Gui/Icons/pcgtools.ico" 
         WindowStartupLocation="CenterOwner" WindowState="Maximized" Loaded="MainWindowLoaded" Closing="MainWindowClosing" 
         Title="{Binding Path=AppTitle}" ResizeMode="CanResizeWithGrip">
     <Window.Resources>
@@ -301,98 +301,98 @@
                     
                 <Button Command="{Binding Path=OpenFileCommand}" 
                         ToolTip="{Binding OpenFileCommand_mainw_tt, Source={StaticResource LocStrings}}" >
-                    <Image Source="Gui/Tool Bar Icons/folder_out.png" Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/folder_out.png" Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=SaveFileCommand}" 
                         ToolTip="{Binding SaveFileCommand_mainw_tt, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/disk_blue.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/disk_blue.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=SaveAsFileCommand}" 
                         ToolTip="{Binding SaveFileAsCommand_mainw_tt, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/save_as.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}" />
+                    <Image Source="/Gui/Tool Bar Icons/save_as.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}" />
                 </Button>
 
                 <Separator></Separator>
                     
                 <Button Command="{Binding Path=CurrentChildViewModel.EditSelectedItemCommand}"
                         ToolTip="{Binding EditSelectedPatch, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/document_edit.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/document_edit.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                     
                 <Button Command="{Binding Path=CurrentChildViewModel.SetFavoriteCommand}" 
                         ToolTip="{Binding MarkAsFavorite, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/star_blue.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/star_blue.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                     
                 <Button Command="{Binding Path=CurrentChildViewModel.UnsetFavoriteCommand}"
                         ToolTip="{Binding UnmarkAsFavorite, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/star_blue - remove.png"   Stretch="Fill" 
+                    <Image Source="/Gui/Tool Bar Icons/star_blue - remove.png"   Stretch="Fill" 
                            Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                     
                 <Button Command="{Binding Path=CurrentChildViewModel.ClearCommand}"
                         ToolTip="{Binding ClearSelected, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/document_plain.png"   Stretch="Fill" 
+                    <Image Source="/Gui/Tool Bar Icons/document_plain.png"   Stretch="Fill" 
                            Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                     
                 <Button Command="{Binding Path=CurrentChildViewModel.CompactCommand}"
                         ToolTip="{Binding CompactSelected, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/compact.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/compact.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                     
                 <Button Command="{Binding Path=CurrentChildViewModel.ShowTimbresCommand}"
                         ToolTip="{Binding ShowTimbres, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/show_timbres.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/show_timbres.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Separator></Separator>
                 <Button Command="{Binding Path=CurrentChildViewModel.CutCommand}"
                         ToolTip="{Binding CutSelected, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/cut.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/cut.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.CopyCommand}"
                         ToolTip="{Binding CopySelected, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/copy.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/copy.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.PasteCommand}"
                         ToolTip="{Binding PasteCopiedPatches, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/paste.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/paste.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=ShowSettingsCommand}"
                         ToolTip="{Binding EditSettings, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/document_gear.png" Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/document_gear.png" Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.ExitCopyPasteModeCommand}"
                         ToolTip="{Binding ExitCutCopyPasteModeToolTip, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/copy - exit.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/copy - exit.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.RecallCommand}"
                         ToolTip="{Binding RecallClipboard, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/copy - recall.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/copy - recall.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Separator></Separator>
                 <Button Command="{Binding Path=CurrentChildViewModel.MoveUpCommand}"
                     ToolTip="{Binding MoveUpToolTip, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/navigate_up.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/navigate_up.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.MoveDownCommand}"
                         ToolTip="{Binding MoveDownToolTip, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/navigate_down.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/navigate_down.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Separator></Separator>
                 <Button Command="{Binding Path=CurrentChildViewModel.RunListGeneratorCommand}"
                         ToolTip="{Binding GenerateAList, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/text_align_justified.png"   Stretch="Fill"
+                    <Image Source="/Gui/Tool Bar Icons/text_align_justified.png"   Stretch="Fill"
                            Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Separator></Separator>
                 <Button Command="{Binding Path=ShowAboutCommand}" 
                         ToolTip="{Binding ShowInformation, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Tool Bar Icons/about.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Tool Bar Icons/about.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button>
                 <Button Command="{Binding Path=ShowSpecialEventCommand}" 
                         ToolTip="{Binding SpecialEventToolTip, Source={StaticResource LocStrings}}">
-                    <Image Source="Gui/Images/SpecialEvent.jpg"  Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="/Gui/Images/SpecialEvent.jpg"  Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
                 </Button> 
             </ToolBar>
                 

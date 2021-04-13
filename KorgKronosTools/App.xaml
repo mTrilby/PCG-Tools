@@ -1,10 +1,10 @@
-﻿<Application x:Class="PcgTools.App"
+<Application x:Class="PcgTools.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-             xmlns:local="clr-namespace:PcgTools.ViewModels" 
-             xmlns:res="clr-namespace:PcgTools.PcgToolsResources"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:res="clr-namespace:Domain.PcgToolsResources;assembly=Domain"
              xmlns:converters="clr-namespace:PcgTools.ViewModels.Converters"
              xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:pcgToolsResources="clr-namespace:Domain.PcgToolsResources;assembly=Domain"
              StartupUri="MainWindow.xaml"
              Startup="Application_Startup">
     <Application.Resources>
@@ -15,11 +15,11 @@
             <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
             <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <xcdg:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
-            <res:StringsWrapper x:Key="LocStrings"/>
-        </ResourceDictionary> 
+            <pcgToolsResources:StringsWrapper x:Key="LocStrings"/>
+        </ResourceDictionary>
 
         <!--local:NullToBooleanConverter x:Key="NullToBooleanConverter" /-->
-        
+
     </Application.Resources>
 </Application>
 

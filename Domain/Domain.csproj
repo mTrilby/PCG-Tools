@@ -1,0 +1,311 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Model\M3rSpecific\Pcg\M3RSysExMemory-michelLaptop.cs" />
+    <Compile Remove="Model\M3rSpecific\Song\M3RSongFileReader-michelLaptop.cs" />
+    <Compile Remove="Model\M3rSpecific\Synth\M3RCombi-michelLaptop.cs" />
+    <Compile Remove="Model\M3rSpecific\Synth\M3RCombiBank-michelLaptop.cs" />
+    <Compile Remove="Model\M3rSpecific\Synth\M3RProgram-michelLaptop.cs" />
+    <Compile Remove="Model\M3rSpecific\Synth\M3RProgramBank-michelLaptop.cs" />
+    <Compile Remove="Model\M3rSpecific\Synth\M3RProgramBanks-michelLaptop.cs" />
+    <Compile Remove="Model\M3rSpecific\Synth\M3RTimbre-michelLaptop.cs" />
+    <Compile Remove="Model\M3rSpecific\Synth\M3RTimbres-michelLaptop.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Graphics\favicon.ico" />
+    <None Remove="Graphics\Icons\favicon.ico" />
+    <None Remove="Graphics\Icons\pcgtools.ico" />
+    <None Remove="Graphics\Images\korg-kronos-wnamm2011.jpg" />
+    <None Remove="Graphics\Images\paypal_donate.gif" />
+    <None Remove="Graphics\Images\pcgtoolsnormal.jpg" />
+    <None Remove="Graphics\Images\SpecialEvent.jpg" />
+    <None Remove="Graphics\pcgtools.ico" />
+    <None Remove="Graphics\Tool Bar Icons\about.png" />
+    <None Remove="Graphics\Tool Bar Icons\check.png" />
+    <None Remove="Graphics\Tool Bar Icons\compact.png" />
+    <None Remove="Graphics\Tool Bar Icons\copy - exit.png" />
+    <None Remove="Graphics\Tool Bar Icons\copy - help.png" />
+    <None Remove="Graphics\Tool Bar Icons\copy - recall.png" />
+    <None Remove="Graphics\Tool Bar Icons\copy.png" />
+    <None Remove="Graphics\Tool Bar Icons\cut.png" />
+    <None Remove="Graphics\Tool Bar Icons\delete.png" />
+    <None Remove="Graphics\Tool Bar Icons\disk_blue.png" />
+    <None Remove="Graphics\Tool Bar Icons\document.png" />
+    <None Remove="Graphics\Tool Bar Icons\document_edit.png" />
+    <None Remove="Graphics\Tool Bar Icons\document_gear.png" />
+    <None Remove="Graphics\Tool Bar Icons\document_plain.png" />
+    <None Remove="Graphics\Tool Bar Icons\folder_out.png" />
+    <None Remove="Graphics\Tool Bar Icons\navgate_up2.png" />
+    <None Remove="Graphics\Tool Bar Icons\navigate_down.png" />
+    <None Remove="Graphics\Tool Bar Icons\navigate_up.png" />
+    <None Remove="Graphics\Tool Bar Icons\paste.png" />
+    <None Remove="Graphics\Tool Bar Icons\save_as.png" />
+    <None Remove="Graphics\Tool Bar Icons\show_timbres.png" />
+    <None Remove="Graphics\Tool Bar Icons\sort.png" />
+    <None Remove="Graphics\Tool Bar Icons\star_blue - remove.png" />
+    <None Remove="Graphics\Tool Bar Icons\star_blue.png" />
+    <None Remove="Graphics\Tool Bar Icons\text_align_justified.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Graphics\Icons\favicon.ico" />
+    <Resource Include="Graphics\Icons\pcgtools.ico" />
+    <Resource Include="Graphics\pcgtools.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PcgToolsResources\Strings.tr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.tr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.cs.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.cs.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.de.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.de.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.el.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.el.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.en-TT.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.en-TT.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.es.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.es.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.fr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.it.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.it.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.nl.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.nl.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.pl.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.pl.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.pt-BR.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.pt-BR.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.pt-PT.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.pt-PT.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.ru.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.sr-Latn-RS.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.sr-Latn-RS.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PcgToolsResources\Strings.tr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.tr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="PcgToolsResources\Strings.tr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.tr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.cs.resx">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.de.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.el.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.en-TT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.it.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.nl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.pl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.pt-BR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.pt-PT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.resx">
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PcgToolsResources\Strings.sr-Latn-RS.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Graphics\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Images\korg-kronos-wnamm2011.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Images\paypal_donate.gif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Images\pcgtoolsnormal.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Images\SpecialEvent.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\about.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\check.png" />
+    <Resource Include="Graphics\Tool Bar Icons\compact.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\copy - exit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\copy - help.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\copy - recall.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\copy.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\cut.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\delete.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\disk_blue.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\document.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\document_edit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\document_gear.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\document_plain.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\folder_out.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\navgate_up2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\navigate_down.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\navigate_up.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\paste.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\readme.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\save_as.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\show_timbres.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\sort.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\star_blue - remove.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\star_blue.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Tool Bar Icons\text_align_justified.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

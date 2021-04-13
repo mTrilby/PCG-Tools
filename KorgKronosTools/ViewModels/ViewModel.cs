@@ -2,7 +2,8 @@
 
 using System;
 using Common.Mvvm;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.MemoryAndFactory;
 
 namespace PcgTools.ViewModels
 {

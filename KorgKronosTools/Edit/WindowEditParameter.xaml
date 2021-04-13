@@ -1,8 +1,8 @@
-﻿<Window x:Class="PcgTools.Edit.WindowEditParameter"
+<Window x:Class="PcgTools.Edit.WindowEditParameter"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="{Binding ___EditParameterWindow, Source={StaticResource LocStrings}}" 
-        Icon="/PcgTools;component/Gui/pcgtools.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"
+        Icon="/Gui/Icons/pcgtools.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"
         >
 
     <StackPanel>

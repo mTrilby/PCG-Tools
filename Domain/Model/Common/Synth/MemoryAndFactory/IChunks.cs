@@ -1,0 +1,17 @@
+﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+
+using System.Collections.Generic;
+
+namespace Domain.Model.Common.Synth.MemoryAndFactory
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public interface IChunks
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        List<IChunk> Collection { get; }
+    }
+}

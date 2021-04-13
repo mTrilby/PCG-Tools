@@ -1,5 +1,6 @@
 ﻿using System;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.PatchCombis;
 
 namespace PcgTools.ViewModels
 {

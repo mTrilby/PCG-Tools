@@ -1,10 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using Common.Mvvm;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.PcgToolsResources;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.Meta;
+using Domain.PcgToolsResources;
 
 
 namespace PcgTools.ViewModels
@@ -23,7 +23,7 @@ namespace PcgTools.ViewModels
         /// <summary>
         /// Selected patches.
         /// </summary>
-        [Annotations.UsedImplicitly]
+        [UsedImplicitly]
         public ObservableCollectionEx<IPatch> Patches { get; set; }
 
         

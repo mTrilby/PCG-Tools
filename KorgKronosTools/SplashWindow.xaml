@@ -1,8 +1,8 @@
-﻿<Window x:Class="PcgTools.SplashWindow"
+<Window x:Class="PcgTools.SplashWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Topmost="True" 
-        Icon="/PcgTools;component/Gui/pcgtools.ico" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None" Focusable="False" 
+        Icon="/Gui/Icons/pcgtools.ico" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None" Focusable="False" 
         SizeToContent="WidthAndHeight">
     <StackPanel >
         <StackPanel.Background>
@@ -15,7 +15,7 @@
                    StrokeThickness="5" VerticalAlignment="Top" Width="377" Panel.ZIndex="-1"/-->
 
         <Image  HorizontalAlignment="Left" Name="imageDonator" Stretch="Fill" VerticalAlignment="Top"  Width="350"
-               Source="/PcgTools;component/Gui/Images/pcgtoolsnormal.jpg" Margin="4" />
+               Source="/Gui/Images/pcgtoolsnormal.jpg" Margin="4" />
 
         <StackPanel Orientation="Horizontal">
             <Label Content="{Binding Version, Source={StaticResource LocStrings}}" HorizontalAlignment="Left" 

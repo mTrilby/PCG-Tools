@@ -1,16 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Domain.ListGenerator;
+using Domain.Model.Common.File;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchPrograms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
-using PcgTools.Model.Common.File;
-
 
 // (c) 2011 Michel Keijzers
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
 
 namespace PCG_Tools_Unittests
 {

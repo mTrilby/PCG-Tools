@@ -1,7 +1,7 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.Windows;
-using PcgTools.PcgToolsResources;
+using Domain.PcgToolsResources;
 
 namespace PcgTools
 {
@@ -28,7 +28,7 @@ namespace PcgTools
         /// <returns></returns>
         public static Strings GetStringResources()
         {
-            return new PcgToolsResources.Strings();
+            return new StringsWrapper();
         }
     }
 }

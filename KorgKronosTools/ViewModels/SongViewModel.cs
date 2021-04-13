@@ -1,14 +1,15 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using Common.Mvvm;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.OpenedFiles;
-using PcgTools.Songs;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.SongsRelated;
+using Domain.OpenedFiles;
+using Domain.Tools;
+using PcgTools.Common.Mvvm;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 namespace PcgTools.ViewModels 
@@ -41,7 +42,7 @@ namespace PcgTools.ViewModels
                 if (e.NewItems != null)
                 {
                     foreach (OpenedPcgWindow item in e.NewItems.Cast<OpenedPcgWindow>().Where(item =>
-                        (SelectedMemory.Model.ModelType == Models.EModelType.Kronos) &&
+                        (SelectedMemory.Model.ModelType == ModelsEModelType.Kronos) &&
                         ModelCompatibility.AreModelsCompatible(SelectedMemory.Model, item.PcgMemory.Model)))
                     {
                         SelectedPcgFileName = item.PcgMemory.FileName;

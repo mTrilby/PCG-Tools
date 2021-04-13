@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -62,8 +62,8 @@ namespace ExternalUtilities
                     numberOfLinesInFolder += IterateThroughFolder(subFolder, level + 1, numberOfLinesInFolder);
                 }
             }
-            
-            output.AppendFormat("{0}Total number of lines in this folder and Total:{1}{2} / {3}\n", 
+
+            output.AppendFormat("{0}Total number of lines in this folder and Total:{1}{2} / {3}\n",
                 indentation, new string(' ', 85), numberOfLinesInFolder, numberOfLines + numberOfLinesInFolder);
 
             return numberOfLinesInFolder;
@@ -78,10 +78,10 @@ namespace ExternalUtilities
                 subFolder != @"\Debug" &&
                 subFolder != @"\Documentation" &&
                 subFolder != @"\Extended WPF Toolkit Binaries" &&
-                subFolder != @"\Installation\Installation"&& 
+                subFolder != @"\Installation\Installation"&&
                 subFolder != @"\KorgKronosTools\Help\External Links" &&
-                subFolder != @"\KorgKronosTools\Gui\Images" &&
-                subFolder != @"\KorgKronosTools\Gui\Tool Bar Icons" &&
+                subFolder != @"\Domain\Graphics\Images" &&
+                subFolder != @"\Domain\Graphics\Tool Bar Icons" &&
                 subFolder != @"\KorgKronosTools\WPF.MDI\Backup" &&
                 subFolder != @"\KorgKronosTools\WPF.MDI\Example" &&
                 subFolder != @"\KorgKronosTools\WPF.MDI\WPF.MDI\Themes\Resources" &&
@@ -124,6 +124,6 @@ namespace ExternalUtilities
             return File.ReadAllLines(file).Length;
         }
 
-        
+
     }
 }

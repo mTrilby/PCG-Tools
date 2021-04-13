@@ -1,8 +1,8 @@
-﻿<Window x:Class="PcgTools.ListGenerator.ListGeneratorWindow"
+<Window x:Class="PcgTools.ListGenerator.ListGeneratorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="{Binding ListGenerator, Source={StaticResource LocStrings}}" ResizeMode="CanResizeWithGrip"
-        Icon="/PcgTools;component/Gui/pcgtools.ico" Loaded="Window_Loaded" Closed="Window_Closed"
+        Icon="/Gui/Icons/pcgtools.ico" Loaded="Window_Loaded" Closed="Window_Closed"
         ShowInTaskbar="True" WindowStartupLocation="CenterOwner" Width="1000" 
         SizeToContent="Height">
     <WrapPanel Name="wrapPanel" Margin="4" Orientation="Horizontal">

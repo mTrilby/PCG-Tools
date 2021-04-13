@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
+using Common.Windows;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
 using WPF.MDI;
@@ -33,7 +34,7 @@ namespace PcgTools.MasterFiles
         /// <summary>
         /// 
         /// </summary>
-        public MdiChild MdiChild { private get; set; }
+        public IMdiChild MdiChild { private get; set; }
 
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace PcgTools.MasterFiles
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            listViewMasterFiles.ItemsSource = MasterFiles.Instances;
+            listViewMasterFiles.ItemsSource = Domain.MasterFiles.MasterFiles.Instances;
             FillListView();
         }
 
@@ -95,7 +96,7 @@ namespace PcgTools.MasterFiles
             // Scroll into view; all three commands are needed to make it work.
             if (Equals(listView, listViewMasterFiles))
             {
-                if (MasterFiles.Instances.Count(item => item.IsSelected) > 0)
+                if (Domain.MasterFiles.MasterFiles.Instances.Count(item => item.IsSelected) > 0)
                 {
                     listView.ScrollIntoView(listView.Items.Cast<ISelectable>().First(item => item.IsSelected));
                 }
@@ -119,12 +120,12 @@ namespace PcgTools.MasterFiles
         public void CloseWindow()
         {
             _mainWindow.ViewModel.MasterFilesWindow = null;
-
-            Settings.Default.UI_MasterFilesWindowWidth = (int)MdiChild.Width;
-            Settings.Default.UI_MasterFilesWindowHeight = (int)MdiChild.Height;
+            var mdiChild = (MdiChild) MdiChild;
+            Settings.Default.UI_MasterFilesWindowWidth = (int)mdiChild.Width;
+            Settings.Default.UI_MasterFilesWindowHeight = (int)mdiChild.Height;
             Settings.Default.Save();
 
-            MdiChild.Close();
+            mdiChild.Close();
         }
 
 

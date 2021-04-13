@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Windows;
-
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchSorting;
 using PcgTools.Properties;
 using Common.Extensions;
+using Domain.Model;
+using Domain.Model.ChangeVolumeParameters;
+using PcgTools.Common.Extensions;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 namespace PcgTools.Gui
@@ -162,23 +162,23 @@ namespace PcgTools.Gui
 
                 if (radioButtonFixed.IsReallyChecked())
                 {
-                    _parameters.ChangeType = ChangeVolumeParameters.EChangeType.Fixed;
+                    _parameters.ChangeType = ChangeVolumeParametersEChangeType.Fixed;
                 }
                 else if (radioButtonRelative.IsReallyChecked())
                 {
-                    _parameters.ChangeType = ChangeVolumeParameters.EChangeType.Relative;
+                    _parameters.ChangeType = ChangeVolumeParametersEChangeType.Relative;
                 }
                 else if (radioButtonPercentage.IsReallyChecked())
                 {
-                    _parameters.ChangeType = ChangeVolumeParameters.EChangeType.Percentage;
+                    _parameters.ChangeType = ChangeVolumeParametersEChangeType.Percentage;
                 }
                 else if (radioButtonMapped.IsReallyChecked())
                 {
-                    _parameters.ChangeType = ChangeVolumeParameters.EChangeType.Mapped;
+                    _parameters.ChangeType = ChangeVolumeParametersEChangeType.Mapped;
                 }
                 else if (radioButtonSmartMapped.IsReallyChecked())
                 {
-                    _parameters.ChangeType = ChangeVolumeParameters.EChangeType.SmartMapped;
+                    _parameters.ChangeType = ChangeVolumeParametersEChangeType.SmartMapped;
                 }
 
                 _parameters.Value = NumericUpDownValue.Value.Value;

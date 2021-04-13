@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
-
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchSorting;
 using PcgTools.Properties;
 using Common.Extensions;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.PatchSorting;
+using PcgTools.Common.Extensions;
 
 namespace PcgTools.Gui
 {

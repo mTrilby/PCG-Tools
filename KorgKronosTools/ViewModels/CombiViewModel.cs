@@ -6,7 +6,9 @@ using System.Linq;
 using System.Windows.Input;
 using Common.Mvvm;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.PatchCombis;
+using PcgTools.Common.Mvvm;
 
 namespace PcgTools.ViewModels
 {

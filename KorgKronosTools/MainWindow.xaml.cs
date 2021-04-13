@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -14,14 +14,17 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Common.Utils;
+using Common.Windows;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.SongsRelated;
+using Domain.OpenedFiles;
 using Microsoft.Win32;
 using PcgTools.Help;
 using PcgTools.MasterFiles;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.OpenedFiles;
 using PcgTools.ViewModels;
-using PcgTools.PcgToolsResources;
+using Domain.PcgToolsResources;
+using PcgTools.Common.Utils;
 using PcgTools.Properties;
 using WPF.MDI;
 
@@ -342,7 +345,7 @@ namespace PcgTools
 
             ViewModel.HandleAppArguments();
 
-            MasterFiles.MasterFiles.Instances.UpdateStates();
+            Domain.MasterFiles.MasterFiles.Instances.UpdateStates();
 
 #if !DEBUG
             }
@@ -706,8 +709,8 @@ namespace PcgTools
                     Settings.Default.UI_Language = mi.Tag.ToString();
                     Settings.Default.Save();
 
-                    ViewModel.ShowMessageBox(Strings.RestartToChangeLanguage, Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok,
-                                             WindowUtils.EMessageBoxImage.Information, WindowUtils.EMessageBoxResult.Ok);
+                    ViewModel.ShowMessageBox(Strings.RestartToChangeLanguage, Strings.PcgTools, Utils.EMessageBoxButton.Ok,
+                                             Utils.EMessageBoxImage.Information, Utils.EMessageBoxResult.Ok);
                 }
             }
         }

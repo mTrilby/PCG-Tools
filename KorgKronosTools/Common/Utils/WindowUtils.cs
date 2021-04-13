@@ -1,65 +1,20 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
+using Common.Utils;
 using Cursor = System.Windows.Input.Cursor;
 using MessageBox = System.Windows.MessageBox;
 
-namespace Common.Utils
+namespace PcgTools.Common.Utils
 {
     /// <summary>
     /// 
     /// </summary>
     public abstract class WindowUtils
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum EMessageBoxButton
-        {
-            Ok,
-            YesNo,
-            YesNoCancel
-        } ;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum EMessageBoxImage
-        {
-            Error,
-            Warning,
-            Exclamation,
-            Information
-        } ;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum EMessageBoxResult
-        {
-            Ok,
-            Yes,
-            No,
-            None,
-            Cancel
-        } ;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum ECursor
-        {
-            Wait,
-            Arrow
-        } ;
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -70,9 +25,9 @@ namespace Common.Utils
         /// <param name="messageBoxImage"></param>
         /// <param name="messageBoxResult"></param>
         /// <returns></returns>
-        public static EMessageBoxResult ShowMessageBox(Window window, string text, [NotNull] string title,
-            EMessageBoxButton messageBoxButton,
-            EMessageBoxImage messageBoxImage, EMessageBoxResult messageBoxResult)
+        public static global::Common.Windows.Utils.EMessageBoxResult ShowMessageBox(Window window, string text, [NotNull] string title,
+            global::Common.Windows.Utils.EMessageBoxButton messageBoxButton,
+            global::Common.Windows.Utils.EMessageBoxImage messageBoxImage, global::Common.Windows.Utils.EMessageBoxResult messageBoxResult)
         {
             Debug.Assert(!string.IsNullOrEmpty(text));
             Debug.Assert(!string.IsNullOrEmpty(title));
@@ -80,15 +35,15 @@ namespace Common.Utils
             MessageBoxButton button;
             switch (messageBoxButton)
             {
-                case EMessageBoxButton.Ok:
+                case global::Common.Windows.Utils.EMessageBoxButton.Ok:
                     button = MessageBoxButton.OK;
                     break;
 
-                case EMessageBoxButton.YesNo:
+                case global::Common.Windows.Utils.EMessageBoxButton.YesNo:
                     button = MessageBoxButton.YesNo;
                     break;
                 
-                case EMessageBoxButton.YesNoCancel:
+                case global::Common.Windows.Utils.EMessageBoxButton.YesNoCancel:
                     button = MessageBoxButton.YesNoCancel;
                     break;
 
@@ -99,19 +54,19 @@ namespace Common.Utils
             MessageBoxImage image;
             switch (messageBoxImage)
             {
-            case EMessageBoxImage.Error:
+            case global::Common.Windows.Utils.EMessageBoxImage.Error:
                 image = MessageBoxImage.Error;
                 break;
 
-            case EMessageBoxImage.Warning:
+            case global::Common.Windows.Utils.EMessageBoxImage.Warning:
                 image = MessageBoxImage.Warning;
                 break;
 
-            case EMessageBoxImage.Exclamation:
+            case global::Common.Windows.Utils.EMessageBoxImage.Exclamation:
                 image = MessageBoxImage.Exclamation;
                 break;
 
-            case EMessageBoxImage.Information:
+            case global::Common.Windows.Utils.EMessageBoxImage.Information:
                 image = MessageBoxImage.Information;
                 break;
 
@@ -122,23 +77,23 @@ namespace Common.Utils
             MessageBoxResult result;
             switch (messageBoxResult)
             {
-            case EMessageBoxResult.Ok:
+            case global::Common.Windows.Utils.EMessageBoxResult.Ok:
                 result = MessageBoxResult.OK;
                 break;
 
-            case EMessageBoxResult.Yes:
+            case global::Common.Windows.Utils.EMessageBoxResult.Yes:
                 result = MessageBoxResult.Yes;
                 break;
 
-            case EMessageBoxResult.No:
+            case global::Common.Windows.Utils.EMessageBoxResult.No:
                 result = MessageBoxResult.No;
                 break;
 
-            case EMessageBoxResult.None:
+            case global::Common.Windows.Utils.EMessageBoxResult.None:
                 result = MessageBoxResult.None;
                 break;
 
-            case EMessageBoxResult.Cancel:
+            case global::Common.Windows.Utils.EMessageBoxResult.Cancel:
                 result = MessageBoxResult.Cancel;
                 break;
 
@@ -149,27 +104,27 @@ namespace Common.Utils
             MessageBoxResult dialogResult = window == null ? MessageBox.Show(text, title, button, image, result) : 
                                                 MessageBox.Show(window, text, title, button, image, result);
 
-            EMessageBoxResult returnResult;
+            global::Common.Windows.Utils.EMessageBoxResult returnResult;
             switch (dialogResult)
             {
             case MessageBoxResult.OK:
-                returnResult = EMessageBoxResult.Ok;
+                returnResult = global::Common.Windows.Utils.EMessageBoxResult.Ok;
                 break;
 
             case MessageBoxResult.Yes:
-                returnResult = EMessageBoxResult.Yes;
+                returnResult = global::Common.Windows.Utils.EMessageBoxResult.Yes;
                 break;
 
             case MessageBoxResult.No:
-                returnResult = EMessageBoxResult.No;
+                returnResult = global::Common.Windows.Utils.EMessageBoxResult.No;
                 break;
 
             case MessageBoxResult.Cancel:
-                returnResult = EMessageBoxResult.Cancel;
+                returnResult = global::Common.Windows.Utils.EMessageBoxResult.Cancel;
                 break;
 
             case MessageBoxResult.None:
-                returnResult = EMessageBoxResult.None;
+                returnResult = global::Common.Windows.Utils.EMessageBoxResult.None;
                 break;
 
             default:
@@ -184,16 +139,16 @@ namespace Common.Utils
         /// 
         /// </summary>
         /// <param name="eCursor"></param>
-        public static void SetCursor(ECursor eCursor)
+        public static void SetCursor(global::Common.Windows.Utils.ECursor eCursor)
         {
             Cursor cursor;
             switch (eCursor)
             {
-                case ECursor.Wait:
+                case global::Common.Windows.Utils.ECursor.Wait:
                 cursor = Cursors.Wait;
                     break;
 
-                case ECursor.Arrow:
+                case global::Common.Windows.Utils.ECursor.Arrow:
                     cursor = Cursors.Arrow;
                     break;
 

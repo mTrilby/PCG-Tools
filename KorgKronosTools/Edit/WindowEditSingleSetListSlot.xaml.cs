@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -6,12 +6,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Common.Extensions;
-
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.PcgToolsResources;
+using Domain.Edit;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
+using Domain.PcgToolsResources;
+using PcgTools.Common.Extensions;
 using Color = System.Windows.Media.Color;
 
 namespace PcgTools.Edit
@@ -71,7 +72,7 @@ namespace PcgTools.Edit
             WindowEditLoadedSetTextSize();
 
             // Set transpose.
-            if (_patch.PcgRoot.Model.OsVersion == Models.EOsVersion.EOsVersionKronos3x)
+            if (_patch.PcgRoot.Model.OsVersion == ModelsEOsVersion.EOsVersionKronos3x)
             {
                 intupdownTranspose.Value = _patch.Transpose;
             }
@@ -124,27 +125,27 @@ namespace PcgTools.Edit
         /// </summary>
         private void WindowEditLoadedSetTextSize()
         {
-            if (_patch.PcgRoot.Model.OsVersion == Models.EOsVersion.EOsVersionKronos3x)
+            if (_patch.PcgRoot.Model.OsVersion == ModelsEOsVersion.EOsVersionKronos3x)
             {
                 switch (_patch.SelectedTextSize)
                 {
-                    case SetListSlot.TextSize.Xs:
+                    case SetListSlotTextSize.Xs:
                         radioButtonTextSizeXs.IsChecked = true;
                         break;
 
-                    case SetListSlot.TextSize.S:
+                    case SetListSlotTextSize.S:
                         radioButtonTextSizeS.IsChecked = true;
                         break;
 
-                    case SetListSlot.TextSize.M:
+                    case SetListSlotTextSize.M:
                         radioButtonTextSizeM.IsChecked = true;
                         break;
 
-                    case SetListSlot.TextSize.L:
+                    case SetListSlotTextSize.L:
                         radioButtonTextSizeL.IsChecked = true;
                         break;
 
-                    case SetListSlot.TextSize.Xl:
+                    case SetListSlotTextSize.Xl:
                         radioButtonTextSizeXl.IsChecked = true;
                         break;
 
@@ -237,7 +238,7 @@ namespace PcgTools.Edit
                 }
 
                 // Set transpose/ text size.
-                if (_patch.PcgRoot.Model.OsVersion == Models.EOsVersion.EOsVersionKronos3x)
+                if (_patch.PcgRoot.Model.OsVersion == ModelsEOsVersion.EOsVersionKronos3x)
                 {
                     _patch.Transpose = intupdownTranspose.Value.HasValue ? (int) intupdownTranspose.Value : 0;
 
@@ -260,23 +261,23 @@ namespace PcgTools.Edit
         {
             if (radioButtonTextSizeXs.IsReallyChecked())
             {
-                _patch.SelectedTextSize = SetListSlot.TextSize.Xs;
+                _patch.SelectedTextSize = SetListSlotTextSize.Xs;
             }
             else if (radioButtonTextSizeS.IsReallyChecked())
             {
-                _patch.SelectedTextSize = SetListSlot.TextSize.S;
+                _patch.SelectedTextSize = SetListSlotTextSize.S;
             }
             else if (radioButtonTextSizeM.IsReallyChecked())
             {
-                _patch.SelectedTextSize = SetListSlot.TextSize.M;
+                _patch.SelectedTextSize = SetListSlotTextSize.M;
             }
             else if (radioButtonTextSizeL.IsReallyChecked())
             {
-                _patch.SelectedTextSize = SetListSlot.TextSize.L;
+                _patch.SelectedTextSize = SetListSlotTextSize.L;
             }
             else if (radioButtonTextSizeXl.IsReallyChecked())
             {
-                _patch.SelectedTextSize = SetListSlot.TextSize.Xl;
+                _patch.SelectedTextSize = SetListSlotTextSize.Xl;
             }
             else
             {

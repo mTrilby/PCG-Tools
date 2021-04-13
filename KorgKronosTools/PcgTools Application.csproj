@@ -53,24 +53,15 @@
   <ItemGroup>
     <Compile Remove="ListGenerators\ListGeneratorDifferencesList-michelLaptop.cs" />
     <Compile Remove="ListGenerator\ListGeneratorDifferencesList-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Pcg\M3RSysExMemory-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Song\M3RSongFileReader-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Synth\M3RCombi-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Synth\M3RCombiBank-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Synth\M3RProgram-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Synth\M3RProgramBank-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Synth\M3RProgramBanks-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Synth\M3RTimbre-michelLaptop.cs" />
-    <Compile Remove="Model\M3rSpecific\Synth\M3RTimbres-michelLaptop.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove=".gitignore" />
-    <None Remove="Gui\favicon.ico" />
+    <None Remove="Gui\Icons\favicon.ico" />
+    <None Remove="Gui\Icons\pcgtools.ico" />
     <None Remove="Gui\Images\korg-kronos-wnamm2011.jpg" />
     <None Remove="Gui\Images\paypal_donate.gif" />
     <None Remove="Gui\Images\pcgtoolsnormal.jpg" />
     <None Remove="Gui\Images\SpecialEvent.jpg" />
-    <None Remove="Gui\pcgtools.ico" />
     <None Remove="Gui\Tool Bar Icons\about.png" />
     <None Remove="Gui\Tool Bar Icons\check.png" />
     <None Remove="Gui\Tool Bar Icons\compact.png" />
@@ -90,7 +81,6 @@
     <None Remove="Gui\Tool Bar Icons\navigate_down.png" />
     <None Remove="Gui\Tool Bar Icons\navigate_up.png" />
     <None Remove="Gui\Tool Bar Icons\paste.png" />
-    <None Remove="Gui\Tool Bar Icons\readme.txt" />
     <None Remove="Gui\Tool Bar Icons\save_as.png" />
     <None Remove="Gui\Tool Bar Icons\show_timbres.png" />
     <None Remove="Gui\Tool Bar Icons\sort.png" />
@@ -206,11 +196,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="PcgToolsResources\Strings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -218,13 +203,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="PcgToolsResources\Strings.cs.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="PcgToolsResources\Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -249,99 +227,37 @@
     </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
-    <Resource Include="Gui\favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Images\korg-kronos-wnamm2011.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Images\paypal_donate.gif">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Images\pcgtoolsnormal.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Images\SpecialEvent.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Gui\pcgtools.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Gui\Tool Bar Icons\about.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\compact.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\copy - exit.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\copy - help.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\copy - recall.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\copy.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\cut.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\delete.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\disk_blue.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\document.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\document_edit.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\document_gear.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\document_plain.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\folder_out.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\navgate_up2.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\navigate_down.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\navigate_up.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\paste.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\readme.txt">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\save_as.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\show_timbres.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\sort.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\star_blue - remove.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\star_blue.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Gui\Tool Bar Icons\text_align_justified.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Gui\Icons\favicon.ico" />
+    <Resource Include="Gui\Icons\pcgtools.ico" />
+    <Resource Include="Gui\Images\korg-kronos-wnamm2011.jpg" />
+    <Resource Include="Gui\Images\paypal_donate.gif" />
+    <Resource Include="Gui\Images\pcgtoolsnormal.jpg" />
+    <Resource Include="Gui\Images\SpecialEvent.jpg" />
+    <Resource Include="Gui\Tool Bar Icons\about.png" />
+    <Resource Include="Gui\Tool Bar Icons\check.png" />
+    <Resource Include="Gui\Tool Bar Icons\compact.png" />
+    <Resource Include="Gui\Tool Bar Icons\copy - exit.png" />
+    <Resource Include="Gui\Tool Bar Icons\copy - help.png" />
+    <Resource Include="Gui\Tool Bar Icons\copy - recall.png" />
+    <Resource Include="Gui\Tool Bar Icons\copy.png" />
+    <Resource Include="Gui\Tool Bar Icons\cut.png" />
+    <Resource Include="Gui\Tool Bar Icons\delete.png" />
+    <Resource Include="Gui\Tool Bar Icons\disk_blue.png" />
+    <Resource Include="Gui\Tool Bar Icons\document.png" />
+    <Resource Include="Gui\Tool Bar Icons\document_edit.png" />
+    <Resource Include="Gui\Tool Bar Icons\document_gear.png" />
+    <Resource Include="Gui\Tool Bar Icons\document_plain.png" />
+    <Resource Include="Gui\Tool Bar Icons\folder_out.png" />
+    <Resource Include="Gui\Tool Bar Icons\navgate_up2.png" />
+    <Resource Include="Gui\Tool Bar Icons\navigate_down.png" />
+    <Resource Include="Gui\Tool Bar Icons\navigate_up.png" />
+    <Resource Include="Gui\Tool Bar Icons\paste.png" />
+    <Resource Include="Gui\Tool Bar Icons\save_as.png" />
+    <Resource Include="Gui\Tool Bar Icons\show_timbres.png" />
+    <Resource Include="Gui\Tool Bar Icons\sort.png" />
+    <Resource Include="Gui\Tool Bar Icons\star_blue - remove.png" />
+    <Resource Include="Gui\Tool Bar Icons\star_blue.png" />
+    <Resource Include="Gui\Tool Bar Icons\text_align_justified.png" />
     <Resource Include="Help\External Links\AdelTannouriYouTube.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -566,12 +482,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="ViewModels\Commands\PcgCommands\ChangeVolumeParameters.cs" />
     <Compile Include="ViewModels\Commands\PcgCommands\ClearCommands.cs" />
     <Compile Include="ViewModels\Commands\PcgCommands\CopyPasteCommands.cs" />
     <Compile Include="ViewModels\Commands\PcgCommands\DoubleToSingleKeyboardCommands.cs" />
     <Compile Include="ViewModels\Commands\PcgCommands\DoubleToSingleKeyboardWindow.xaml.cs" />
-    <Compile Include="ViewModels\Commands\PcgCommands\ModelCompatibility.cs" />
     <Compile Include="ViewModels\Commands\PcgCommands\PcgFileCommands.cs" />
   </ItemGroup>
 
@@ -582,6 +496,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\WPF.MDI\WPF.MDI.csproj" />
   </ItemGroup>
 </Project>

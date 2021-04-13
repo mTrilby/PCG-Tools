@@ -1,12 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.PcgToolsResources;
+using Common.Windows;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchInterfaces;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.PcgToolsResources;
+using PcgTools.Common.Utils;
 using PcgTools.Properties;
 
 namespace PcgTools.ViewModels.Commands.PcgCommands
@@ -156,19 +159,19 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
             }
 
             var result = _pcgViewModel.ShowMessageBox(
-                Strings.ClearWarning, Strings.PcgTools, WindowUtils.EMessageBoxButton.YesNoCancel,
-                WindowUtils.EMessageBoxImage.Warning, WindowUtils.EMessageBoxResult.Cancel);
+                Strings.ClearWarning, Strings.PcgTools, Utils.EMessageBoxButton.YesNoCancel,
+                Utils.EMessageBoxImage.Warning, Utils.EMessageBoxResult.Cancel);
 
             switch (result)
             {
-                case WindowUtils.EMessageBoxResult.Cancel:
+                case Utils.EMessageBoxResult.Cancel:
                     return true;
 
-                case WindowUtils.EMessageBoxResult.No:
+                case Utils.EMessageBoxResult.No:
                     clearUnusedPatches = true;
                     break;
 
-                case WindowUtils.EMessageBoxResult.Yes:
+                case Utils.EMessageBoxResult.Yes:
                     clearUsedPatches = true;
                     clearUnusedPatches = true;
                     break;

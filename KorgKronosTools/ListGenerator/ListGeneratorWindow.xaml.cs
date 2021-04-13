@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -10,19 +10,20 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
-
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
 using PcgTools.Properties;
-using PcgTools.PcgToolsResources;
+using Domain.PcgToolsResources;
 using Common.Extensions;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
+using Domain.ListGenerator;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchDrumKits;
+using Domain.Model.Common.Synth.PatchDrumPatterns;
+using Domain.Model.Common.Synth.PatchInterfaces;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
+using Domain.Model.Common.Synth.PatchWaveSequences;
+using PcgTools.Common.Extensions;
 
 namespace PcgTools.ListGenerator
 {
@@ -661,7 +662,7 @@ namespace PcgTools.ListGenerator
             checkBoxIgnoreMutedOffTimbres.IsEnabled = true;
             checkBoxIgnoreMutedOffFirstProgramTimbre.IsEnabled = true;
             
-            var longList = (SelectedSubType == ListGenerator.SubType.Long);
+            var longList = (SelectedSubType == Domain.ListGenerator.ListGenerator.SubType.Long);
             UpdateFilterOptions(longList);
 
             groupBoxSorting.Visibility = Visibility.Collapsed; // Always compact
@@ -738,19 +739,19 @@ namespace PcgTools.ListGenerator
                 comboBoxListSubType.Items.Add(new ComboBoxItem
                 {
                     Content = Strings.CompactList,
-                    Tag = ListGenerator.SubType.Compact
+                    Tag = Domain.ListGenerator.ListGenerator.SubType.Compact
                 });
 
                 comboBoxListSubType.Items.Add(new ComboBoxItem
                 {
                     Content = Strings.ShortList,
-                    Tag = ListGenerator.SubType.Short
+                    Tag = Domain.ListGenerator.ListGenerator.SubType.Short
                 });
 
                 comboBoxListSubType.Items.Add(new ComboBoxItem
                 {
                     Content = Strings.LongList,
-                    Tag = ListGenerator.SubType.Long
+                    Tag = Domain.ListGenerator.ListGenerator.SubType.Long
                 });
                 
                 comboBoxListSubType.SelectedIndex = 0; // Compact
@@ -760,13 +761,13 @@ namespace PcgTools.ListGenerator
                 comboBoxListSubType.Items.Add(new ComboBoxItem
                 {
                     Content = Strings.IncludingPatchName,
-                    Tag = ListGenerator.SubType.IncludingPatchName
+                    Tag = Domain.ListGenerator.ListGenerator.SubType.IncludingPatchName
                 });
 
                 comboBoxListSubType.Items.Add(new ComboBoxItem
                 {
                     Content = Strings.ExcludingPatchName,
-                    Tag = ListGenerator.SubType.ExcludingPatchName
+                    Tag = Domain.ListGenerator.ListGenerator.SubType.ExcludingPatchName
                 });
 
                 comboBoxListSubType.SelectedIndex = 0; // Without patch name     
@@ -874,7 +875,7 @@ namespace PcgTools.ListGenerator
         /// </summary>
         private bool LongCombiContentListSelected => (radioButtonCombiContentList.IsReallyChecked() &&
                                                       (comboBoxListSubType.SelectedItem != null) && 
-                                                      (SelectedSubType == ListGenerator.SubType.Long));
+                                                      (SelectedSubType == Domain.ListGenerator.ListGenerator.SubType.Long));
 
 
         /// <summary>
@@ -939,7 +940,7 @@ namespace PcgTools.ListGenerator
         /// <summary>
         /// 
         /// </summary>
-        private ListGenerator.SubType SelectedSubType => (ListGenerator.SubType) ((ComboBoxItem) comboBoxListSubType.SelectedItem).Tag;
+        private Domain.ListGenerator.ListGenerator.SubType SelectedSubType => (Domain.ListGenerator.ListGenerator.SubType) ((ComboBoxItem) comboBoxListSubType.SelectedItem).Tag;
 
 
         /// <summary>
@@ -1150,23 +1151,23 @@ namespace PcgTools.ListGenerator
 
             switch (bank.Type)
             {
-                case BankType.EType.Int:
+                case BankTypeEType.Int:
                     checkBox = SetIntProgramBankIsEnabledAndIsChecked(bank, ref internalBanks);
                     break;
 
-                case BankType.EType.User:
+                case BankTypeEType.User:
                     checkBox = SetUserProgramBankIsEnabledAndIsChecked(bank, ref userBanks);
                     break;
 
-                case BankType.EType.UserExtended:
+                case BankTypeEType.UserExtended:
                     checkBox = SetUserExtendedProgramBankIsEnabledAndIsChecked(bank, ref extendedUserBanks);
                     break;
 
-                case BankType.EType.Gm:
+                case BankTypeEType.Gm:
                     checkBox = SetGmProgramBankIsEnabledAndIsChecked();
                     break;
 
-                case BankType.EType.Virtual:
+                case BankTypeEType.Virtual:
                     checkBox = SetVirtualProgramBankIsEnabledAndIsChecked(bank);
                     break;
 
@@ -1280,7 +1281,7 @@ namespace PcgTools.ListGenerator
             if (checkBox != null)
             {
                 // Write the name of the program bank in the check box (unless it is a virtual bank).
-                if (bank.Type != BankType.EType.Virtual)
+                if (bank.Type != BankTypeEType.Virtual)
                 {
                     checkBox.Content = bank.Id;
                 }
@@ -1432,15 +1433,15 @@ namespace PcgTools.ListGenerator
 
             switch (bank.Type)
             {
-                case BankType.EType.Int:
+                case BankTypeEType.Int:
                     checkBox = SetIntCombiBankIsEnabledAndIsChecked(bank, ref internalBanks);
                     break;
 
-                case BankType.EType.User:
+                case BankTypeEType.User:
                     checkBox = SetUserCombiBankIsEnabledAndIsChecked(bank, ref userBanks);
                     break;
 
-                case BankType.EType.Virtual:
+                case BankTypeEType.Virtual:
                     checkBox = SetVirtualCombiBankIsEnabledAndIsChecked(bank);
                     break;
 
@@ -1510,7 +1511,7 @@ namespace PcgTools.ListGenerator
             if (checkBox != null)
             {
                 // Write the name of the program bank in the check box (unless it is a virtual bank).
-                if (bank.Type != BankType.EType.Virtual)
+                if (bank.Type != BankTypeEType.Virtual)
                 {
                     checkBox.Content = bank.Id;
                 }
@@ -1848,7 +1849,7 @@ namespace PcgTools.ListGenerator
         /// 
         /// </summary>
         /// <param name="generator"></param>
-        private void SetGeneratorOptionalColumnProperties(ListGenerator generator)
+        private void SetGeneratorOptionalColumnProperties(Domain.ListGenerator.ListGenerator generator)
         {
             generator.OptionalColumnCrcIncludingName = checkBoxCrcIncludingName.IsReallyChecked();
             generator.OptionalColumnCrcExcludingName = checkBoxCrcExcludingName.IsReallyChecked();
@@ -1861,30 +1862,30 @@ namespace PcgTools.ListGenerator
         /// 
         /// </summary>
         /// <param name="generator"></param>
-        private void SetGeneratorSubTypeProperty(ListGenerator generator)
+        private void SetGeneratorSubTypeProperty(Domain.ListGenerator.ListGenerator generator)
         {
             if (comboBoxListSubType.SelectedItem != null)
             {
                 switch (SelectedSubType)
                 {
-                    case ListGenerator.SubType.Compact:
-                        generator.ListSubType = ListGenerator.SubType.Compact;
+                    case Domain.ListGenerator.ListGenerator.SubType.Compact:
+                        generator.ListSubType = Domain.ListGenerator.ListGenerator.SubType.Compact;
                         break;
 
-                    case ListGenerator.SubType.Short:
-                        generator.ListSubType = ListGenerator.SubType.Short;
+                    case Domain.ListGenerator.ListGenerator.SubType.Short:
+                        generator.ListSubType = Domain.ListGenerator.ListGenerator.SubType.Short;
                         break;
 
-                    case ListGenerator.SubType.Long:
-                        generator.ListSubType = ListGenerator.SubType.Long;
+                    case Domain.ListGenerator.ListGenerator.SubType.Long:
+                        generator.ListSubType = Domain.ListGenerator.ListGenerator.SubType.Long;
                         break;
 
-                    case ListGenerator.SubType.IncludingPatchName:
-                        generator.ListSubType = ListGenerator.SubType.IncludingPatchName;
+                    case Domain.ListGenerator.ListGenerator.SubType.IncludingPatchName:
+                        generator.ListSubType = Domain.ListGenerator.ListGenerator.SubType.IncludingPatchName;
                         break;
 
-                    case ListGenerator.SubType.ExcludingPatchName:
-                        generator.ListSubType = ListGenerator.SubType.ExcludingPatchName;
+                    case Domain.ListGenerator.ListGenerator.SubType.ExcludingPatchName:
+                        generator.ListSubType = Domain.ListGenerator.ListGenerator.SubType.ExcludingPatchName;
                         break;
 
                     default:
@@ -1899,9 +1900,9 @@ namespace PcgTools.ListGenerator
         /// </summary>
         /// <param name="askForContinuation"></param>
         /// <returns></returns>
-        private ListGenerator CreateGenerator(ref bool askForContinuation)
+        private Domain.ListGenerator.ListGenerator CreateGenerator(ref bool askForContinuation)
         {
-            ListGenerator generator;
+            Domain.ListGenerator.ListGenerator generator;
             if (radioButtonPatchList.IsReallyChecked())
             {
                 generator = new ListGeneratorPatchList();
@@ -1939,7 +1940,7 @@ namespace PcgTools.ListGenerator
         /// 
         /// </summary>
         /// <param name="generator"></param>
-        private void SetGeneratorFilterProperties(ListGenerator generator)
+        private void SetGeneratorFilterProperties(Domain.ListGenerator.ListGenerator generator)
         {
             generator.FilterOnText = checkBoxFilterOnText.IsReallyChecked();
             generator.FilterCaseSensitive = checkBoxCaseSensitive.IsReallyChecked();
@@ -1965,7 +1966,7 @@ namespace PcgTools.ListGenerator
                 if (checkBox.Equals(_programBankButtons[ProgramBanksVirtualCheckBox]))
                 {
                     foreach (var programBank in _pcgMemory.ProgramBanks.BankCollection.Where(
-                        bank => bank.Type == BankType.EType.Virtual))
+                        bank => bank.Type == BankTypeEType.Virtual))
                     {
                         var bank = (IProgramBank) programBank;
                         generator.SelectedProgramBanks.Add(bank);
@@ -1992,7 +1993,7 @@ namespace PcgTools.ListGenerator
                 if (checkBox.Equals(_combiBankButtons[CombiBanksVirtualCheckBox]))
                 {
                     foreach (var bank in _pcgMemory.CombiBanks.BankCollection.Where(
-                        bank => bank.Type == BankType.EType.Virtual).Cast<ICombiBank>())
+                        bank => bank.Type == BankTypeEType.Virtual).Cast<ICombiBank>())
                     {
                         generator.SelectedCombiBanks.Add(bank);
                     }
@@ -2087,7 +2088,7 @@ namespace PcgTools.ListGenerator
         /// 
         /// </summary>
         /// <param name="generator"></param>
-        private void SetGeneratorOutputProperties(ListGenerator generator)
+        private void SetGeneratorOutputProperties(Domain.ListGenerator.ListGenerator generator)
         {
             generator.OutputFileName = textBoxOutputFile.Text;
         }
@@ -2097,19 +2098,19 @@ namespace PcgTools.ListGenerator
         /// 
         /// </summary>
         /// <param name="generator"></param>
-        private void SetGeneratorSortProperties(ListGenerator generator)
+        private void SetGeneratorSortProperties(Domain.ListGenerator.ListGenerator generator)
         {
             if (radioButtonAlphabetical.IsReallyChecked())
             {
-                generator.SortMethod = ListGenerator.Sort.Alphabetical;
+                generator.SortMethod = Domain.ListGenerator.ListGenerator.Sort.Alphabetical;
             }
             else if (radioButtonCategorical.IsReallyChecked())
             {
-                generator.SortMethod = ListGenerator.Sort.Categorical;
+                generator.SortMethod = Domain.ListGenerator.ListGenerator.Sort.Categorical;
             }
             else if (radioButtonTypeBankIndex.IsReallyChecked())
             {
-                generator.SortMethod = ListGenerator.Sort.TypeBankIndex;
+                generator.SortMethod = Domain.ListGenerator.ListGenerator.Sort.TypeBankIndex;
             }
             else
             {
@@ -2122,23 +2123,23 @@ namespace PcgTools.ListGenerator
         /// 
         /// </summary>
         /// <param name="generator"></param>
-        private void SetGeneratorOutputFormatProperties(ListGenerator generator)
+        private void SetGeneratorOutputFormatProperties(Domain.ListGenerator.ListGenerator generator)
         {
             if (radioButtonAsciiTable.IsReallyChecked())
             {
-                generator.ListOutputFormat = ListGenerator.OutputFormat.AsciiTable;
+                generator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.AsciiTable;
             }
             else if (radioButtonText.IsReallyChecked())
             {
-                generator.ListOutputFormat = ListGenerator.OutputFormat.Text;
+                generator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.Text;
             }
             else if (radioButtonCsv.IsReallyChecked())
             {
-                generator.ListOutputFormat = ListGenerator.OutputFormat.Csv;
+                generator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.Csv;
             }
             else if (radioButtonXml.IsReallyChecked())
             {
-                generator.ListOutputFormat = ListGenerator.OutputFormat.Xml;
+                generator.ListOutputFormat = Domain.ListGenerator.ListGenerator.OutputFormat.Xml;
             }
             else
             {
@@ -2151,19 +2152,19 @@ namespace PcgTools.ListGenerator
         /// 
         /// </summary>
         /// <param name="generator"></param>
-        private void SetGeneratorFavoriteProperties(ListGenerator generator)
+        private void SetGeneratorFavoriteProperties(Domain.ListGenerator.ListGenerator generator)
         {
             if (threeStateCheckBoxFavorites.IsChecked == null)
             {
-                generator.ListFilterOnFavorites = ListGenerator.FilterOnFavorites.All;
+                generator.ListFilterOnFavorites = ListGeneratorFilterOnFavorites.All;
             }
             else if (threeStateCheckBoxFavorites.IsChecked.Value)
             {
-                generator.ListFilterOnFavorites = ListGenerator.FilterOnFavorites.Yes;
+                generator.ListFilterOnFavorites = ListGeneratorFilterOnFavorites.Yes;
             }
             else
             {
-                generator.ListFilterOnFavorites = ListGenerator.FilterOnFavorites.No;
+                generator.ListFilterOnFavorites = ListGeneratorFilterOnFavorites.No;
             }
         }
 
@@ -2269,7 +2270,7 @@ namespace PcgTools.ListGenerator
             var selectedItem = comboBoxListSubType.SelectedItem;
             if (selectedItem != null)
             {
-                var longList = (SelectedSubType == ListGenerator.SubType.Long);
+                var longList = (SelectedSubType == Domain.ListGenerator.ListGenerator.SubType.Long);
                 UpdateFilterOptions(longList);
 
                 UpdateOutputOptions();

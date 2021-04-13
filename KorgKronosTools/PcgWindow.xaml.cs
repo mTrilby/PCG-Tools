@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -8,16 +8,18 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using Common.Utils;
+using Common.Windows;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchInterfaces;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
 using PcgTools.Edit;
 using PcgTools.ListGenerator;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.PcgToolsResources;
+using Domain.PcgToolsResources;
+using PcgTools.Common.Utils;
 using PcgTools.Properties;
 using PcgTools.Tools;
 using PcgTools.ViewModels;
@@ -63,7 +65,7 @@ namespace PcgTools
         /// <summary>
         /// 
         /// </summary>
-        public MdiChild MdiChild { private get; set; }
+        public IMdiChild MdiChild { private get; set; }
 
 
         /// <summary>
@@ -98,57 +100,57 @@ namespace PcgTools
                     switch (type)
                     {
                             // Programs
-                        case ViewModels.PcgViewModel.DialogType.EditSingleProgram:
+                        case DialogType.EditSingleProgram:
                             window = new WindowEditSingleProgram(items.First() as IProgram) {Owner = _mainWindow};
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditMultiplePrograms:
+                        case DialogType.EditMultiplePrograms:
                             //window = new WindowEditMultiplePrograms(items as List<IProgram>) { Owner = _mainWindow };
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditSingleProgramBank:
+                        case DialogType.EditSingleProgramBank:
                             //window = new WindowEditSingleProgramBank(items.First() as IProgramBank) { Owner = _mainWindow };
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditMultipleProgramBanks:
+                        case DialogType.EditMultipleProgramBanks:
                             //window = new WindowEditMultipleProgramBanks(items as List<IProgramBank>) { Owner = _mainWindow };
                             break;
 
                             // Combis
-                        case ViewModels.PcgViewModel.DialogType.EditSingleCombi:
+                        case DialogType.EditSingleCombi:
                             window = new WindowEditSingleCombi(items.First() as ICombi) {Owner = _mainWindow};
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditMultipleCombis:
+                        case DialogType.EditMultipleCombis:
                             //window = new WindowEditMultipleCombis(items as List<ICombi>) { Owner = _mainWindow };
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditSingleCombiBank:
+                        case DialogType.EditSingleCombiBank:
                             //window = new WindowEditSingleCombiBank(items.First() as ICombiBank) { Owner = _mainWindow };
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditMultipleCombiBanks:
+                        case DialogType.EditMultipleCombiBanks:
                             //window = new WindowEditMultipleCombiBanks(items as List<ICombiBank>) { Owner = _mainWindow };
                             break;
 
 
                             // Set list slots                                    
-                        case ViewModels.PcgViewModel.DialogType.EditSingleSetListSlot:
+                        case DialogType.EditSingleSetListSlot:
                             window = new WindowEditSingleSetListSlot(items.First() as ISetListSlot) {Owner = _mainWindow};
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditMultipleSetListSlots:
+                        case DialogType.EditMultipleSetListSlots:
                             //window = new WindowEditMultipleSetListSlot(items as List<ISetListSlot>)
                             //{
                             //    Owner = _mainWindow
                             //};
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditSingleSetList:
+                        case DialogType.EditSingleSetList:
                             window = new WindowEditSingleSetList(items.First() as ISetList) {Owner = _mainWindow};
                             break;
 
-                        case ViewModels.PcgViewModel.DialogType.EditMultipleSetLists:
+                        case DialogType.EditMultipleSetLists:
                             //window = new WindowEditMultipleSetLists(items as List<ISetLists>) { Owner = _mainWindow };
                             break;
 
@@ -326,7 +328,7 @@ namespace PcgTools
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             PcgViewModel.SelectedMemory = _pcgMemory;
-            PcgViewModel.SelectedScopeSet = ViewModels.PcgViewModel.ScopeSet.Banks;
+            PcgViewModel.SelectedScopeSet = ScopeSet.Banks;
         }
 
 
@@ -698,7 +700,7 @@ namespace PcgTools
         /// <param name="fileName"></param>
         private void SetPcgFileAsMasterFile(IModel model, string fileName)
         {
-            MasterFiles.MasterFiles.Instances.SetPcgFileAsMasterFile(model, fileName);
+            Domain.MasterFiles.MasterFiles.Instances.SetPcgFileAsMasterFile(model, fileName);
 
         }
 
@@ -809,7 +811,7 @@ namespace PcgTools
         /// <param name="e"></param>
         private void ListViewBanksGotFocus(object sender, RoutedEventArgs e)
         {
-            PcgViewModel.SelectedScopeSet = ViewModels.PcgViewModel.ScopeSet.Banks;
+            PcgViewModel.SelectedScopeSet = ScopeSet.Banks;
         }
 
 
@@ -820,7 +822,7 @@ namespace PcgTools
         /// <param name="e"></param>
         private void ListViewPatchGotFocus(object sender, RoutedEventArgs e)
         {
-            PcgViewModel.SelectedScopeSet = ViewModels.PcgViewModel.ScopeSet.Patches;
+            PcgViewModel.SelectedScopeSet = ScopeSet.Patches;
         }
         
 
@@ -829,14 +831,15 @@ namespace PcgTools
         /// </summary>
         void CloseWindow()
         {
-            MdiChild.Close();
+            var mdiChild = (MdiChild) MdiChild;
+            mdiChild.Close();
             foreach (var child in GetChilds())
             {
                 _mainWindow.Container.Children.Remove(child);
             }
 
-            Settings.Default.UI_PcgWindowWidth = (int) MdiChild.Width;
-            Settings.Default.UI_PcgWindowHeight = (int) MdiChild.Height;
+            Settings.Default.UI_PcgWindowWidth = (int) mdiChild.Width;
+            Settings.Default.UI_PcgWindowHeight = (int) mdiChild.Height;
             Settings.Default.Save();
         }
 
@@ -899,7 +902,7 @@ namespace PcgTools
                 // Can be called from background worker.
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    MdiChild.Title = PcgViewModel.WindowTitle;
+                    (MdiChild as MdiChild).Title = PcgViewModel.WindowTitle;
                 }));
                 break;
 
@@ -1018,10 +1021,10 @@ namespace PcgTools
         private void OnViewPropertyChangedSelectedScopeSet()
         {
             listViewBanks.BorderThickness =
-                new Thickness(PcgViewModel.SelectedScopeSet == ViewModels.PcgViewModel.ScopeSet.Banks ? 3.0 : 1.0);
+                new Thickness(PcgViewModel.SelectedScopeSet == ScopeSet.Banks ? 3.0 : 1.0);
 
             listViewPatches.BorderThickness =
-                new Thickness(PcgViewModel.SelectedScopeSet == ViewModels.PcgViewModel.ScopeSet.Patches ? 3.0 : 1.0);
+                new Thickness(PcgViewModel.SelectedScopeSet == ScopeSet.Patches ? 3.0 : 1.0);
         }
 
 

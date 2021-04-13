@@ -2,7 +2,7 @@
 
 using System.Windows.Controls;
 
-namespace Common.Extensions
+namespace PcgTools.Common.Extensions
 {
     /// <summary>
     /// 

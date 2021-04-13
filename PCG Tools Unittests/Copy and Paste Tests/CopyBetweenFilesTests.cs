@@ -1,11 +1,11 @@
-﻿using Common.Mvvm;
+using Common.Mvvm;
+using Domain.ClipBoard;
+using Domain.Interfaces;
+using Domain.Model.Common.File;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchPrograms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PcgTools.ClipBoard;
-using PcgTools.Model.Common.File;
-
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Properties;
 
 // (c) 2011 Michel Keijzers
@@ -62,7 +62,7 @@ namespace PCG_Tools_Unittests
 
             var clipBoard = new PcgClipBoard();
             program2.IsSelected = true;
-            commands2.CopyPasteCopy(clipBoard, _pcgOs2, PcgViewModel.ScopeSet.Patches, true, 
+            commands2.CopyPasteCopy(clipBoard, _pcgOs2, ScopeSet.Patches, true, 
                 false, false, false, false, false, false,
                 null, patches, false);
 
@@ -75,7 +75,7 @@ namespace PCG_Tools_Unittests
             program3.IsSelected = true;
             Assert.AreNotEqual(program2.Name, program3.Name);
 
-            commands3.CopyPastePaste(clipBoard, _pcgOs3, PcgViewModel.ScopeSet.Patches, true,
+            commands3.CopyPastePaste(clipBoard, _pcgOs3, ScopeSet.Patches, true,
                 false, false, false, false, false, false,
                 banks, patches3);
             Assert.AreEqual(program2.Name, program3.Name);

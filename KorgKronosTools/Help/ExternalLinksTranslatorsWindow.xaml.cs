@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
-using PcgTools.PcgToolsResources;
+using Domain.PcgToolsResources;
 
 // (c) 2011 Michel Keijzers
 

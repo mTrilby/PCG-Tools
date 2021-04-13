@@ -1,8 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Windows.Media.Imaging;
-using PcgTools.Gui;
+using Domain.Logos;
 using PcgTools.ViewModels;
 
 namespace PcgTools

@@ -1,13 +1,14 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Linq;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
+using Domain.Model.KronosSpecific.Pcg;
+using Domain.Model.KronosSpecific.Synth;
+using Domain.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.KronosSpecific.Pcg;
-using PcgTools.Model.KronosSpecific.Synth;
 using PcgTools.Tools;
 
 namespace PCG_Tools_Unittests
@@ -27,10 +28,10 @@ namespace PCG_Tools_Unittests
             combiIa000.Name = "NonEmpty";
 
             combiIa000.Timbres.TimbresCollection[0].UsedProgram = programIa000;
-            
+
             // Set most virtual banks loaded to save time.
             foreach (var bank in pcg.CombiBanks.BankCollection.Where(
-                bank => (bank.Type == BankType.EType.Virtual) && (bank.Id !="V-0A")))
+                bank => (bank.Type == BankTypeEType.Virtual) && (bank.Id !="V-0A")))
             {
                 bank.IsLoaded = false;
             }
@@ -54,7 +55,7 @@ namespace PCG_Tools_Unittests
             var pcg = CreatePcg();
             var programIa000 = (IProgram)pcg.ProgramBanks[0][0];
             var setListSlot000000 = (ISetListSlot)(pcg.SetLists[0])[0];
-            setListSlot000000.SelectedPatchType = SetListSlot.PatchType.Program;
+            setListSlot000000.SelectedPatchType = PatchType.Program;
             setListSlot000000.UsedPatch = programIa000;
 
             var referenceChanger = new ReferenceChanger(pcg);
@@ -76,12 +77,12 @@ namespace PCG_Tools_Unittests
 
             var programIa000 = (IProgram)pcg.ProgramBanks[0][0];
             var setListSlot000000 = (ISetListSlot)(pcg.SetLists[0])[0];
-            setListSlot000000.SelectedPatchType = SetListSlot.PatchType.Program;
+            setListSlot000000.SelectedPatchType = PatchType.Program;
             setListSlot000000.UsedPatch = programIa000;
 
             var programIa001 = (IProgram)pcg.ProgramBanks[0][1];
             var setListSlot000001 = (ISetListSlot)(pcg.SetLists[0])[1];
-            setListSlot000001.SelectedPatchType = SetListSlot.PatchType.Program;
+            setListSlot000001.SelectedPatchType = PatchType.Program;
             setListSlot000001.UsedPatch = programIa001;
 
             var referenceChanger = new ReferenceChanger(pcg);
@@ -102,11 +103,11 @@ namespace PCG_Tools_Unittests
         private static IPcgMemory CreatePcg()
         {
             IPcgMemory memory = new KronosPcgMemory("test.pcg");
-            memory.Model = new Model(Models.EModelType.Kronos, Models.EOsVersion.EOsVersionKronos3x, "3.0");
+            memory.Model = new Model(ModelsEModelType.Kronos, ModelsEOsVersion.EOsVersionKronos3x, "3.0");
             memory.Content = new byte[10000000]; // Enough for timbre parameters
 
             var byteOffset = 1000;
-            
+
             memory.ProgramBanks = new KronosProgramBanks(memory);
             memory.ProgramBanks.Fill();
 

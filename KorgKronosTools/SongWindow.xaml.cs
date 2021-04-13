@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -6,15 +6,17 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using PcgTools.Annotations;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.KronosSpecific.Song;
-using PcgTools.OpenedFiles;
-using PcgTools.PcgToolsResources;
+using Common.Utils;
+using Common.Windows;
+using Domain.Interfaces;
+using Domain.Model.Common.Synth.MemoryAndFactory;
+using Domain.Model.Common.Synth.PatchInterfaces;
+using Domain.Model.Common.Synth.SongsRelated;
+using Domain.Model.KronosSpecific.Song;
+using Domain.OpenedFiles;
+using Domain.PcgToolsResources;
+using Domain.Tools;
 using PcgTools.Properties;
-using PcgTools.Songs;
 using PcgTools.ViewModels;
 using PcgTools.ViewModels.Commands.PcgCommands;
 using WPF.MDI;
@@ -61,7 +63,7 @@ namespace PcgTools
         /// <summary>
         /// 
         /// </summary>
-        public MdiChild MdiChild { get; set; }
+        public IMdiChild MdiChild { get; set; }
 
 
         /// <summary>
@@ -118,7 +120,7 @@ namespace PcgTools
         private bool ViewFilter(object sender)
         {
             var window = (OpenedPcgWindow) sender;
-            return (SongMemory.Model.ModelType == Models.EModelType.Kronos) &&
+            return (SongMemory.Model.ModelType == ModelsEModelType.Kronos) &&
                 ModelCompatibility.AreModelsCompatible(window.PcgMemory.Model, SongMemory.Model);
         }
 
@@ -205,10 +207,11 @@ namespace PcgTools
         // ReSharper disable MemberCanBePrivate.Global
         public void CloseWindow()
         {
-            MdiChild.Close();
+            var mdiChild = (MdiChild) MdiChild;
+            mdiChild.Close();
 
-            Settings.Default.UI_SongWindowWidth = (int) MdiChild.Width;
-            Settings.Default.UI_SongWindowHeight = (int) MdiChild.Height;
+            Settings.Default.UI_SongWindowWidth = (int) mdiChild.Width;
+            Settings.Default.UI_SongWindowHeight = (int) mdiChild.Height;
             Settings.Default.Save();
         }
 
@@ -224,7 +227,7 @@ namespace PcgTools
             {
 
                 case "WindowTitle":
-                    MdiChild.Title = SongViewModel.WindowTitle;
+                    (MdiChild as MdiChild).Title = SongViewModel.WindowTitle;
                     break;
 
                 //default:
@@ -359,7 +362,7 @@ namespace PcgTools
         /// <returns></returns>
         private string GenerateSngTimbresWindowTitle()
         {
-            return MdiChild.Title + " - " + SongViewModel.Song.Name; //return MdiChild.WindowTitle "SONG"; // Use SelectedSong
+            return (MdiChild as MdiChild).Title + " - " + SongViewModel.Song.Name; //return MdiChild.WindowTitle "SONG"; // Use SelectedSong
         }
 
 

@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Model.Common.Synth.SongsRelated;
 
 namespace PcgTools.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
 using System.Collections.Generic;
@@ -7,21 +7,22 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.ListGenerator;
+using Domain.Model.Common.Synth.Meta;
+using Domain.Model.Common.Synth.OldParameters;
+using Domain.Model.Common.Synth.PatchCombis;
+using Domain.Model.Common.Synth.PatchDrumKits;
+using Domain.Model.Common.Synth.PatchDrumPatterns;
+using Domain.Model.Common.Synth.PatchPrograms;
+using Domain.Model.Common.Synth.PatchSetLists;
+using Domain.Model.Common.Synth.PatchWaveSequences;
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ListGeneratorDifferencesList : ListGenerator
+    public class ListGeneratorDifferencesList : Domain.ListGenerator.ListGenerator
     {
         /// <summary>
         /// Dictionary from each patch in each patch bank to a dictionary with #diffs as key and a list of programs 
@@ -169,10 +170,10 @@ namespace PcgTools.ListGenerator
         /// <param name="patch"></param>
         private void FindProgram(IProgram patch)
         {
-            if ((PcgMemory.AreFavoritesSupported && (ListFilterOnFavorites != FilterOnFavorites.All)) &&
-                (((ListFilterOnFavorites != FilterOnFavorites.Yes) || 
+            if ((PcgMemory.AreFavoritesSupported && (ListFilterOnFavorites != ListGeneratorFilterOnFavorites.All)) &&
+                (((ListFilterOnFavorites != ListGeneratorFilterOnFavorites.Yes) || 
                 !patch.GetParam(ParameterNames.ProgramParameterName.Favorite).Value) &&
-                 ((ListFilterOnFavorites != FilterOnFavorites.No) || 
+                 ((ListFilterOnFavorites != ListGeneratorFilterOnFavorites.No) || 
                  patch.GetParam(ParameterNames.ProgramParameterName.Favorite).Value)))
             {
                 return;
@@ -196,7 +197,7 @@ namespace PcgTools.ListGenerator
         void CreateProgramsList()
         {
             // Compare with all other selected programs.
-            foreach (var bank in SelectedProgramBanks.Where(bank => bank.Type != BankType.EType.Gm))
+            foreach (var bank in SelectedProgramBanks.Where(bank => bank.Type != BankTypeEType.Gm))
             {
                 CreateProgramList(bank);
             }
@@ -223,7 +224,7 @@ namespace PcgTools.ListGenerator
                 var bank1 = bank;
                 foreach (var bank2 in SelectedProgramBanks.Where(
                     bank2 => (bank1.BankSynthesisType == bank2.BankSynthesisType) &&
-                             (bank2.Type != BankType.EType.Gm)))
+                             (bank2.Type != BankTypeEType.Gm)))
                 {
                     AnalyzePrograms(bank, bank2, index, patch);
                 }
@@ -298,10 +299,10 @@ namespace PcgTools.ListGenerator
         /// <param name="patch"></param>
         private void FindCombi(ICombi patch)
         {
-            if ((PcgMemory.AreFavoritesSupported && (ListFilterOnFavorites != FilterOnFavorites.All)) &&
-                (((ListFilterOnFavorites != FilterOnFavorites.Yes) ||
+            if ((PcgMemory.AreFavoritesSupported && (ListFilterOnFavorites != ListGeneratorFilterOnFavorites.All)) &&
+                (((ListFilterOnFavorites != ListGeneratorFilterOnFavorites.Yes) ||
                 !patch.GetParam(ParameterNames.CombiParameterName.Favorite).Value) &&
-                 ((ListFilterOnFavorites != FilterOnFavorites.No) ||
+                 ((ListFilterOnFavorites != ListGeneratorFilterOnFavorites.No) ||
                  patch.GetParam(ParameterNames.CombiParameterName.Favorite).Value)))
             {
                 return;
@@ -325,7 +326,7 @@ namespace PcgTools.ListGenerator
         void CreateCombisList()
         {
             // Compare with all other selected Combis.
-            foreach (var bank in SelectedCombiBanks.Where(bank => bank.Type != BankType.EType.Gm))
+            foreach (var bank in SelectedCombiBanks.Where(bank => bank.Type != BankTypeEType.Gm))
             {
                 CreateCombiList(bank);
             }
@@ -468,7 +469,7 @@ namespace PcgTools.ListGenerator
 
                 if (!setList.IsLoaded ||
                     !setListSlot.UseInList(IgnoreInitSetListSlots, FilterOnText, FilterText, FilterCaseSensitive,
-                        FilterOnFavorites.All, FilterSetListSlotDescription))
+                        ListGeneratorFilterOnFavorites.All, FilterSetListSlotDescription))
                 {
                     continue;
                 }
@@ -519,7 +520,7 @@ namespace PcgTools.ListGenerator
             var setListSlot2 = (ISetListSlot)setList2[setListSlot2Index];
             if ((setListSlot == setListSlot2) || !setList2.IsLoaded ||
                 !setListSlot2.UseInList(IgnoreInitPrograms, FilterOnText, FilterText, FilterCaseSensitive,
-                    FilterOnFavorites.All, FilterSetListSlotDescription))
+                    ListGeneratorFilterOnFavorites.All, FilterSetListSlotDescription))
             {
                 return;
             }
@@ -575,7 +576,7 @@ namespace PcgTools.ListGenerator
         void CreateDrumKitsList()
         {
             // Compare with all other selected DrumKits.
-            foreach (var bank in SelectedDrumKitBanks.Where(bank => bank.Type != BankType.EType.Gm))
+            foreach (var bank in SelectedDrumKitBanks.Where(bank => bank.Type != BankTypeEType.Gm))
             {
                 CreateDrumKitList(bank);
             }
@@ -695,7 +696,7 @@ namespace PcgTools.ListGenerator
         void CreateDrumPatternsList()
         {
             // Compare with all other selected DrumPatterns.
-            foreach (var bank in SelectedDrumPatternBanks.Where(bank => bank.Type != BankType.EType.Gm))
+            foreach (var bank in SelectedDrumPatternBanks.Where(bank => bank.Type != BankTypeEType.Gm))
             {
                 CreateDrumPatternList(bank);
             }
@@ -815,7 +816,7 @@ namespace PcgTools.ListGenerator
         void CreateWaveSequencesList()
         {
             // Compare with all other selected WaveSequences.
-            foreach (var bank in SelectedWaveSequenceBanks.Where(bank => bank.Type != BankType.EType.Gm))
+            foreach (var bank in SelectedWaveSequenceBanks.Where(bank => bank.Type != BankTypeEType.Gm))
             {
                 CreateWaveSequenceList(bank);
             }

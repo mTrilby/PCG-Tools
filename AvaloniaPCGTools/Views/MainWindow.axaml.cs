@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace AvaloniaPCGTools
+namespace PCGTools_Avalonia.Views
 {
     public class MainWindow : Window
     {

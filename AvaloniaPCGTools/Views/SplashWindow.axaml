@@ -5,32 +5,36 @@
         xmlns:vm="clr-namespace:PCGTools_Avalonia.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PCGTools_Avalonia.Views.SplashWindow"
-        Icon="/Assets/Images/pcgtools.ico" WindowStartupLocation="CenterOwner" Focusable="False"
+        Icon="/Assets/Images/pcgtools.ico" WindowStartupLocation="CenterScreen" Focusable="False"
+        ExtendClientAreaToDecorationsHint="True"
         SizeToContent="WidthAndHeight"
         Topmost="True"
         Title="SplashScreen">
 
-    <StackPanel>
+    <StackPanel Width="360" Height="220">
         <StackPanel.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFF58C0D" Offset="1"/>
                 <GradientStop Color="Black"/>
+                <GradientStop Color="#FFF58C0D" Offset="1"/>
             </LinearGradientBrush>
         </StackPanel.Background>
       <Image  HorizontalAlignment="Left" Name="imageDonator" Stretch="Fill" VerticalAlignment="Top"  Width="350"
               Source="/Assets/Images/pcgtoolsnormal.jpg" Margin="4" />
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="My new Version" HorizontalAlignment="Left" Margin="4"  VerticalAlignment="Top" Foreground="White"/>
-            <Label Content="&lt;x.y.z&gt;" Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Name="labelVersion" />
+            <Label Content="Version " HorizontalAlignment="Left" Margin="4"  VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="3.1.0 " Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Name="labelVersion" />
             <Label Content="(c) 2011-2021" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Foreground="White" />
         </StackPanel>
 
-        <Label Content="Developed by..." Margin="4" VerticalAlignment="Top" Foreground="White" HorizontalAlignment="Left"/>
+      <StackPanel Orientation="Horizontal">
+        <Label Content="Developed by " Margin="4" VerticalAlignment="Top" Foreground="White" HorizontalAlignment="Left"/>
+        <Label Content="Michel Keijzers, MiKeSoft" Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Name="developedBy" />
+      </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="Sponsored by..." Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" />
-            <Label Content="&lt;Sponsor name&gt;" Foreground="White" HorizontalAlignment="Left" Margin="4" Name="labelSponsorName" VerticalAlignment="Top" />
+            <Label Content="Sponsored by " Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" />
+            <Label Content="Traugott" Foreground="White" HorizontalAlignment="Left" Margin="4" Name="labelSponsorName" VerticalAlignment="Top" />
         </StackPanel>
 
         <Image Margin="4" Name="image" Stretch="Fill" />

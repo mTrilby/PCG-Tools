@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
 namespace PCGTools_Avalonia.Views
@@ -17,6 +18,11 @@ namespace PCGTools_Avalonia.Views
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+        }
+
+        private void SelectUiLanguage(object? sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

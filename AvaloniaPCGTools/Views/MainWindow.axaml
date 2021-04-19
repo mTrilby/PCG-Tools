@@ -15,7 +15,7 @@
     <vm:MainWindowViewModel />
   </Design.DataContext>
 
-  <Panel Margin="0, 40, 0, 0">
+  <DockPanel Margin="0, 40, 0, 0">
     <ExperimentalAcrylicBorder IsHitTestVisible="False">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial
@@ -26,6 +26,135 @@
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
 
-    <Button IsEnabled="True" Content="Example Button" Command="{Binding ClickedCommand}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-  </Panel>
+    <Grid>
+      <Menu Height="23" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="2000">
+          <MenuItem Header="File" VerticalAlignment="Bottom">
+              <MenuItem Header="Open" Name="FileOpenMenuItem"/>
+              <MenuItem Header="Save"/>
+              <MenuItem Header="SaveAs"/>
+              <Separator/>
+              <MenuItem Header="ExportForSequencer">
+                  <MenuItem Header="Cubase"/>
+              </MenuItem>
+              <Separator />
+              <MenuItem Header="RevertToSaved"/>
+              <MenuItem Header="Close" />
+              <Separator />
+              <MenuItem Header="Exit"/>
+          </MenuItem>
+
+          <MenuItem Header="EditMenu" VerticalAlignment="Bottom">
+              <MenuItem Header="EditMenuItem"/>
+              <MenuItem Header="SetFavorite"/>
+              <MenuItem Header="UnsetFavorite"/>
+              <Separator />
+              <MenuItem Header="Clear"/>
+              <MenuItem Header="ClearDuplicates"/>
+              <MenuItem Header="Compact"/>
+              <MenuItem Header="Sort_menu"/>
+              <Separator />
+              <MenuItem Header="Cut"/>
+              <MenuItem Header="Copy"/>
+              <MenuItem Header="Paste"/>
+              <MenuItem Header="ExitCutCopyPasteMode"/>
+              <MenuItem Header="Recall"/>
+              <Separator />
+              <MenuItem Header="MoveUp"/>
+              <MenuItem Header="MoveDown"/>
+              <Separator/>
+              <MenuItem Header="ChangeVolume"/>
+
+              <Separator/>
+              <MenuItem Header="InitAsMpeCombi"/>
+              <Separator/>
+              <MenuItem Header="AssignToSetListSlot"/>
+              <MenuItem Header="AutoFillInSetListSlotNames"/>
+              <Separator/>
+              <MenuItem Header="Capitalization">
+                  <MenuItem Header="CapitalizeName"/>
+                  <MenuItem Header="TitleCaseName"/>
+                  <MenuItem Header="DecapitalizeName"/>
+              </MenuItem>
+          </MenuItem>
+
+          <MenuItem Header="ShowMenu" VerticalAlignment="Bottom">
+              <MenuItem Header="Timbres"/>
+              <MenuItem Header="HexExport"/>
+
+              <Separator/>
+              <MenuItem Header="ShowSingleLinedSetListSlotDescriptions"/>
+              <Separator/>
+              <MenuItem Header="SpecialEvent"/>
+          </MenuItem>
+
+          <MenuItem Header="Tools" VerticalAlignment="Bottom">
+              <MenuItem Header="MasterFiles">
+                  <MenuItem Header="Show"/>
+                  <MenuItem Header="SetPcgFileAsMasterFile"/>
+              </MenuItem>
+              <Separator/>
+              <MenuItem Header="GenerateList"/>
+              <Separator/>
+              <MenuItem Header="ProgramReferenceChanger"/>
+
+              <Separator/>
+              <MenuItem Header="DoubleToSingleKeyboard"/>
+
+          </MenuItem>
+
+          <MenuItem Header="Theme" VerticalAlignment="Bottom">
+              <MenuItem Header="Generic"/>
+              <MenuItem Header="Luna"/>
+              <MenuItem Header="Aero"/>
+          </MenuItem>
+
+          <MenuItem Name="menuItemUiLanguages" Header="Language" VerticalAlignment="Bottom">
+              <!-- See http://msdn.microsoft.com/en-us/library/hh441729.aspx for a list of language codes/culture codes /-->
+              <MenuItem Header="Czech" Tag="cs" Click="SelectUiLanguage"/>
+              <MenuItem Header="Dutch" Tag="nl" Click="SelectUiLanguage"/>
+              <MenuItem Header="English" Tag="en-US" Click="SelectUiLanguage"/>
+              <MenuItem Header="French" Tag="fr" Click="SelectUiLanguage"/>
+              <MenuItem Header="German" Tag="de" Click="SelectUiLanguage"/>
+              <MenuItem Header="Greek" Tag="el" Click="SelectUiLanguage"/>
+              <MenuItem Header="Italian" Tag="it" Click="SelectUiLanguage"/>
+              <MenuItem Header="Polish" Tag="pl" Click="SelectUiLanguage"/>
+              <MenuItem Header="PortugueseBrazil" Tag="pt-BR" Click="SelectUiLanguage"/>
+              <MenuItem Header="PortuguesePortugal" Tag="pt-PT" Click="SelectUiLanguage"/>
+              <MenuItem Header="Russian" Tag="ru" Click="SelectUiLanguage"/>
+              <MenuItem Header="SerbianLatin" Tag="sr-Latn-RS" Click="SelectUiLanguage"/>
+              <MenuItem Header="Spanish" Tag="es" Click="SelectUiLanguage"/>
+              <!--MenuItem Name="TextIds" Header="Show Text IDs" Tag="en-TT" Click="SelectUiLanguage"/-->
+              <MenuItem Header="Turkish" Tag="tr" Click="SelectUiLanguage"/>
+          </MenuItem>
+
+          <MenuItem Header="Options" VerticalAlignment="Bottom">
+              <MenuItem Header="SettingsCommand"/>
+              <MenuItem Header="AssignClearProgram"/>
+          </MenuItem>
+
+          <MenuItem Header="Windows_menu" VerticalAlignment="Bottom">
+              <MenuItem Header="GotoNextWindow_menu"/>
+              <MenuItem Header="GotoPreviousWindow_menu"/>
+          </MenuItem>
+
+          <MenuItem Header="Help" VerticalAlignment="Bottom">
+              <MenuItem Header="AboutMenuItem"/>
+              <Separator/>
+              <MenuItem Header="PcgToolsHomePage"/>
+              <MenuItem Header="Manual"/>
+              <Separator/>
+              <MenuItem Header="ExternalLinksKorgRelatedMenuItem"/>
+              <MenuItem Header="ExternalLinksContributorsMenuItem"/>
+              <MenuItem Header="ExternalLinksVideoCreatorsMenuItem"/>
+              <MenuItem Header="ExternalLinksDonatorsMenuItem"/>
+              <MenuItem Header="ExternalLinksTranslatorsMenuItem"/>
+              <MenuItem Header="ExternalLinksThirdPartiesMenuItem"/>
+              <MenuItem Header="ExternalLinksOasysVoucherCodeSponsorsMenuItem"/>
+              <MenuItem Header="ExternalLinksPersonalMenuItem"/>
+          </MenuItem>
+      </Menu>
+
+    </Grid>
+  </DockPanel>
+
 </Window>

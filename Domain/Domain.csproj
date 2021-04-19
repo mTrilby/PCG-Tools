@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -20,6 +20,7 @@
     <None Remove="Graphics\favicon.ico" />
     <None Remove="Graphics\Icons\favicon.ico" />
     <None Remove="Graphics\Icons\pcgtools.ico" />
+    <None Remove="Graphics\Icons\PcgTools_OLD.ico" />
     <None Remove="Graphics\Images\korg-kronos-wnamm2011.jpg" />
     <None Remove="Graphics\Images\paypal_donate.gif" />
     <None Remove="Graphics\Images\pcgtoolsnormal.jpg" />
@@ -50,14 +51,6 @@
     <None Remove="Graphics\Tool Bar Icons\star_blue - remove.png" />
     <None Remove="Graphics\Tool Bar Icons\star_blue.png" />
     <None Remove="Graphics\Tool Bar Icons\text_align_justified.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Graphics\Icons\favicon.ico" />
-    <Resource Include="Graphics\Icons\pcgtools.ico" />
-    <Resource Include="Graphics\pcgtools.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -215,7 +208,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Graphics\favicon.ico">
+    <Resource Include="Graphics\Icons\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Icons\pcgtools.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Graphics\Icons\PcgTools_OLD.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Graphics\Images\korg-kronos-wnamm2011.jpg">
@@ -233,7 +232,9 @@
     <Resource Include="Graphics\Tool Bar Icons\about.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\check.png" />
+    <Resource Include="Graphics\Tool Bar Icons\check.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Graphics\Tool Bar Icons\compact.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

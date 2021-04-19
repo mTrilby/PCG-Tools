@@ -13,9 +13,11 @@
 
     <StackPanel Width="360" Height="220">
         <StackPanel.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="#FFF58C0D" Offset="1"/>
+            <LinearGradientBrush EndPoint="50%,100%" StartPoint="50%,0%">
+              <LinearGradientBrush.GradientStops>
+                <GradientStop Offset="0.0" Color="Black"/>
+                <GradientStop Offset="1.0" Color="#FFF58C0D"/>
+              </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
         </StackPanel.Background>
       <Image  HorizontalAlignment="Left" Name="imageDonator" Stretch="Fill" VerticalAlignment="Top"  Width="350"

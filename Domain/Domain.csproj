@@ -17,44 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Graphics\favicon.ico" />
-    <None Remove="Graphics\Icons\favicon.ico" />
-    <None Remove="Graphics\Icons\pcgtools.ico" />
-    <None Remove="Graphics\Icons\PcgTools_OLD.ico" />
-    <None Remove="Graphics\Images\korg-kronos-wnamm2011.jpg" />
-    <None Remove="Graphics\Images\paypal_donate.gif" />
-    <None Remove="Graphics\Images\pcgtoolsnormal.jpg" />
-    <None Remove="Graphics\Images\SpecialEvent.jpg" />
-    <None Remove="Graphics\pcgtools.ico" />
-    <None Remove="Graphics\Tool Bar Icons\about.png" />
-    <None Remove="Graphics\Tool Bar Icons\check.png" />
-    <None Remove="Graphics\Tool Bar Icons\compact.png" />
-    <None Remove="Graphics\Tool Bar Icons\copy - exit.png" />
-    <None Remove="Graphics\Tool Bar Icons\copy - help.png" />
-    <None Remove="Graphics\Tool Bar Icons\copy - recall.png" />
-    <None Remove="Graphics\Tool Bar Icons\copy.png" />
-    <None Remove="Graphics\Tool Bar Icons\cut.png" />
-    <None Remove="Graphics\Tool Bar Icons\delete.png" />
-    <None Remove="Graphics\Tool Bar Icons\disk_blue.png" />
-    <None Remove="Graphics\Tool Bar Icons\document.png" />
-    <None Remove="Graphics\Tool Bar Icons\document_edit.png" />
-    <None Remove="Graphics\Tool Bar Icons\document_gear.png" />
-    <None Remove="Graphics\Tool Bar Icons\document_plain.png" />
-    <None Remove="Graphics\Tool Bar Icons\folder_out.png" />
-    <None Remove="Graphics\Tool Bar Icons\navgate_up2.png" />
-    <None Remove="Graphics\Tool Bar Icons\navigate_down.png" />
-    <None Remove="Graphics\Tool Bar Icons\navigate_up.png" />
-    <None Remove="Graphics\Tool Bar Icons\paste.png" />
-    <None Remove="Graphics\Tool Bar Icons\save_as.png" />
-    <None Remove="Graphics\Tool Bar Icons\show_timbres.png" />
-    <None Remove="Graphics\Tool Bar Icons\sort.png" />
-    <None Remove="Graphics\Tool Bar Icons\star_blue - remove.png" />
-    <None Remove="Graphics\Tool Bar Icons\star_blue.png" />
-    <None Remove="Graphics\Tool Bar Icons\text_align_justified.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Graphics\SharedAssets.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedAssets.resx</DependentUpon>
+    </Compile>
     <Compile Update="PcgToolsResources\Strings.tr.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -150,6 +119,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Graphics\SharedAssets.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedAssets.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="PcgToolsResources\Strings.tr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.tr.Designer.cs</LastGenOutput>
@@ -208,105 +181,105 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Graphics\Icons\favicon.ico">
+    <EmbeddedResource Include="Graphics\Icons\favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Icons\pcgtools.ico">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Icons\pcgtools.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Icons\PcgTools_OLD.ico">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Icons\PcgTools_OLD.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Images\korg-kronos-wnamm2011.jpg">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Images\korg-kronos-wnamm2011.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Images\paypal_donate.gif">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Images\paypal_donate.gif">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Images\pcgtoolsnormal.jpg">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Images\pcgtoolsnormal.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Images\SpecialEvent.jpg">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Images\SpecialEvent.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\about.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\about.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\check.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\check.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\compact.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\compact.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\copy - exit.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\copy - exit.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\copy - help.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\copy - help.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\copy - recall.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\copy - recall.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\copy.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\copy.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\cut.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\cut.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\delete.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\delete.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\disk_blue.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\disk_blue.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\document.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\document.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\document_edit.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\document_edit.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\document_gear.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\document_gear.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\document_plain.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\document_plain.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\folder_out.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\folder_out.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\navgate_up2.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\navgate_up2.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\navigate_down.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\navigate_down.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\navigate_up.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\navigate_up.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\paste.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\paste.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\readme.txt">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\readme.txt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\save_as.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\save_as.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\show_timbres.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\show_timbres.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\sort.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\sort.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\star_blue - remove.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\star_blue - remove.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\star_blue.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\star_blue.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Graphics\Tool Bar Icons\text_align_justified.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\text_align_justified.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

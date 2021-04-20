@@ -2,9 +2,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:PCGTools_Avalonia.ViewModels"
+        xmlns:viewModels="clr-namespace:PCGTools_Avalonia.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PCGTools_Avalonia.Views.MainWindow"
+        d:DataContext="{x:Static viewModels:MainWindowViewModel}"
         Icon="/Assets/Images/pcgtools.ico"
         Title="PCG Tools"
         TransparencyLevelHint="AcrylicBlur"
@@ -12,7 +13,7 @@
         ExtendClientAreaToDecorationsHint="True">
 
   <Design.DataContext>
-    <vm:MainWindowViewModel />
+    <viewModels:MainWindowViewModel />
   </Design.DataContext>
 
   <DockPanel Margin="0, 40, 0, 0">
@@ -26,12 +27,12 @@
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
 
-    <Grid>
-      <Menu Height="23" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="2000">
+    <Grid RowDefinitions="35, 50, *">
+      <Menu HorizontalAlignment="Left" Name="MenuBar" VerticalAlignment="Top">
           <MenuItem Header="File" VerticalAlignment="Bottom">
-              <MenuItem Header="Open" Name="FileOpenMenuItem"/>
-              <MenuItem Header="Save"/>
-              <MenuItem Header="SaveAs"/>
+              <MenuItem Header="Open" Name="FileOpenMenuItem" Command="{Binding OpenFilesCommand}"/>
+              <MenuItem Header="Save" Name="SaveFileMenuItem" Command="{Binding SaveFileCommand}"/>
+              <MenuItem Header="SaveAs" Name="SaveFileAsMenuItem" Command="{Binding SaveFileAsCommand}"/>
               <Separator/>
               <MenuItem Header="ExportForSequencer">
                   <MenuItem Header="Cubase"/>
@@ -154,6 +155,23 @@
           </MenuItem>
       </Menu>
 
+      <StackPanel Grid.Row="1" Margin="0, 20, 0, 10" Orientation="Horizontal" HorizontalAlignment="Left" Name="ToolBar" VerticalAlignment="Top">
+        <Border Width="48" Background="SkyBlue">
+          <Image Source="resm:Domain.Graphics.ToolBarIcons.folder_out.png?assembly=Domain"></Image>
+        </Border>
+
+        <Border Width="48" Background="SkyBlue">
+          <Image Source="resm:Domain.Graphics.ToolBarIcons.save_as.png?assembly=Domain"></Image>
+        </Border>
+
+        <Border Width="48" Background="SkyBlue">
+          <Image Source="resm:Domain.Graphics.ToolBarIcons.copy.png?assembly=Domain"></Image>
+        </Border>
+
+        <Border Width="48" Background="SkyBlue">
+          <Image Source="resm:Domain.Graphics.ToolBarIcons.about.png?assembly=Domain"></Image>
+        </Border>
+      </StackPanel>
     </Grid>
   </DockPanel>
 

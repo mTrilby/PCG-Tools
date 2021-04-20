@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Domain.Windows;
 using PCGTools_Avalonia.ViewModels;
 using PCGTools_Avalonia.Views;
 
@@ -44,7 +45,7 @@ namespace PCGTools_Avalonia
         private static async Task<MainWindow> GetMainWindowAsync(SplashWindowViewModel splashViewModel)
         {
             // Initialize here
-            return await Task.FromResult(new MainWindow() { DataContext = new MainWindowViewModel() });
+            return await Task.FromResult(new MainWindow() { DataContext = new MainWindowViewModel(new ModelMainWindow()) });
         }
     }
 }

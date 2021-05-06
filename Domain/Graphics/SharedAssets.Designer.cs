@@ -133,6 +133,36 @@ namespace Domain.Graphics {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap copy_exit {
+            get {
+                object obj = ResourceManager.GetObject("copy_exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap copy_help {
+            get {
+                object obj = ResourceManager.GetObject("copy_help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap copy_recall {
+            get {
+                object obj = ResourceManager.GetObject("copy_recall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cut {
             get {
                 object obj = ResourceManager.GetObject("cut", resourceCulture);
@@ -316,6 +346,16 @@ namespace Domain.Graphics {
         internal static System.Drawing.Bitmap star_blue___remove {
             get {
                 object obj = ResourceManager.GetObject("star_blue___remove", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap star_blue_remove {
+            get {
+                object obj = ResourceManager.GetObject("star_blue_remove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

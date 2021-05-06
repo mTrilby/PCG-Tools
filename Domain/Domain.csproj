@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -14,6 +14,13 @@
     <Compile Remove="Model\M3rSpecific\Synth\M3RProgramBanks-michelLaptop.cs" />
     <Compile Remove="Model\M3rSpecific\Synth\M3RTimbre-michelLaptop.cs" />
     <Compile Remove="Model\M3rSpecific\Synth\M3RTimbres-michelLaptop.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Graphics\ToolBarIcons\copy-exit.png" />
+    <None Remove="Graphics\ToolBarIcons\copy-help.png" />
+    <None Remove="Graphics\ToolBarIcons\copy-recall.png" />
+    <None Remove="Graphics\ToolBarIcons\star_blue-remove.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,76 +47,91 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.cs.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.cs.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.de.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.de.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.el.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.el.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.en-TT.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.en-TT.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.es.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.es.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.fr.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.fr.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.it.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.it.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.nl.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.nl.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.pl.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.pl.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.pt-BR.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.pt-BR.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.pt-PT.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.pt-PT.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.ru.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.ru.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.sr-Latn-RS.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.sr-Latn-RS.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="PcgToolsResources\Strings.tr.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.tr.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
     <Compile Update="Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -220,6 +242,9 @@
     <EmbeddedResource Include="Graphics\ToolBarIcons\copy - recall.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\copy-exit.png" />
+    <EmbeddedResource Include="Graphics\ToolBarIcons\copy-help.png" />
+    <EmbeddedResource Include="Graphics\ToolBarIcons\copy-recall.png" />
     <EmbeddedResource Include="Graphics\ToolBarIcons\copy.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -274,12 +299,17 @@
     <EmbeddedResource Include="Graphics\ToolBarIcons\star_blue - remove.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\ToolBarIcons\star_blue-remove.png" />
     <EmbeddedResource Include="Graphics\ToolBarIcons\star_blue.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Graphics\ToolBarIcons\text_align_justified.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Themes\" />
   </ItemGroup>
 
 </Project>

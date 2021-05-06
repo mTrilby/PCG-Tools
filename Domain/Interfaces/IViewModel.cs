@@ -1,4 +1,4 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.ComponentModel;
 using Domain.Model.Common.Synth.MemoryAndFactory;
@@ -6,18 +6,18 @@ using Domain.Model.Common.Synth.MemoryAndFactory;
 namespace Domain.Interfaces
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public interface IViewModel : INotifyPropertyChanged
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         IMemory SelectedMemory { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="exitMode"></param>
         /// <returns></returns>

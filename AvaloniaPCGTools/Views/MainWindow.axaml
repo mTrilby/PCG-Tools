@@ -3,20 +3,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:PCGTools_Avalonia.ViewModels"
+        xmlns:converters="clr-namespace:PCGTools_Avalonia.Converters"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PCGTools_Avalonia.Views.MainWindow"
-        d:DataContext="{x:Static viewModels:MainWindowViewModel}"
         Icon="/Assets/Images/pcgtools.ico"
         Title="PCG Tools"
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         ExtendClientAreaToDecorationsHint="True">
+  <Window.Resources>
+    <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+  </Window.Resources>
+
+  <Window.Styles>
+    <Style Selector="TextBlock.h1">
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+  </Window.Styles>
 
   <Design.DataContext>
     <viewModels:MainWindowViewModel />
   </Design.DataContext>
 
-  <DockPanel Margin="0, 40, 0, 0">
+  <DockPanel Margin="0, 0, 0, 0">
     <ExperimentalAcrylicBorder IsHitTestVisible="False">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial
@@ -27,151 +37,371 @@
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
 
-    <Grid RowDefinitions="35, 50, *">
-      <Menu HorizontalAlignment="Left" Name="MenuBar" VerticalAlignment="Top">
-          <MenuItem Header="File" VerticalAlignment="Bottom">
-              <MenuItem Header="Open" Name="FileOpenMenuItem" Command="{Binding OpenFilesCommand}"/>
-              <MenuItem Header="Save" Name="SaveFileMenuItem" Command="{Binding SaveFileCommand}"/>
-              <MenuItem Header="SaveAs" Name="SaveFileAsMenuItem" Command="{Binding SaveFileAsCommand}"/>
-              <Separator/>
-              <MenuItem Header="ExportForSequencer">
-                  <MenuItem Header="Cubase"/>
-              </MenuItem>
-              <Separator />
-              <MenuItem Header="RevertToSaved"/>
-              <MenuItem Header="Close" />
-              <Separator />
-              <MenuItem Header="Exit"/>
+    <Grid RowDefinitions="25, 40, *, 50">
+      <Menu Grid.Row="0" Height="23" HorizontalAlignment="Left" Name="MainMenu" VerticalAlignment="Top" Width="2000">
+        <MenuItem Header="{Binding File, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Bottom">
+          <MenuItem Header="{Binding Open, Source={StaticResource LocStrings}}"
+                    ToolTip.Tip="{Binding OpenFileCommand_mainw_tt, Source={StaticResource LocStrings}}"
+                    Name="FileOpenMenuItem"
+                    Command="{Binding Path=OpenFileCommand}"
+                    InputGesture="Ctrl+O" />
+          <MenuItem Header="{Binding Save, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=SaveFileCommand}"
+                    ToolTip.Tip="{Binding SaveFileCommand_mainw_tt, Source={StaticResource LocStrings}}"
+                    InputGesture="Ctrl+S" />
+          <MenuItem Header="{Binding SaveAs, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=SaveFileAsCommand}"
+                    ToolTip.Tip="{Binding SaveFileAsCommand_mainw_tt, Source={StaticResource LocStrings}}"
+                    InputGesture="Ctrl+Shift+S" />
+          <Separator />
+          <MenuItem Header="{Binding ExportForSequencer, Source={StaticResource LocStrings}}">
+            <MenuItem Header="{Binding Cubase, Source={StaticResource LocStrings}}"
+                      Command="{Binding Path=ActiveChildViewModel.ExportToCubaseCommand}" />
+          </MenuItem>
+          <Separator />
+          <MenuItem Header="{Binding RevertToSaved, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=RevertToSavedFileCommand}" />
+          <MenuItem Header="{Binding Close, Source={StaticResource LocStrings}}"
+                    InputGesture="Ctrl+F4"
+                    Command="{Binding Path=CloseFileCommand}" />
+          <Separator />
+          <MenuItem Header="{Binding Exit, Source={StaticResource LocStrings}}"
+                    InputGesture="Alt+F4"
+                    Command="{Binding Path=ExitCommand}" />
+        </MenuItem>
+
+        <MenuItem Header="{Binding EditMenu, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Center">
+          <MenuItem Header="{Binding EditMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.EditSelectedItemCommand}"
+                    InputGesture="F2" />
+          <MenuItem Header="{Binding SetFavorite, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.SetFavoriteCommand}" />
+          <MenuItem Header="{Binding UnsetFavorite, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.UnsetFavoriteCommand}" />
+          <Separator />
+          <MenuItem Header="{Binding Clear, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.ClearCommand}" />
+          <MenuItem Header="{Binding ClearDuplicates, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.ClearDuplicatesCommand}" />
+          <MenuItem Header="{Binding Compact, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.CompactCommand}" />
+          <MenuItem Header="{Binding Sort_menu, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.SortCommand}" />
+          <Separator />
+          <MenuItem Header="{Binding Cut, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.CutCommand}"
+                    InputGesture="Ctrl+X" />
+          <MenuItem Header="{Binding Copy, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.CopyCommand}"
+                    InputGesture="Ctrl+C" />
+          <MenuItem Header="{Binding Paste, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.PasteCommand}"
+                    InputGesture="Ctrl+V" />
+          <MenuItem Header="{Binding ExitCutCopyPasteMode, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.ExitCopyPasteModeCommand}" />
+          <MenuItem Header="{Binding Recall, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.RecallCommand}" />
+          <Separator />
+          <MenuItem Header="{Binding MoveUp, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.MoveUpCommand}"
+                    InputGesture="NumPad8" />
+          <MenuItem Header="{Binding MoveDown, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.MoveDownCommand}"
+                    InputGesture="NumPad2" />
+          <Separator />
+          <MenuItem Header="{Binding ChangeVolume, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.ChangeVolumeCommand}" />
+
+          <Separator />
+          <MenuItem Header="{Binding InitAsMpeCombi, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.InitAsMpeCombiCommand}" />
+          <Separator />
+          <MenuItem Header="{Binding AssignToSetListSlot, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.AssignCommand}" />
+          <MenuItem Header="{Binding AutoFillInSetListSlotNames, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.AutoFillInSetListSlotNamesCommand}" />
+          <Separator />
+          <MenuItem Header="{Binding Capitalization, Source={StaticResource LocStrings}}">
+            <MenuItem Header="{Binding CapitalizeName, Source={StaticResource LocStrings}}"
+                      Command="{Binding Path=ActiveChildViewModel.CapitalizeNameCommand}" />
+            <MenuItem Header="{Binding TitleCaseName, Source={StaticResource LocStrings}}"
+                      Command="{Binding Path=ActiveChildViewModel.TitleCaseNameCommand}" />
+            <MenuItem Header="{Binding DecapitalizeName, Source={StaticResource LocStrings}}"
+                      Command="{Binding Path=ActiveChildViewModel.DecapitalizeNameCommand}" />
           </MenuItem>
 
-          <MenuItem Header="EditMenu" VerticalAlignment="Bottom">
-              <MenuItem Header="EditMenuItem"/>
-              <MenuItem Header="SetFavorite"/>
-              <MenuItem Header="UnsetFavorite"/>
-              <Separator />
-              <MenuItem Header="Clear"/>
-              <MenuItem Header="ClearDuplicates"/>
-              <MenuItem Header="Compact"/>
-              <MenuItem Header="Sort_menu"/>
-              <Separator />
-              <MenuItem Header="Cut"/>
-              <MenuItem Header="Copy"/>
-              <MenuItem Header="Paste"/>
-              <MenuItem Header="ExitCutCopyPasteMode"/>
-              <MenuItem Header="Recall"/>
-              <Separator />
-              <MenuItem Header="MoveUp"/>
-              <MenuItem Header="MoveDown"/>
-              <Separator/>
-              <MenuItem Header="ChangeVolume"/>
+        </MenuItem>
 
-              <Separator/>
-              <MenuItem Header="InitAsMpeCombi"/>
-              <Separator/>
-              <MenuItem Header="AssignToSetListSlot"/>
-              <MenuItem Header="AutoFillInSetListSlotNames"/>
-              <Separator/>
-              <MenuItem Header="Capitalization">
-                  <MenuItem Header="CapitalizeName"/>
-                  <MenuItem Header="TitleCaseName"/>
-                  <MenuItem Header="DecapitalizeName"/>
-              </MenuItem>
+        <MenuItem Header="{Binding ShowMenu, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Center">
+          <MenuItem Header="{Binding Timbres, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.ShowTimbresCommand}" />
+          <MenuItem Header="{Binding HexExport, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.ExportToHexCommand}" />
+
+          <Separator />
+
+          <MenuItem
+            Header="{Binding ShowSingleLinedSetListSlotDescriptions, Source={StaticResource LocStrings}}">
+            <MenuItem.Icon>
+              <CheckBox BorderThickness="0"
+                        IsHitTestVisible="False"
+                        IsChecked="{Binding IsShowSingleLinedSetListSlotDescriptions}"
+                        Command="{Binding Path=ShowSingleLinedSetListSlotDescriptionsCommand}">
+                Toggle _Me
+              </CheckBox>
+            </MenuItem.Icon>
+          </MenuItem>
+          <Separator />
+          <MenuItem Header="{Binding SpecialEvent, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowSpecialEventCommand}" />
+        </MenuItem>
+
+        <MenuItem Header="{Binding Tools, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Center">
+          <MenuItem Header="{Binding MasterFiles, Source={StaticResource LocStrings}}">
+            <MenuItem Header="{Binding Show, Source={StaticResource LocStrings}}"
+                      Command="{Binding Path=ShowMasterFilesCommand}" />
+            <MenuItem Header="{Binding SetPcgFileAsMasterFile, Source={StaticResource LocStrings}}"
+                      Command="{Binding Path=ActiveChildViewModel.SetPcgFileAsMasterFileCommand}" />
+          </MenuItem>
+          <Separator />
+          <MenuItem Header="{Binding GenerateList, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.RunListGeneratorCommand}"
+                    InputGesture="Ctrl+G" />
+          <Separator />
+          <MenuItem Header="{Binding ProgramReferenceChanger, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.RunProgramReferencesChangerCommand}" />
+
+          <Separator />
+          <MenuItem Header="{Binding DoubleToSingleKeyboard, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.DoubleToSingleKeyboardCommand}" />
+
+        </MenuItem>
+
+        <MenuItem Header="{Binding Theme, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Center">
+
+          <MenuItem
+            Header="{Binding Generic, Source={StaticResource LocStrings}}"
+            ToolTip.Tip="{Binding Generic_mainw_tt, Source={StaticResource LocStrings}}">
+            <MenuItem.Icon>
+              <CheckBox BorderThickness="0"
+                        IsHitTestVisible="True"
+                        IsChecked="{Binding Path=SelectedTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Generic}"
+                        Command="{Binding Path=ShowSingleLinedSetListSlotDescriptionsCommand}">
+                Toggle _Me
+              </CheckBox>
+            </MenuItem.Icon>
           </MenuItem>
 
-          <MenuItem Header="ShowMenu" VerticalAlignment="Bottom">
-              <MenuItem Header="Timbres"/>
-              <MenuItem Header="HexExport"/>
-
-              <Separator/>
-              <MenuItem Header="ShowSingleLinedSetListSlotDescriptions"/>
-              <Separator/>
-              <MenuItem Header="SpecialEvent"/>
+          <MenuItem
+            Header="{Binding Luna, Source={StaticResource LocStrings}}"
+            ToolTip.Tip="{Binding Luna_mainw_tt, Source={StaticResource LocStrings}}">
+            <MenuItem.Icon>
+              <CheckBox BorderThickness="0"
+                        IsHitTestVisible="True"
+                        IsChecked="{Binding Path=SelectedTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Luna}">
+                Toggle _Me
+              </CheckBox>
+            </MenuItem.Icon>
           </MenuItem>
-
-          <MenuItem Header="Tools" VerticalAlignment="Bottom">
-              <MenuItem Header="MasterFiles">
-                  <MenuItem Header="Show"/>
-                  <MenuItem Header="SetPcgFileAsMasterFile"/>
-              </MenuItem>
-              <Separator/>
-              <MenuItem Header="GenerateList"/>
-              <Separator/>
-              <MenuItem Header="ProgramReferenceChanger"/>
-
-              <Separator/>
-              <MenuItem Header="DoubleToSingleKeyboard"/>
-
+          <MenuItem
+            Header="{Binding Aero, Source={StaticResource LocStrings}}"
+            ToolTip.Tip="{Binding Aero_mainw_tt, Source={StaticResource LocStrings}}">
+            <MenuItem.Icon>
+              <CheckBox BorderThickness="0"
+                        IsHitTestVisible="True"
+                        IsChecked="{Binding Path=SelectedTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Aero}">
+                Toggle _Me
+              </CheckBox>
+            </MenuItem.Icon>
           </MenuItem>
+        </MenuItem>
 
-          <MenuItem Header="Theme" VerticalAlignment="Bottom">
-              <MenuItem Header="Generic"/>
-              <MenuItem Header="Luna"/>
-              <MenuItem Header="Aero"/>
-          </MenuItem>
+        <MenuItem Name="menuItemUiLanguages" Header="{Binding Language, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Center">
+          <!-- SEE http://msdn.microsoft.com/en-us/library/hh441729.aspx for a list of language codes/culture codes /-->
+          <MenuItem Header="{Binding Czech, Source={StaticResource LocStrings}}" Tag="cs" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding Dutch, Source={StaticResource LocStrings}}" Tag="nl" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding English, Source={StaticResource LocStrings}}" Tag="en-US" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding French, Source={StaticResource LocStrings}}" Tag="fr" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding German, Source={StaticResource LocStrings}}" Tag="de" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding Greek, Source={StaticResource LocStrings}}" Tag="el" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding Italian, Source={StaticResource LocStrings}}" Tag="it" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding Polish, Source={StaticResource LocStrings}}" Tag="pl" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding PortugueseBrazil, Source={StaticResource LocStrings}}"
+                    Tag="pt-BR" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding PortuguesePortugal, Source={StaticResource LocStrings}}"
+                    Tag="pt-PT" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding Russian, Source={StaticResource LocStrings}}"
+                    Tag="ru" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding SerbianLatin, Source={StaticResource LocStrings}}"
+                    Tag="sr-Latn-RS" Click="SelectUiLanguage" />
+          <MenuItem Header="{Binding Spanish, Source={StaticResource LocStrings}}" Tag="es" Click="SelectUiLanguage" />
+          <!--MenuItem Name="TextIds" Header="Show Text IDs" Tag="en-TT" Click="SelectUiLanguage"/-->
+          <MenuItem Header="{Binding Turkish, Source={StaticResource LocStrings}}" Tag="tr" Click="SelectUiLanguage" />
+        </MenuItem>
 
-          <MenuItem Name="menuItemUiLanguages" Header="Language" VerticalAlignment="Bottom">
-              <!-- See http://msdn.microsoft.com/en-us/library/hh441729.aspx for a list of language codes/culture codes /-->
-              <MenuItem Header="Czech" Tag="cs" Click="SelectUiLanguage"/>
-              <MenuItem Header="Dutch" Tag="nl" Click="SelectUiLanguage"/>
-              <MenuItem Header="English" Tag="en-US" Click="SelectUiLanguage"/>
-              <MenuItem Header="French" Tag="fr" Click="SelectUiLanguage"/>
-              <MenuItem Header="German" Tag="de" Click="SelectUiLanguage"/>
-              <MenuItem Header="Greek" Tag="el" Click="SelectUiLanguage"/>
-              <MenuItem Header="Italian" Tag="it" Click="SelectUiLanguage"/>
-              <MenuItem Header="Polish" Tag="pl" Click="SelectUiLanguage"/>
-              <MenuItem Header="PortugueseBrazil" Tag="pt-BR" Click="SelectUiLanguage"/>
-              <MenuItem Header="PortuguesePortugal" Tag="pt-PT" Click="SelectUiLanguage"/>
-              <MenuItem Header="Russian" Tag="ru" Click="SelectUiLanguage"/>
-              <MenuItem Header="SerbianLatin" Tag="sr-Latn-RS" Click="SelectUiLanguage"/>
-              <MenuItem Header="Spanish" Tag="es" Click="SelectUiLanguage"/>
-              <!--MenuItem Name="TextIds" Header="Show Text IDs" Tag="en-TT" Click="SelectUiLanguage"/-->
-              <MenuItem Header="Turkish" Tag="tr" Click="SelectUiLanguage"/>
-          </MenuItem>
+        <MenuItem Header="{Binding Options, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Center">
+          <MenuItem Header="{Binding SettingsCommand, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowSettingsCommand}" />
+          <MenuItem Header="{Binding AssignClearProgram, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ActiveChildViewModel.AssignClearProgramCommand}" />
+        </MenuItem>
 
-          <MenuItem Header="Options" VerticalAlignment="Bottom">
-              <MenuItem Header="SettingsCommand"/>
-              <MenuItem Header="AssignClearProgram"/>
-          </MenuItem>
+        <MenuItem Header="{Binding Windows_menu, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Center">
+          <MenuItem Header="{Binding GotoNextWindow_menu, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=GotoNextWindowCommand}"
+                    InputGesture="F6" />
+          <MenuItem Header="{Binding GotoPreviousWindow_menu, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=GotoPreviousWindowCommand}"
+                    InputGesture="Ctrl+F6" />
+        </MenuItem>
 
-          <MenuItem Header="Windows_menu" VerticalAlignment="Bottom">
-              <MenuItem Header="GotoNextWindow_menu"/>
-              <MenuItem Header="GotoPreviousWindow_menu"/>
-          </MenuItem>
-
-          <MenuItem Header="Help" VerticalAlignment="Bottom">
-              <MenuItem Header="AboutMenuItem"/>
-              <Separator/>
-              <MenuItem Header="PcgToolsHomePage"/>
-              <MenuItem Header="Manual"/>
-              <Separator/>
-              <MenuItem Header="ExternalLinksKorgRelatedMenuItem"/>
-              <MenuItem Header="ExternalLinksContributorsMenuItem"/>
-              <MenuItem Header="ExternalLinksVideoCreatorsMenuItem"/>
-              <MenuItem Header="ExternalLinksDonatorsMenuItem"/>
-              <MenuItem Header="ExternalLinksTranslatorsMenuItem"/>
-              <MenuItem Header="ExternalLinksThirdPartiesMenuItem"/>
-              <MenuItem Header="ExternalLinksOasysVoucherCodeSponsorsMenuItem"/>
-              <MenuItem Header="ExternalLinksPersonalMenuItem"/>
-          </MenuItem>
+        <MenuItem Header="{Binding Help, Source={StaticResource LocStrings}}"
+                  VerticalAlignment="Center">
+          <MenuItem Header="{Binding AboutMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowAboutCommand}" />
+          <Separator />
+          <MenuItem Header="{Binding PcgToolsHomePage, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowHomePageCommand}" />
+          <MenuItem Header="{Binding Manual, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowManualCommand}" />
+          <Separator />
+          <MenuItem Header="{Binding ExternalLinksKorgRelatedMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowExternalLinksKorgRelatedCommand}" />
+          <MenuItem Header="{Binding ExternalLinksContributorsMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowExternalLinksContributorsCommand}" />
+          <MenuItem Header="{Binding ExternalLinksVideoCreatorsMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowExternalLinksVideoCreatorsCommand}" />
+          <MenuItem Header="{Binding ExternalLinksDonatorsMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowExternalLinksDonatorsCommand}" />
+          <MenuItem Header="{Binding ExternalLinksTranslatorsMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowExternalLinksTranslatorsCommand}" />
+          <MenuItem Header="{Binding ExternalLinksThirdPartiesMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowExternalLinksThirdPartiesCommand}" />
+          <MenuItem
+            Header="{Binding ExternalLinksOasysVoucherCodeSponsorsMenuItem, Source={StaticResource LocStrings}}"
+            Command="{Binding Path=ShowExternalLinksOasysVoucherCodeSponsorsCommand}" />
+          <MenuItem Header="{Binding ExternalLinksPersonalMenuItem, Source={StaticResource LocStrings}}"
+                    Command="{Binding Path=ShowExternalLinksPersonalCommand}" />
+        </MenuItem>
       </Menu>
 
-      <StackPanel Grid.Row="1" Margin="0, 20, 0, 10" Orientation="Horizontal" HorizontalAlignment="Left" Name="ToolBar" VerticalAlignment="Top">
-        <Border Width="48" Background="SkyBlue">
-          <Image Source="resm:Domain.Graphics.ToolBarIcons.folder_out.png?assembly=Domain"></Image>
-        </Border>
+      <StackPanel Grid.Row="1"
+                  Margin="0, 0, 0, 0"
+                  Name="ToolBar"
+                  Orientation="Horizontal"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top">
 
-        <Border Width="48" Background="SkyBlue">
-          <Image Source="resm:Domain.Graphics.ToolBarIcons.save_as.png?assembly=Domain"></Image>
-        </Border>
+        <Button Command="{Binding Path=OpenFileCommand}"
+                ToolTip.Tip="{Binding OpenFileCommand_mainw_tt, Source={StaticResource LocStrings}}" >
+          <Image Source="resm:Domain.Graphics.ToolBarIcons.folder_out.png?assembly=Domain" Stretch="Fill"/>
+        </Button>
 
-        <Border Width="48" Background="SkyBlue">
-          <Image Source="resm:Domain.Graphics.ToolBarIcons.copy.png?assembly=Domain"></Image>
-        </Border>
+                <Button Command="{Binding Path=SaveFileCommand}"
+                        ToolTip.Tip="{Binding SaveFileCommand_mainw_tt, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.disk_blue.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Button Command="{Binding Path=SaveAsFileCommand}"
+                        ToolTip.Tip="{Binding SaveFileAsCommand_mainw_tt, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.save_as.png?assembly=Domain" Stretch="Fill" />
+                </Button>
 
-        <Border Width="48" Background="SkyBlue">
-          <Image Source="resm:Domain.Graphics.ToolBarIcons.about.png?assembly=Domain"></Image>
-        </Border>
+                <Separator></Separator>
+
+                <Button Command="{Binding Path=ActiveChildViewModel.EditSelectedItemCommand}"
+                        ToolTip.Tip="{Binding EditSelectedPatch, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.document_edit.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+
+                <Button Command="{Binding Path=ActiveChildViewModel.SetFavoriteCommand}"
+                        ToolTip.Tip="{Binding MarkAsFavorite, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.star_blue.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+
+                <Button Command="{Binding Path=ActiveChildViewModel.UnsetFavoriteCommand}"
+                        ToolTip.Tip="{Binding UnmarkAsFavorite, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.star_blue-remove.png?assembly=Domain" Stretch="Fill" />
+                </Button>
+
+                <Button Command="{Binding Path=ActiveChildViewModel.ClearCommand}"
+                        ToolTip.Tip="{Binding ClearSelected, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.document_plain.png?assembly=Domain" Stretch="Fill" />
+                </Button>
+
+                <Button Command="{Binding Path=ActiveChildViewModel.CompactCommand}"
+                        ToolTip.Tip="{Binding CompactSelected, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.compact.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+
+                <Button Command="{Binding Path=ActiveChildViewModel.ShowTimbresCommand}"
+                        ToolTip.Tip="{Binding ShowTimbres, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.show_timbres.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Separator></Separator>
+                <Button Command="{Binding Path=ActiveChildViewModel.CutCommand}"
+                        ToolTip.Tip="{Binding CutSelected, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.cut.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Button Command="{Binding Path=ActiveChildViewModel.CopyCommand}"
+                        ToolTip.Tip="{Binding CopySelected, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.copy.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Button Command="{Binding Path=ActiveChildViewModel.PasteCommand}"
+                        ToolTip.Tip="{Binding PasteCopiedPatches, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.paste.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Button Command="{Binding Path=ShowSettingsCommand}"
+                        ToolTip.Tip="{Binding EditSettings, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.document_gear.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Button Command="{Binding Path=ActiveChildViewModel.ExitCopyPasteModeCommand}"
+                        ToolTip.Tip="{Binding ExitCutCopyPasteModeToolTip, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.copy-exit.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Button Command="{Binding Path=ActiveChildViewModel.RecallCommand}"
+                        ToolTip.Tip="{Binding RecallClipboard, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.copy-recall.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Separator></Separator>
+                <Button Command="{Binding Path=ActiveChildViewModel.MoveUpCommand}"
+                    ToolTip.Tip="{Binding MoveUpToolTip, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.navigate_up.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Button Command="{Binding Path=ActiveChildViewModel.MoveDownCommand}"
+                        ToolTip.Tip="{Binding MoveDownToolTip, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.navigate_down.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Separator></Separator>
+                <Button Command="{Binding Path=ActiveChildViewModel.RunListGeneratorCommand}"
+                        ToolTip.Tip="{Binding GenerateAList, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.text_align_justified.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Separator></Separator>
+                <Button Command="{Binding Path=ShowAboutCommand}"
+                        ToolTip.Tip="{Binding ShowInformation, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.ToolBarIcons.about.png?assembly=Domain" Stretch="Fill"/>
+                </Button>
+                <Button Command="{Binding Path=ShowSpecialEventCommand}"
+                        ToolTip.Tip="{Binding SpecialEventToolTip, Source={StaticResource LocStrings}}">
+                    <Image Source="resm:Domain.Graphics.Images.SpecialEvent.jpg?assembly=Domain"  Stretch="Fill"/>
+                </Button>
       </StackPanel>
+
+      <Panel Grid.Row="2">
+        <TextBlock>Can this be seen?</TextBlock>
+      </Panel>
+
+      <Panel Grid.Row="3">
+        <TextBox Text="{Binding PcgFileName, Source={StaticResource LocStrings}}"></TextBox>
+      </Panel>
     </Grid>
   </DockPanel>
 

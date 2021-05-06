@@ -1,7 +1,14 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pcgToolsResources="clr-namespace:Domain.PcgToolsResources;assembly=Domain"
              x:Class="PCGTools_Avalonia.App">
     <Application.Styles>
         <FluentTheme Mode="Dark"/>
     </Application.Styles>
+    <Application.Resources>
+      <ResourceDictionary>
+        <pcgToolsResources:Strings x:Key="LocStrings"/>
+      </ResourceDictionary>
+
+    </Application.Resources>
 </Application>

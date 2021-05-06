@@ -2,10 +2,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:PCGTools_Avalonia.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PCGTools_Avalonia.Views.SplashWindow"
-        Icon="/Assets/Images/pcgtools.ico" WindowStartupLocation="CenterScreen" Focusable="False"
+        Icon="/Assets/Images/pcgtools.ico"
+        WindowStartupLocation="CenterScreen"
+        Focusable="False"
         ExtendClientAreaToDecorationsHint="True"
         SizeToContent="WidthAndHeight"
         Topmost="True"
@@ -20,8 +21,13 @@
               </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
         </StackPanel.Background>
-      <Image  HorizontalAlignment="Left" Name="imageDonator" Stretch="Fill" VerticalAlignment="Top"  Width="350"
-              Source="/Assets/Images/pcgtoolsnormal.jpg" Margin="4" />
+        <Image Name="imageDonator"
+               Margin="4"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Stretch="Fill"
+               Width="350"
+               Source="resm:Domain.Graphics.Images.pcgtoolsnormal.jpg?assembly=Domain" />
 
         <StackPanel Orientation="Horizontal">
             <Label Content="Version " HorizontalAlignment="Left" Margin="4"  VerticalAlignment="Top" Foreground="White"/>

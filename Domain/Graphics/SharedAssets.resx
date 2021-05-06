@@ -175,6 +175,9 @@
   <data name="folder_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>toolbaricons\folder_out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="korg_kronos_wnamm2011" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\korg-kronos-wnamm2011.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="navgate_up2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>toolbaricons\navgate_up2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -187,8 +190,17 @@
   <data name="paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>toolbaricons\paste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="paypal_donate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\paypal_donate.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="pcgtools" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icons\pcgtools.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pcgtoolsnormal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\pcgtoolsnormal.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PcgTools_OLD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icons\pcgtools_old.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save_as" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>toolbaricons\save_as.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -198,6 +210,9 @@
   </data>
   <data name="sort" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>toolbaricons\sort.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpecialEvent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\specialevent.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="star_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>toolbaricons\star_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

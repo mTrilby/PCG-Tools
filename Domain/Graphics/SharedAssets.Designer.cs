@@ -253,6 +253,16 @@ namespace Domain.Graphics {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap korg_kronos_wnamm2011 {
+            get {
+                object obj = ResourceManager.GetObject("korg_kronos_wnamm2011", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap navgate_up2 {
             get {
                 object obj = ResourceManager.GetObject("navgate_up2", resourceCulture);
@@ -291,12 +301,42 @@ namespace Domain.Graphics {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paypal_donate {
+            get {
+                object obj = ResourceManager.GetObject("paypal_donate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon pcgtools {
             get {
                 object obj = ResourceManager.GetObject("pcgtools", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon PcgTools_OLD {
+            get {
+                object obj = ResourceManager.GetObject("PcgTools_OLD", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pcgtoolsnormal {
+            get {
+                object obj = ResourceManager.GetObject("pcgtoolsnormal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -326,6 +366,16 @@ namespace Domain.Graphics {
         internal static System.Drawing.Bitmap sort {
             get {
                 object obj = ResourceManager.GetObject("sort", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SpecialEvent {
+            get {
+                object obj = ResourceManager.GetObject("SpecialEvent", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,18 +1,24 @@
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Avalonia.Controls;
+using Avalonia.VisualTree;
 using Domain.Interfaces;
 using Domain.Themes;
 using Domain.Windows;
+using PCGTools_Avalonia.Views;
 using ReactiveUI;
 
 namespace PCGTools_Avalonia.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private readonly IServiceProvider? _serviceProvider;
         private readonly ModelMainWindow _model;
 
-        public MainWindowViewModel(): this(new ModelMainWindow())
+        public MainWindowViewModel(IServiceProvider serviceProvider): this(new ModelMainWindow())
         {
+            _serviceProvider = serviceProvider;
         }
 
         public MainWindowViewModel(ModelMainWindow model)
@@ -50,12 +56,39 @@ namespace PCGTools_Avalonia.ViewModels
         public Theme SelectedTheme { get; set; }
 
         private IObservable<bool>? CanExecuteOpenFiles => null;
-        private void OpenFilesAction() => _model.OpenFiles();
+        private async Task OpenFilesAction()
+        {
+            var openFile = new OpenFileDialog();
+
+            openFile.AllowMultiple = false;
+            openFile.Filters.Add(new FileDialogFilter() {Name = "PCG", Extensions = {"pcg"}});
+
+            var parent = ResolveViewFromViewModel(this);
+            var thisWindow = (Window) parent.GetVisualRoot();
+
+            var files = await openFile.ShowAsync(thisWindow);
+            if (files == null || files.Length == 0) return;
+
+            var pcgWindow = new PcgDetails();
+        }
 
         private IObservable<bool>? CanExecuteSaveFile => null;
         private void SaveFileAction() => _model.SaveFile();
 
         private IObservable<bool>? CanExecuteSaveFileAs => null;
         private void SaveFileAsAction() => _model.SaveFileAs();
+
+        /// <summary>
+        /// Finds a view from a given ViewModel
+        /// </summary>
+        /// <param name="vm">The ViewModel representing a View</param>
+        /// <returns>The View that matches the ViewModel. Null is no match found</returns>
+        public static Window ResolveViewFromViewModel<T>(T vm) where T : ViewModelBase
+        {
+            var qualifiedName = vm.GetType().AssemblyQualifiedName;
+            var name = qualifiedName!.Replace("ViewModels", "Views").Replace("ViewModel", "");
+            var type = Type.GetType(name);
+            return type != null ? (Window)Activator.CreateInstance(type)! : null;
+        }
     }
 }

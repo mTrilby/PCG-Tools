@@ -5,8 +5,7 @@
         xmlns:viewModels="clr-namespace:PCGTools_Avalonia.ViewModels"
         xmlns:converters="clr-namespace:PCGTools_Avalonia.Converters"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="PCGTools_Avalonia.Views.MainWindow"
-        Icon="/Assets/Images/pcgtools.ico"
+        x:Class="PCGTools_Avalonia.Views.MainWindow"      Icon="/Assets/Images/pcgtools.ico"
         Title="PCG Tools"
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
@@ -37,8 +36,7 @@
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
 
-    <Grid RowDefinitions="25, 40, *, 50">
-      <Menu Grid.Row="0" Height="23" HorizontalAlignment="Left" Name="MainMenu" VerticalAlignment="Top" Width="2000">
+      <Menu DockPanel.Dock="Top" Height="23" HorizontalAlignment="Left" Name="MainMenu" VerticalAlignment="Top" Width="2000">
         <MenuItem Header="{Binding File, Source={StaticResource LocStrings}}"
                   VerticalAlignment="Bottom">
           <MenuItem Header="{Binding Open, Source={StaticResource LocStrings}}"
@@ -293,7 +291,9 @@
         </MenuItem>
       </Menu>
 
-      <StackPanel Grid.Row="1"
+    <Grid DockPanel.Dock="Bottom" RowDefinitions="40, *, 50">
+
+      <StackPanel Grid.Row="0"
                   Margin="0, 0, 0, 0"
                   Name="ToolBar"
                   Orientation="Horizontal"
@@ -395,13 +395,15 @@
                 </Button>
       </StackPanel>
 
-      <Panel Grid.Row="2">
-        <TextBlock>Can this be seen?</TextBlock>
+      <!-- TODO: This needs to be a TAB Control -->
+      <Panel Grid.Row="1">
+        <TabControl Name="PcgTabs"></TabControl>
       </Panel>
 
-      <Panel Grid.Row="3">
+      <Panel Grid.Row="2">
         <TextBox Text="{Binding PcgFileName, Source={StaticResource LocStrings}}"></TextBox>
       </Panel>
+
     </Grid>
   </DockPanel>
 

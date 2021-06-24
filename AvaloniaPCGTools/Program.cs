@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Dialogs;
 using Avalonia.ReactiveUI;
 using PCGTools_Avalonia.ViewModels;
 using PCGTools_Avalonia.Views;
@@ -20,6 +21,7 @@ namespace PCGTools_Avalonia
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
+                .UseManagedSystemDialogs()
                 .LogToTrace()
                 .UseReactiveUI();
     }

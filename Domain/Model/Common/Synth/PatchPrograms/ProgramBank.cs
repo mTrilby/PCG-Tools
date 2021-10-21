@@ -50,7 +50,8 @@ namespace Domain.Model.Common.Synth.PatchPrograms
                 return map[programBankSynthesisType];
             }
 
-            throw new ApplicationException("Illegal case");
+            return string.Empty;
+            //throw new ApplicationException("Illegal case");
         }
 
 

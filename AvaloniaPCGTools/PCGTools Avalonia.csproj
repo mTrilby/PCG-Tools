@@ -10,22 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Views\PcgWindow.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.0" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
    </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="Views\PcgWindow.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
@@ -36,6 +25,21 @@
     <Compile Update="Views\MainWindow.axaml.cs">
       <DependentUpon>MainWindow.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\PcgWindow.axaml.cs">
+      <DependentUpon>PcgWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\KronosProgramBankControl.axaml.cs">
+      <DependentUpon>KronosProgramBank.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\KronosProgramControl.axaml.cs">
+      <DependentUpon>KronosProgramPatchControl.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
 
 </Project>

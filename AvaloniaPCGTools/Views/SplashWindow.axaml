@@ -21,7 +21,7 @@
               </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
         </StackPanel.Background>
-        <Image Name="imageDonator"
+        <Image Name="ImageDonator"
                Margin="4"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
@@ -31,21 +31,21 @@
 
         <StackPanel Orientation="Horizontal">
             <Label Content="Version " HorizontalAlignment="Left" Margin="4"  VerticalAlignment="Top" Foreground="White"/>
-            <Label Content="3.1.0 " Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Name="labelVersion" />
+            <Label Content="3.1.0 " Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Name="LabelVersion" />
             <Label Content="(c) 2011-2021" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Foreground="White" />
         </StackPanel>
 
       <StackPanel Orientation="Horizontal">
         <Label Content="Developed by " Margin="4" VerticalAlignment="Top" Foreground="White" HorizontalAlignment="Left"/>
-        <Label Content="Michel Keijzers, MiKeSoft" Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Name="developedBy" />
+        <Label Content="Michel Keijzers, MiKeSoft" Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Name="DevelopedBy" />
       </StackPanel>
 
         <StackPanel Orientation="Horizontal">
             <Label Content="Sponsored by " Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" />
-            <Label Content="Traugott" Foreground="White" HorizontalAlignment="Left" Margin="4" Name="labelSponsorName" VerticalAlignment="Top" />
+            <Label Content="Traugott" Foreground="White" HorizontalAlignment="Left" Margin="4" Name="LabelSponsorName" VerticalAlignment="Top" />
         </StackPanel>
 
-        <Image Margin="4" Name="image" Stretch="Fill" />
+        <Image Margin="4" Name="Image" Stretch="Fill" />
 
     </StackPanel>
 

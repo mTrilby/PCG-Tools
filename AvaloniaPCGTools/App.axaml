@@ -3,12 +3,12 @@
              xmlns:pcgToolsResources="clr-namespace:Domain.PcgToolsResources;assembly=Domain"
              x:Class="PCGTools_Avalonia.App">
     <Application.Styles>
-        <FluentTheme Mode="Dark"/>
+        <FluentTheme Mode="Dark" />
     </Application.Styles>
     <Application.Resources>
-      <ResourceDictionary>
-        <pcgToolsResources:Strings x:Key="LocStrings"/>
-      </ResourceDictionary>
+        <ResourceDictionary>
+          <pcgToolsResources:Strings x:Key="LocStrings" />
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>

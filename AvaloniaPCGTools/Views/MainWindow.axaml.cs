@@ -13,6 +13,11 @@ namespace PCGTools_Avalonia.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
+            Closing += (s, e) =>
+            {
+                //TODO: Prevent this window from closing if there are open PCGWindows
+                e.Cancel = true;
+            };
         }
 
         private void InitializeComponent()

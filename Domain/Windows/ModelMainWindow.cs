@@ -1,3 +1,5 @@
+using Domain.Model.Common.File;
+using Domain.Model.Common.Synth.MemoryAndFactory;
 using Domain.PcgToolsResources;
 
 namespace Domain.Windows
@@ -14,11 +16,10 @@ namespace Domain.Windows
 
         public int CurrentYear => 2021;
 
-        public void OpenFiles()
-        {
-            // TODO: Open files
-        }
-
+        public string OpenFileName { get; set; }
+        
+        public IMemory SelectedMemory { get; set; }
+        
         public void SaveFile()
         {
             // TODO: Save file

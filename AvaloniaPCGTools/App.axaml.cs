@@ -19,30 +19,28 @@ namespace PCGTools_Avalonia
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                AppAsyncLoadingStart();
+
                 async void AppAsyncLoadingStart()
                 {
                     var splashViewModel = new SplashWindowViewModel();
                     var splash = new SplashWindow { DataContext = splashViewModel };
                     splash.Show();
 
-                    desktop.MainWindow = await GetMainWindowAsync(splashViewModel);
+                    desktop.MainWindow = await GetMainWindowAsync();
 
                     desktop.MainWindow.Show();
                     desktop.MainWindow.Activate();
 
-                    await Task.Delay(3000);
-
+                    await Task.Delay(2000);
                     splash.Close();
-
                 }
-
-                AppAsyncLoadingStart();
             }
 
             base.OnFrameworkInitializationCompleted();
         }
 
-        private static async Task<MainWindow> GetMainWindowAsync(SplashWindowViewModel splashViewModel)
+        private static async Task<MainWindow> GetMainWindowAsync()
         {
             // Initialize here
             return await Task.FromResult(new MainWindow() { DataContext = new MainWindowViewModel(new ModelMainWindow()) });

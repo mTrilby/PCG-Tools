@@ -1,0 +1,150 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:PCGTools_Avalonia.ViewModels"
+        xmlns:kronos="clr-namespace:Domain.Model.KronosSpecific.Synth;assembly=Domain"
+		xmlns:trinity="clr-namespace:Domain.Model.TrinitySpecific.Synth;assembly=Domain"
+        xmlns:views="clr-namespace:PCGTools_Avalonia.Views"
+        xmlns:pcg="clr-namespace:Domain.Model.KronosSpecific.Pcg;assembly=Domain"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="PCGTools_Avalonia.Views.PcgWindow"
+        Icon="/Assets/Images/pcgtools.ico"
+        Focusable="True"
+        Topmost="True"
+        ExtendClientAreaToDecorationsHint="false">
+    <Design.DataContext>
+        <viewModels:PcgViewModel />
+    </Design.DataContext>
+
+	<Window.Resources>
+		<views:ViewLocator x:Key="WindowViewLocator"/>
+	</Window.Resources>
+	
+    <Grid RowDefinitions="*,500,*,*,*">
+
+        <!-- [0] Display content selectors -->
+        <WrapPanel Grid.Row="0" Orientation="Horizontal">
+            <RadioButton Content="{Binding ProgramsAsRadioButton, Source={StaticResource LocStrings}}"
+                         IsChecked="{Binding Path=ProgramBanksSelected, ConverterParameter=ProgramBanksSelected}"
+                         IsEnabled="{Binding Path=ProgramsEnabled}" Margin="4" />
+            
+            <RadioButton Content="{Binding Combis, Source={StaticResource LocStrings}}"
+                         IsChecked="{Binding Path=CombiBanksSelected, ConverterParameter=CombiBanksSelected}" 
+                         IsEnabled="{Binding Path=CombisEnabled}"
+                         IsVisible="{Binding Path=CombiBanksSupported}" 
+                         Margin="4" />
+            
+            <RadioButton Content="{Binding SetListsAsRadioButton, Source={StaticResource LocStrings}}"
+                         IsChecked="{Binding Path=SetListsSelected, ConverterParameter=SetListsSelected}" 
+                         IsEnabled="{Binding Path=SetListSlotsEnabled}"
+                         IsVisible="{Binding Path=SetListSlotsSupported}" 
+                         Margin="4" />
+            
+            <RadioButton Content="{Binding WaveSequencesInRadioButton, Source={StaticResource LocStrings}}"
+                         IsChecked="{Binding Path=WaveSequenceBanksSelected, ConverterParameter=WaveSequenceBanksSelected}" 
+                         IsEnabled="{Binding Path=WaveSequencesEnabled}"
+                         IsVisible="{Binding Path=WaveSequencesSupported}"
+                         Margin="4" />
+            
+            <RadioButton Content="{Binding DrumKitsInRadioButton, Source={StaticResource LocStrings}}"
+                         IsChecked="{Binding Path=DrumKitBanksSelected}" 
+                         IsEnabled="{Binding Path=DrumKitsEnabled}"
+                         IsVisible="{Binding Path=DrumKitsSupported,}"
+                         Margin="4" />
+
+            <RadioButton Content="{Binding DrumPatternsInRadioButton, Source={StaticResource LocStrings}}"
+                         IsChecked="{Binding Path=DrumPatternBanksSelected}" 
+                         IsEnabled="{Binding Path=DrumPatternsEnabled}"
+                         IsVisible="{Binding Path=DrumPatternsSupported}"
+                         Margin="4" />
+
+            <RadioButton Content="{Binding AllPatchesRadioButton, Source={StaticResource LocStrings}}"
+                         IsChecked="{Binding Path=AllPatchesSelected}" 
+                         Margin="4"/>
+
+            <WrapPanel Margin="4">
+                <WrapPanel.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#FFFF6464" Offset="0" />
+                        <GradientStop Color="#FF960000" Offset="1" />
+                        <GradientStop Color="Red" Offset="0" />
+                    </LinearGradientBrush>
+                </WrapPanel.Background>
+            </WrapPanel>
+            <Label Content="{Binding NumberOfPatches, Source={StaticResource LocStrings}}" VerticalAlignment="Center"/>
+            <Label Content="{Binding NumberOfPatches}" VerticalAlignment="Center" Margin="4, 0, 16, 0"/>
+
+            <Label Content="{Binding NumberOfSelectedPatches, Source={StaticResource LocStrings}}" VerticalAlignment="Center"/>
+            <Label Content="{Binding NumberOfSelectedPatches}" VerticalAlignment="Center" Margin="4, 0, 0, 0"/>
+        </WrapPanel>
+
+        <!-- [1] Content display -->
+        <WrapPanel Grid.Row="1" Orientation="Vertical">
+			<Grid ColumnDefinitions="*,*">
+            
+			    <ScrollViewer Grid.Row="0" Grid.Column="0" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+					<ItemsRepeater Name="Banks" Items="{Binding Banks}" ItemTemplate="{StaticResource WindowViewLocator}" />
+		        </ScrollViewer>
+
+				<ScrollViewer Grid.Row="0" Grid.Column="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+					<ItemsRepeater Name="Patches" Items="{Binding Patches}" ItemTemplate="{StaticResource WindowViewLocator}" />
+			    </ScrollViewer>
+				
+			</Grid>
+        </WrapPanel>
+
+        <!-- [2]  -->
+        <WrapPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Content="{Binding Edit, Source={StaticResource LocStrings}}" Width="80" Margin="4"
+                    Command="{Binding Path=EditSelectedItemCommand}"/>
+            <Button Content="{Binding Up, Source={StaticResource LocStrings}}" Width="80" Margin="4"
+                    Command="{Binding Path=MoveUpCommand}"/>
+            <Button Content="{Binding Down, Source={StaticResource LocStrings}}" Width="80" Margin="4"
+                    Command="{Binding Path=MoveDownCommand}"/>
+
+            <Button Content="{Binding Clear, Source={StaticResource LocStrings}}" Margin="4"
+                    Width="80" Command="{Binding Path=ClearCommand}"/>
+            <Button Content="{Binding Compact, Source={StaticResource LocStrings}}" Margin="4"    
+                    Width="80" Command="{Binding Path=CompactCommand}"/>
+            <Button Content="{Binding Sort_menu, Source={StaticResource LocStrings}}" Margin="4"    
+                    Width="80" Command="{Binding Path=SortCommand}"/>
+            <Button x:Name="ButtonTimbres" Content="{Binding Timbres, Source={StaticResource LocStrings}}" Margin="4" 
+                    Width="80" Command="{Binding Path=ShowTimbresCommand}"/>
+            <Button x:Name="ButtonAssign" Content="{Binding Assign, Source={StaticResource LocStrings}}" Margin="4" 
+                    Command="{Binding Path=AssignCommand}" Width="80">
+                <ToolTip.Tip>
+                    <Label Content="{Binding AssignToolTipText}"/>
+                </ToolTip.Tip>
+            </Button>
+        </WrapPanel>
+
+        <!-- [3] -->
+        <WrapPanel Grid.Row="3" Orientation="Horizontal">
+            <WrapPanel>
+                <Button Content="{Binding Cut, Source={StaticResource LocStrings}}" Margin="4" 
+                        Command="{Binding Path=CutCommand}" Width="80"  />
+                <Button Content="{Binding Copy, Source={StaticResource LocStrings}}" Margin="4" 
+                        Command="{Binding Path=CopyCommand}" Width="80" />
+                <Button Content="{Binding Paste, Source={StaticResource LocStrings}}" Margin="4" 
+                        Command="{Binding Path=PasteCommand}" Width="80"/>
+                <Button Content="{Binding Exit, Source={StaticResource LocStrings}}" Margin="4" 
+                        Command="{Binding Path=ExitCopyPasteModeCommand}" Width="80"/>
+                <Button Content="{Binding Recall, Source={StaticResource LocStrings}}" Margin="4" 
+                        Command="{Binding Path=RecallCommand}" Width="80"/>
+            </WrapPanel>
+
+            <Button Content="{Binding GenerateList, Source={StaticResource LocStrings}}" Margin="4" 
+                    Command="{Binding Path=RunListGeneratorCommand}" Width="128"/>
+        </WrapPanel>
+
+        <!-- [4] -->
+        <WrapPanel Grid.Row="4" Orientation="Horizontal">
+            <Label Content="{Binding SelectedMemory.FileName}" HorizontalAlignment="Left" Margin="4"  VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="{Binding SelectedMemory.Model.ModelAndVersionAsString}" Foreground="White" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Name="LabelVersion" />
+            <Label Content="(c) 2011-2021" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Foreground="White" />
+        </WrapPanel>
+
+    </Grid>
+
+</Window>

@@ -1826,7 +1826,11 @@ namespace PcgTools.ListGenerator
                 var fileName = generator.Run();
                 if (fileName != null)
                 {
-                    Process.Start(fileName);
+                    var processInfo = new ProcessStartInfo(fileName)
+                    {
+                        UseShellExecute = true
+                    };
+                    Process.Start(processInfo);
                 }
             }
             catch (UnauthorizedAccessException ex) 

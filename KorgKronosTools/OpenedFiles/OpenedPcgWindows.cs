@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using Common.Mvvm;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using PcgTools.Mvvm;
 using PcgTools.OpenedFiles;
 
 namespace PcgTools.Songs

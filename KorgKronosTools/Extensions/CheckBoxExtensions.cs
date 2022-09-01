@@ -2,21 +2,21 @@
 
 using System.Windows.Controls;
 
-namespace Common.Extensions
+namespace PcgTools.Extensions
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class RadioButtonExtensions
+    public static class CheckBoxExtensions
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="button"></param>
+        /// <param name="box"></param>
         /// <returns></returns>
-        public static bool IsReallyChecked(this RadioButton button)
+        public static bool IsReallyChecked(this CheckBox box)
         {
-                return (button.IsChecked.HasValue && button.IsChecked.Value);
+            return (box.IsChecked.HasValue && box.IsChecked.Value);
         }
     }
 }

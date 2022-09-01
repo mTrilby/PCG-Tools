@@ -4,9 +4,9 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using Common.Mvvm;
 using Common.Utils;
 using PcgTools.Model.Common.Synth.PatchCombis;
+using PcgTools.Mvvm;
 
 namespace PcgTools.ViewModels
 {

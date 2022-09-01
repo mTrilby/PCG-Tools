@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace Common.Mvvm
+namespace PcgTools.Mvvm
 {
     /// <summary>
     /// A command whose sole purpose is to 

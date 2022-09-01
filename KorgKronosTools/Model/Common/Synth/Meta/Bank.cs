@@ -2,9 +2,9 @@
 
 using System;
 using System.Linq;
-using Common.Mvvm;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
+using PcgTools.Mvvm;
 
 namespace PcgTools.Model.Common.Synth.Meta
 {

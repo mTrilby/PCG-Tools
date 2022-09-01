@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Common.Utils;
 
-namespace Common.Mvvm
+namespace PcgTools.Mvvm
 {
     public abstract class ObservableObject : INotifyPropertyChanged, IObservableObject
     {

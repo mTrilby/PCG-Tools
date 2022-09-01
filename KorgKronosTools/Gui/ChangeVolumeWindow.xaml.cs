@@ -5,6 +5,7 @@ using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchSorting;
 using PcgTools.Properties;
 using Common.Extensions;
+using PcgTools.Extensions;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 namespace PcgTools.Gui

@@ -1,9 +1,9 @@
 ﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.Diagnostics;
-using Common.Mvvm;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
+using PcgTools.Mvvm;
 
 namespace PcgTools.Model.Common.Synth.PatchCombis
 {

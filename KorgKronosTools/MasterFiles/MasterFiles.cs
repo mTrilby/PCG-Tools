@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using Common.Mvvm;
 using Common.Utils;
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using PcgTools.Mvvm;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
 

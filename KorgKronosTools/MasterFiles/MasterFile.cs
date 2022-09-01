@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.Mvvm;
 using Common.Utils;
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using PcgTools.Mvvm;
 using PcgTools.PcgToolsResources;
 using PcgTools.Properties;
 

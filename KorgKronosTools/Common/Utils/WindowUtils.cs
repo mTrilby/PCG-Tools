@@ -4,10 +4,11 @@ using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
+using Common.Utils;
 using Cursor = System.Windows.Input.Cursor;
 using MessageBox = System.Windows.MessageBox;
 
-namespace Common.Utils
+namespace PcgTools.Common.Utils
 {
     /// <summary>
     /// 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Common.Mvvm.ViewModel
+namespace PcgTools.Mvvm.ViewModel
 {
     /// <summary>
     /// Represents an actionable item displayed by a View.

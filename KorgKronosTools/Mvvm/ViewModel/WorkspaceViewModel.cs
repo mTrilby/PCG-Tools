@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Common.Mvvm.ViewModel
+namespace PcgTools.Mvvm.ViewModel
 {
     /// <summary>
     /// This ViewModelBase subclass requests to be removed 

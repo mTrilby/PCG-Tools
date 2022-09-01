@@ -13,6 +13,7 @@ using PcgTools.Model.Common.Synth.PatchSorting;
 using PcgTools.PcgToolsResources;
 using PcgTools.Properties;
 using Common.Extensions;
+using PcgTools.Extensions;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 

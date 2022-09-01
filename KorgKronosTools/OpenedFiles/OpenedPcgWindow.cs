@@ -1,5 +1,5 @@
-﻿using Common.Mvvm;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+﻿using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using PcgTools.Mvvm;
 
 namespace PcgTools.OpenedFiles
 {

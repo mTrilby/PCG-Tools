@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using Common.Mvvm;
 using PcgTools.Model.Common.Synth.Meta;
+using PcgTools.Mvvm;
 using PcgTools.ViewModels;
 
 namespace PcgTools.Edit

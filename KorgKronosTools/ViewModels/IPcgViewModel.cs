@@ -2,10 +2,11 @@
 
 using System;
 using System.Windows.Input;
-using Common.Mvvm;
 using Common.Utils;
+using PcgTools.Common.Utils;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
+using PcgTools.Mvvm;
 
 namespace PcgTools.ViewModels
 {

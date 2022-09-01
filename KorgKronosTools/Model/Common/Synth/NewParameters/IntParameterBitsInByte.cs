@@ -1,6 +1,6 @@
-﻿using Common.Mvvm;
-using Common.Utils;
+﻿using Common.Utils;
 using PcgTools.Model.Common.Synth.Meta;
+using PcgTools.Mvvm;
 
 namespace PcgTools.Model.Common.Synth.NewParameters
 {

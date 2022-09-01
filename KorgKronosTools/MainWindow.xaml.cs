@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Common.Utils;
 using Microsoft.Win32;
+using PcgTools.Common.Utils;
 using PcgTools.Help;
 using PcgTools.MasterFiles;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;

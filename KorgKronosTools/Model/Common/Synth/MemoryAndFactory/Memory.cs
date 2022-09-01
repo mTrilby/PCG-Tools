@@ -3,9 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Common.Mvvm;
 using Common.Utils;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
+using PcgTools.Mvvm;
 using PcgTools.PcgToolsResources;
 using PcgTools.ViewModels;
 

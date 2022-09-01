@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using Common.Utils;
+using PcgTools.Common.Utils;
 using PcgTools.Edit;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;

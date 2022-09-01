@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Common.Extensions;
-using Common.Mvvm;
 using PcgTools.ClipBoard;
 using PcgTools.Model.Common.Synth.Global;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -15,6 +14,7 @@ using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.PatchSorting;
+using PcgTools.Mvvm;
 using PcgTools.Properties;
 
 namespace PcgTools.Model.Common.Synth.Meta

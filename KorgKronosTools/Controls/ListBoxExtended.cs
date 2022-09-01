@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Common.Controls
+namespace PcgTools.Controls
 {
     /// <summary>
     /// 

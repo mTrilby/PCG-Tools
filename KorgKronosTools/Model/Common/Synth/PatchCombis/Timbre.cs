@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Common.Extensions;
-using Common.Mvvm;
 using Common.Utils;
 using PcgTools.Common;
 using PcgTools.Model.Common.Synth.Global;
@@ -16,6 +15,7 @@ using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.SongsRelated;
+using PcgTools.Mvvm;
 using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Model.Common.Synth.PatchCombis

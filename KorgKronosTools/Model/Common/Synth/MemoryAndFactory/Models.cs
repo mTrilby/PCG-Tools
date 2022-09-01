@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Common.Mvvm;
+using PcgTools.Mvvm;
 using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Model.Common.Synth.MemoryAndFactory

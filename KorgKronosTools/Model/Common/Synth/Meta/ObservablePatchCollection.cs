@@ -1,4 +1,4 @@
-﻿using Common.Mvvm;
+﻿using PcgTools.Mvvm;
 
 namespace PcgTools.Model.Common.Synth.Meta
 {

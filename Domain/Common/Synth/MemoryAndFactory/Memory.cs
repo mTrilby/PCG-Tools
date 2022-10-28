@@ -3,8 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Common.PcgToolsResources;
 using Common.Utils;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
+using PcgTools.Mvvm;
 using PcgTools.PcgToolsResources;
 using PcgTools.ViewModels;
 
@@ -204,7 +206,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
         /// </summary>
         public void BackupFile()
         {
-            var backupFileName = MainViewModel.PcgToolsApplicationDataDir + @"\" +
+            var backupFileName = ApplicationData.PcgToolsApplicationDataDir + @"\" +
                                  Path.GetFileNameWithoutExtension(FileName) +
                                  "_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") +
                                  Path.GetExtension(FileName);

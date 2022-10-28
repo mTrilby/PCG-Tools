@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using Common.Extensions;
+using Common.PcgToolsResources;
 using Common.Utils;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.NewParameters;
@@ -13,7 +14,6 @@ using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.PcgToolsResources;
-using PcgTools.Properties;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 namespace PcgTools.Model.Common.Synth.PatchSetLists
@@ -194,7 +194,7 @@ namespace PcgTools.Model.Common.Synth.PatchSetLists
         /// 
         /// </summary>
         [UsedImplicitly]
-        public string DescriptionInList => Settings.Default.SingleLinedSetListSlotDescriptions ? Description.Replace("\r\n", " / ") : Description;
+        public string DescriptionInList => SettingsDefault.SingleLinedSetListSlotDescriptions ? Description.Replace("\r\n", " / ") : Description;
 
 
         /// <summary>

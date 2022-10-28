@@ -2,6 +2,7 @@
 
 using System;
 using System.Text.RegularExpressions;
+using Common.PcgToolsResources;
 using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Edit

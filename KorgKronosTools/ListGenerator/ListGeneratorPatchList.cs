@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 
 using Common.Extensions;
+using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using Common.PcgToolsResources;
 using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Help

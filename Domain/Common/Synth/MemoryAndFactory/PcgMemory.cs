@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Windows;
+using Common.PcgToolsResources;
+using Common.Utils;
 using PcgTools.ClipBoard;
 using PcgTools.Model.Common.Synth.Global;
 using PcgTools.Model.Common.Synth.Meta;
@@ -17,17 +18,16 @@ using PcgTools.Model.Common.Synth.PatchSetLists;
 using PcgTools.Model.Common.Synth.PatchWaveSequences;
 using PcgTools.Model.KronosSpecific.Synth;
 using PcgTools.PcgToolsResources;
-using PcgTools.Properties;
 
 namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public abstract class PcgMemory : Memory, IPcgMemory
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected Models.EModelType ModelType { get; private set; }
 
@@ -77,13 +77,13 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ContentType ContentTypeType { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="modelType"></param>
@@ -97,7 +97,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Fill()
         {
@@ -137,13 +137,13 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IChunks Chunks { get; private set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public enum ChecksumType
         {
@@ -160,13 +160,13 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ChecksumType PcgChecksumType { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private IProgram _assignedClearProgram;
 
@@ -196,23 +196,17 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
             }
 
             // Save file.
-            try
+            if (saveToFile)
             {
-                if (saveToFile)
-                {
-                    System.IO.File.WriteAllBytes(FileName, Content);
-                }
-                IsDirty = false;
+                System.IO.File.WriteAllBytes(FileName, Content);
             }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message, Strings.PcgTools, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
+            IsDirty = false;
 
             // If the file name has changed and the settings are set to automatically rename a file, rename to file.
             if (IsDeleteOriginalFileNeeded(saveAs, saveToFile))
             {
-                DeleteOriginalFile();
+                System.IO.File.Delete(OriginalFileName);
             }
 
             if (saveAs)
@@ -223,7 +217,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="saveAs"></param>
         /// <param name="saveToFile"></param>
@@ -231,34 +225,18 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
         private bool IsDeleteOriginalFileNeeded(bool saveAs, bool saveToFile)
         {
             return saveToFile &&
-                   !saveAs && (OriginalFileName != FileName) && Settings.Default.Edit_RenameFileWhenPatchNameChanges;
+                   !saveAs && (OriginalFileName != FileName) && SettingsDefault.Edit_RenameFileWhenPatchNameChanges;
         }
 
 
         /// <summary>
-        /// Delete original file.
-        /// </summary>
-        private void DeleteOriginalFile()
-        {
-            try
-            {
-                System.IO.File.Delete(OriginalFileName);
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message, Strings.PcgTools, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-
-        /// <summary>
-        /// 
+        ///
         /// </summary>
         public IProgramBanks ProgramBanks { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once UnusedMember.Global
         public int CountSampledPrograms
@@ -274,7 +252,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once UnusedMember.Global
         public int CountModeledPrograms
@@ -290,13 +268,13 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ICombiBanks CombiBanks { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once UnusedMember.Global
         public int CountCombis
@@ -308,13 +286,13 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ISetLists SetLists { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once UnusedMember.Global
         public int CountSetListSlots
@@ -326,13 +304,13 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IWaveSequenceBanks WaveSequenceBanks { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once UnusedMember.Global
         public int CountWaveSequences
@@ -347,13 +325,13 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IDrumKitBanks DrumKitBanks { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once UnusedMember.Global
         public int CountDrumKits
@@ -365,30 +343,30 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IDrumPatternBanks DrumPatternBanks { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int CountDrumPatterns
         {
-            get { return DrumPatternBanks == null 
+            get { return DrumPatternBanks == null
                     ? 0
                     : DrumPatternBanks.BankCollection.Where(bank => bank.IsWritable).Sum(bank => bank.NrOfPatches); }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private IGlobal _global;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IGlobal Global
         {
@@ -407,7 +385,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
         // INavigable
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PcgMemory PcgRoot => this;
 
@@ -421,25 +399,25 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public virtual bool HasProgramCategories => true;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public virtual bool HasCombiCategories => true;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public abstract bool HasSubCategories { get; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once UnusedMember.Global
         public abstract int NumberOfCategories { get; }
@@ -450,7 +428,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="patch"></param>
         /// <param name="otherPatch"></param>
@@ -538,7 +516,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual bool AreAllNeededProgramBanksPresent
         {
@@ -551,7 +529,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected virtual bool AreAllNeededCombiBanksPresent
         {
@@ -570,7 +548,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private void UpdateSdb1Chunk()
         {
@@ -594,19 +572,19 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public virtual string CategoryName => Strings.Category;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public virtual string SubCategoryName => Strings.SubCategory;
 
 
         /// <summary>
-        /// Returns true if the memory CAN only contain one patch. 
+        /// Returns true if the memory CAN only contain one patch.
         /// Used for generating banks before the content of the file is actually read.
         /// </summary>
         public bool CanContainOnlyOnePatch => ((ContentTypeType == ContentType.CurrentProgram) ||
@@ -647,7 +625,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="banks"></param>
         /// <returns></returns>
@@ -700,7 +678,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         internal void SetParameters()
         {
@@ -714,7 +692,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="banks"></param>
         private static void SetParameters(IBanks banks)
@@ -815,7 +793,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="programRawBankIndex"></param>
         /// <param name="programRawIndex"></param>

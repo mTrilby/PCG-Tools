@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Common.Extensions;
+using Common.PcgToolsResources;
 using Common.Utils;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
@@ -14,7 +15,6 @@ using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 using PcgTools.PcgToolsResources;
-using PcgTools.Properties;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 namespace PcgTools.Model.Common.Synth.PatchCombis
@@ -195,7 +195,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
         // ReSharper disable UnusedMember.Global
         public string NumberOfReferencesAsString
             // ReSharper restore UnusedMember.Global
-            => Settings.Default.UI_ShowNumberOfReferencesColumn
+            => SettingsDefault.UI_ShowNumberOfReferencesColumn
                 ? NumberOfReferences.ToString(CultureInfo.InvariantCulture)
                 : string.Empty;
 

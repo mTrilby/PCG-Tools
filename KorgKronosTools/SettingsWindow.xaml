@@ -4,75 +4,81 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-    x:Class="PcgTools.SettingsWindow"
-        Title="{Binding Settings, Source={StaticResource LocStrings}}" ShowInTaskbar="True" ResizeMode="NoResize" 
-        WindowStartupLocation="CenterOwner" Loaded="WindowLoaded" SizeToContent="WidthAndHeight" mc:Ignorable="d"
+        x:Class="PcgTools.SettingsWindow"
+        Title="{x:Static common:Strings.Settings}" 
+        ShowInTaskbar="True" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner"
+        Loaded="WindowLoaded" 
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d"
         Height="660" >
     <StackPanel Width="640" Margin="0,4,0,4" >
         <TabControl Name="TabControl" Margin="4" Height="590" x:FieldModifier="private">
-            <TabItem Header="{Binding PcgWindow, Source={StaticResource LocStrings}}">
+            <TabItem Header="{x:Static common:Strings.PcgWindow}">
                 <StackPanel>
-                    <CheckBox Content="{Binding ShowNumberOfReferencesColumn, Source={StaticResource LocStrings}}"
+                    <CheckBox Content="{x:Static common:Strings.ShowNumberOfReferencesColumn}"
     				    IsChecked="True" Padding="4" Margin="4" 
     				    x:Name="CheckBoxShowNumberOfReferencesColumn"/>
-                    <CheckBox Content="{Binding ShowSingleLinedSetListSlotDescriptions, Source={StaticResource LocStrings}}"
+                    <CheckBox Content="{x:Static common:Strings.ShowSingleLinedSetListSlotDescriptions}"
                               IsChecked="True" Padding="4" Margin="4"
                               x:Name="CheckBoxShowSingleLinedSetListSlotDescriptions"/>
-                    <GroupBox Header="{Binding ClearPatches, Source={StaticResource LocStrings}}" Margin="4">
+                    <GroupBox Header="{x:Static common:Strings.ClearPatches}" Margin="4">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton x:Name="RadioButtonClearPatchesNone"
-                                             Content="{Binding ClearPatchesNone, Source={StaticResource LocStrings}}" Margin="4"/>
+                                             Content="{x:Static common:Strings.ClearPatchesNone}" Margin="4"/>
                                 <RadioButton x:Name="RadioButtonClearPatchesUnusedOnly"
-                                             Content="{Binding ClearPatchesUnusedOnly, Source={StaticResource LocStrings}}" Margin="4"/>
+                                             Content="{x:Static common:Strings.ClearPatchesUnusedOnly}" Margin="4"/>
                                 <RadioButton x:Name="RadioButtonClearPatchesAsk"
-                                             Content="{Binding ClearPatchesAsk, Source={StaticResource LocStrings}}" Margin="4"/>
+                                             Content="{x:Static common:Strings.ClearPatchesAsk}" Margin="4"/>
                                 <RadioButton x:Name="RadioButtonClearPatchesUnusedAndUsed"
-                                             Content="{Binding ClearPatchesUnusedAndUsed, Source={StaticResource LocStrings}}" Margin="4"/>
+                                             Content="{x:Static common:Strings.ClearPatchesUnusedAndUsed}" Margin="4"/>
                             </StackPanel>
                             <CheckBox x:Name="CheckBoxFixReferencesToClearedUsedPatches"
-                                        Content="{Binding FixReferencesToClearedUsedPatches, Source={StaticResource LocStrings}}"
+                                        Content="{x:Static common:Strings.FixReferencesToClearedUsedPatches}"
                                         Margin="4"/>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
             </TabItem>
             
-            <TabItem Header="{Binding Files, Source={StaticResource LocStrings}}">
+            <TabItem Header="{x:Static common:Strings.Files}">
                 <StackPanel>
-                    <GroupBox Header="{Binding AutoBackupFiles, Source={StaticResource LocStrings}}">
+                    <GroupBox Header="{x:Static common:Strings.AutoBackupFiles}">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox x:Name="CheckBoxAutoBackupFilesEnabled" 
-                                      Content="{Binding Enabled, Source={StaticResource LocStrings}}" 
+                                      Content="{x:Static common:Strings.Enabled}" 
                                       Margin="4,6"/>
-                            <Label Content="{Binding AutoBackupIntervalTime, Source={StaticResource LocStrings}}" Margin="20,6, 4, 4"/>
+                            <Label Content="{x:Static common:Strings.AutoBackupIntervalTime}" Margin="20,6, 4, 4"/>
                             <xctk:IntegerUpDown Name="NumericUpDownAutoBackupFilesIntervalTime" Increment="1" 
                                             IsEnabled="{Binding ElementName=CheckBoxAutoBackupFilesEnabled, Path=IsChecked}"
                                             Maximum="60" Minimum="1" Margin="4"  HorizontalAlignment="Left"/>
-                            <Label Content="{Binding AutoBackupMaxStorage, Source={StaticResource LocStrings}}" Margin="20,6, 4, 4"/>
+                            <Label Content="{x:Static common:Strings.AutoBackupMaxStorage}" Margin="20,6, 4, 4"/>
                             <xctk:IntegerUpDown Name="NumericUpDownAutoBackupMaxStorage" Increment="1" 
                                             IsEnabled="{Binding ElementName=CheckBoxAutoBackupFilesEnabled, Path=IsChecked}"
                                             Maximum="2048" Minimum="1" Margin="4" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="{Binding AutoLoadMasterFile, Source={StaticResource LocStrings}}"
+                    <GroupBox Header="{x:Static common:Strings.AutoLoadMasterFile}"
     					HorizontalAlignment="Left" VerticalAlignment="Top" Width="614" Margin="4,4,0,4">
                         <Grid>
                             <RadioButton x:Name="rbFilesAutoLoadMasterFileAlways"
-    							Content="{Binding Always, Source={StaticResource LocStrings}}" 
+    							Content="{x:Static common:Strings.Always}" 
     							HorizontalAlignment="Left" Margin="4,4,0,0"  />
-                            <RadioButton Content="{Binding Ask, Source={StaticResource LocStrings}}" Margin="125,4,124,0" 
+                            <RadioButton Content="{x:Static common:Strings.Ask}" Margin="125,4,124,0" 
                                          x:Name="rbFilesAutoLoadMasterFileAsk" />
-                            <RadioButton Content="{Binding Never, Source={StaticResource LocStrings}}"
+                            <RadioButton Content="{x:Static common:Strings.Never}"
     							HorizontalAlignment="Left" Margin="229,4,0,-0.04" x:Name="rbFilesAutoLoadMasterFileNever"
                                          Height="16" VerticalAlignment="Top" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="{Binding SetListGenerator_settw, Source={StaticResource LocStrings}}" Margin="4">
+                    <GroupBox Header="{x:Static common:Strings.SetListGenerator_settw}" Margin="4">
                         <StackPanel>
-                            <Label Content="{Binding DefaultOutputDirectory_settw, Source={StaticResource LocStrings}}" 
+                            <Label Content="{x:Static common:Strings.DefaultOutputDirectory_settw}" 
                                   Margin="4" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBox x:Name="textBoxDefaultOutputDirectory" IsReadOnly="True" Margin="4" Width="500"/>
@@ -83,9 +89,9 @@
                         </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="{Binding SequencerFiles, Source={StaticResource LocStrings}}" Margin="4">
+                    <GroupBox Header="{x:Static common:Strings.SequencerFiles}" Margin="4">
                         <StackPanel>
-                            <Label Content="{Binding DefaultOutputDirectory_settw, Source={StaticResource LocStrings}}" 
+                            <Label Content="{x:Static common:Strings.DefaultOutputDirectory_settw}" 
                                   Margin="4" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBox x:Name="textBoxDefaultOutputDirectoryForSequencerFiles" IsReadOnly="True" Margin="4" Width="500"/>
@@ -96,9 +102,9 @@
                         </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="{Binding Manual_grt, Source={StaticResource LocStrings}}" Margin="4">
+                    <GroupBox Header="{x:Static common:Strings.Manual_grt}" Margin="4">
                         <StackPanel>
-                            <Label Content="{Binding DefaultOutputDirectory_settw, Source={StaticResource LocStrings}}" 
+                            <Label Content="{x:Static common:Strings.DefaultOutputDirectory_settw}" 
                                   Margin="4" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBox x:Name="textBoxDefaultManualPath" Margin="4" Width="500"/>
@@ -111,114 +117,114 @@
                 </StackPanel>
             </TabItem>
             
-            <TabItem Header="{Binding Edit, Source={StaticResource LocStrings}}">
-                <GroupBox Header="{Binding SinglePatchFiles_groupbox, Source={StaticResource LocStrings}}" Margin="4" Width="Auto">
+            <TabItem Header="{x:Static common:Strings.Edit}">
+                <GroupBox Header="{x:Static common:Strings.SinglePatchFiles_groupbox}" Margin="4" Width="Auto">
                     <StackPanel>
-                        <CheckBox Name="checkBoxRenameFileWhenPatchNameChanges" Content="{Binding RenameFileWhenPatchNameChanges_checkBox, Source={StaticResource LocStrings}}" Margin="4"/>
+                        <CheckBox Name="checkBoxRenameFileWhenPatchNameChanges" Content="{x:Static common:Strings.RenameFileWhenPatchNameChanges_checkBox}" Margin="4"/>
                     </StackPanel>
                 </GroupBox>
             </TabItem>
 
-            <TabItem Header="{Binding CutCopyPaste, Source={StaticResource LocStrings}}">
+            <TabItem Header="{x:Static common:Strings.CutCopyPaste}">
                 <StackPanel>
-                    <CheckBox Content="{Binding CopyIncompleteSetListSlots, Source={StaticResource LocStrings}}"
+                    <CheckBox Content="{x:Static common:Strings.CopyIncompleteSetListSlots}"
     				    IsChecked="True" Padding="4" Margin="4" 
     				    x:Name="checkBoxCopyIncompleteSetListSlots"
-    				    ToolTip="{Binding CopyIncompleteSetListSlotsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding CopyIncompleteCombis, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.CopyIncompleteSetListSlotsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.CopyIncompleteCombis}" 
     				    Padding="4" Margin="4" x:Name="checkBoxCopyIncompleteCombis"
     				    IsChecked="True" 
-    				    ToolTip="{Binding CopyIncompleteCombisToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding CopyPatchesFromMasterFile, Source={StaticResource LocStrings}}"
+    				    ToolTip="{x:Static common:Strings.CopyIncompleteCombisToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.CopyPatchesFromMasterFile}"
     				    x:Name="checkBoxCopyPatchesFromMasterFile"
     				    IsChecked="True" Padding="4" Margin="4"
-    				    ToolTip="{Binding CopyPatchesFromMasterFileToolTip, Source={StaticResource LocStrings}}"/>
+    				    ToolTip="{x:Static common:Strings.CopyPatchesFromMasterFileToolTip}"/>
 
-                    <CheckBox Content="{Binding PasteDuplicatePrograms, Source={StaticResource LocStrings}}" 
+                    <CheckBox Content="{x:Static common:Strings.PasteDuplicatePrograms}" 
     				    x:Name="checkBoxPasteDuplicatePrograms" 
     				    Padding="4" Margin="4,16,4,4"
-    				    ToolTip="{Binding PasteDuplicateProgramsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding PasteDuplicateCombis, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.PasteDuplicateProgramsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.PasteDuplicateCombis}" 
     				    Padding="4" Margin="4"
     				    x:Name="checkBoxPasteDuplicateCombis"
-    				    ToolTip="{Binding PasteDuplicateCombisToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding PasteDuplicateSetListSlots, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.PasteDuplicateCombisToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.PasteDuplicateSetListSlots}" 
     				    Padding="4" Margin="4"
     				    x:Name="checkBoxPasteDuplicateSetListSlots" IsChecked="True"
-    				    ToolTip="{Binding PasteDuplicateSetListSlotsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding PasteDuplicateDrumKits, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.PasteDuplicateSetListSlotsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.PasteDuplicateDrumKits}" 
     				    Padding="4" Margin="4"
     				    x:Name="checkBoxPasteDuplicateDrumKits" IsChecked="True"
-    				    ToolTip="{Binding PasteDuplicateDrumKitsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding PasteDuplicateDrumPatterns, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.PasteDuplicateDrumKitsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.PasteDuplicateDrumPatterns}" 
     				    Padding="4" Margin="4"
     				    x:Name="checkBoxPasteDuplicateDrumPatterns" IsChecked="True"
-    				    ToolTip="{Binding PasteDuplicateDrumPatternsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding PasteDuplicateWaveSequences, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.PasteDuplicateDrumPatternsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.PasteDuplicateWaveSequences}" 
     				    Padding="4" Margin="4"
     				    x:Name="checkBoxPasteDuplicateWaveSequences" IsChecked="True"
-    				    ToolTip="{Binding PasteDuplicateWaveSequencesToolTip, Source={StaticResource LocStrings}}" />
+    				    ToolTip="{x:Static common:Strings.PasteDuplicateWaveSequencesToolTip}" />
 
-                    <CheckBox Content="{Binding AutoExtendPaste, Source={StaticResource LocStrings}}"  
+                    <CheckBox Content="{x:Static common:Strings.AutoExtendPaste}"  
     				     Padding="4" Margin="4,16,4,4"
     				    x:Name="checkBoxAutoExtendedSinglePatchSelectionPaste" 
-    				    ToolTip="{Binding AutoExtendPasteToolTip, Source={StaticResource LocStrings}}" />
+    				    ToolTip="{x:Static common:Strings.AutoExtendPasteToolTip}" />
 
                     <RadioButton x:Name="radioButtonDoNotUsePatchNames" 
-                                 Content="{Binding DoNotUsePatchNamesForPatchDuplicationChecking, Source={StaticResource LocStrings}}"
+                                 Content="{x:Static common:Strings.DoNotUsePatchNamesForPatchDuplicationChecking}"
                                  Padding="4" Margin="4,16,4,4" Checked="RadioButtonProgramDuplication_checked"></RadioButton>
 
                     <RadioButton x:Name="radioButtonEquallyNamedPatches" 
-                                 Content="{Binding TreatEquallyNamedPatchesAsDuplicates, Source={StaticResource LocStrings}}"
+                                 Content="{x:Static common:Strings.TreatEquallyNamedPatchesAsDuplicates}"
                                  Padding="4" Margin="4" Checked="RadioButtonProgramDuplication_checked"></RadioButton>
 
                     <RadioButton x:Name="radioButtonLikeNamedPatches"  
-                                 Content="{Binding TreatLikeNamedPatchesAsDuplicates, Source={StaticResource LocStrings}}" 
+                                 Content="{x:Static common:Strings.TreatLikeNamedPatchesAsDuplicates}" 
                                  Padding="4" Margin="4" Checked="RadioButtonProgramDuplication_checked"></RadioButton>
                     <Label x:Name="labelIgnoreCharacters" 
-                           Content="{Binding IgnoreCharachtersParts, Source={StaticResource LocStrings}}" Margin="40,4,4,4"/>
+                           Content="{x:Static common:Strings.IgnoreCharachtersParts}" Margin="40,4,4,4"/>
                     
                     <TextBox x:Name="textBoxIgnoreCharacters" Height="23" TextWrapping="Wrap" Text="" Margin ="40,4"
                              MinWidth="40" Width="100" 
                              HorizontalAlignment="Left"/>
 
 
-                    <CheckBox Content="{Binding OverwriteFilledPrograms, Source={StaticResource LocStrings}}" 
+                    <CheckBox Content="{x:Static common:Strings.OverwriteFilledPrograms}" 
     				   Padding="4" Margin="4,16,4,4"
     				    x:Name="checkBoxOverwriteFilledPrograms" 
-    				    ToolTip="{Binding OverwriteFilledProgramsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding OverwriteFilledCombis, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.OverwriteFilledProgramsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.OverwriteFilledCombis}" 
     				     Padding="4" Margin="4"
     				    x:Name="checkBoxOverwriteFilledCombis" 
-    				    VerticalAlignment="Top" ToolTip="{Binding OverwriteFilledCombisToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding OverwriteFilledSetListSlots, Source={StaticResource LocStrings}}" 
+    				    VerticalAlignment="Top" ToolTip="{x:Static common:Strings.OverwriteFilledCombisToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.OverwriteFilledSetListSlots}" 
     				    Height="16" HorizontalAlignment="Left" Padding="4" Margin="4"
     				    x:Name="checkBoxOverwriteFilledSetListSlots" VerticalAlignment="Top" IsChecked="True"
-    				    ToolTip="{Binding OverwriteFilledSetListSlotsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding OverwriteFilledDrumKits, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.OverwriteFilledSetListSlotsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.OverwriteFilledDrumKits}" 
     				    Height="16" HorizontalAlignment="Left" Padding="4" Margin="4"
     				    x:Name="checkBoxOverwriteFilledDrumKits" VerticalAlignment="Top" IsChecked="True"
-    				    ToolTip="{Binding OverwriteFilledDrumKitsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding OverwriteFilledDrumPatterns, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.OverwriteFilledDrumKitsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.OverwriteFilledDrumPatterns}" 
     				    Height="16" HorizontalAlignment="Left" Padding="4" Margin="4"
     				    x:Name="checkBoxOverwriteFilledDrumPatterns" VerticalAlignment="Top" IsChecked="True"
-    				    ToolTip="{Binding OverwriteFilledDrumPatternsToolTip, Source={StaticResource LocStrings}}" />
-                    <CheckBox Content="{Binding OverwriteFilledWaveSequences, Source={StaticResource LocStrings}}" 
+    				    ToolTip="{x:Static common:Strings.OverwriteFilledDrumPatternsToolTip}" />
+                    <CheckBox Content="{x:Static common:Strings.OverwriteFilledWaveSequences}" 
     				    Height="16" HorizontalAlignment="Left" Padding="4" Margin="4"
     				    x:Name="checkBoxOverwriteFilledWaveSequences" VerticalAlignment="Top" IsChecked="True"
-    				    ToolTip="{Binding OverwriteFilledWaveSequencesToolTip, Source={StaticResource LocStrings}}" />
+    				    ToolTip="{x:Static common:Strings.OverwriteFilledWaveSequencesToolTip}" />
 
-                    <Button Content="{Binding Restore, Source={StaticResource LocStrings}}" Height="23" 
+                    <Button Content="{x:Static common:Strings.Restore}" Height="23" 
     				    HorizontalAlignment="Left" x:Name="buttonRestore" Margin="4,16,4,4" Padding="4"
     				    VerticalAlignment="Bottom" Width="109" Click="ButtonRestoreClick" />
                 </StackPanel>
 
             </TabItem>
 
-            <!--TabItem Header="{Binding CleanTimbres_tab, Source={StaticResource LocStrings}}">
+            <!--TabItem Header="{x:Static common:Strings.CleanTimbres_tab}">
             <StackPanel Margin="4">
                 <CheckBox x:Name="checkBoxCleanTimbresWithMidiChannel"  
-                            Content="{Binding CleanTimbresWithMidiChannel_setw, Source={StaticResource LocStrings}}" Margin="4" 
+                            Content="{x:Static common:Strings.CleanTimbresWithMidiChannel_setw}" Margin="4" 
                             Checked="CheckBox_CleanTimbresWithMidiChannelChecked" Unchecked="CheckBox_CleanTimbresWithMidiChannelChecked"/>
 
                 <StackPanel Orientation="Horizontal">
@@ -245,93 +251,93 @@
                     <CheckBox x:Name="checkBoxMidiChannel16" Content="_16" Margin="4" Width="60"/>
                 </StackPanel>
 
-                <CheckBox x:Name="checkBoxCleanTimbre10Only" Content="{Binding CleanTimbre10Only_setw, Source={StaticResource LocStrings}}" Margin="20,4,4,4"/>
+                <CheckBox x:Name="checkBoxCleanTimbre10Only" Content="{x:Static common:Strings.CleanTimbre10Only_setw}" Margin="20,4,4,4"/>
 
-                <CheckBox x:Name="checkBoxCleanTimbresWithMuteOn" Content="{Binding CleanTimbresWithMute_setw, Source={StaticResource LocStrings}}" Margin="4"/>
+                <CheckBox x:Name="checkBoxCleanTimbresWithMuteOn" Content="{x:Static common:Strings.CleanTimbresWithMute_setw}" Margin="4"/>
 
                 <StackPanel Orientation="Horizontal">
                     <CheckBox x:Name="checkBoxCleanTimbresWithStatus"
-                                Content="{Binding CleanTimbresWithStatus_setw, Source={StaticResource LocStrings}}" Margin="4" 
+                                Content="{x:Static common:Strings.CleanTimbresWithStatus_setw}" Margin="4" 
                                 Checked="checkBoxCleanTimbresWithStatus_Checked" Unchecked="checkBoxCleanTimbresWithStatus_Checked"/>
-                    <CheckBox x:Name="checkBoxStatusOff" Content="{Binding TimbreOff_setw, Source={StaticResource LocStrings}}" Margin="4"/>
-                    <CheckBox x:Name="checkBoxStatusInt" Content="{Binding TimbreInt_setw, Source={StaticResource LocStrings}}" Margin="4"/>
-                    <CheckBox x:Name="checkBoxStatusExt" Content="{Binding TimbreExt_setw, Source={StaticResource LocStrings}}" Margin="4"/>
-                    <CheckBox x:Name="checkBoxStatusEx2" Content="{Binding TimbreEx2_setw, Source={StaticResource LocStrings}}" Margin="4"/>
+                    <CheckBox x:Name="checkBoxStatusOff" Content="{x:Static common:Strings.TimbreOff_setw}" Margin="4"/>
+                    <CheckBox x:Name="checkBoxStatusInt" Content="{x:Static common:Strings.TimbreInt_setw}" Margin="4"/>
+                    <CheckBox x:Name="checkBoxStatusExt" Content="{x:Static common:Strings.TimbreExt_setw}" Margin="4"/>
+                    <CheckBox x:Name="checkBoxStatusEx2" Content="{x:Static common:Strings.TimbreEx2_setw}" Margin="4"/>
                 </StackPanel>
             </StackPanel>
         <TabItem!-->
 
-            <TabItem Header="{Binding Sort_tab, Source={StaticResource LocStrings}}" HorizontalAlignment="Left">
+            <TabItem Header="{x:Static common:Strings.Sort_tab}" HorizontalAlignment="Left">
             <Grid>
                 <StackPanel>
                     <StackPanel  Orientation="Horizontal">
-                        <Label  Content="{Binding SplitCharacter_settw, Source={StaticResource LocStrings}}"
+                        <Label  Content="{x:Static common:Strings.SplitCharacter_settw}"
                                     HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top"/>
                         <TextBox x:Name="textBoxSplitCharacter" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="TextBox"
     					    VerticalAlignment="Top" Width="18" MaxLength="1" TextChanged="textBoxSplitCharacter_TextChanged"/>
                     </StackPanel>
 
-                    <GroupBox Header="{Binding TitleArtistOrder_settw, Source={StaticResource LocStrings}}"
+                    <GroupBox Header="{x:Static common:Strings.TitleArtistOrder_settw}"
                                 Margin="0,4">
                         <StackPanel>
                             <RadioButton x:Name="radioButtonSortTitleArtist" Margin="4"/>
                             <RadioButton x:Name="radioButtonSortArtistTitle" Margin="4"/>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="{Binding SortOrder_settw, Source={StaticResource LocStrings}}" Margin="0,4">
+                    <GroupBox Header="{x:Static common:Strings.SortOrder_settw}" Margin="0,4">
                         <StackPanel>
                             <RadioButton x:Name="radioButtonNameCategory" 
-                                            Content="{Binding SortNameCategory_sortw, Source={StaticResource LocStrings}}" Margin="4"/>
+                                            Content="{x:Static common:Strings.SortNameCategory_sortw}" Margin="4"/>
                             <RadioButton x:Name="radioButtonTitleArtistCategory" 
-                                            Content="{Binding SortTitleArtistCategory_sortw, Source={StaticResource LocStrings}}" Margin="4"/>
+                                            Content="{x:Static common:Strings.SortTitleArtistCategory_sortw}" Margin="4"/>
                             <RadioButton x:Name="radioButtonArtistTitleCategory" 
-                                            Content="{Binding SortArtistTitleCategory_sortw, Source={StaticResource LocStrings}}" Margin="4"/>
+                                            Content="{x:Static common:Strings.SortArtistTitleCategory_sortw}" Margin="4"/>
                             <RadioButton x:Name="radioButtonCategoryName" 
-                                            Content="{Binding SortCategoryName_sortw, Source={StaticResource LocStrings}}" Margin="4"/>
+                                            Content="{x:Static common:Strings.SortCategoryName_sortw}" Margin="4"/>
                             <RadioButton x:Name="radioButtonCategoryTitleArtist" 
-                                            Content="{Binding SortCategoryTitleArtist_sortw, Source={StaticResource LocStrings}}" Margin="4"/>
+                                            Content="{x:Static common:Strings.SortCategoryTitleArtist_sortw}" Margin="4"/>
                             <RadioButton x:Name="radioButtonCategoryArtistTitle" 
-                                            Content="{Binding SortCategoryArtistTitle_sortw, Source={StaticResource LocStrings}}" Margin="4"/>
+                                            Content="{x:Static common:Strings.SortCategoryArtistTitle_sortw}" Margin="4"/>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
             </Grid>
         </TabItem>
 
-        <!--<TabItem Header="{Binding SortTimbres_tab, Source={StaticResource LocStrings}}">
+        <!--<TabItem Header="{x:Static common:Strings.SortTimbres_tab}">
             <StackPanel>
-                <GroupBox Header="{Binding SortOrder_setw, Source={StaticResource LocStrings}}" Margin="4">
+                <GroupBox Header="{x:Static common:Strings.SortOrder_setw}" Margin="4">
                     <StackPanel>
                         <ListBox x:Name="listBoxTimbreSortKeys" Height="110" Margin="4" SelectionChanged="TimbreSortKeys_SelectionChanged">
-                            <ListBoxItem Content="{Binding TimbreSortStatus_setw, Source={StaticResource LocStrings}}"/>
-                            <ListBoxItem Content="{Binding TimbreSortMute_setw, Source={StaticResource LocStrings}}"/>
-                            <ListBoxItem Content="{Binding TimbreSortMidiChannel_setw, Source={StaticResource LocStrings}}"/>
-                            <ListBoxItem Content="{Binding TimbreSortKeyZone_setw, Source={StaticResource LocStrings}}"/>
-                            <ListBoxItem Content="{Binding TimbreSortKeyVelocity_setw, Source={StaticResource LocStrings}}"/>
+                            <ListBoxItem Content="{x:Static common:Strings.TimbreSortStatus_setw}"/>
+                            <ListBoxItem Content="{x:Static common:Strings.TimbreSortMute_setw}"/>
+                            <ListBoxItem Content="{x:Static common:Strings.TimbreSortMidiChannel_setw}"/>
+                            <ListBoxItem Content="{x:Static common:Strings.TimbreSortKeyZone_setw}"/>
+                            <ListBoxItem Content="{x:Static common:Strings.TimbreSortKeyVelocity_setw}"/>
                         </ListBox>
                         <StackPanel Orientation="Horizontal">
-                            <Button x:Name="buttonMoveUp" Content="{Binding MoveUp_setw, Source={StaticResource LocStrings}}" Margin="4" Height="23" Width="75" Click="buttonMoveUp_Click"/>
-                            <Button x:Name="buttonMoveDown" Content="{Binding MoveDown_setw, Source={StaticResource LocStrings}}" Margin="4"  Height="23" Width="75" Click="buttonMoveDown_Click"/>
+                            <Button x:Name="buttonMoveUp" Content="{x:Static common:Strings.MoveUp_setw}" Margin="4" Height="23" Width="75" Click="buttonMoveUp_Click"/>
+                            <Button x:Name="buttonMoveDown" Content="{x:Static common:Strings.MoveDown_setw}" Margin="4"  Height="23" Width="75" Click="buttonMoveDown_Click"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Header="{Binding Gaps_setw, Source={StaticResource LocStrings}}" Margin="4">
+                <GroupBox Header="{x:Static common:Strings.Gaps_setw}" Margin="4">
                     <StackPanel>
-                        <RadioButton x:Name="radioButtonDynamicGaps" Content="{Binding DynamicGaps_setw, Source={StaticResource LocStrings}}" Margin="4"/>
+                        <RadioButton x:Name="radioButtonDynamicGaps" Content="{x:Static common:Strings.DynamicGaps_setw}" Margin="4"/>
 
-                        <RadioButton x:Name="radioButtonFixedGaps" Content="{Binding FixedGaps_setw, Source={StaticResource LocStrings}}" Margin="4" 
+                        <RadioButton x:Name="radioButtonFixedGaps" Content="{x:Static common:Strings.FixedGaps_setw}" Margin="4" 
                                         Checked="radioButtonFixedGaps_Checked" Unchecked="radioButtonFixedGaps_Checked"/>
                         <StackPanel Orientation="Horizontal">
                             <CheckBox x:Name="checkBoxCreateGapsBetweenMidiChannels" 
-                                            Content="{Binding CreateGapsBetweenMidiChannels_setw, Source={StaticResource LocStrings}}" Margin="24,4,4,4" Width="400" Checked="checkBoxCreateGapsBetweenMidiChannels_Checked"/>
+                                            Content="{x:Static common:Strings.CreateGapsBetweenMidiChannels_setw}" Margin="24,4,4,4" Width="400" Checked="checkBoxCreateGapsBetweenMidiChannels_Checked"/>
                             <RadioButton x:Name="radioButtonMidiChannels0Gaps" Content="0" Margin="4"/>
                             <RadioButton x:Name="radioButtonMidiChannels1Gap" Content="1" Margin="4"/>
                             <RadioButton x:Name="radioButtonMidiChannels2Gaps" Content="2" Margin="4"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <CheckBox x:Name="checkBoxCreateGapsBetweenKeyZones" 
-                                        Content="{Binding CreateGapsBetweenKeyZones_setw, Source={StaticResource LocStrings}}" Margin="24,4,4,4" Width="400" Checked="checkBoxCreateGapsBetweenKeyZones_Checked"/>
+                                        Content="{x:Static common:Strings.CreateGapsBetweenKeyZones_setw}" Margin="24,4,4,4" Width="400" Checked="checkBoxCreateGapsBetweenKeyZones_Checked"/>
                             <RadioButton x:Name="radioButtonKeyZones0Gaps" Content="0" Margin="4"/>
                             <RadioButton x:Name="radioButtonKeyZones1Gap" Content="1" Margin="4"/>
                             <RadioButton x:Name="radioButtonKeyZones2Gaps" Content="2" Margin="4"/>
@@ -340,25 +346,25 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Header="{Binding TimbreSortVarious_setw, Source={StaticResource LocStrings}}" Margin="4">
+                <GroupBox Header="{x:Static common:Strings.TimbreSortVarious_setw}" Margin="4">
                     <StackPanel>
                         <CheckBox x:Name="checkBoxUse8TimbresMaxIfPossible"
-                                        Content="{Binding UseEightTimbresMaxIfPossible_setw, Source={StaticResource LocStrings}}" Margin="4"/>
+                                        Content="{x:Static common:Strings.UseEightTimbresMaxIfPossible_setw}" Margin="4"/>
                         <CheckBox x:Name="checkBoxKeepTimbre10Fixed" 
-                                        Content="{Binding KeepTimbre10Fixed_setw, Source={StaticResource LocStrings}}" Margin="4"/>
+                                        Content="{x:Static common:Strings.KeepTimbre10Fixed_setw}" Margin="4"/>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
         </TabItem>-->
 
-        <TabItem Header="{Binding Categories_setw, Source={StaticResource LocStrings}}">
-            <GroupBox Header="{Binding CategorySetSelect_setw, Source={StaticResource LocStrings}}"
+        <TabItem Header="{x:Static common:Strings.Categories_setw}">
+            <GroupBox Header="{x:Static common:Strings.CategorySetSelect_setw}"
                                 Margin="0,4,0,0" Height="77" VerticalAlignment="Top">
                 <StackPanel>
                     <RadioButton x:Name="rbCategoryA"
-    						Content="{Binding CategorySetA_setw, Source={StaticResource LocStrings}}" Margin="4"/>
+    						Content="{x:Static common:Strings.CategorySetA_setw}" Margin="4"/>
                     <RadioButton x:Name="rbCategoryB"
-    						Content="{Binding CategorySetB_setw, Source={StaticResource LocStrings}}" Margin="4"/>
+    						Content="{x:Static common:Strings.CategorySetB_setw}" Margin="4"/>
 
                 </StackPanel>
             </GroupBox>
@@ -366,10 +372,10 @@
 
         </TabControl>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{Binding Cancel, Source={StaticResource LocStrings}}" Height="23"
+            <Button Content="{x:Static common:Strings.Cancel}" Height="23"
         		HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,8" Width="75" 
         		IsCancel="True" Click="ButtonCancelClick" />
-            <Button Content="{Binding OK, Source={StaticResource LocStrings}}" Height="23" 
+            <Button Content="{x:Static common:Strings.OK}" Height="23" 
             	HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,8,8" Width="75"
             	IsDefault="True" Click="ButtonOkClick" />
         </StackPanel>

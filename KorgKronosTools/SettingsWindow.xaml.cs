@@ -8,14 +8,11 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using PcgTools.ClipBoard;
 using PcgTools.Edit;
-
 using PcgTools.Model.Common.Synth.PatchSorting;
-using PcgTools.PcgToolsResources;
 using PcgTools.Properties;
-using Common.Extensions;
+using Common.PcgToolsResources;
 using PcgTools.Extensions;
 using PcgTools.ViewModels.Commands.PcgCommands;
-
 
 namespace PcgTools
 {

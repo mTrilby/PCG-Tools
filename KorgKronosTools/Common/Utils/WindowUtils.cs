@@ -18,52 +18,6 @@ namespace PcgTools.Common.Utils
         /// <summary>
         /// 
         /// </summary>
-        public enum EMessageBoxButton
-        {
-            Ok,
-            YesNo,
-            YesNoCancel
-        } ;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum EMessageBoxImage
-        {
-            Error,
-            Warning,
-            Exclamation,
-            Information
-        } ;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum EMessageBoxResult
-        {
-            Ok,
-            Yes,
-            No,
-            None,
-            Cancel
-        } ;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum ECursor
-        {
-            Wait,
-            Arrow
-        } ;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="window"></param>
         /// <param name="text"></param>
         /// <param name="title"></param>
@@ -71,9 +25,9 @@ namespace PcgTools.Common.Utils
         /// <param name="messageBoxImage"></param>
         /// <param name="messageBoxResult"></param>
         /// <returns></returns>
-        public static EMessageBoxResult ShowMessageBox(Window window, string text, [NotNull] string title,
-            EMessageBoxButton messageBoxButton,
-            EMessageBoxImage messageBoxImage, EMessageBoxResult messageBoxResult)
+        public static WindowUtil.EMessageBoxResult ShowMessageBox(Window window, string text, [NotNull] string title,
+            WindowUtil.EMessageBoxButton messageBoxButton,
+            WindowUtil.EMessageBoxImage messageBoxImage, WindowUtil.EMessageBoxResult messageBoxResult)
         {
             Debug.Assert(!string.IsNullOrEmpty(text));
             Debug.Assert(!string.IsNullOrEmpty(title));
@@ -81,15 +35,15 @@ namespace PcgTools.Common.Utils
             MessageBoxButton button;
             switch (messageBoxButton)
             {
-                case EMessageBoxButton.Ok:
+                case WindowUtil.EMessageBoxButton.Ok:
                     button = MessageBoxButton.OK;
                     break;
 
-                case EMessageBoxButton.YesNo:
+                case WindowUtil.EMessageBoxButton.YesNo:
                     button = MessageBoxButton.YesNo;
                     break;
                 
-                case EMessageBoxButton.YesNoCancel:
+                case WindowUtil.EMessageBoxButton.YesNoCancel:
                     button = MessageBoxButton.YesNoCancel;
                     break;
 
@@ -100,19 +54,19 @@ namespace PcgTools.Common.Utils
             MessageBoxImage image;
             switch (messageBoxImage)
             {
-            case EMessageBoxImage.Error:
+            case WindowUtil.EMessageBoxImage.Error:
                 image = MessageBoxImage.Error;
                 break;
 
-            case EMessageBoxImage.Warning:
+            case WindowUtil.EMessageBoxImage.Warning:
                 image = MessageBoxImage.Warning;
                 break;
 
-            case EMessageBoxImage.Exclamation:
+            case WindowUtil.EMessageBoxImage.Exclamation:
                 image = MessageBoxImage.Exclamation;
                 break;
 
-            case EMessageBoxImage.Information:
+            case WindowUtil.EMessageBoxImage.Information:
                 image = MessageBoxImage.Information;
                 break;
 
@@ -123,23 +77,23 @@ namespace PcgTools.Common.Utils
             MessageBoxResult result;
             switch (messageBoxResult)
             {
-            case EMessageBoxResult.Ok:
+            case WindowUtil.EMessageBoxResult.Ok:
                 result = MessageBoxResult.OK;
                 break;
 
-            case EMessageBoxResult.Yes:
+            case WindowUtil.EMessageBoxResult.Yes:
                 result = MessageBoxResult.Yes;
                 break;
 
-            case EMessageBoxResult.No:
+            case WindowUtil.EMessageBoxResult.No:
                 result = MessageBoxResult.No;
                 break;
 
-            case EMessageBoxResult.None:
+            case WindowUtil.EMessageBoxResult.None:
                 result = MessageBoxResult.None;
                 break;
 
-            case EMessageBoxResult.Cancel:
+            case WindowUtil.EMessageBoxResult.Cancel:
                 result = MessageBoxResult.Cancel;
                 break;
 
@@ -150,27 +104,27 @@ namespace PcgTools.Common.Utils
             MessageBoxResult dialogResult = window == null ? MessageBox.Show(text, title, button, image, result) : 
                                                 MessageBox.Show(window, text, title, button, image, result);
 
-            EMessageBoxResult returnResult;
+            WindowUtil.EMessageBoxResult returnResult;
             switch (dialogResult)
             {
             case MessageBoxResult.OK:
-                returnResult = EMessageBoxResult.Ok;
+                returnResult = WindowUtil.EMessageBoxResult.Ok;
                 break;
 
             case MessageBoxResult.Yes:
-                returnResult = EMessageBoxResult.Yes;
+                returnResult = WindowUtil.EMessageBoxResult.Yes;
                 break;
 
             case MessageBoxResult.No:
-                returnResult = EMessageBoxResult.No;
+                returnResult = WindowUtil.EMessageBoxResult.No;
                 break;
 
             case MessageBoxResult.Cancel:
-                returnResult = EMessageBoxResult.Cancel;
+                returnResult = WindowUtil.EMessageBoxResult.Cancel;
                 break;
 
             case MessageBoxResult.None:
-                returnResult = EMessageBoxResult.None;
+                returnResult = WindowUtil.EMessageBoxResult.None;
                 break;
 
             default:
@@ -185,16 +139,16 @@ namespace PcgTools.Common.Utils
         /// 
         /// </summary>
         /// <param name="eCursor"></param>
-        public static void SetCursor(ECursor eCursor)
+        public static void SetCursor(WindowUtil.ECursor eCursor)
         {
             Cursor cursor;
             switch (eCursor)
             {
-                case ECursor.Wait:
+                case WindowUtil.ECursor.Wait:
                 cursor = Cursors.Wait;
                     break;
 
-                case ECursor.Arrow:
+                case WindowUtil.ECursor.Arrow:
                     cursor = Cursors.Arrow;
                     break;
 

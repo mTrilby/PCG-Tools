@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ClipBoard;
+using PcgTools.Common.Utils;
 using PcgTools.Model.Common.File;
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -58,7 +59,7 @@ namespace PCG_Tools_Unittests
         {
             RunTest(CopyPaste.PatchDuplication.DoNotUsePatchNames, "", 0, 0, true, 1, true);
         }
-        
+
 
         /// <summary>
         /// Copy/Paste V2.I-A064 to V3.I-C065 while V3.I-A064 is equally named.
@@ -110,7 +111,7 @@ namespace PCG_Tools_Unittests
 
             var clipBoard = new PcgClipBoard();
             program2.IsSelected = true;
-            commands2.CopyPasteCopy(clipBoard, _pcgOs2, PcgViewModel.ScopeSet.Patches, true,
+            commands2.CopyPasteCopy(clipBoard, _pcgOs2, ScopeSet.Patches, true,
                 false, false, false, false, false, false,
                 null, patches, false);
 
@@ -127,7 +128,7 @@ namespace PCG_Tools_Unittests
             program3.IsSelected = true;
             Assert.AreNotEqual(program2.Name, program3.Name);
 
-            commands2.CopyPastePaste(clipBoard, _pcgOs3, PcgViewModel.ScopeSet.Patches, true, 
+            commands2.CopyPastePaste(clipBoard, _pcgOs3, ScopeSet.Patches, true,
                 false, false, false, false, false, false,
                 null, patches3);
 

@@ -1,25 +1,29 @@
 ﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
+using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
+using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Mvvm;
 using PcgTools.OpenedFiles;
+using PcgTools.PcgToolsResources;
 using PcgTools.Songs;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
-namespace PcgTools.ViewModels 
+namespace PcgTools.ViewModels
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class SongViewModel : ObservableObject, ISongViewModel
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SongViewModel(OpenedPcgWindows openedPcgWindows)
         {
@@ -68,13 +72,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private OpenedPcgWindows _openedPcgWindows;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
         public OpenedPcgWindows OpenedPcgWindows
@@ -93,13 +97,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private string _windowTitle;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string WindowTitle
         {
@@ -115,7 +119,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
         public void UpdateWindowTitle()
@@ -126,19 +130,19 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private RelayCommand _saveCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private ISong _song;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
         public ISong Song
@@ -158,7 +162,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
         public ICommand SaveCommand
@@ -172,7 +176,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         private bool CanExecuteSaveCommand()
@@ -182,16 +186,23 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private void ExecuteCommandSaveSong()
         {
-            Song.Memory.SaveFile(false, true);
+            try
+            {
+                Song.Memory.SaveFile(false, true);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, Strings.PcgTools, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public bool Revert()
@@ -201,13 +212,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IMemory SelectedMemory { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="exitMode"></param>
         /// <returns></returns>
@@ -219,13 +230,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ISongMemory SelectedSongMemory => (ISongMemory) SelectedMemory;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="o"></param>
         /// <param name="args"></param>
@@ -241,13 +252,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private string _selectedPcgFileName;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string SelectedPcgFileName
         {

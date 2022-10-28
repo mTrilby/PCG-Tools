@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PcgTools"
-        mc:Ignorable="d" ShowInTaskbar="True" WindowStartupLocation="CenterOwner" 
-        Title="{Binding HexExportDlgTitle, Source={StaticResource LocStrings}}"
-        Height="600" Width="500"  SizeToContent="Width"
-         ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                   ScrollViewer.VerticalScrollBarVisibility="Auto">
+        xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
+        mc:Ignorable="d" 
+        ShowInTaskbar="True" 
+        WindowStartupLocation="CenterOwner" 
+        Title="{x:Static common:Strings.HexExportDlgTitle}"
+        Height="600" 
+        Width="500" 
+        SizeToContent="Width"
+        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+        ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid>
         <ScrollViewer>
             <TextBox Background="Transparent"

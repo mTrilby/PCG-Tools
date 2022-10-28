@@ -1,10 +1,10 @@
 ﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System;
-
+using Common.Utils;
 using PcgTools.Model.Common.Synth.Global;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Properties;
+
 
 namespace PcgTools.Model.TrinitySpecific.Synth
 {
@@ -64,7 +64,7 @@ namespace PcgTools.Model.TrinitySpecific.Synth
         protected override int CalcCategoryNameOffset(ECategoryType type, int index)
         {
             var offset = ByteOffset + PcgOffsetCategories;
-            if (!Settings.Default.TrinityCategorySetA)
+            if (!SettingsDefault.TrinityCategorySetA)
             {
                 offset += CategoryNameLength * NrOfCategories;
             }

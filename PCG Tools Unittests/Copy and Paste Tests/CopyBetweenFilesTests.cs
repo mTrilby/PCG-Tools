@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ClipBoard;
+using PcgTools.Common.Utils;
 using PcgTools.Model.Common.File;
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -62,7 +63,7 @@ namespace PCG_Tools_Unittests
 
             var clipBoard = new PcgClipBoard();
             program2.IsSelected = true;
-            commands2.CopyPasteCopy(clipBoard, _pcgOs2, PcgViewModel.ScopeSet.Patches, true, 
+            commands2.CopyPasteCopy(clipBoard, _pcgOs2, ScopeSet.Patches, true, 
                 false, false, false, false, false, false,
                 null, patches, false);
 
@@ -75,7 +76,7 @@ namespace PCG_Tools_Unittests
             program3.IsSelected = true;
             Assert.AreNotEqual(program2.Name, program3.Name);
 
-            commands3.CopyPastePaste(clipBoard, _pcgOs3, PcgViewModel.ScopeSet.Patches, true,
+            commands3.CopyPastePaste(clipBoard, _pcgOs3, ScopeSet.Patches, true,
                 false, false, false, false, false, false,
                 banks, patches3);
             Assert.AreEqual(program2.Name, program3.Name);

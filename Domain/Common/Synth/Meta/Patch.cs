@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Common.Extensions;
+using Common.Utils;
 using PcgTools.ClipBoard;
 using PcgTools.Model.Common.Synth.Global;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -14,7 +15,7 @@ using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.PatchSorting;
-using PcgTools.Properties;
+using PcgTools.Mvvm;
 
 namespace PcgTools.Model.Common.Synth.Meta
 {
@@ -535,7 +536,7 @@ namespace PcgTools.Model.Common.Synth.Meta
         {
             get
             {
-                Debug.Assert(!string.IsNullOrEmpty(Settings.Default.Sort_SplitCharacter));
+                Debug.Assert(!string.IsNullOrEmpty(SettingsDefault.Sort_SplitCharacter));
 
                 return PatchSorter.GetTitle(this);
             }
@@ -549,7 +550,7 @@ namespace PcgTools.Model.Common.Synth.Meta
         {
             get
             {
-                Debug.Assert(!string.IsNullOrEmpty(Settings.Default.Sort_SplitCharacter));
+                Debug.Assert(!string.IsNullOrEmpty(SettingsDefault.Sort_SplitCharacter));
 
                 return PatchSorter.GetArtist(this);
             }
@@ -577,7 +578,7 @@ namespace PcgTools.Model.Common.Synth.Meta
             {
                 case "Name":
                     var memory = PcgRoot;
-                    if ((memory.HasOnlyOnePatch && Settings.Default.Edit_RenameFileWhenPatchNameChanges))
+                    if ((memory.HasOnlyOnePatch && SettingsDefault.Edit_RenameFileWhenPatchNameChanges))
                     {
                         var directoryName = Path.GetDirectoryName(memory.OriginalFileName);
                         PcgRoot.FileName =  directoryName + memory.NameOfOnlyPatch;
@@ -604,7 +605,7 @@ namespace PcgTools.Model.Common.Synth.Meta
                 return true;
             }
 
-            return (from fragment in Settings.Default.CopyPaste_IgnoreCharactersForPatchDuplication.Split(',') 
+            return (from fragment in SettingsDefault.CopyPaste_IgnoreCharactersForPatchDuplication.Split(',') 
                     let strippedName = Name.RemoveFromEnd(fragment).Trim() 
                     let strippedOtherName = otherName.RemoveFromEnd(fragment).Trim() 
                     where strippedName == strippedOtherName 

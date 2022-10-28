@@ -1,4 +1,6 @@
-﻿namespace PcgTools.Model.Common.Synth.Meta
+﻿using PcgTools.Mvvm;
+
+namespace PcgTools.Model.Common.Synth.Meta
 {
     /// <summary>
     /// 

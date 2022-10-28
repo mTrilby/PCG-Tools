@@ -1,16 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0-windows</TargetFramework>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
         <RootNamespace>ExternalUtilities</RootNamespace>
         <AssemblyName>ExternalUtilities</AssemblyName>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputType>WinExe</OutputType>
     </PropertyGroup>
-
-    <ItemGroup>
-        <Compile Remove="LanguageCrossReferenceWindow.xaml-Michel_PC.cs"/>
-    </ItemGroup>
 
     <ItemGroup>
         <None Update="App.xaml">

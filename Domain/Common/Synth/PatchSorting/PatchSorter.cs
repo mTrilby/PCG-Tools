@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Common.Extensions;
+using Common.Utils;
 using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Properties;
 
 namespace PcgTools.Model.Common.Synth.PatchSorting
 {
@@ -41,7 +41,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             }
             else
             {
-                title = Settings.Default.Sort_ArtistTitleSortOrder ?
+                title = SettingsDefault.Sort_ArtistTitleSortOrder ?
                             patch.Name.Substring(splitIndex + 1, patch.Name.Length - splitIndex - 1) :
                             patch.Name.Substring(0, splitIndex);
                 title = title.Expand();
@@ -69,7 +69,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             }
             else
             {
-                artist = Settings.Default.Sort_ArtistTitleSortOrder ?
+                artist = SettingsDefault.Sort_ArtistTitleSortOrder ?
                              patch.Name.Substring(0, splitIndex) :
                              patch.Name.Substring(splitIndex + 1, patch.Name.Length - splitIndex - 1);
                 artist = artist.Expand();
@@ -163,7 +163,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
         {
             var splitIndex = -1;
 
-            var defaultSplitCharacter = Settings.Default.Sort_SplitCharacter;
+            var defaultSplitCharacter = SettingsDefault.Sort_SplitCharacter;
 
             Debug.Assert(!string.IsNullOrEmpty(defaultSplitCharacter));
             Debug.Assert(defaultSplitCharacter.Length == 1);

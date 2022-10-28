@@ -1,5 +1,6 @@
 ﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
+using Common.PcgToolsResources;
 using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Model.Common.Synth.MemoryAndFactory

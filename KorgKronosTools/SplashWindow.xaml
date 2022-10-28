@@ -1,8 +1,13 @@
 ﻿<Window x:Class="PcgTools.SplashWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
         Topmost="True" 
-        Icon="/PcgTools;component/Gui/pcgtools.ico" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None" Focusable="False" 
+        Icon="/PcgTools;component/Gui/pcgtools.ico" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner" 
+        WindowStyle="None" 
+        Focusable="False" 
         SizeToContent="WidthAndHeight">
     <StackPanel >
         <StackPanel.Background>
@@ -18,19 +23,19 @@
                Source="/PcgTools;component/Gui/Images/pcgtoolsnormal.jpg" Margin="4" />
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="{Binding Version, Source={StaticResource LocStrings}}" HorizontalAlignment="Left" 
+            <Label Content="{x:Static common:Strings.Version}" HorizontalAlignment="Left" 
                    Margin="4"  VerticalAlignment="Top" Foreground="White"/>
             <Label Content="&lt;x.y.z&gt;" Foreground="White" HorizontalAlignment="Left" Margin="4"
                    VerticalAlignment="Top" Name="labelVersion" />
             <Label Content="(c) 2011-2019" HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" Foreground="White" />
         </StackPanel>
 
-        <Label Content="{Binding DevelopedBy, Source={StaticResource LocStrings}}" 
+        <Label Content="{x:Static common:Strings.DevelopedBy}" 
                Margin="4" VerticalAlignment="Top" Foreground="White" 
                HorizontalAlignment="Left"/>
 
         <StackPanel Orientation="Horizontal">
-            <Label Content="{Binding SponsoredBy, Source={StaticResource LocStrings}}" Foreground="White" 
+            <Label Content="{x:Static common:Strings.SponsoredBy}" Foreground="White" 
                    HorizontalAlignment="Left" Margin="4" VerticalAlignment="Top" />
             <Label Content="&lt;Sponsor name&gt;" Foreground="White" HorizontalAlignment="Left" 
                    Margin="4" Name="labelSponsorName" VerticalAlignment="Top" />

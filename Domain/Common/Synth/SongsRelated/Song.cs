@@ -4,6 +4,7 @@ using Common.Utils;
 using PcgTools.Model.Common.File;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
+using PcgTools.Mvvm;
 using PcgTools.OpenedFiles;
 
 namespace PcgTools.Model.Common.Synth.SongsRelated

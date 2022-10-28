@@ -22,6 +22,7 @@ using PcgTools.Model.Common.Synth.PatchWaveSequences;
 using PcgTools.Properties;
 using PcgTools.PcgToolsResources;
 using Common.Extensions;
+using Common.PcgToolsResources;
 using PcgTools.Extensions;
 using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 

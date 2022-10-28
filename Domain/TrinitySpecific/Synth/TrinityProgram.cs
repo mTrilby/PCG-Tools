@@ -1,10 +1,10 @@
 ﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 using System.Collections.Generic;
+using Common.Utils;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Properties;
 
 namespace PcgTools.Model.TrinitySpecific.Synth
 {
@@ -50,8 +50,8 @@ namespace PcgTools.Model.TrinitySpecific.Synth
 
                 case ParameterNames.ProgramParameterName.Category:
                     parameter = IntParameter.Instance.Set(PcgRoot, PcgRoot.Content, ByteOffset + 16, 
-                        Settings.Default.TrinityCategorySetA ? 3 : 7, 
-                        Settings.Default.TrinityCategorySetA ? 0 : 4, 
+                        SettingsDefault.TrinityCategorySetA ? 3 : 7, 
+                        SettingsDefault.TrinityCategorySetA ? 0 : 4, 
                         false, this); 
                     break;
 

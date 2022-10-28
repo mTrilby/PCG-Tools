@@ -1,31 +1,28 @@
 ﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
-using System;
-using System.Windows;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Model.Common.Synth.SongsRelated
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public abstract class SongMemory : Memory, ISongMemory
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ISongs Songs { get; private set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IRegions Regions { get; private set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="fileName"></param>
         protected SongMemory(string fileName)
@@ -40,26 +37,19 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="saveAs"></param>
         /// <param name="saveToFile"></param>
         public override void SaveFile(bool saveAs, bool saveToFile)
         {
-            try
-            {
-                System.IO.File.WriteAllBytes(FileName, Content);
-                IsDirty = false;
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message, Strings.PcgTools, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            System.IO.File.WriteAllBytes(FileName, Content);
+            IsDirty = false;
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private IPcgMemory _connectedPcgMemory;
 

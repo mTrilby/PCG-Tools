@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Common.PcgToolsResources;
+using PcgTools.Mvvm;
 using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Model.Common.Synth.MemoryAndFactory
@@ -170,7 +172,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
         /// </summary>
         /// <param name="osVersion"></param>
         /// <returns></returns>
-        static internal MemoryAndFactory.Model Find(EOsVersion osVersion)
+        public static MemoryAndFactory.Model Find(EOsVersion osVersion)
         {
             return Instance.First(model => model.OsVersion == osVersion);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.PcgToolsResources;
 using Common.Utils;
 using PcgTools.Common.Utils;
 using PcgTools.MasterFiles;
@@ -32,8 +33,8 @@ namespace PcgTools.ViewModels.Commands
                     string.Format(Strings.FileTypeNotSupportedForThisWorkstation,
                         Memory.FileTypeAsString(korgFileReader.FileType),
                         Model.Common.Synth.MemoryAndFactory.Model.ModelTypeAsString(korgFileReader.ModelType)),
-                    Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Error,
-                    WindowUtils.EMessageBoxResult.Ok);
+                    Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok, WindowUtil.EMessageBoxImage.Error,
+                    WindowUtil.EMessageBoxResult.Ok);
                 return;
             }
 
@@ -48,7 +49,7 @@ namespace PcgTools.ViewModels.Commands
             {
                 var width = Settings.Default.UI_PcgWindowWidth == 0 ? 700 : Settings.Default.UI_PcgWindowWidth;
                 var height = Settings.Default.UI_PcgWindowHeight == 0 ? 500 : Settings.Default.UI_PcgWindowHeight;
-                mdiChild = _mainViewModel.CreateMdiChildWindow(fileName, MainViewModel.ChildWindowType.Pcg, memory, width, height);
+                mdiChild = ((MainViewModel)_mainViewModel).CreateMdiChildWindow(fileName, MainViewModel.ChildWindowType.Pcg, memory, width, height);
                 ((PcgWindow)(mdiChild.Content)).ViewModel.SelectedMemory = memory;
                 _mainViewModel.CurrentChildViewModel = ((PcgWindow)(mdiChild.Content)).ViewModel;
                 ((IPcgMemory) memory).SelectFirstBanks();
@@ -57,7 +58,7 @@ namespace PcgTools.ViewModels.Commands
             {
                 var width = Settings.Default.UI_SongWindowWidth == 0 ? 700 : Settings.Default.UI_SongWindowWidth;
                 var height = Settings.Default.UI_SongWindowHeight == 0 ? 500 : Settings.Default.UI_SongWindowHeight;
-                mdiChild = _mainViewModel.CreateMdiChildWindow(fileName, MainViewModel.ChildWindowType.Song, memory, width, height);
+                mdiChild = ((MainViewModel)_mainViewModel).CreateMdiChildWindow(fileName, MainViewModel.ChildWindowType.Song, memory, width, height);
                 _mainViewModel.CurrentChildViewModel = ((SongWindow)(mdiChild.Content)).ViewModel;
                 ((SongWindow)(mdiChild.Content)).ViewModel.SelectedMemory = memory;
             }
@@ -69,7 +70,7 @@ namespace PcgTools.ViewModels.Commands
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="checkAutoLoadMasterFileSetting"></param>
         /// <param name="loadedPcgFileName"></param>
@@ -95,11 +96,11 @@ namespace PcgTools.ViewModels.Commands
                             {
                                 var result = _mainViewModel.ShowMessageBox(
                                     string.Format(Strings.AskForMasterFile, masterFile.FileName),
-                                    Strings.PcgTools, WindowUtils.EMessageBoxButton.YesNo,
-                                    WindowUtils.EMessageBoxImage.Information,
-                                    WindowUtils.EMessageBoxResult.Yes);
+                                    Strings.PcgTools, WindowUtil.EMessageBoxButton.YesNo,
+                                    WindowUtil.EMessageBoxImage.Information,
+                                    WindowUtil.EMessageBoxResult.Yes);
 
-                                if (result == WindowUtils.EMessageBoxResult.Yes)
+                                if (result == WindowUtil.EMessageBoxResult.Yes)
                                 {
                                     LoadFileAndMasterFile(_mainViewModel, masterFile.FileName, false);
                                 }

@@ -2,15 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="{Binding ChangeVolume_chvolwin, Source={StaticResource LocStrings}}"  
+        xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
+        Title="{x:Static common:Strings.ChangeVolume_chvolwin}"  
         ShowInTaskbar="False" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
     <StackPanel Width="300" HorizontalAlignment="Left">
-        <RadioButton x:Name="radioButtonFixed" Content="{Binding Fixed_chvolwin, Source={StaticResource LocStrings}}" Margin="4" Checked="RadioButtonFixed_Checked"/>
-        <RadioButton x:Name="radioButtonRelative" Content="{Binding Relative_chvolwin, Source={StaticResource LocStrings}}" Margin="4" Checked="RadioButtonRelative_Checked"/>
-        <RadioButton x:Name="radioButtonPercentage" Content="{Binding Percentage_chvolwin, Source={StaticResource LocStrings}}" Margin="4" Checked="RadioButtonPercentage_Checked"/>
-        <RadioButton x:Name="radioButtonMapped" Content="{Binding Mapped_chvolwin, Source={StaticResource LocStrings}}" 
+        <RadioButton x:Name="radioButtonFixed" Content="{x:Static common:Strings.Fixed_chvolwin}" Margin="4" Checked="RadioButtonFixed_Checked"/>
+        <RadioButton x:Name="radioButtonRelative" Content="{x:Static common:Strings.Relative_chvolwin}" Margin="4" Checked="RadioButtonRelative_Checked"/>
+        <RadioButton x:Name="radioButtonPercentage" Content="{x:Static common:Strings.Percentage_chvolwin}" Margin="4" Checked="RadioButtonPercentage_Checked"/>
+        <RadioButton x:Name="radioButtonMapped" Content="{x:Static common:Strings.Mapped_chvolwin}" 
                      Margin="4" Checked="RadioButtonMapped_Checked"/>
-        <RadioButton x:Name="radioButtonSmartMapped" Content="{Binding SmartMapped_chvolwin, Source={StaticResource LocStrings}}" Margin="4" Checked="RadioButtonSmartMapped_Checked"/>
+        <RadioButton x:Name="radioButtonSmartMapped" Content="{x:Static common:Strings.SmartMapped_chvolwin}" Margin="4" Checked="RadioButtonSmartMapped_Checked"/>
         <StackPanel Orientation="Horizontal">
             <xctk:IntegerUpDown Name="NumericUpDownValue" Increment="1" 
                                                 IsEnabled="{Binding ElementName=CheckBoxAutoBackupFilesEnabled, Path=IsChecked}"
@@ -22,10 +23,10 @@
         </StackPanel>
         <Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="{Binding Cancel, Source={StaticResource LocStrings}}" 
+                <Button Content="{x:Static common:Strings.Cancel}" 
         		    IsDefault="False" HorizontalAlignment="Right" Margin="4"  VerticalAlignment="Top" Width="75"
         		    IsCancel="True" Click="ButtonCancelClick" />
-                <Button Content="{Binding OK, Source={StaticResource LocStrings}}" 
+                <Button Content="{x:Static common:Strings.OK}" 
                         
             	    HorizontalAlignment="Right" Margin="4" 
             	    VerticalAlignment="Top" Width="75" IsDefault="True" 

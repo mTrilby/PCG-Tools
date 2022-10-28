@@ -17,7 +17,7 @@ using PcgTools.Model.Common.Synth.PatchSetLists;
 namespace PcgTools.Model.KronosSpecific.Synth
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class KronosSetListSlot : SetListSlot
     {
@@ -32,7 +32,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override void SetParameters()
         {
@@ -48,13 +48,13 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private IIntParameter _color;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override IIntParameter Color => _color;
 
@@ -62,7 +62,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
         // Name
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string Name
         {
@@ -83,7 +83,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int MaxNameLength => 24;
 
@@ -91,12 +91,12 @@ namespace PcgTools.Model.KronosSpecific.Synth
         // Description.
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string Description
         {
             get { return GetChars(DescriptionPcgOffset, MaxDescriptionLength); }
-         
+
             set
             {
                 if (Description != value)
@@ -109,7 +109,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override TextSize SelectedTextSize
         {
@@ -132,7 +132,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int Volume
         {
@@ -150,7 +150,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int Transpose
         {
@@ -181,9 +181,9 @@ namespace PcgTools.Model.KronosSpecific.Synth
             }
         }
 
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int MaxDescriptionLength => 512;
 
@@ -191,7 +191,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
         // ListSubType
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override PatchType SelectedPatchType
         {
@@ -207,21 +207,21 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override IBank UsedProgramBank => PcgRoot.ProgramBanks.GetBankWithPcgId(Util.GetBits(PcgRoot.Content,
             (PcgRoot.Model.OsVersion == Models.EOsVersion.EOsVersionKronos15_16) ? Stl2BankOffset : DefaultBankOffset, 4, 0));
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected override IBank UsedCombiBank => PcgRoot.CombiBanks[Util.GetBits(PcgRoot.Content,
             (PcgRoot.Model.OsVersion == Models.EOsVersion.EOsVersionKronos15_16) ? Stl2BankOffset : DefaultBankOffset, 4, 0)];
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override IPatch UsedPatch
         {
@@ -276,7 +276,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="value"></param>
         private void SetUsedCombi(IPatch value)
@@ -305,7 +305,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="value"></param>
         private void SetUsedProgram(IPatch value)
@@ -365,7 +365,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="bank"></param>
         private void SetUsedProgramBank(KronosProgramBank bank)
@@ -407,7 +407,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private IPatch GetUsedCombi
         {
@@ -437,7 +437,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private IPatch GetUsedProgram
         {
@@ -467,7 +467,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override void Clear()
         {
@@ -512,33 +512,33 @@ namespace PcgTools.Model.KronosSpecific.Synth
         /// <summary>
         /// Used for OS 1.5/1.6.
         /// </summary>
-        public int Stl2PatchOffset => 128 * 128 + ((SetLists) (Parent.Parent)).Stl2PcgOffset + 
+        public int Stl2PatchOffset => 128 * 128 + ((SetLists) (Parent.Parent)).Stl2PcgOffset +
                                       128 * Convert.ToInt16(((SetList) Parent).Id) + Index;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private int TypeOffset => ByteOffset + 24;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static int SizeBetweenStl2AndSbk2 => 8;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="other"></param>
         public void SwapOs1516Data(KronosSetListSlot other)
         {
             var os1516Bank = Util.GetInt(PcgRoot.Content, Stl2BankOffset, 1);
             var os1516Patch = Util.GetInt(PcgRoot.Content, Stl2PatchOffset, 1);
-            Util.SetInt(PcgRoot, PcgRoot.Content, Stl2BankOffset, 1, 
+            Util.SetInt(PcgRoot, PcgRoot.Content, Stl2BankOffset, 1,
                 Util.GetInt(PcgRoot.Content, other.Stl2BankOffset, 1));
-            Util.SetInt(PcgRoot, PcgRoot.Content, Stl2PatchOffset, 1, 
+            Util.SetInt(PcgRoot, PcgRoot.Content, Stl2PatchOffset, 1,
                 Util.GetInt(PcgRoot.Content, other.Stl2PatchOffset, 1));
             Util.SetInt(PcgRoot, PcgRoot.Content, other.Stl2BankOffset, 1, os1516Bank);
             Util.SetInt(PcgRoot, PcgRoot.Content, other.Stl2PatchOffset, 1, os1516Patch);
@@ -546,7 +546,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="otherPatch"></param>
         /// <param name="includingName"></param>
@@ -572,7 +572,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="otherPatch"></param>
         /// <param name="includingName"></param>
@@ -588,9 +588,9 @@ namespace PcgTools.Model.KronosSpecific.Synth
             // Take SLS2 differences into account.
             if (PcgRoot.Model.OsVersion == Models.EOsVersion.EOsVersionKronos15_16)
             {
-                diffs += (Util.GetInt(PcgRoot.Content, Stl2BankOffset, 1) != 
+                diffs += (Util.GetInt(PcgRoot.Content, Stl2BankOffset, 1) !=
                     otherSetListSlot.KronosOs1516Bank) ? 1 : 0;
-                diffs += (Util.GetInt(PcgRoot.Content, Stl2PatchOffset, 1) != 
+                diffs += (Util.GetInt(PcgRoot.Content, Stl2PatchOffset, 1) !=
                     otherSetListSlot.KronosOs1516Patch) ? 1 : 0;
             }
 

@@ -2,12 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="{Binding EditSingleSetListSlot, Source={StaticResource LocStrings}}" 
+        xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
+        Title="{x:Static common:Strings.EditSingleSetListSlot}" 
         Name="windowEdit"  SizeToContent="WidthAndHeight"
         ShowInTaskbar="True" Loaded="WindowEditLoaded" Icon="/PcgTools;component/Gui/pcgtools.ico"
         WindowStartupLocation="CenterOwner">
     <WrapPanel>
-        <Expander  Header="{Binding ID, Source={StaticResource LocStrings}}"
+        <Expander  Header="{x:Static common:Strings.ID}"
             	Margin="4" Padding="4" x:Name="expanderId" IsExpanded="True">
             <StackPanel>
                 <TextBox HorizontalAlignment="Left" Margin="4" MinWidth="30"
@@ -16,21 +17,21 @@
             </StackPanel>
         </Expander>
 
-        <Expander Header="{Binding Reference, Source={StaticResource LocStrings}}"
+        <Expander Header="{x:Static common:Strings.Reference}"
                   Margin="4" Padding="4" IsExpanded="True">
             <StackPanel>
-                <Label Content="{Binding ReferenceType, Source={StaticResource LocStrings}}" Margin="4,0"/>
+                <Label Content="{x:Static common:Strings.ReferenceType}" Margin="4,0"/>
                 <TextBox Margin="4,0" Name="TextBoxReferenceType" IsReadOnly="True"/>
-                <Label Content="{Binding ReferenceId, Source={StaticResource LocStrings}}" Margin="4,0"/>
+                <Label Content="{x:Static common:Strings.ReferenceId}" Margin="4,0"/>
                 <TextBox Margin="4,0" Name="TextBoxReferenceId" IsReadOnly="True"/>
-                <Label Content="{Binding Name, Source={StaticResource LocStrings}}" Margin="4,0"/>
+                <Label Content="{x:Static common:Strings.Name}" Margin="4,0"/>
                 <TextBox Margin="4,0" Name="TextBoxReferenceName" IsReadOnly="True"/>
             </StackPanel>
         </Expander>
 
         <StackPanel Orientation="Vertical">
 
-            <Expander Header="{Binding Name, Source={StaticResource LocStrings}}"
+            <Expander Header="{x:Static common:Strings.Name}"
             		    Margin="4" Padding="4" x:Name="expanderName" IsExpanded="True">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -52,104 +53,104 @@
                 </StackPanel>
             </Expander>
        
-            <Expander   Header="{Binding ControlColor, Source={StaticResource LocStrings}}"
+            <Expander   Header="{x:Static common:Strings.ControlColor}"
             		        Margin="4" Padding="4" x:Name="expanderColor" IsExpanded="True">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style x:Key="ComboBoxItemDefault" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#4D4D4D"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorDefault, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorDefault}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemCharcoal" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#2F2F2F"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorCharcoal, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorCharcoal}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemBrick" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#B23F3F"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorBrick, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorBrick}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemBurgundy" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#691B1B"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorBurgundy, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorBurgundy}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemIvy" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#91A730"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorIvy, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorIvy}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemOlive" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#374520"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorOlive, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorOlive}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemGold" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#AA842A"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorGold, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorGold}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemCacao" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#7F4236"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorCacao, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorCacao}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemIndigo" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#5360A5"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorIndigo, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorIndigo}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemNavy" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#1A2B88"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorNavy, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorNavy}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemRose" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#AB81A2"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorRose, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorRose}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemLavender" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#9267BA"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorLavender, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorLavender}"/>
                         </Style>
                     
                         <Style x:Key="ComboBoxItemAzure" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#88A4C5"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorAzure, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorAzure}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemDanim" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#6A7F96"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorDanim, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorDanim}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemSilver" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#808080"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorSilver, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorSilver}"/>
                         </Style>
 
                         <Style x:Key="ComboBoxItemSlate" TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="Background" Value="#626262"/>
                             <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{Binding ColorSlate, Source={StaticResource LocStrings}}"/>
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorSlate}"/>
                         </Style>
                     </StackPanel.Resources>
                     
@@ -190,24 +191,24 @@
             </Expander>
         </StackPanel>
 
-        <Expander Header="{Binding DescriptionControl, Source={StaticResource LocStrings}}"
+        <Expander Header="{x:Static common:Strings.DescriptionControl}"
             		    Margin="4" Padding="4" x:Name="expanderDescription"  IsExpanded="True">
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <Label Content="{Binding ControlTextSize, Source={StaticResource LocStrings}}"  Margin="4"/>
-                    <RadioButton Name="radioButtonTextSizeXs" Content="{Binding ControlTextSizeXs, Source={StaticResource LocStrings}}"
+                    <Label Content="{x:Static common:Strings.ControlTextSize}"  Margin="4"/>
+                    <RadioButton Name="radioButtonTextSizeXs" Content="{x:Static common:Strings.ControlTextSizeXs}"
                                  Margin="4" 
                                  Checked="RadioButtonTextSize_Checked"/>
-                    <RadioButton Name="radioButtonTextSizeS" Content="{Binding ControlTextSizeS, Source={StaticResource LocStrings}}"
+                    <RadioButton Name="radioButtonTextSizeS" Content="{x:Static common:Strings.ControlTextSizeS}"
                                  Margin="4"
                                  Checked="RadioButtonTextSize_Checked"/>
-                    <RadioButton Name="radioButtonTextSizeM" Content="{Binding ControlTextSizeM, Source={StaticResource LocStrings}}" 
+                    <RadioButton Name="radioButtonTextSizeM" Content="{x:Static common:Strings.ControlTextSizeM}" 
                                  Margin="4"
                                  Checked="RadioButtonTextSize_Checked"/>
-                    <RadioButton Name="radioButtonTextSizeL" Content="{Binding ControlTextSizeL, Source={StaticResource LocStrings}}"
+                    <RadioButton Name="radioButtonTextSizeL" Content="{x:Static common:Strings.ControlTextSizeL}"
                                  Margin="4"
                                  Checked="RadioButtonTextSize_Checked"/>
-                    <RadioButton Name="radioButtonTextSizeXl" Content="{Binding ControlTextSizeXl, Source={StaticResource LocStrings}}"  
+                    <RadioButton Name="radioButtonTextSizeXl" Content="{x:Static common:Strings.ControlTextSizeXl}"  
                                  Margin="4"
                                  Checked="RadioButtonTextSize_Checked"/>
                 </StackPanel>
@@ -235,7 +236,7 @@
         </Expander>
 
         <StackPanel Orientation="Vertical">
-            <Expander  Header="{Binding ControlTranspose, Source={StaticResource LocStrings}}"
+            <Expander  Header="{x:Static common:Strings.ControlTranspose}"
             		        Margin="4" Padding="4" x:Name="expanderTranspose" IsExpanded="True">
                 <StackPanel Orientation="Horizontal">
                     <xctk:IntegerUpDown Name="intupdownTranspose" Value="15" Increment="1" 
@@ -243,7 +244,7 @@
                 </StackPanel>
             </Expander>
 
-            <Expander  Header="{Binding ControlVolume, Source={StaticResource LocStrings}}"
+            <Expander  Header="{x:Static common:Strings.ControlVolume}"
             		        Margin="4" Padding="4" x:Name="expanderVolume" IsExpanded="True">
                 <StackPanel Orientation="Horizontal">
                     <xctk:IntegerUpDown Name="intupdownVolume" Value="123" Increment="1" 
@@ -253,13 +254,13 @@
         </StackPanel>
         
         <StackPanel Orientation="Horizontal">
-            <Button Content="{Binding Cancel, Source={StaticResource LocStrings}}"
+            <Button Content="{x:Static common:Strings.Cancel}"
                 HorizontalAlignment="Left" 
                 IsDefault="False" Margin="4" Name="buttonCancel" 
                 VerticalAlignment="Top" Width="75" IsCancel="True" 
                 Click="ButtonCancelClick" />
             
-            <Button Content="{Binding OK, Source={StaticResource LocStrings}}" 
+            <Button Content="{x:Static common:Strings.OK}" 
                 HorizontalAlignment="Left" 
                 Margin="4" Name="buttonOk" VerticalAlignment="Top" 
                 Width="75" IsDefault="True" Click="ButtonOkClick" />

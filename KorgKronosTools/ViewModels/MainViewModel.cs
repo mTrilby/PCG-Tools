@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Input;
 using Common.Utils;
 using Common.Extensions;
+using Common.PcgToolsResources;
 using PcgTools.ClipBoard;
 using PcgTools.Common.Utils;
 using PcgTools.MasterFiles;
@@ -26,18 +27,18 @@ using WPF.MDI;
 namespace PcgTools.ViewModels
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class MainViewModel : ViewModel, IMainViewModel
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string Version = "3.1.0";
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public enum ChildWindowType
         {
@@ -48,7 +49,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _appTitle;
         // ReSharper disable once MemberCanBePrivate.Global
@@ -61,7 +62,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void UpdateAppTitle()
         {
@@ -70,7 +71,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>c
-        /// 
+        ///
         /// </summary>
         public override IMemory SelectedMemory
         {
@@ -150,13 +151,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         IViewModel _currentChildViewModel;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IViewModel CurrentChildViewModel
         {
@@ -184,13 +185,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private readonly string _fileFormats;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -207,13 +208,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbModel;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -234,12 +235,12 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbFileType;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -259,13 +260,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbPrograms;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -285,13 +286,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbCombis;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -311,16 +312,16 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbDrumKits;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
-        // ReSharper disable once MemberCanBePrivate.Global    
+        // ReSharper disable once MemberCanBePrivate.Global
         public string StatusBarDrumKits
 
         {
@@ -338,16 +339,16 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbDrumPatterns;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
-        // ReSharper disable once MemberCanBePrivate.Global    
+        // ReSharper disable once MemberCanBePrivate.Global
         public string StatusBarDrumPatterns
         {
             // ReSharper disable once UnusedMember.Global
@@ -364,13 +365,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbWaveSequences;
-        
-        
+
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -378,7 +379,7 @@ namespace PcgTools.ViewModels
         {
             // ReSharper disable once UnusedMember.Global
             get { return _statbWaveSequences; }
-            private set 
+            private set
             {
                 if (value != _statbWaveSequences)
                 {
@@ -390,13 +391,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbSetLists;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -416,13 +417,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbClipBoard;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -442,13 +443,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbSongs;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable MemberCanBePrivate.Global
@@ -468,13 +469,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         string _statbSamples;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
@@ -494,13 +495,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PcgClipBoard _pcgClipBoard;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PcgClipBoard PcgClipBoard
         {
@@ -517,13 +518,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ObservableCollection<IChildWindow> _childWindows;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ObservableCollection<IChildWindow> ChildWindows
         {
@@ -540,13 +541,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _openFileCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -560,31 +561,31 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _saveFileCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
         public ICommand SaveFileCommand
         {
-            get { return _saveFileCommand ?? (_saveFileCommand = new RelayCommand(param => SaveFile(), 
+            get { return _saveFileCommand ?? (_saveFileCommand = new RelayCommand(param => SaveFile(),
                 param => (CurrentChildViewModel?.SelectedMemory is PcgMemory && CurrentChildViewModel.SelectedMemory.IsDirty))); }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _saveAsFileCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -593,19 +594,19 @@ namespace PcgTools.ViewModels
             get
             {
                 return _saveAsFileCommand ?? (_saveAsFileCommand = new RelayCommand(param => SaveAsFile(),
-                    param => (CurrentChildViewModel?.SelectedMemory is IPcgMemory))); 
+                    param => (CurrentChildViewModel?.SelectedMemory is IPcgMemory)));
             }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _revertToSavedFileCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -621,13 +622,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _closeFileCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -644,7 +645,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void CloseFile()
         {
@@ -653,13 +654,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _exitCommand;
-        
-        
+
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -670,7 +671,7 @@ namespace PcgTools.ViewModels
                 return _exitCommand ?? (_exitCommand = new RelayCommand(param => Close(), param => true));
             }
         }
-        
+
 
         /// <summary>
         /// Default is 0: PCG.
@@ -679,7 +680,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void OpenFile()
         {
@@ -694,7 +695,7 @@ namespace PcgTools.ViewModels
 
             try
             {
-                SetCursor(WindowUtils.ECursor.Wait);
+                SetCursor(WindowUtil.ECursor.Wait);
 
                 foreach (var fileNameToOpen in result.Files)
                 {
@@ -705,12 +706,12 @@ namespace PcgTools.ViewModels
             {
                 ShowMessageBox(
                     string.Format(Strings.FileOpenException,
-                        exc.Message + "\n\n" + exc.InnerException, exc.StackTrace), Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok,
-                        WindowUtils.EMessageBoxImage.Error, WindowUtils.EMessageBoxResult.Ok);
+                        exc.Message + "\n\n" + exc.InnerException, exc.StackTrace), Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok,
+                        WindowUtil.EMessageBoxImage.Error, WindowUtil.EMessageBoxResult.Ok);
             }
             finally
             {
-                SetCursor(WindowUtils.ECursor.Arrow);
+                SetCursor(WindowUtil.ECursor.Arrow);
             }
 
         }
@@ -727,8 +728,8 @@ namespace PcgTools.ViewModels
             {
                 ShowMessageBox(
                     string.Format(Strings.OpenedDuplicateWarning, fileNameToOpen),
-                    Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Warning,
-                    WindowUtils.EMessageBoxResult.Ok);
+                    Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok, WindowUtil.EMessageBoxImage.Warning,
+                    WindowUtil.EMessageBoxResult.Ok);
             }
 
             // Open/show file.
@@ -737,7 +738,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -765,7 +766,7 @@ namespace PcgTools.ViewModels
             catch (IOException exception)
             {
                 ShowMessageBox(String.Format(Strings.FileOpenException, fileName, exception.Message, exception.StackTrace),
-                                Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Error, 
+                                Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Error,
                                 WindowUtils.EMessageBoxResult.Ok);
             }
             catch (ApplicationException exception)
@@ -777,9 +778,9 @@ namespace PcgTools.ViewModels
 #endif
         }
 
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void SaveFile()
         {
@@ -788,7 +789,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private void SaveAsFile()
         {
@@ -816,25 +817,25 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="saveAsFile"></param>
         private void SaveToFile(bool saveAsFile)
         {
             try
             {
-                SetCursor(WindowUtils.ECursor.Wait);
+                SetCursor(WindowUtil.ECursor.Wait);
                 ((IPcgViewModel) CurrentChildViewModel).SaveFile(saveAsFile, true);
             }
             finally
             {
-                SetCursor(WindowUtils.ECursor.Arrow);
+                SetCursor(WindowUtil.ECursor.Arrow);
             }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void RevertToSavedFile()
         {
@@ -844,34 +845,34 @@ namespace PcgTools.ViewModels
                 ReadAndShowFile(fileName, false);
             }
         }
-        
+
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Action UpdateSelectedMemory { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Func<string, string, int, bool, dynamic> OpenFileDialog { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Func<string, string, string, dynamic> SaveFileDialog { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public Action<WindowUtils.ECursor> SetCursor { private get; set; }
+        public Action<WindowUtil.ECursor> SetCursor { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public enum WindowType
         {
@@ -888,52 +889,52 @@ namespace PcgTools.ViewModels
             ExternalLinksPersonal
         }
 
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Action<WindowType> ShowDialog { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public Func<string, string, WindowUtils.EMessageBoxButton, WindowUtils.EMessageBoxImage, WindowUtils.EMessageBoxResult, 
-            WindowUtils.EMessageBoxResult>  ShowMessageBox { get; set; }
+        public Func<string, string, WindowUtil.EMessageBoxButton, WindowUtil.EMessageBoxImage, WindowUtil.EMessageBoxResult,
+            WindowUtil.EMessageBoxResult>  ShowMessageBox { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Action<string> StartProcess { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Action GotoNextWindow { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Action GotoPreviousWindow { private get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Func<string, ChildWindowType, IMemory, int, int, MdiChild> CreateMdiChildWindow { get; set;}
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Action CloseView;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void RecalculateStatusBar()
         {
@@ -960,7 +961,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="memory"></param>
         private void UpdateStatusBarForPcg(IPcgMemory memory)
@@ -1014,7 +1015,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="nrCombis"></param>
         /// <param name="nrSetListSlots"></param>
@@ -1068,7 +1069,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private void UpdateStatusBarForSong()
         {
@@ -1096,7 +1097,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private void EmptyStatusBar()
         {
@@ -1115,7 +1116,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pcgMemory"></param>
         private void RecalculateStatusBarWaveSequences(IPcgMemory pcgMemory)
@@ -1166,7 +1167,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pcgMemory"></param>
         private void RecalculateStatusBarDrumKits(IPcgMemory pcgMemory)
@@ -1215,7 +1216,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pcgMemory"></param>
         private void RecalculateStatusBarDrumPatterns(IPcgMemory pcgMemory)
@@ -1311,7 +1312,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pcgMemory"></param>
         private void RecalculateStatusBarCombis(IPcgMemory pcgMemory)
@@ -1360,7 +1361,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pcgMemory"></param>
         private void RecalculateStatusBarPrograms(IPcgMemory pcgMemory)
@@ -1407,16 +1408,16 @@ namespace PcgTools.ViewModels
             }
         }
 
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showMasterFilesCommand;
 
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable UnusedMember.Global
@@ -1436,7 +1437,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1447,7 +1448,7 @@ namespace PcgTools.ViewModels
                 // It would be better to put focus to the window, but I couldn't succeed (with Focus(), and optionally
                 // BringIntoView or UpudateLayout.
                 MasterFilesWindow.CloseWindow();
-                MasterFiles.MasterFiles.Instances.MasterFilesWindow = null;
+                //MasterFiles.MasterFiles.Instances.MasterFilesWindow = null;
             }
 
             if (MasterFilesWindow == null)
@@ -1459,19 +1460,19 @@ namespace PcgTools.ViewModels
                 SelectedMemory = null;
                 MasterFilesWindow = (MasterFilesWindow) (mdiChild.Content);
                 CurrentChildViewModel = MasterFilesWindow.ViewModel;
-                MasterFiles.MasterFiles.Instances.MasterFilesWindow = MasterFilesWindow;
+                //MasterFiles.MasterFiles.Instances.MasterFilesWindow = MasterFilesWindow;
             }
         }
-        
+
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showSingleLinedSetListSlotDescriptionsCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 
         [UsedImplicitly]
@@ -1488,7 +1489,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowSingleLinedSetListSlotDescriptions()
         {
@@ -1497,13 +1498,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private bool _isShowSingleLinedSetListSlotDescriptions;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         public bool IsShowSingleLinedSetListSlotDescriptions
@@ -1523,12 +1524,12 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showSettingsCommand;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1543,7 +1544,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowSettings()
         {
@@ -1554,7 +1555,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private void SettingsChanged()
         {
@@ -1569,7 +1570,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// Settings have been changed. 
+        /// Settings have been changed.
         /// </summary>
         /// <param name="property"></param>
         public static void ActOnSettingsChanged(string property)
@@ -1579,13 +1580,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _gotoNextWindowCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1600,13 +1601,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _gotoPreviousWindowCommand;
 
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1614,20 +1615,20 @@ namespace PcgTools.ViewModels
         {
             get
             {
-                return _gotoPreviousWindowCommand ?? 
+                return _gotoPreviousWindowCommand ??
                     (_gotoPreviousWindowCommand = new RelayCommand(param => GotoPreviousWindow(), param => true));
             }
         }
-        
+
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showManualCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1643,7 +1644,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowManual()
         {
@@ -1655,20 +1656,20 @@ namespace PcgTools.ViewModels
             {
                 ShowMessageBox(
                     string.Format(Strings.CouldNotOpenManualWarning,
-                        exc.Message, exc.InnerException), Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, 
-                        WindowUtils.EMessageBoxImage.Error, WindowUtils.EMessageBoxResult.Ok);
+                        exc.Message, exc.InnerException), Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok,
+                        WindowUtil.EMessageBoxImage.Error, WindowUtil.EMessageBoxResult.Ok);
             }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showHomePageCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1684,7 +1685,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowHomePage()
         {
@@ -1696,20 +1697,20 @@ namespace PcgTools.ViewModels
             {
                 ShowMessageBox(
                     string.Format(Strings.CouldNotOpenHomePageWarning,
-                        exc.Message, exc.InnerException), Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok,
-                        WindowUtils.EMessageBoxImage.Error, WindowUtils.EMessageBoxResult.Ok);
+                        exc.Message, exc.InnerException), Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok,
+                        WindowUtil.EMessageBoxImage.Error, WindowUtil.EMessageBoxResult.Ok);
             }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showAboutCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1720,7 +1721,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowAbout()
         {
@@ -1729,13 +1730,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showExternalLinksOasysVoucherCodeSponsorsCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1751,7 +1752,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1762,13 +1763,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showExternalLinksContributorsCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1784,7 +1785,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowExternalLinksContributors()
         {
@@ -1793,13 +1794,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showExternalLinksVideoCreatorsCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1815,7 +1816,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowExternalLinksVideoCreators()
         {
@@ -1824,13 +1825,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showExternalLinksKorgRelatedCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1838,29 +1839,29 @@ namespace PcgTools.ViewModels
         {
             get
             {
-                return _showExternalLinksKorgRelatedCommand ?? 
-                    (_showExternalLinksKorgRelatedCommand = new RelayCommand(param => ShowExternalLinksKorgRelated(), 
+                return _showExternalLinksKorgRelatedCommand ??
+                    (_showExternalLinksKorgRelatedCommand = new RelayCommand(param => ShowExternalLinksKorgRelated(),
                 param => true)); }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowExternalLinksKorgRelated()
         {
             ShowDialog(WindowType.ExternalLinksKorgRelated);
         }
 
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showExternalLinksDonatorsCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1868,7 +1869,7 @@ namespace PcgTools.ViewModels
         {
             get
             {
-                return _showExternalLinksDonatorsCommand ?? 
+                return _showExternalLinksDonatorsCommand ??
                     (_showExternalLinksDonatorsCommand = new RelayCommand(param => ShowExternalLinksDonators(),
                     param => true));
             }
@@ -1876,7 +1877,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowExternalLinksDonators()
         {
@@ -1885,13 +1886,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showExternalLinksTranslatorsCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1899,7 +1900,7 @@ namespace PcgTools.ViewModels
         {
             get
             {
-                return _showExternalLinksTranslatorsCommand ?? 
+                return _showExternalLinksTranslatorsCommand ??
                     (_showExternalLinksTranslatorsCommand = new RelayCommand(param => ShowExternalLinksTranslators(),
                     param => true));
             }
@@ -1907,7 +1908,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowExternalLinksTranslators()
         {
@@ -1916,13 +1917,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showExternalLinksThirdPartiesCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1938,7 +1939,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowExternalLinksThirdParties()
         {
@@ -1948,13 +1949,13 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showExternalLinksPersonalCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
@@ -1970,45 +1971,45 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         void ShowExternalLinksPersonal()
         {
             ShowDialog(WindowType.ExternalLinksPersonal);
         }
-        
+
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ICommand _showSpecialEventCommand;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Global
         public ICommand ShowSpecialEventCommand
 
         {
-            get { return _showSpecialEventCommand ?? 
+            get { return _showSpecialEventCommand ??
                 (_showSpecialEventCommand = new RelayCommand(param => ShowExternalEvent(), param => true)); }
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private void ShowExternalEvent()
         {
-            ShowMessageBox(Strings.Event, Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Information,
-                WindowUtils.EMessageBoxResult.Ok);
+            ShowMessageBox(Strings.Event, Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok, WindowUtil.EMessageBoxImage.Information,
+                WindowUtil.EMessageBoxResult.Ok);
         }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public enum Theme
         {
@@ -2019,19 +2020,19 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Theme _selectedTheme;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static string PcgToolsApplicationDataDir => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/PCGTools";
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Theme SelectedTheme
         {
@@ -2044,7 +2045,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2087,7 +2088,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="o"></param>
         /// <param name="args"></param>
@@ -2111,7 +2112,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override bool Revert()
@@ -2121,7 +2122,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="exitMode"></param>
         /// <returns></returns>
@@ -2168,7 +2169,7 @@ namespace PcgTools.ViewModels
             {
                 var childWindow = ChildWindows[index];
                 if ((childWindow.ViewModel.SelectedMemory is IPcgMemory) &&
-                    (string.Equals(childWindow.ViewModel.SelectedMemory.FileName, fileName, 
+                    (string.Equals(childWindow.ViewModel.SelectedMemory.FileName, fileName,
                     StringComparison.CurrentCultureIgnoreCase)))
                 {
                     if (!childWindow.ViewModel.Close(true))
@@ -2253,7 +2254,7 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="extension"></param>
         /// <param name="filter"></param>
@@ -2266,7 +2267,7 @@ namespace PcgTools.ViewModels
 
             for (var index = 0; index < filterParts.Length; index += 2)
             {
-                // Combine every two filter parts because a filter is made up by two |'s, e.g.: 
+                // Combine every two filter parts because a filter is made up by two |'s, e.g.:
                 // "MicroKorg XL {0} (*.mkxl_all,*.syx)|*.mkxl_all;*.syx|" +
                 filters.Add(filterParts[index] + filterParts[index + 1]);
             }

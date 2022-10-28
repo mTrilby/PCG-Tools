@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.PcgToolsResources;
 using Common.Utils;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.PcgToolsResources;

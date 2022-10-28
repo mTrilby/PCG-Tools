@@ -3,22 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
-        Title="{Binding EditParameterWindow, Source={StaticResource LocStrings}}" 
+        xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
+        Title="{x:Static common:Strings.___EditParameterWindow}"
         Icon="/PcgTools;component/Gui/pcgtools.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight"
         >
-        
+
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label Content="{Binding NumberOfSelectedPatches, Source={StaticResource LocStrings}}" Margin="4"/>
+            <Label Content="{x:Static common:Strings.NumberOfSelectedPatches}" Margin="4"/>
             <Label Content="{Binding Patches.Count}" Margin="4"/>
         </StackPanel>
 
         <GroupBox Visibility="{Binding Path=CombiSelectionSupported, Converter={StaticResource BoolToVisibilityConverter}}"
-                  Header="{Binding EditParameterCombiSelection, Source={StaticResource LocStrings}}"  Margin="4">
+                  Header="{x:Static common:Strings.___EditParameterCombiSelection}"  Margin="4">
             <StackPanel>
-                <RadioButton Content="{Binding EditParameterCombi, Source={StaticResource LocStrings}}" Margin="4"
+                <RadioButton Content="{x:Static common:Strings.___EditParameterCombi}" Margin="4"
                              IsChecked="{Binding IsCombiChecked}"/>
-                <RadioButton Name="RadioButtonTimbres" Content="{Binding EditParameterTimbres, Source={StaticResource LocStrings}}"
+                <RadioButton Name="RadioButtonTimbres" Content="{x:Static common:Strings.___EditParameterTimbres}"
                              IsChecked="{Binding IsTimbresChecked}"
                              Margin="4"/>
                 <StackPanel Orientation="Horizontal"  Margin="16,0">
@@ -97,14 +98,14 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Margin="16,0">
-                    <Button Content="{Binding SelectAll, Source={StaticResource LocStrings}}" 
+                    <Button Content="{x:Static common:Strings.SelectAll}"
                              IsEnabled="{Binding IsChecked, ElementName=RadioButtonTimbres}"
                             Padding="4" Margin="4" Command="{Binding Path=SelectAllTimbresCommand}"/>
-                    <Button Content="{Binding SelectAllExceptDrums, Source={StaticResource LocStrings}}" 
+                    <Button Content="{x:Static common:Strings.SelectAllExceptDrums}"
                              IsEnabled="{Binding IsChecked, ElementName=RadioButtonTimbres}"
                              Command="{Binding Path=SelectAllExceptDrumsTimbresCommand}"
                             Padding="4" Margin="4"/>
-                    <Button Content="{Binding DeselectAll, Source={StaticResource LocStrings}}"
+                    <Button Content="{x:Static common:Strings.DeselectAll}"
                              IsEnabled="{Binding IsChecked, ElementName=RadioButtonTimbres}"
                              Command="{Binding Path=DeselectAllTimbresCommand}"
                             Padding="4" Margin="4"/>
@@ -112,125 +113,125 @@
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Header="{Binding EditParameterParameter, Source={StaticResource LocStrings}}" Margin="4">
+        <GroupBox Header="{x:Static common:Strings.___EditParameterParameterChangeRule}" Margin="4">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterByteOffset, Source={StaticResource LocStrings}}" Margin="4"/>
+                    <Label Content="{x:Static common:Strings.___EditParameterByteOffset}" Margin="4"/>
                     <xctk:IntegerUpDown Margin="4" Value="{Binding ByteOffset}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterMaxByteOffset, Source={StaticResource LocStrings}}" Margin="4"/>
+                    <Label Content="{x:Static common:Strings.___EditParameterMaxByteOffset}" Margin="4"/>
                     <TextBox Margin="4" IsReadOnly="True" Text="{Binding MaxByteOffset}" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterNumberOfBytes, Source={StaticResource LocStrings}}" Margin="4"/>
+                    <Label Content="{x:Static common:Strings.___EditParameterNumberOfBytes}" Margin="4"/>
                     <xctk:IntegerUpDown Margin="4" Value="{Binding NumberOfBytes}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterMaxNumberOfBytes, Source={StaticResource LocStrings}}" Margin="4"/>
+                    <Label Content="{x:Static common:Strings.___EditParameterMaxNumberOfBytes}" Margin="4"/>
                     <TextBox Margin="4" Text="{Binding MaxNumberOfBytes}" IsReadOnly="True" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterMsbBit, Source={StaticResource LocStrings}}"
+                    <Label Content="{x:Static common:Strings.___EditParameterMaxByteOffset}"
                             IsEnabled="{Binding IsSingleByteSelected}" Margin="4"/>
                     <xctk:IntegerUpDown Margin="4" IsEnabled="{Binding IsSingleByteSelected}" Value="{Binding MsbBit}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterLsbBit, Source={StaticResource LocStrings}}" 
+                    <Label Content="{x:Static common:Strings.___EditParameterLsbBit}"
                            IsEnabled="{Binding IsSingleByteSelected}" Margin="4"/>
                     <xctk:IntegerUpDown IsEnabled="{Binding IsSingleByteSelected}" Value="{Binding LsbBit}" Margin="4" />
                 </StackPanel>
 
-                <CheckBox Content="{Binding EditParameterSigned, Source={StaticResource LocStrings}}"
+                <CheckBox Content="{x:Static common:Strings.___EditParameterSigned}"
                           IsChecked="{Binding SignedValueChecked}" VerticalAlignment="Bottom" Margin="4,0,0,8"/>
 
             </StackPanel>
         </GroupBox>
-        
-        <GroupBox Header="{Binding EditParameterValue, Source={StaticResource LocStrings}}" Margin="4">
+
+        <GroupBox Header="{x:Static common:Strings.___EditParameterValueChange}" Margin="4">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Name="RadioButtonAbsoluteValue" Content="{Binding EditParameterAbsoluteValue, Source={StaticResource LocStrings}}"
-                                 IsChecked="{Binding ChangeType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=AbsoluteValue}" 
+                    <RadioButton Name="RadioButtonAbsoluteValue" Content="{x:Static common:Strings.___EditParameterFixedValue}"
+                                 IsChecked="{Binding ChangeType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=AbsoluteValue}"
                                  Margin="4"/>
-                    <RadioButton Name="RadioButtonRelativeValue" Content="{Binding EditParameterRelativeValue, Source={StaticResource LocStrings}}"
-                                 IsChecked="{Binding ChangeType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=RelativeValue}" 
+                    <RadioButton Name="RadioButtonRelativeValue" Content="{x:Static common:Strings.___EditParameterRelativeValue}"
+                                 IsChecked="{Binding ChangeType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=RelativeValue}"
                                  Margin="4"/>
-                        <RadioButton Name="RadioButtonPercentageValue" Content="{Binding EditParameterPercentage, Source={StaticResource LocStrings}}" 
-                                 IsChecked="{Binding ChangeType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Percentage}" 
+                        <RadioButton Name="RadioButtonPercentageValue" Content="{x:Static common:Strings.___EditParameterPercentage}"
+                                 IsChecked="{Binding ChangeType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Percentage}"
                                  Margin="4"/>
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding EditParameterDecimalValue, Source={StaticResource LocStrings}}" Margin="4"/>
+                        <Label Content="{x:Static common:Strings.___EditParameterDecimalValue}" Margin="4"/>
                         <xctk:IntegerUpDown Value="{Binding DecimalValue}" Margin="4" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding EditParameterHexadecimalValue, Source={StaticResource LocStrings}}" Margin="4"/>
+                        <Label Content="{x:Static common:Strings.___EditParameterHexadecimalValue}" Margin="4"/>
                         <xctk:IntegerUpDown Value="{Binding DecimalValue}" FormatString="X" ParsingNumberStyle="AllowHexSpecifier" Margin="4" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding EditParameterDecimalValueRange, Source={StaticResource LocStrings}}" Margin="4"/>
+                        <Label Content="{x:Static common:Strings.___EditParameterDecimalValue}" Margin="4"/>
                         <TextBox Text="{Binding DecimalValueRange}" Margin="4" IsReadOnly="True" Focusable="False"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding EditParameterHexadecimalValueRange, Source={StaticResource LocStrings}}" Margin="4"/>
+                        <Label Content="{x:Static common:Strings.___EditParameterHexadecimalValueRange}" Margin="4"/>
                         <TextBox Text="{Binding HexadecimalValueRange}" Margin="4" IsReadOnly="True" Focusable="False"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Header="{Binding ResultAfterChange, Source={StaticResource LocStrings}}" Margin="4"
+        <GroupBox Header="{x:Static common:Strings.___ResultAfterChange}" Margin="4"
                   IsEnabled="{Binding IsResultAfterChangeEnabled}">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <RadioButton Content="{Binding EditParameterCalculateAutomatically, Source={StaticResource LocStrings}}" Margin="4"
+                    <RadioButton Content="{x:Static common:Strings.___EditParameterCalculateAutomatically}" Margin="4"
                              IsChecked="{Binding IsCalculateAutomatically}" GroupName="Calculate"/>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Name="ButtonCalculateManually" 
-                                 Content="{Binding EditParameterCalculateManually, Source={StaticResource LocStrings}}" Margin="4" Padding="4"
+                        <RadioButton Name="ButtonCalculateManually"
+                                 Content="{x:Static common:Strings.___EditParameterCalculateManually}" Margin="4" Padding="4"
                                  VerticalAlignment="Center"  GroupName="Calculate"
                                  IsChecked="{Binding IsCalculateManually}"/>
-                        <Button Content="{Binding EditParameterCalculate, Source={StaticResource LocStrings}}"
+                        <Button Content="{x:Static common:Strings.___EditParameterCalculate}"
                                 Command="{Binding Path=CalculateResultAfterChangeCommand}"
                                 IsEnabled="{Binding IsChecked, ElementName=ButtonCalculateManually}"
                                 Padding="4" Margin="4" VerticalAlignment="Top"/>
                     </StackPanel>
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterDecimalValueRange, Source={StaticResource LocStrings}}" Margin="4"/>
+                    <Label Content="{x:Static common:Strings.___EditParameterDecimalValue}" Margin="4"/>
                     <TextBox Text="{Binding DecimalValueRangeAfterChange}" Margin="4" IsReadOnly="True" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterHexadecimalValueRange, Source={StaticResource LocStrings}}" Margin="4"/>
+                    <Label Content="{x:Static common:Strings.___EditParameterHexadecimalValueRange}" Margin="4"/>
                     <TextBox Text="{Binding HexadecimalValueRangeAfterChange}" Margin="4" IsReadOnly="True" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding EditParameterNumberOfClippedPatches, Source={StaticResource LocStrings}}" Margin="4"/>
+                    <Label Content="{x:Static common:Strings.___EditParameterNumberOfClippedPatches}" Margin="4"/>
                     <TextBox Text="{Binding NumberOfClippedPatches}"
-                             Foreground="{Binding NumberOfClippedPatchesBackground}" 
+                             Foreground="{Binding NumberOfClippedPatchesBackground}"
                              IsReadOnly="True" Focusable="False" Margin="4"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{Binding Cancel, Source={StaticResource LocStrings}}" HorizontalAlignment="Right" 
+            <Button Content="{x:Static common:Strings.Cancel}" HorizontalAlignment="Right"
                     IsDefault="False" Margin="4" VerticalAlignment="Top" Width="75" IsCancel="True"/>
-            <Button Content="{Binding OK, Source={StaticResource LocStrings}}"
+            <Button Content="{x:Static common:Strings.OK}"
                     Margin="4" VerticalAlignment="Top" Width="75" IsDefault="True" HorizontalAlignment="Right" />
         </StackPanel>
     </StackPanel>

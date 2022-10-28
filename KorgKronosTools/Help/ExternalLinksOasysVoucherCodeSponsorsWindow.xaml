@@ -1,12 +1,13 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:help="clr-namespace:PcgTools.Help"
+        xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
         x:Class="PcgTools.Help.ExternalLinksOasysVoucherCodeSponsorsWindow"
-        Title="{Binding ExternalLinksOasysVoucherCodeSponsors, Source={StaticResource LocStrings}}" 
+        Title="{x:Static common:Strings.ExternalLinksOasysVoucherCodeSponsors}" 
         ResizeMode="CanResize" SizeToContent="Height" Width="970" 
         ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" >
     <StackPanel Orientation="Vertical" Margin="4">
-        <TextBlock Text="{Binding OasysVoucherCodeSponsorMessage, Source={StaticResource LocStrings}}" Margin="4" FontWeight="Bold"/>
+        <TextBlock Text="{x:Static common:Strings.OasysVoucherCodeSponsorMessage}" Margin="4" FontWeight="Bold"/>
     <WrapPanel Margin="4">
         <help:UserControlExternalLink x:Name="ButtonLink1"/>
         <help:UserControlExternalLink x:Name="ButtonLink2"/>

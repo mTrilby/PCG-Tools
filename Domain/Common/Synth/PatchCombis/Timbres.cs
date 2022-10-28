@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
+using PcgTools.Mvvm;
 
 namespace PcgTools.Model.Common.Synth.PatchCombis
 {

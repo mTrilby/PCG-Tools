@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
+using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.PcgToolsResources;
 using MessageBox = System.Windows.MessageBox;

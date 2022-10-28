@@ -1,6 +1,7 @@
 ﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
 
+using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.PcgToolsResources;

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Common.PcgToolsResources;
 using PcgTools.Model.Common;
 
 using PcgTools.Model.Common.Synth.Meta;

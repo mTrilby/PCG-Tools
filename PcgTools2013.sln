@@ -1,25 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcgTools Application", "KorgKronosTools\PcgTools Application.csproj", "{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PcgTools Application", "KorgKronosTools\PcgTools Application.csproj", "{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A} = {BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A}
 		{62D30792-A373-4C67-841C-34B2277B1807} = {62D30792-A373-4C67-841C-34B2277B1807}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcgTools _UnitTests", "PCG Tools Unittests\PcgTools _UnitTests.csproj", "{C398A416-8FFA-4877-9DAD-E2D666158CAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PcgTools _UnitTests", "PCG Tools Unittests\PcgTools _UnitTests.csproj", "{C398A416-8FFA-4877-9DAD-E2D666158CAE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A} = {BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A}
 		{62D30792-A373-4C67-841C-34B2277B1807} = {62D30792-A373-4C67-841C-34B2277B1807}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{62D30792-A373-4C67-841C-34B2277B1807}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{62D30792-A373-4C67-841C-34B2277B1807}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.MDI", "WPF.MDI\WPF.MDI.csproj", "{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF.MDI", "WPF.MDI\WPF.MDI.csproj", "{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalUtilities", "ExternalUtilities\ExternalUtilities.csproj", "{99BA6AAC-192B-41E3-8564-7019D9F38165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalUtilities", "ExternalUtilities\ExternalUtilities.csproj", "{99BA6AAC-192B-41E3-8564-7019D9F38165}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C398A416-8FFA-4877-9DAD-E2D666158CAE} = {C398A416-8FFA-4877-9DAD-E2D666158CAE}
 		{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A} = {BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A}
@@ -27,9 +27,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalUtilities", "Extern
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA} = {D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatchDbBackEnd", "PatchDatabaseBackEnd\PatchDbBackEnd.csproj", "{73D973AE-C79A-4E25-A669-C91DB950C709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatchDbBackEnd", "PatchDatabaseBackEnd\PatchDbBackEnd.csproj", "{73D973AE-C79A-4E25-A669-C91DB950C709}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatchDbFrontEnd", "PatchDbFrontEnd\PatchDbFrontEnd.csproj", "{9924B46B-0361-4048-B861-87557C15EC6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatchDbFrontEnd", "PatchDbFrontEnd\PatchDbFrontEnd.csproj", "{9924B46B-0361-4048-B861-87557C15EC6E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{73D973AE-C79A-4E25-A669-C91DB950C709} = {73D973AE-C79A-4E25-A669-C91DB950C709}
 	EndProjectSection
@@ -66,7 +66,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\wpfmdi_license.txt = Documentation\wpfmdi_license.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{D946927D-4528-45A3-9F42-4AACCA0F5DDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{D946927D-4528-45A3-9F42-4AACCA0F5DDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,28 +102,42 @@ Global
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.CD_ROM|Win32.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.CD_ROM|x64.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.CD_ROM|x64.Build.0 = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.CD_ROM|x86.ActiveCfg = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|x64.Build.0 = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Debug|x86.Build.0 = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.DVD-5|Win32.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.DVD-5|x64.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.DVD-5|x64.Build.0 = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.DVD-5|x86.ActiveCfg = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|Win32.ActiveCfg = Release|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|x64.ActiveCfg = Release|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|x64.Build.0 = Release|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.Release|x86.Build.0 = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.SingleImage|Win32.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.SingleImage|x64.ActiveCfg = Debug|Any CPU
+		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.SingleImage|x64.Build.0 = Debug|Any CPU
 		{D18ED6C7-B8D0-4D9E-B498-744DC88A06AA}.SingleImage|x86.ActiveCfg = Release|Any CPU
 		{C398A416-8FFA-4877-9DAD-E2D666158CAE}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{C398A416-8FFA-4877-9DAD-E2D666158CAE}.CD_ROM|Any CPU.Build.0 = Release|Any CPU

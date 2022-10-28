@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net5.0-windows</TargetFramework>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
         <RootNamespace>PatchDbFrontEnd</RootNamespace>
         <AssemblyName>PatchDbFrontEnd</AssemblyName>
@@ -10,15 +10,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="App.config"/>
+        <None Include="App.config" />
     </ItemGroup>
 
     <ItemGroup>
-        <Page Include="App.xaml"/>
+        <Page Include="App.xaml" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\PatchDatabaseBackEnd\PatchDbBackEnd.csproj"/>
+        <ProjectReference Include="..\PatchDatabaseBackEnd\PatchDbBackEnd.csproj" />
     </ItemGroup>
 
 </Project>

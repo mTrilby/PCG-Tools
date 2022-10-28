@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.PcgToolsResources;
 

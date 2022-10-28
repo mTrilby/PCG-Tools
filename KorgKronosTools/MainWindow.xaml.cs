@@ -13,7 +13,7 @@ using System.Threading;
 #endif
 using System.Windows;
 using System.Windows.Controls;
-using Common.Utils;
+using Common.PcgToolsResources;
 using Microsoft.Win32;
 using PcgTools.Common.Utils;
 using PcgTools.Help;
@@ -22,7 +22,6 @@ using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.OpenedFiles;
 using PcgTools.ViewModels;
-using PcgTools.PcgToolsResources;
 using PcgTools.Properties;
 using WPF.MDI;
 
@@ -262,38 +261,67 @@ namespace PcgTools
 
             ViewModel.CreateMdiChildWindow = (fileName, childWindowType, memory, width, height) =>
             {
+                MdiChild mdiChild;
                 UIElement uiElement;
                 switch (childWindowType)
                 {
                     case MainViewModel.ChildWindowType.Pcg:
                         uiElement = new PcgWindow(this, fileName, (PcgMemory) memory);
+
+                        mdiChild = new MdiChild
+                        {
+                            Title = fileName,
+                            Content = uiElement,
+                            MinimizeBox = false,
+                            MaximizeBox = false,
+                            Width = width,
+                            Height = height,
+                            Margin = new Thickness(0, 0, 0, 0),
+                        };
+
+                        ((PcgWindow)uiElement).MdiChild = mdiChild;
+
                         ViewModel.OpenedPcgWindows.Items.Add(new OpenedPcgWindow { PcgMemory = (PcgMemory)memory });
                         break;
 
                     case MainViewModel.ChildWindowType.Song:
                         uiElement = new SongWindow(this, fileName, (SongMemory) memory, ViewModel.OpenedPcgWindows);
+                        
+                        mdiChild = new MdiChild
+                        {
+                            Title = fileName,
+                            Content = uiElement,
+                            MinimizeBox = false,
+                            MaximizeBox = false,
+                            Width = width,
+                            Height = height,
+                            Margin = new Thickness(0, 0, 0, 0),
+                        };
+
+                        ((SongWindow)uiElement).MdiChild = mdiChild;
+
                         break;
 
                     case MainViewModel.ChildWindowType.MasterFiles:
                         uiElement = new MasterFilesWindow(this);
+                        mdiChild = new MdiChild
+                        {
+                            Title = fileName,
+                            Content = uiElement,
+                            MinimizeBox = false,
+                            MaximizeBox = false,
+                            Width = width,
+                            Height = height,
+                            Margin = new Thickness(0, 0, 0, 0),
+                        };
+
+                        ((MasterFilesWindow)uiElement).MdiChild = mdiChild;
+
                         break;
 
                     default:
                         throw new ApplicationException("Illegal window type");
                 }
-
-                var mdiChild = new MdiChild
-                {
-                    Title = fileName,
-                    Content = uiElement,
-                    MinimizeBox = false,
-                    MaximizeBox = false,
-                    Width = width,
-                    Height = height,
-                    Margin = new Thickness(0, 0, 0, 0),
-                };
-
-                ((IChildWindow) (mdiChild.Content)).MdiChild = mdiChild;
 
                 mdiChild.GotFocus += MdiGotFocus;
                 mdiChild.Closing += MdiClosing;
@@ -707,8 +735,8 @@ namespace PcgTools
                     Settings.Default.UI_Language = mi.Tag.ToString();
                     Settings.Default.Save();
 
-                    ViewModel.ShowMessageBox(Strings.RestartToChangeLanguage, Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok,
-                                             WindowUtils.EMessageBoxImage.Information, WindowUtils.EMessageBoxResult.Ok);
+                    ViewModel.ShowMessageBox(Strings.RestartToChangeLanguage, Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok,
+                                             WindowUtil.EMessageBoxImage.Information, WindowUtil.EMessageBoxResult.Ok);
                 }
             }
         }

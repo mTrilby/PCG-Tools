@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net5.0-windows</TargetFramework>
+        <TargetFramework>net6.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
         <RootNamespace>PcgTools</RootNamespace>
@@ -49,19 +49,6 @@
         <None Remove="WPF.MDI\**" />
         <Page Remove="ViewModels\Commands\**" />
         <Page Remove="WPF.MDI\**" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Remove="ListGenerators\ListGeneratorDifferencesList-michelLaptop.cs" />
-        <Compile Remove="ListGenerator\ListGeneratorDifferencesList-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Pcg\M3RSysExMemory-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Song\M3RSongFileReader-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Synth\M3RCombi-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Synth\M3RCombiBank-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Synth\M3RProgram-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Synth\M3RProgramBank-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Synth\M3RProgramBanks-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Synth\M3RTimbre-michelLaptop.cs" />
-        <Compile Remove="Model\M3rSpecific\Synth\M3RTimbres-michelLaptop.cs" />
     </ItemGroup>
     <ItemGroup>
         <None Remove=".gitignore" />
@@ -206,11 +193,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="PcgToolsResources\Strings.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Strings.resx</DependentUpon>
-        </Compile>
         <Compile Update="Properties\Resources.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
@@ -218,29 +200,10 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <EmbeddedResource Update="PcgToolsResources\Strings.cs.resx">
-            <Generator>PublicResXFileCodeGenerator</Generator>
-        </EmbeddedResource>
-        <EmbeddedResource Update="PcgToolsResources\Strings.resx">
-            <Generator>PublicResXFileCodeGenerator</Generator>
-            <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
         <EmbeddedResource Update="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="Properties\Settings.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Settings.settings</DependentUpon>
-        </Compile>
-        <None Update="Properties\Settings.settings">
-            <Generator>SettingsSingleFileGenerator</Generator>
-            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-        </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -559,17 +522,14 @@
         <None Include="PcgTools_TemporaryKey.pfx" />
         <None Include="Properties\app.manifest" />
         <None Include="Properties\Settings.settings">
-            <Generator>PublicSettingsSingleFileGenerator</Generator>
+            <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
         </None>
         <AppDesigner Include="Properties\" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="ViewModels\Commands\PcgCommands\ChangeVolumeParameters.cs" />
-        <Compile Include="ViewModels\Commands\PcgCommands\ClearCommands.cs" />
-        <Compile Include="ViewModels\Commands\PcgCommands\CopyPasteCommands.cs" />
-        <Compile Include="ViewModels\Commands\PcgCommands\DoubleToSingleKeyboardCommands.cs" />
+        <Compile Include="ViewModels\Commands\DoubleToSingleKeyboardCommands.cs" />
         <Compile Include="ViewModels\Commands\PcgCommands\DoubleToSingleKeyboardWindow.xaml.cs" />
         <Compile Include="ViewModels\Commands\PcgCommands\ModelCompatibility.cs" />
         <Compile Include="ViewModels\Commands\PcgCommands\PcgFileCommands.cs" />

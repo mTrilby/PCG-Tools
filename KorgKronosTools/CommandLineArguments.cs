@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using Common.PcgToolsResources;
 using PcgTools.ListGenerator;
 using PcgTools.PcgToolsResources;
 

@@ -1,5 +1,6 @@
 ﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
 
+using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
@@ -8,19 +9,19 @@ using PcgTools.PcgToolsResources;
 namespace PcgTools.Model.TSeries.Synth
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     // ReSharper disable once InconsistentNaming
     public sealed class TSeriesTimbre : MntxTimbre
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private static int TimbresSizeConstant => 11;
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="index"></param>
@@ -31,7 +32,7 @@ namespace PcgTools.Model.TSeries.Synth
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>

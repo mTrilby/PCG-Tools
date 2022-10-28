@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.PcgToolsResources;
+using PcgTools.Mvvm;
 using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Model.Common.Synth.MemoryAndFactory

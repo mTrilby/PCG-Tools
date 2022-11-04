@@ -5,10 +5,10 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.KronosOasysSpecific.Pcg;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.KronosOasysSpecific.Pcg;
 
-namespace PcgTools.Model.KronosSpecific.Pcg
+namespace Domain.KronosSpecific.Pcg
 {
     /// <summary>
     /// </summary>

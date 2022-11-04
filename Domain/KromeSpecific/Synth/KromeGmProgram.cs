@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.KromeSpecific.Synth
+namespace Domain.KromeSpecific.Synth
 {
     /// <summary>
     /// </summary>

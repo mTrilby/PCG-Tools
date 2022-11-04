@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchDrumKits;
 
-namespace PcgTools.Model.KronosOasysSpecific.Synth
+namespace Domain.KronosOasysSpecific.Synth
 {
     /// <summary>
     /// </summary>

@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.MSpecific.Synth
+namespace Domain.MSpecific.Synth
 {
     /// <summary>
     /// </summary>

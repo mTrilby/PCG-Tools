@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.MSpecific.Pcg;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.MSpecific.Pcg;
 
-namespace PcgTools.Model.KrossSpecific.Pcg
+namespace Domain.KrossSpecific.Pcg
 {
     /// <summary>
     /// </summary>

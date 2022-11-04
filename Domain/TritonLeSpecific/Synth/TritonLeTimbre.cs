@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.PatchCombis;
+using Domain.TritonSpecific.Synth;
 
-namespace PcgTools.Model.TritonLeSpecific.Synth
+namespace Domain.TritonLeSpecific.Synth
 {
     /// <summary>
     /// </summary>

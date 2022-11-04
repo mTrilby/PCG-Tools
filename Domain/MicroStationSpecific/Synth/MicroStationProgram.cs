@@ -5,15 +5,14 @@
 #endregion
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
 
-namespace PcgTools.Model.MicroStationSpecific.Synth
+namespace Domain.MicroStationSpecific.Synth
 {
     /// <summary>
     /// </summary>
-    public class MicroStationProgram : Program
+    public class MicroStationProgram : Common.Synth.PatchPrograms.Program
     {
         /// <summary>
         /// </summary>

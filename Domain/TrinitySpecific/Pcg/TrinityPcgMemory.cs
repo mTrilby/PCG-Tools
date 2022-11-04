@@ -5,12 +5,12 @@
 #endregion
 
 using System.Linq;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.TrinitySpecific.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.TrinitySpecific.Synth;
 
-namespace PcgTools.Model.TrinitySpecific.Pcg
+namespace Domain.TrinitySpecific.Pcg
 {
     /// <summary>
     /// </summary>

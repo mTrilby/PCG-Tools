@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 
-namespace PcgTools.Model.KronosOasysSpecific.Pcg
+namespace Domain.KronosOasysSpecific.Pcg
 {
     /// <summary>
     /// </summary>

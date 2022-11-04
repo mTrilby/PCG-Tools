@@ -5,10 +5,10 @@
 #endregion
 
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
 
-namespace PcgTools.Model.KronosSpecific.Song
+namespace Domain.KronosSpecific.Song
 {
     /// <summary>
     /// </summary>

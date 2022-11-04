@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchDrumPatterns;
 
-namespace PcgTools.Model.Common.Synth.PatchPrograms
+namespace Domain.Common.Synth.DrumTrack
 {
     /// <summary>
     ///     Interface for patches (programs/combis) using a drum track (containing of a (drum track) program and a (drum track)

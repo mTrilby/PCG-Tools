@@ -5,11 +5,11 @@
 #endregion
 
 using System.Diagnostics;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Mvvm;
+using Common.MVVM;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchInterfaces;
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     public abstract class Timbres : ITimbres
     {

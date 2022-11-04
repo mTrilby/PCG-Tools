@@ -5,11 +5,11 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.M3rSpecific.Synth;
-using PcgTools.Model.MntxSeriesSpecific.Pcg;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.M3rSpecific.Synth;
+using Domain.MntxSeriesSpecific.Pcg;
 
-namespace PcgTools.Model.M3rSpecific.Pcg
+namespace Domain.M3rSpecific.Pcg
 {
     /// <summary>
     /// </summary>

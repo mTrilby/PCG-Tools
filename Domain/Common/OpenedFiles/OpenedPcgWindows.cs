@@ -6,11 +6,10 @@
 
 using System.Collections.ObjectModel;
 using System.Linq;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Mvvm;
-using PcgTools.OpenedFiles;
+using Common.MVVM;
+using Domain.Common.Synth.MemoryAndFactory;
 
-namespace PcgTools.Songs
+namespace Domain.Common.OpenedFiles
 {
     /// <summary>
     /// </summary>

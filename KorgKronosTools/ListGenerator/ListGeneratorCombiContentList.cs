@@ -10,17 +10,18 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Common.Utils;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchPrograms;
 using PcgTools.Common;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
     /// </summary>
-    public class ListGeneratorCombiContentList : ListGenerator
+    public class ListGeneratorCombiContentList : Domain.Common.ListGenerators.ListGenerator
     {
         /// <summary>
         /// </summary>

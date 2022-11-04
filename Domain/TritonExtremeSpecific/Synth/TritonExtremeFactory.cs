@@ -4,14 +4,14 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.TritonExtremeSpecific.Pcg;
-using PcgTools.Model.TritonExtremeSpecific.Song;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.TritonExtremeSpecific.Pcg;
+using Domain.TritonExtremeSpecific.Song;
+using Domain.TritonSpecific.Synth;
 
-namespace PcgTools.Model.TritonExtremeSpecific.Synth
+namespace Domain.TritonExtremeSpecific.Synth
 {
     /// <summary>
     /// </summary>

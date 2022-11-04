@@ -4,11 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.KronosOasysSpecific.Synth;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.KronosOasysSpecific.Synth;
 
-namespace PcgTools.Model.OasysSpecific.Synth
+namespace Domain.OasysSpecific.Synth
 {
     /// <summary>
     /// </summary>

@@ -4,14 +4,14 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.M3Specific.Pcg;
-using PcgTools.Model.M3Specific.Song;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.M3Specific.Pcg;
+using Domain.M3Specific.Song;
+using Domain.MSpecific.Synth;
 
-namespace PcgTools.Model.M3Specific.Synth
+namespace Domain.M3Specific.Synth
 {
     /// <summary>
     /// </summary>

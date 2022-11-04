@@ -4,6 +4,7 @@
 
 #endregion
 
+using Domain.Common;
 using PcgTools.ViewModels;
 
 namespace PcgTools.Windows

@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.MSpecific.Synth;
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.KrossSpecific.Synth
+namespace Domain.KrossSpecific.Synth
 {
     /// <summary>
     /// </summary>

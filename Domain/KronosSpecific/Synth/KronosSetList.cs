@@ -4,11 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchSetLists;
+using Domain.Common;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchSetLists;
 
-namespace PcgTools.Model.KronosSpecific.Synth
+namespace Domain.KronosSpecific.Synth
 {
     /// <summary>
     /// </summary>

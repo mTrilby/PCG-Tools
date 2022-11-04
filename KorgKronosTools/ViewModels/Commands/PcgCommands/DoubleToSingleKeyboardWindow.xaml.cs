@@ -6,9 +6,9 @@
 
 using System.Windows;
 using System.Windows.Controls;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchSetLists;
 
 namespace PcgTools.ViewModels.Commands.PcgCommands
 {

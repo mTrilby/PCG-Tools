@@ -8,9 +8,9 @@ using System;
 using System.Text;
 using Common.Extensions;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
-namespace PcgTools.Model.Common.Synth.PatchWaveSequences
+namespace Domain.Common.Synth.PatchWaveSequences
 {
     /// <summary>
     /// </summary>

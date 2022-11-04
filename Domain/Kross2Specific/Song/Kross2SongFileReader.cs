@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.Kross2Specific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.Kross2Specific.Synth;
 
-namespace PcgTools.Model.Kross2Specific.Song
+namespace Domain.Kross2Specific.Song
 {
     /// <summary>
     /// </summary>

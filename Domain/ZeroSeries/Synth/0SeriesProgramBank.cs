@@ -5,10 +5,10 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.MntxSeriesSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.MntxSeriesSpecific.Synth;
 
-namespace PcgTools.Model.ZeroSeries.Synth
+namespace Domain.ZeroSeries.Synth
 {
     /// <summary>
     /// </summary>

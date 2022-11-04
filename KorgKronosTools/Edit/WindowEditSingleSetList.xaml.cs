@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.PatchSetLists;
 
 namespace PcgTools.Edit
 {

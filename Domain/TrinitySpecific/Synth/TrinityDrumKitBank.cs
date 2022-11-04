@@ -5,10 +5,10 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchDrumKits;
 
-namespace PcgTools.Model.TrinitySpecific.Synth
+namespace Domain.TrinitySpecific.Synth
 {
     /// <summary>
     /// </summary>

@@ -5,9 +5,9 @@
 #endregion
 
 using System.ComponentModel;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 
-namespace PcgTools.ViewModels
+namespace Domain.Common
 {
     /// <summary>
     /// </summary>

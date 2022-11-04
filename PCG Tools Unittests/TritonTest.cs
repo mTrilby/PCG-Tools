@@ -5,17 +5,18 @@
 #endregion
 
 using System.IO;
+using Domain.Common.File;
+using Domain.Common.ListGenerators;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchPrograms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
 
 // (c) 2011 Michel Keijzers
 
-namespace PCG_Tools_Unittests
+namespace PcgTools__UnitTests
 {
     /// <summary>
     ///     Tests Triton Extreme and all other Triton series.

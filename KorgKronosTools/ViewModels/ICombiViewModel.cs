@@ -5,7 +5,8 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common;
+using Domain.Common.Synth.PatchCombis;
 
 namespace PcgTools.ViewModels
 {

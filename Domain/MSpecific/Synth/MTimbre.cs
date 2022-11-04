@@ -5,11 +5,11 @@
 #endregion
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
 
-namespace PcgTools.Model.MSpecific.Synth
+namespace Domain.MSpecific.Synth
 {
     /// <summary>
     /// </summary>

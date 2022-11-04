@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.M3rSpecific.Synth;
-using PcgTools.Model.MntxSeriesSpecific.Song;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.M3rSpecific.Synth;
+using Domain.MntxSeriesSpecific.Song;
 
-namespace PcgTools.Model.M3rSpecific.Song
+namespace Domain.M3rSpecific.Song
 {
     /// <summary>
     /// </summary>

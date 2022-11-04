@@ -5,11 +5,11 @@
 #endregion
 
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
 
-namespace PcgTools.Model.TrinitySpecific.Synth
+namespace Domain.TrinitySpecific.Synth
 {
     /// <summary>
     /// </summary>

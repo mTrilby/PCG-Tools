@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.ZeroSeries.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.ZeroSeries.Synth;
 
-namespace PcgTools.Model.Zero3Rw.Synth
+namespace Domain.Zero3Rw.Synth
 {
     /// <summary>
     /// </summary>

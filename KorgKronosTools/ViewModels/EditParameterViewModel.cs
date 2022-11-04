@@ -4,10 +4,11 @@
 
 #endregion
 
+using Common.MVVM;
 using Common.PcgToolsResources;
-using PcgTools.Annotations;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
+using Common.Properties;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
 using PcgTools.Mvvm;
 
 namespace PcgTools.ViewModels

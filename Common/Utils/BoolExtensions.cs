@@ -6,7 +6,7 @@
 
 using Common.PcgToolsResources;
 
-namespace PcgTools.Common
+namespace Common.Utils
 {
     /// <summary>
     /// </summary>

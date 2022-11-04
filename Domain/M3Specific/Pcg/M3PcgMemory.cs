@@ -8,13 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.M3Specific.Synth;
-using PcgTools.Model.MSpecific.Pcg;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.M3Specific.Synth;
+using Domain.MSpecific.Pcg;
+using Domain.MSpecific.Synth;
 
-namespace PcgTools.Model.M3Specific.Pcg
+namespace Domain.M3Specific.Pcg
 {
     /// <summary>
     /// </summary>

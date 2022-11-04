@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
-namespace PcgTools.Model.Common.Synth.PatchDrumKits
+namespace Domain.Common.Synth.PatchDrumKits
 {
     /// <summary>
     /// </summary>

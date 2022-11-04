@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.TritonSpecific.Synth;
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.TritonKarmaSpecific.Synth
+namespace Domain.TritonKarmaSpecific.Synth
 {
     /// <summary>
     /// </summary>

@@ -13,15 +13,17 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using Common.PcgToolsResources;
+using Common.Utils;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
 using PcgTools.Common.Utils;
 using PcgTools.Edit;
 using PcgTools.ListGenerator;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
 using PcgTools.Properties;
 using PcgTools.Tools;
 using PcgTools.ViewModels;
@@ -714,7 +716,7 @@ namespace PcgTools
         /// <param name="fileName"></param>
         private void SetPcgFileAsMasterFile(IModel model, string fileName)
         {
-            MasterFiles.MasterFiles.Instances.SetPcgFileAsMasterFile(model, fileName);
+            Domain.Common.MasterFiles.MasterFiles.Instances.SetPcgFileAsMasterFile(model, fileName);
         }
 
 

@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchCombis;
 
-namespace PcgTools.Model.OasysSpecific.Synth
+namespace Domain.OasysSpecific.Synth
 {
     /// <summary>
     /// </summary>

@@ -4,8 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Songs;
+using Domain.Common;
+using Domain.Common.OpenedFiles;
+using Domain.Common.Synth.SongsRelated;
 
 namespace PcgTools.ViewModels
 {

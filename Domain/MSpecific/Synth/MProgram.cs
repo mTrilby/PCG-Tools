@@ -4,14 +4,13 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.Meta;
 
-namespace PcgTools.Model.MSpecific.Synth
+namespace Domain.MSpecific.Synth
 {
     /// <summary>
     /// </summary>
-    public abstract class MProgram : Program
+    public abstract class MProgram : Common.Synth.PatchPrograms.Program
     {
         /// <summary>
         /// </summary>

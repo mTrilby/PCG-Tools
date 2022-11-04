@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PcgTools.Model.Common.Synth.MemoryAndFactory
+namespace Domain.Common.Synth.MemoryAndFactory
 {
     /// <summary>
     /// </summary>

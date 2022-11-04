@@ -6,7 +6,8 @@
 
 using System.Windows;
 using System.Windows.Controls;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
 using WPF.MDI;

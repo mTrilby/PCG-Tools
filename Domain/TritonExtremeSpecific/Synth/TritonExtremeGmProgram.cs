@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.TritonExtremeSpecific.Synth
+namespace Domain.TritonExtremeSpecific.Synth
 {
     /// <summary>
     /// </summary>

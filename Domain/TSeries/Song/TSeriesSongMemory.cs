@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.MntxSeriesSpecific.Song;
+using Domain.MntxSeriesSpecific.Song;
 
-namespace PcgTools.Model.TSeries.Song
+namespace Domain.TSeries.Song
 {
     /// <summary>
     /// </summary>

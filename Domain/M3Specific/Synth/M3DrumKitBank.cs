@@ -4,13 +4,13 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.MSpecific.Synth;
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.M3Specific.Synth
+namespace Domain.M3Specific.Synth
 {
     /// <summary>
     /// </summary>

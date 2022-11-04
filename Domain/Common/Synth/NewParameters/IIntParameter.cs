@@ -4,7 +4,7 @@
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.NewParameters
+namespace Domain.Common.Synth.NewParameters
 {
     /// <summary>
     ///     /

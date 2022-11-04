@@ -4,11 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchDrumKits;
 
-namespace PcgTools.Model.TritonExtremeSpecific.Synth
+namespace Domain.TritonExtremeSpecific.Synth
 {
     /// <summary>
     /// </summary>

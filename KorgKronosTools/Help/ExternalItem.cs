@@ -4,7 +4,7 @@
 
 #endregion
 
-using PcgTools.Annotations;
+using Common.Properties;
 
 namespace PcgTools.Help
 {

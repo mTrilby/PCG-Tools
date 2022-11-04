@@ -7,12 +7,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.Common.Synth.PatchSetLists
+namespace Domain.Common.Synth.PatchSetLists
 {
     /// <summary>
     /// </summary>

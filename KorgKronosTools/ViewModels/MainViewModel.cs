@@ -15,16 +15,18 @@ using System.Windows.Input;
 using Common.Extensions;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.ClipBoard;
+using Domain.Common;
+using Domain.Common.ClipBoard;
+using Domain.Common.OpenedFiles;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.SongsRelated;
 using PcgTools.Common.Utils;
 using PcgTools.MasterFiles;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Mvvm;
 using PcgTools.Properties;
-using PcgTools.Songs;
 using PcgTools.ViewModels.Commands;
+using PcgTools.ViewModels.Commands.PcgCommands;
 using WPF.MDI;
 
 namespace PcgTools.ViewModels
@@ -121,7 +123,7 @@ namespace PcgTools.ViewModels
             PcgClipBoard = new PcgClipBoard();
             ChildWindows = new ObservableCollection<IChildWindow>();
             SelectedTheme = Theme.Aero;
-            MasterFiles.MasterFiles.Instances.Set(this);
+            Domain.Common.MasterFiles.MasterFiles.Instances.Set(this);
             OpenedPcgWindows = new OpenedPcgWindows();
 
             _fileFormats = string.Format(

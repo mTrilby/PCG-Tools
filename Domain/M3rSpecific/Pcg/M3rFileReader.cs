@@ -5,13 +5,13 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.M3rSpecific.Pcg
+namespace Domain.M3rSpecific.Pcg
 {
     /// <summary>
     /// </summary>
@@ -145,7 +145,7 @@ namespace PcgTools.Model.M3rSpecific.Pcg
             bank.IsWritable = true;
             bank.IsLoaded = true;
 
-            var program = (Program)bank[0];
+            var program = (Common.Synth.PatchPrograms.Program)bank[0];
             program.ByteOffset = offset;
             program.ByteLength = bank.PatchSize;
             program.IsLoaded = true;
@@ -245,7 +245,7 @@ namespace PcgTools.Model.M3rSpecific.Pcg
                 for (var index = 0; index < bank.Patches.Count; index++)
                 {
                     // Place in PcgMemory.
-                    var program = (Program)bank[index];
+                    var program = (Common.Synth.PatchPrograms.Program)bank[index];
                     program.ByteOffset = Index;
                     program.ByteLength = bank.PatchSize;
                     program.IsLoaded = true;

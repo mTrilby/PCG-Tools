@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.TritonSpecific.Synth;
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth
+namespace Domain.TritonTrClassicStudioRackSpecific.Synth
 {
     /// <summary>
     /// </summary>

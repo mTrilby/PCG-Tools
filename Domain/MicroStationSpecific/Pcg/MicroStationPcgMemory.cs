@@ -7,12 +7,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.MicroStationSpecific.Synth;
-using PcgTools.Model.MSpecific.Pcg;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.MicroStationSpecific.Synth;
+using Domain.MSpecific.Pcg;
 
-namespace PcgTools.Model.MicroStationSpecific.Pcg
+namespace Domain.MicroStationSpecific.Pcg
 {
     /// <summary>
     /// </summary>

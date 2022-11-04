@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchCombis;
 
-namespace PcgTools.Model.Z1Specific.Synth
+namespace Domain.Z1Specific.Synth
 {
     /// <summary>
     /// </summary>

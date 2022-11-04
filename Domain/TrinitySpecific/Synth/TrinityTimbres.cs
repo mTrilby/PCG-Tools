@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchCombis;
 
-namespace PcgTools.Model.TrinitySpecific.Synth
+namespace Domain.TrinitySpecific.Synth
 {
     /// <summary>
     /// </summary>

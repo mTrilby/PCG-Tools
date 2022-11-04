@@ -5,13 +5,13 @@
 #endregion
 
 using System.Diagnostics;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.KronosSpecific.Pcg;
+using Domain.KronosSpecific.Synth;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.KronosSpecific.Pcg;
-using PcgTools.Model.KronosSpecific.Synth;
 using PcgTools.Tools;
 
-namespace PCG_Tools_Unittests
+namespace PcgTools__UnitTests.Tools_Tests
 {
     [TestClass]
     public class RuleParserTests

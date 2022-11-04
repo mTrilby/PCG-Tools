@@ -4,7 +4,7 @@
 
 #endregion
 
-namespace PcgTools.ViewModels.Commands.PcgCommands
+namespace Domain.Common.Commands
 {
     public class ChangeVolumeParameters
     {

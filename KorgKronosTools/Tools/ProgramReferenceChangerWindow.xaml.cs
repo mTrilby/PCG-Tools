@@ -10,7 +10,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 using MessageBox = System.Windows.MessageBox;
 
 namespace PcgTools.Tools

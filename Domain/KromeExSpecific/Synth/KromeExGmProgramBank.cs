@@ -5,10 +5,10 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.KromeExSpecific.Synth
+namespace Domain.KromeExSpecific.Synth
 {
     /// <summary>
     /// </summary>

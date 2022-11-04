@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.TritonSpecific.Song;
-using PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.TritonSpecific.Song;
+using Domain.TritonTrClassicStudioRackSpecific.Synth;
 
-namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Song
+namespace Domain.TritonTrClassicStudioRackSpecific.Song
 {
     /// <summary>
     /// </summary>

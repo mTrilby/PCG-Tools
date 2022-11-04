@@ -5,13 +5,14 @@
 #endregion
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.Synth.DrumTrack;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.PatchWaveSequences;
 
-namespace PcgTools.Model.Common.Synth.PatchPrograms
+namespace Domain.Common.Synth.PatchPrograms
 {
     /// <summary>
     ///     IMPR: FixedParameter only used for certain programs (MS2000/micro)

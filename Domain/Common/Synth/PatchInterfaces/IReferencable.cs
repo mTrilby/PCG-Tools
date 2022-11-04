@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
-namespace PcgTools.Model.Common.Synth.PatchInterfaces
+namespace Domain.Common.Synth.PatchInterfaces
 {
     /// <summary>
     /// </summary>

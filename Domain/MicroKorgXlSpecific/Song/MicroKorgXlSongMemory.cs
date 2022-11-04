@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.Synth.SongsRelated;
 
-namespace PcgTools.Model.MicroKorgXlSpecific.Song
+namespace Domain.MicroKorgXlSpecific.Song
 {
     /// <summary>
     /// </summary>

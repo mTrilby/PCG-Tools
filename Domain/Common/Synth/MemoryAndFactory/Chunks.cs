@@ -6,7 +6,7 @@
 
 using System.Collections.Generic;
 
-namespace PcgTools.Model.Common.Synth.MemoryAndFactory
+namespace Domain.Common.Synth.MemoryAndFactory
 {
     /// <summary>
     /// </summary>

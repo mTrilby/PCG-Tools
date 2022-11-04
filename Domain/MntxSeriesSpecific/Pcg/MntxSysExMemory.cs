@@ -5,9 +5,9 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 
-namespace PcgTools.Model.MntxSeriesSpecific.Pcg
+namespace Domain.MntxSeriesSpecific.Pcg
 {
     /// <summary>
     /// </summary>

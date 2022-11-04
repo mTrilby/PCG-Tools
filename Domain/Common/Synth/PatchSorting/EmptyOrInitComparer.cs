@@ -6,9 +6,9 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
-namespace PcgTools.Model.Common.Synth.PatchSorting
+namespace Domain.Common.Synth.PatchSorting
 {
     /// <summary>
     ///     Class for comparing if a patch is empty/init (always put at end).

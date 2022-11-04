@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.KronosSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.KronosSpecific.Synth;
 
-namespace PcgTools.Model.KronosSpecific.Song
+namespace Domain.KronosSpecific.Song
 {
     /// <summary>
     /// </summary>

@@ -6,7 +6,7 @@
 
 using System;
 
-namespace PcgTools.Model.Common.Synth.PatchInterfaces
+namespace Domain.Common.Synth.PatchInterfaces
 {
     /// <summary>
     /// </summary>

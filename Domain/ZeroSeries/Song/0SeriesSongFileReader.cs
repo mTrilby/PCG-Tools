@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.MntxSeriesSpecific.Song;
-using PcgTools.Model.ZeroSeries.Synth;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.MntxSeriesSpecific.Song;
+using Domain.ZeroSeries.Synth;
 
-namespace PcgTools.Model.ZeroSeries.Song
+namespace Domain.ZeroSeries.Song
 {
     /// <summary>
     /// </summary>

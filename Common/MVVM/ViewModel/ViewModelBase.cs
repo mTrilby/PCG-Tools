@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Common.Utils;
 
-namespace PcgTools.Mvvm.ViewModel
+namespace Common.MVVM.ViewModel
 {
     /// <summary>
     ///     Base class for all ViewModel classes in the application.

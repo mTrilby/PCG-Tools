@@ -10,12 +10,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Common.MVVM;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.OpenedFiles;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
 using PcgTools.Mvvm;
-using PcgTools.OpenedFiles;
-using PcgTools.Songs;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 namespace PcgTools.ViewModels

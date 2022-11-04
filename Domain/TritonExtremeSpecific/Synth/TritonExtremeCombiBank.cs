@@ -4,11 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.TritonSpecific.Synth;
 
-namespace PcgTools.Model.TritonExtremeSpecific.Synth
+namespace Domain.TritonExtremeSpecific.Synth
 {
     /// <summary>
     /// </summary>

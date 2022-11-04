@@ -11,20 +11,20 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.PatchWaveSequences;
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
     /// </summary>
-    public class ListGeneratorDifferencesList : ListGenerator
+    public class ListGeneratorDifferencesList : Domain.Common.ListGenerators.ListGenerator
     {
         /// <summary>
         /// </summary>

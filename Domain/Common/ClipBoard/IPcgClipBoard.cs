@@ -6,16 +6,16 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.PatchWaveSequences;
 
-namespace PcgTools.ClipBoard
+namespace Domain.Common.ClipBoard
 {
     /// <summary>
     /// </summary>

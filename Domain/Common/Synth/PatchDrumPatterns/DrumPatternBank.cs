@@ -6,11 +6,11 @@
 
 using System;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
+namespace Domain.Common.Synth.PatchDrumPatterns
 {
     /// <summary>
     /// </summary>

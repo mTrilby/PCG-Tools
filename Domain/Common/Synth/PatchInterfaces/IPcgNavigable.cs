@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 
-namespace PcgTools.Model.Common.Synth.PatchInterfaces
+namespace Domain.Common.Synth.PatchInterfaces
 {
     public interface IPcgNavigable : INavigable
     {

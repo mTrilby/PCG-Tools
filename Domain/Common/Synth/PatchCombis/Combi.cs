@@ -13,14 +13,14 @@ using System.Text;
 using Common.Extensions;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.ViewModels.Commands.PcgCommands;
+using Domain.Common.Commands;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchSetLists;
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     /// <summary>
     /// </summary>

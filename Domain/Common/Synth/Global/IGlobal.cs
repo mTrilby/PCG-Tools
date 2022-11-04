@@ -5,10 +5,10 @@
 #endregion
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchInterfaces;
 
-namespace PcgTools.Model.Common.Synth.Global
+namespace Domain.Common.Synth.Global
 {
     /// <summary>
     /// </summary>

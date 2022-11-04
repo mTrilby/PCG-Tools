@@ -4,11 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.MSpecific.Synth;
 
-namespace PcgTools.Model.KromeSpecific.Synth
+namespace Domain.KromeSpecific.Synth
 {
     /// <summary>
     /// </summary>

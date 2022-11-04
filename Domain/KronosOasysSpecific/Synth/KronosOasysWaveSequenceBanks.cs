@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchWaveSequences;
 
-namespace PcgTools.Model.KronosOasysSpecific.Synth
+namespace Domain.KronosOasysSpecific.Synth
 {
     /// <summary>
     /// </summary>

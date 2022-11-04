@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchCombis;
 
-namespace PcgTools.Model.KronosSpecific.Synth
+namespace Domain.KronosSpecific.Synth
 {
     /// <summary>
     /// </summary>

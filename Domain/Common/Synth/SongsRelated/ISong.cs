@@ -5,9 +5,9 @@
 #endregion
 
 using System.ComponentModel;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.PatchInterfaces;
 
-namespace PcgTools.Model.Common.Synth.SongsRelated
+namespace Domain.Common.Synth.SongsRelated
 {
     /// <summary>
     /// </summary>

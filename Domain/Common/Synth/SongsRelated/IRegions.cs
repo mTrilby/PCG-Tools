@@ -6,7 +6,7 @@
 
 using System.Collections.Generic;
 
-namespace PcgTools.Model.Common.Synth.SongsRelated
+namespace Domain.Common.Synth.SongsRelated
 {
     /// <summary>
     /// </summary>

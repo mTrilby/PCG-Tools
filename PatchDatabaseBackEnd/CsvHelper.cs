@@ -7,7 +7,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace PatchDatabaseBackEnd
+namespace PatchDbBackEnd
 {
     /// <summary>
     /// </summary>

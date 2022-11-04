@@ -5,11 +5,11 @@
 #endregion
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.TritonSpecific.Synth;
 
-namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth
+namespace Domain.TritonTrClassicStudioRackSpecific.Synth
 {
     /// <summary>
     /// </summary>

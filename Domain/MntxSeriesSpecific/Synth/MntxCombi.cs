@@ -4,11 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
 
-namespace PcgTools.Model.MntxSeriesSpecific.Synth
+namespace Domain.MntxSeriesSpecific.Synth
 {
     /// <summary>
     /// </summary>

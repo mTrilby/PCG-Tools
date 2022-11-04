@@ -4,13 +4,13 @@
 
 #endregion
 
+using Domain.Common.File;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PcgTools.Model.Common.File;
 
 
 // (c) 2011 Michel Keijzers
 
-namespace PCG_Tools_Unittests
+namespace PcgTools__UnitTests
 {
     [TestClass]
     public class SngFilesTest

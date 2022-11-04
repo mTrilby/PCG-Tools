@@ -5,10 +5,10 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Global;
+using Domain.Common.Synth.MemoryAndFactory;
 
-namespace PcgTools.Model.TritonSpecific.Synth
+namespace Domain.TritonSpecific.Synth
 {
     /// <summary>
     /// </summary>

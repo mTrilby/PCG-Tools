@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.MntxSeriesSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.MntxSeriesSpecific.Synth;
 
-namespace PcgTools.Model.TSeries.Synth
+namespace Domain.TSeries.Synth
 {
     /// <summary>
     /// </summary>

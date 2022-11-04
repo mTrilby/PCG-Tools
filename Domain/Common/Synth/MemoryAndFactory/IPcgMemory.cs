@@ -4,17 +4,17 @@
 
 #endregion
 
-using PcgTools.ClipBoard;
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.ClipBoard;
+using Domain.Common.Synth.Global;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.PatchWaveSequences;
 
-namespace PcgTools.Model.Common.Synth.MemoryAndFactory
+namespace Domain.Common.Synth.MemoryAndFactory
 {
     /// <summary>
     /// </summary>

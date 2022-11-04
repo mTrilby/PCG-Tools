@@ -4,11 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.MicroKorgXlSpecific.Pcg
+namespace Domain.MicroKorgXlSpecific.Pcg
 {
     /// <summary>
     /// </summary>
@@ -47,7 +47,7 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Pcg
                 for (var index = 0; index < numberOfProgramsInBank; index++)
                 {
                     // Place in PcgMemory.
-                    var program = (Program)bank[index];
+                    var program = (Common.Synth.PatchPrograms.Program)bank[index];
                     program.ByteOffset = Index;
                     program.ByteLength = programBank.PatchSize;
                     program.IsLoaded = true;

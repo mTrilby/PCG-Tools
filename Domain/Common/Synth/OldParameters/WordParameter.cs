@@ -5,10 +5,10 @@
 #endregion
 
 using System.Diagnostics;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
 
-namespace PcgTools.Model.Common.Synth.OldParameters
+namespace Domain.Common.Synth.OldParameters
 {
     /// <summary>
     /// </summary>

@@ -4,7 +4,7 @@
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.OldParameters
+namespace Domain.Common.Synth.OldParameters
 {
     /// <summary>
     ///     This is a parameter tied to a combi, not used as a regular parameter.

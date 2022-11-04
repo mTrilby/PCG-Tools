@@ -4,15 +4,14 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.KromeExExSpecific.Song;
-using PcgTools.Model.KromeExSpecific.Pcg;
-using PcgTools.Model.KromeExSpecific.Song;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.KromeExSpecific.Pcg;
+using Domain.KromeExSpecific.Song;
+using Domain.MSpecific.Synth;
 
-namespace PcgTools.Model.KromeExSpecific.Synth
+namespace Domain.KromeExSpecific.Synth
 {
     public class KromeExFactory : MFactory
     {

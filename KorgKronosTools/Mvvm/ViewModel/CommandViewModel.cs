@@ -6,6 +6,7 @@
 
 using System;
 using System.Windows.Input;
+using Common.MVVM.ViewModel;
 
 namespace PcgTools.Mvvm.ViewModel
 {

@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.Synth.SongsRelated;
 
-namespace PcgTools.Model.MSpecific.Song
+namespace Domain.MSpecific.Song
 {
     /// <summary>
     /// </summary>

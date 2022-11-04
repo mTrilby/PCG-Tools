@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.ZeroSeries.Song;
+using Domain.ZeroSeries.Song;
 
-namespace PcgTools.Model.Zero3Rw.Song
+namespace Domain.Zero3Rw.Song
 {
     /// <summary>
     /// </summary>

@@ -5,7 +5,8 @@
 #endregion
 
 using System.Windows;
-using PcgTools.Model.Common.Synth.Meta;
+using Common.MVVM;
+using Domain.Common.Synth.Meta;
 using PcgTools.Mvvm;
 using PcgTools.ViewModels;
 

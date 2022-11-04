@@ -4,14 +4,14 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.KronosOasysSpecific.Synth;
-using PcgTools.Model.OasysSpecific.Pcg;
-using PcgTools.Model.OasysSpecific.Song;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.KronosOasysSpecific.Synth;
+using Domain.OasysSpecific.Pcg;
+using Domain.OasysSpecific.Song;
 
-namespace PcgTools.Model.OasysSpecific.Synth
+namespace Domain.OasysSpecific.Synth
 {
     /// <summary>
     /// </summary>

@@ -6,14 +6,14 @@
 
 using System;
 using System.Diagnostics;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.M3rSpecific.Pcg;
-using PcgTools.Model.M3rSpecific.Song;
-using PcgTools.Model.MntxSeriesSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.M3rSpecific.Pcg;
+using Domain.M3rSpecific.Song;
+using Domain.MntxSeriesSpecific.Synth;
 
-namespace PcgTools.Model.M3rSpecific.Synth
+namespace Domain.M3rSpecific.Synth
 {
     /// <summary>
     /// </summary>

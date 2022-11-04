@@ -4,11 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common;
+using Domain.Common.File;
+using Domain.Common.Synth.SongsRelated;
 
-namespace PcgTools.Model.TritonSpecific.Song
+namespace Domain.TritonSpecific.Song
 {
     /// <summary>
     /// </summary>

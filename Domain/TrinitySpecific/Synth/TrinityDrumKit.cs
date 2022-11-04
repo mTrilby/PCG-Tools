@@ -5,11 +5,11 @@
 #endregion
 
 using System.Text.RegularExpressions;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchDrumKits;
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.TrinitySpecific.Synth
+namespace Domain.TrinitySpecific.Synth
 {
     /// <summary>
     /// </summary>

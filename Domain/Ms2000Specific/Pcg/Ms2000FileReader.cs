@@ -5,14 +5,14 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.Ms2000Specific.Pcg
+namespace Domain.Ms2000Specific.Pcg
 {
     /// <summary>
     /// </summary>
@@ -96,7 +96,7 @@ namespace PcgTools.Model.Ms2000Specific.Pcg
             bank.IsWritable = true;
             bank.IsLoaded = true;
 
-            var program = (Program)bank[0];
+            var program = (Common.Synth.PatchPrograms.Program)bank[0];
             program.ByteOffset = offset;
             program.ByteLength = bank.ByteLength;
             program.IsLoaded = true;
@@ -124,7 +124,7 @@ namespace PcgTools.Model.Ms2000Specific.Pcg
                 for (var index = 0; index < numberOfProgramsInBank; index++)
                 {
                     // Place in PcgMemory.
-                    var program = (Program)bank[index];
+                    var program = (Common.Synth.PatchPrograms.Program)bank[index];
                     program.ByteOffset = Index;
                     program.ByteLength = programBank.ByteLength;
                     program.IsLoaded = true;
@@ -200,7 +200,7 @@ namespace PcgTools.Model.Ms2000Specific.Pcg
                 Index += 8; // Skip patch size
 
                 // Place in PcgMemory.
-                var program = (Program)bank[index];
+                var program = (Common.Synth.PatchPrograms.Program)bank[index];
                 program.ByteOffset = Index;
                 program.ByteLength = programBank.ByteLength;
                 program.IsLoaded = true;

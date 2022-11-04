@@ -4,12 +4,11 @@
 
 #endregion
 
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.KronosSpecific.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.KronosSpecific.Synth;
 
-namespace PcgTools.ClipBoard
+namespace Domain.Common.ClipBoard
 {
     /// <summary>
     /// </summary>

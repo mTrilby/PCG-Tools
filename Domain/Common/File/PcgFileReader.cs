@@ -8,18 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using PcgTools.Model.Common.Synth;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
-using PcgTools.Model.KronosSpecific.Pcg;
-using PcgTools.Model.KronosSpecific.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.PatchWaveSequences;
+using Domain.KronosSpecific.Pcg;
+using Domain.KronosSpecific.Synth;
 
-namespace PcgTools.Model.Common.File
+namespace Domain.Common.File
 {
     /// <summary>
     /// </summary>
@@ -376,7 +375,7 @@ namespace PcgTools.Model.Common.File
             for (var index = 0; index < numberOfProgramsInBank; index++)
             {
                 // Place in PcgMemory.
-                var program = (Program)programBank[index];
+                var program = (Synth.PatchPrograms.Program)programBank[index];
                 program.ByteOffset = Index;
                 program.ByteLength = sizeOfAProgram;
                 program.IsLoaded = true;
@@ -419,7 +418,7 @@ namespace PcgTools.Model.Common.File
             for (var index = 0; index < numberOfProgramsInBank; index++)
             {
                 // Place in PcgMemory.
-                var program = (Program)programBank[index];
+                var program = (Synth.PatchPrograms.Program)programBank[index];
                 program.ByteOffset = Index;
                 program.ByteLength = sizeOfAProgram;
                 program.IsLoaded = true;

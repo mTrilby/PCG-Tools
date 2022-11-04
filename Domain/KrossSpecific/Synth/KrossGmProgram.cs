@@ -4,9 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.KrossSpecific.Synth
+namespace Domain.KrossSpecific.Synth
 {
     /// <summary>
     /// </summary>

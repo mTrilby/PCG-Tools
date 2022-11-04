@@ -7,9 +7,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchCombis;
 using PcgTools.Edit;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
 using WPF.MDI;

@@ -5,10 +5,10 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
 
-namespace PcgTools.Model.MSpecific.Pcg
+namespace Domain.MSpecific.Pcg
 {
     /// <summary>
     /// </summary>

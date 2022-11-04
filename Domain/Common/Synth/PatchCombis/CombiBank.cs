@@ -6,9 +6,9 @@
 
 using System;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     /// <summary>
     /// </summary>

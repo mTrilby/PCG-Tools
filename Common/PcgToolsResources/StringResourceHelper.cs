@@ -4,9 +4,7 @@
 
 #endregion
 
-using Common.PcgToolsResources;
-
-namespace PcgTools.PcgToolsResources
+namespace Common.PcgToolsResources
 {
     /// <summary>
     /// </summary>

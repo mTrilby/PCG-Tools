@@ -8,7 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 
-namespace PcgTools.Common
+namespace Common.Utils
 {
     /// <summary>
     /// </summary>

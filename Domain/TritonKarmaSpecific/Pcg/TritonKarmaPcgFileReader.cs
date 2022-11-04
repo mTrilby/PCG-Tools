@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.TritonSpecific.Pcg;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.TritonSpecific.Pcg;
 
-namespace PcgTools.Model.TritonKarmaSpecific.Pcg
+namespace Domain.TritonKarmaSpecific.Pcg
 {
     /// <summary>
     /// </summary>

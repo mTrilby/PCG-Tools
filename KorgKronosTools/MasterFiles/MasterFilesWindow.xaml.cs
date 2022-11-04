@@ -8,8 +8,9 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchInterfaces;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
 using WPF.MDI;
@@ -79,7 +80,7 @@ namespace PcgTools.MasterFiles
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            listViewMasterFiles.ItemsSource = MasterFiles.Instances;
+            listViewMasterFiles.ItemsSource = Domain.Common.MasterFiles.MasterFiles.Instances;
             FillListView();
         }
 
@@ -100,7 +101,7 @@ namespace PcgTools.MasterFiles
             // Scroll into view; all three commands are needed to make it work.
             if (Equals(listView, listViewMasterFiles))
             {
-                if (MasterFiles.Instances.Count(item => item.IsSelected) > 0)
+                if (Domain.Common.MasterFiles.MasterFiles.Instances.Count(item => item.IsSelected) > 0)
                 {
                     listView.ScrollIntoView(listView.Items.Cast<ISelectable>().First(item => item.IsSelected));
                 }

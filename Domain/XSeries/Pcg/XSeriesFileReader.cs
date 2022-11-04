@@ -5,13 +5,13 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.XSeries.Pcg
+namespace Domain.XSeries.Pcg
 {
     /// <summary>
     /// </summary>

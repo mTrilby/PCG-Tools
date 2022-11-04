@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Mvvm;
+using Common.MVVM;
+using Domain.Common.Synth.PatchInterfaces;
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     /// <summary>
     /// </summary>

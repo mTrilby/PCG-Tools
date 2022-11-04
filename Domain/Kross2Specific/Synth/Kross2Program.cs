@@ -5,11 +5,11 @@
 #endregion
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.MSpecific.Synth;
 
-namespace PcgTools.Model.Kross2Specific.Synth
+namespace Domain.Kross2Specific.Synth
 {
     /// <summary>
     /// </summary>

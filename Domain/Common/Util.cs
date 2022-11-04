@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
 
-namespace PcgTools.Model.Common
+namespace Domain.Common
 {
     public abstract class Util
     {

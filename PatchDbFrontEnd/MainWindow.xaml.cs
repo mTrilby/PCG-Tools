@@ -5,7 +5,7 @@
 #endregion
 
 using System.Windows;
-using PatchDatabaseBackEnd;
+using PatchDbBackEnd;
 
 namespace PatchDbFrontEnd
 {

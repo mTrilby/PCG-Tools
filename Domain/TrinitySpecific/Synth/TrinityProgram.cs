@@ -6,15 +6,14 @@
 
 using System.Collections.Generic;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
 
-namespace PcgTools.Model.TrinitySpecific.Synth
+namespace Domain.TrinitySpecific.Synth
 {
     /// <summary>
     /// </summary>
-    public class TrinityProgram : Program
+    public class TrinityProgram : Common.Synth.PatchPrograms.Program
     {
         /// <summary>
         /// </summary>

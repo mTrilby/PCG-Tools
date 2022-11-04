@@ -4,10 +4,9 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.ViewModels;
+using Domain.Common.Synth.MemoryAndFactory;
 
-namespace PcgTools
+namespace Domain.Common
 {
     /// <summary>
     /// </summary>

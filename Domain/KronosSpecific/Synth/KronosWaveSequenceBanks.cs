@@ -4,13 +4,13 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.KronosOasysSpecific.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.KronosOasysSpecific.Synth;
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.KronosSpecific.Synth
+namespace Domain.KronosSpecific.Synth
 {
     /// <summary>
     /// </summary>

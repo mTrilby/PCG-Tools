@@ -4,12 +4,12 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.KromeSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.KromeSpecific.Synth;
 
-namespace PcgTools.Model.KromeSpecific.Song
+namespace Domain.KromeSpecific.Song
 {
     /// <summary>
     /// </summary>

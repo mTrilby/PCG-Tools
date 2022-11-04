@@ -5,10 +5,10 @@
 #endregion
 
 using System;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchPrograms;
 
-namespace PcgTools.Model.M50Specific.Synth
+namespace Domain.M50Specific.Synth
 {
     /// <summary>
     /// </summary>

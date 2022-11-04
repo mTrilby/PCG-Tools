@@ -4,7 +4,7 @@
 
 #endregion
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 
 namespace PcgTools.ViewModels.Commands.PcgCommands
 {

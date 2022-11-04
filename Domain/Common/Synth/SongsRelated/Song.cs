@@ -5,14 +5,14 @@
 #endregion
 
 using System;
+using Common.MVVM;
 using Common.Utils;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Mvvm;
-using PcgTools.OpenedFiles;
+using Domain.Common.File;
+using Domain.Common.OpenedFiles;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchInterfaces;
 
-namespace PcgTools.Model.Common.Synth.SongsRelated
+namespace Domain.Common.Synth.SongsRelated
 {
     /// <summary>
     /// </summary>
@@ -22,7 +22,7 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
         /// </summary>
         // ReSharper disable UnusedAutoPropertyAccessor.Local
         [UsedImplicitly]
-        private int Index { [Annotations.UsedImplicitly] get; }
+        private int Index { [global::Common.Properties.UsedImplicitly] get; }
 
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
         // ReSharper disable UnusedAutoPropertyAccessor.Local
         public string Name
         {
-            [Annotations.UsedImplicitly] get => _name;
+            [global::Common.Properties.UsedImplicitly] get => _name;
             set
             {
                 if (value != _name)

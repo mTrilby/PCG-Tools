@@ -6,7 +6,7 @@
 
 using System.Collections.ObjectModel;
 
-namespace PcgTools.ClipBoard
+namespace Domain.Common.ClipBoard
 {
     /// <summary>
     /// </summary>

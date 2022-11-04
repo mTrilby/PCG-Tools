@@ -6,10 +6,11 @@
 
 using System;
 using Common.MVVM;
-using PcgTools.ClipBoard;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
+using Domain.Common.ClipBoard;
+using Domain.Common.ListGenerators;
+using Domain.Common.Synth.PatchInterfaces;
 
-namespace PcgTools.Model.Common.Synth.Meta
+namespace Domain.Common.Synth.Meta
 {
     /// <summary>
     /// </summary>
@@ -86,7 +87,7 @@ namespace PcgTools.Model.Common.Synth.Meta
         /// <returns></returns>
         bool UseInList(
             bool ignoreInit, bool filterOnText, string filterText, bool caseSensitive,
-            ListGenerator.ListGenerator.FilterOnFavorites useFavorites,
+            ListGenerator.FilterOnFavorites useFavorites,
             bool filterDescription);
 
 

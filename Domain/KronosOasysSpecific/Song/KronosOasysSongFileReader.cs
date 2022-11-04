@@ -4,10 +4,10 @@
 
 #endregion
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.File;
+using Domain.Common.Synth.SongsRelated;
 
-namespace PcgTools.Model.KronosOasysSpecific.Song
+namespace Domain.KronosOasysSpecific.Song
 {
     /// <summary>
     /// </summary>

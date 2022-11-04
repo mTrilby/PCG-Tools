@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using Common.PcgToolsResources;
 using Common.Utils;
+using PcgTools.Common.Utils;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
@@ -389,18 +391,14 @@ namespace PcgTools.ListGenerator
                 errorText = exception.Message;
             }
 
-            //if (!String.IsNullOrEmpty(errorText))
-            //{
-            //    throw new ApplicationException(errorText);   
-            //}
-
-            // Inv: Exception has occurred.
-            WindowUtils.ShowMessageBox(null, String.Format("{0}: {1}", Strings.GenerateListError, errorText), 
-                Strings.PcgTools,
-                WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Error,
-                WindowUtils.EMessageBoxResult.Ok);
-            return null;
 #endif
+
+            if (!String.IsNullOrEmpty(errorText))
+            {
+                throw new ApplicationException(errorText);
+            }
+
+            return null;
         }
 
 

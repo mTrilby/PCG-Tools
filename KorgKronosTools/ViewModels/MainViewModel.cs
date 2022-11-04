@@ -766,14 +766,14 @@ namespace PcgTools.ViewModels
             catch (IOException exception)
             {
                 ShowMessageBox(String.Format(Strings.FileOpenException, fileName, exception.Message, exception.StackTrace),
-                                Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Error,
-                                WindowUtils.EMessageBoxResult.Ok);
+                                Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok, WindowUtil.EMessageBoxImage.Error,
+                                WindowUtil.EMessageBoxResult.Ok);
             }
             catch (ApplicationException exception)
             {
                 ShowMessageBox(String.Format(Strings.FileOpenException, fileName, exception.Message, exception.StackTrace),
-                                Strings.PcgTools, WindowUtils.EMessageBoxButton.Ok, WindowUtils.EMessageBoxImage.Error,
-                                WindowUtils.EMessageBoxResult.Ok);
+                                Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok, WindowUtil.EMessageBoxImage.Error,
+                                WindowUtil.EMessageBoxResult.Ok);
             }
 #endif
         }

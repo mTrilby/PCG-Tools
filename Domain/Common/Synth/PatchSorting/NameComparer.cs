@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -8,33 +12,29 @@ using PcgTools.Model.Common.Synth.Meta;
 namespace PcgTools.Model.Common.Synth.PatchSorting
 {
     /// <summary>
-    /// Class for comparing names in an ordinal manner.
+    ///     Class for comparing names in an ordinal manner.
     /// </summary>
-    sealed class NameComparer : Comparer<IPatch>
+    internal sealed class NameComparer : Comparer<IPatch>
     {
         /// <summary>
-        /// 
         /// </summary>
         // ReSharper disable once FieldCanBeMadeReadOnly.Local
-        private static NameComparer _instance = new NameComparer();
+        private static NameComparer _instance = new();
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        private NameComparer()
+        {
+        }
+
+
+        /// <summary>
         /// </summary>
         public static NameComparer Instance => _instance;
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        private NameComparer()
-        {
-        }
-        
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>

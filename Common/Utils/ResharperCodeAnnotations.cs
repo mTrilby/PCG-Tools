@@ -1,16 +1,22 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Collections.Generic;
 
 namespace Common.Utils
 {
     /// <summary>
-    /// Indicates that marked element should be localized or not.
+    ///     Indicates that marked element should be localized or not.
     /// </summary>
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.All)]
     public sealed class LocalizationRequiredAttribute : Attribute
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocalizationRequiredAttribute"/> class.
+        ///     Initializes a new instance of the <see cref="LocalizationRequiredAttribute" /> class.
         /// </summary>
         /// <param name="required"><c>true</c> if a element should be localized; otherwise, <c>false</c>.</param>
         public LocalizationRequiredAttribute(bool required)
@@ -19,19 +25,19 @@ namespace Common.Utils
         }
 
         /// <summary>
-        /// Gets a value indicating whether a element should be localized.
-        /// <value><c>true</c> if a element should be localized; otherwise, <c>false</c>.</value>
+        ///     Gets a value indicating whether a element should be localized.
+        ///     <value><c>true</c> if a element should be localized; otherwise, <c>false</c>.</value>
         /// </summary>
         public bool Required { get; set; }
 
 
         /// <summary>
-        /// Returns whether the value of the given object is equal to the current
-        ///  <see cref="LocalizationRequiredAttribute"/>.
+        ///     Returns whether the value of the given object is equal to the current
+        ///     <see cref="LocalizationRequiredAttribute" />.
         /// </summary>
         /// <param name="obj">The object to test the value equality of. </param>
         /// <returns>
-        /// <c>true</c> if the value of the given object is equal to that of the current; otherwise, <c>false</c>.
+        ///     <c>true</c> if the value of the given object is equal to that of the current; otherwise, <c>false</c>.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -41,9 +47,9 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// Returns the hash code for this instance.
+        ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current <see cref="LocalizationRequiredAttribute"/>.</returns>
+        /// <returns>A hash code for the current <see cref="LocalizationRequiredAttribute" />.</returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -52,76 +58,76 @@ namespace Common.Utils
 
 
     /// <summary>
-    /// Indicates that marked method builds string by format pattern and (optional) arguments. 
-    /// Parameter, which contains format string, should be given in constructor.
-    /// The format string should be in <see cref="string.Format(IFormatProvider,string,object[])"/> -like form
+    ///     Indicates that marked method builds string by format pattern and (optional) arguments.
+    ///     Parameter, which contains format string, should be given in constructor.
+    ///     The format string should be in <see cref="string.Format(IFormatProvider,string,object[])" /> -like form
     /// </summary>
-    [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method)]
     public sealed class StringFormatMethodAttribute : Attribute
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly string _myFormatParameterName;
 
 
         /// <summary>
-        /// Initializes new instance of StringFormatMethodAttribute
+        ///     Initializes new instance of StringFormatMethodAttribute
         /// </summary>
-        /// <param name="formatParameterName">Specifies which parameter of an annotated method should be treated as 
-        /// format-string</param>
+        /// <param name="formatParameterName">
+        ///     Specifies which parameter of an annotated method should be treated as
+        ///     format-string
+        /// </param>
         public StringFormatMethodAttribute(string formatParameterName)
         {
             _myFormatParameterName = formatParameterName;
         }
 
         /// <summary>
-        /// Gets format parameter name
+        ///     Gets format parameter name
         /// </summary>
         public string FormatParameterName => _myFormatParameterName;
     }
 
 
     /// <summary>
-    /// Indicates that the function argument should be string literal and match one  of the parameters 
-    /// of the caller function.
-    /// For example, <see cref="ArgumentNullException"/> has such parameter.
+    ///     Indicates that the function argument should be string literal and match one  of the parameters
+    ///     of the caller function.
+    ///     For example, <see cref="ArgumentNullException" /> has such parameter.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Parameter)]
     public sealed class InvokerParameterNameAttribute : Attribute
     {
     }
 
 
     /// <summary>
-    /// Indicates that the marked method is assertion method, i.e. it halts control flow if one of the conditions
-    /// is satisfied. 
-    /// To set the condition, mark one of the parameters with <see cref="AssertionConditionAttribute"/> attribute
+    ///     Indicates that the marked method is assertion method, i.e. it halts control flow if one of the conditions
+    ///     is satisfied.
+    ///     To set the condition, mark one of the parameters with <see cref="AssertionConditionAttribute" /> attribute
     /// </summary>
-    /// <seealso cref="AssertionConditionAttribute"/>
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    /// <seealso cref="AssertionConditionAttribute" />
+    [AttributeUsage(AttributeTargets.Method)]
     public sealed class AssertionMethodAttribute : Attribute
     {
     }
 
 
     /// <summary>
-    /// Indicates the condition parameter of the assertion method. 
-    /// The method itself should be marked by <see cref="AssertionMethodAttribute"/> attribute.
-    /// The mandatory argument of the attribute is the assertion type.
+    ///     Indicates the condition parameter of the assertion method.
+    ///     The method itself should be marked by <see cref="AssertionMethodAttribute" /> attribute.
+    ///     The mandatory argument of the attribute is the assertion type.
     /// </summary>
-    /// <seealso cref="AssertionConditionType"/>
-    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
+    /// <seealso cref="AssertionConditionType" />
+    [AttributeUsage(AttributeTargets.Parameter)]
     public sealed class AssertionConditionAttribute : Attribute
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly AssertionConditionType _myConditionType;
 
 
         /// <summary>
-        /// Initializes new instance of AssertionConditionAttribute
+        ///     Initializes new instance of AssertionConditionAttribute
         /// </summary>
         /// <param name="conditionType">Specifies condition type</param>
         public AssertionConditionAttribute(AssertionConditionType conditionType)
@@ -131,84 +137,82 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// Gets condition type
+        ///     Gets condition type
         /// </summary>
         public AssertionConditionType ConditionType => _myConditionType;
     }
 
     /// <summary>
-    /// Specifies assertion type. If the assertion method argument satisifes the condition, then the 
-    /// execution continues. 
-    /// Otherwise, execution is assumed to be halted
+    ///     Specifies assertion type. If the assertion method argument satisifes the condition, then the
+    ///     execution continues.
+    ///     Otherwise, execution is assumed to be halted
     /// </summary>
     public enum AssertionConditionType
     {
         /// <summary>
-        /// Indicates that the marked parameter should be evaluated to true
+        ///     Indicates that the marked parameter should be evaluated to true
         /// </summary>
         IsTrue = 0,
 
         /// <summary>
-        /// Indicates that the marked parameter should be evaluated to false
+        ///     Indicates that the marked parameter should be evaluated to false
         /// </summary>
         IsFalse = 1,
 
         /// <summary>
-        /// Indicates that the marked parameter should be evaluated to null value
+        ///     Indicates that the marked parameter should be evaluated to null value
         /// </summary>
         IsNull = 2,
 
         /// <summary>
-        /// Indicates that the marked parameter should be evaluated to not null value
+        ///     Indicates that the marked parameter should be evaluated to not null value
         /// </summary>
-        IsNotNull = 3,
+        IsNotNull = 3
     }
 
     /// <summary>
-    /// Indicates that the marked method unconditionally terminates control flow execution.
-    /// For example, it could unconditionally throw exception
+    ///     Indicates that the marked method unconditionally terminates control flow execution.
+    ///     For example, it could unconditionally throw exception
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Method)]
     public sealed class TerminatesProgramAttribute : Attribute
     {
     }
 
     /// <summary>
-    /// Indicates that the value of marked element could be <c>null</c> sometimes, so the check for <c>null</c> is 
-    /// necessary before its usage
+    ///     Indicates that the value of marked element could be <c>null</c> sometimes, so the check for <c>null</c> is
+    ///     necessary before its usage
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-        AttributeTargets.Delegate | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+                    AttributeTargets.Delegate | AttributeTargets.Field)]
     public sealed class CanBeNullAttribute : Attribute
     {
     }
 
     /// <summary>
-    /// Indicates that the value of marked element could never be <c>null</c>
+    ///     Indicates that the value of marked element could never be <c>null</c>
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-        AttributeTargets.Delegate | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+                    AttributeTargets.Delegate | AttributeTargets.Field)]
     public sealed class NotNullAttribute : Attribute
     {
     }
 
     /// <summary>
-    /// Indicates that the value of marked type (or its derivatives) cannot be compared using '==' or '!=' operators.
-    /// There is only exception to compare with <c>null</c>, it is permitted
+    ///     Indicates that the value of marked type (or its derivatives) cannot be compared using '==' or '!=' operators.
+    ///     There is only exception to compare with <c>null</c>, it is permitted
     /// </summary>
-    [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class | AttributeTargets.Struct, 
-        AllowMultiple = false,
-        Inherited = true)]
+    [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class | AttributeTargets.Struct)]
     public sealed class CannotApplyEqualityOperatorAttribute : Attribute
     {
     }
 
     /// <summary>
-    /// When applied to target attribute, specifies a requirement for any type which is marked with 
-    /// target attribute to implement or inherit specific type or types
+    ///     When applied to target attribute, specifies a requirement for any type which is marked with
+    ///     target attribute to implement or inherit specific type or types
     /// </summary>
     /// <example>
-    /// <code>
+    ///     <code>
     /// [BaseTypeRequired(typeof(IComponent)] // Specify requirement
     /// public class ComponentAttribute : Attribute 
     /// {}
@@ -218,17 +222,16 @@ namespace Common.Utils
     /// {}
     /// </code>
     /// </example>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     [BaseTypeRequired(typeof(Attribute))]
     public sealed class BaseTypeRequiredAttribute : Attribute
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly Type[] myBaseTypes;
 
         /// <summary>
-        /// Initializes new instance of BaseTypeRequiredAttribute
+        ///     Initializes new instance of BaseTypeRequiredAttribute
         /// </summary>
         /// <param name="baseTypes">Specifies which types are required</param>
         public BaseTypeRequiredAttribute(params Type[] baseTypes)
@@ -238,21 +241,20 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// Gets enumerations of specified base types
+        ///     Gets enumerations of specified base types
         /// </summary>
         public IEnumerable<Type> BaseTypes => myBaseTypes;
     }
 
 
     /// <summary>
-    /// Indicates that the marked symbol is used implicitly (e.g. via reflection, in external library),
-    /// so this symbol will not be marked as unused (as well as by other usage inspections)
+    ///     Indicates that the marked symbol is used implicitly (e.g. via reflection, in external library),
+    ///     so this symbol will not be marked as unused (as well as by other usage inspections)
     /// </summary>
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.All)]
     public sealed class UsedImplicitlyAttribute : Attribute
     {
         /// <summary>
-        /// 
         /// </summary>
         [UsedImplicitly]
         public UsedImplicitlyAttribute()
@@ -262,7 +264,6 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="useKindFlags"></param>
         /// <param name="targetFlags"></param>
@@ -275,7 +276,6 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="useKindFlags"></param>
         [UsedImplicitly]
@@ -286,7 +286,6 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="targetFlags"></param>
         [UsedImplicitly]
@@ -297,29 +296,27 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         [UsedImplicitly]
-        public ImplicitUseKindFlags UseKindFlags { get; private set; }
+        public ImplicitUseKindFlags UseKindFlags { get; }
 
 
         /// <summary>
-        /// Gets value indicating what is meant to be used
+        ///     Gets value indicating what is meant to be used
         /// </summary>
         [UsedImplicitly]
-        public ImplicitUseTargetFlags TargetFlags { get; private set; }
+        public ImplicitUseTargetFlags TargetFlags { get; }
     }
 
 
     /// <summary>
-    /// Should be used on attributes and causes ReSharper to not mark symbols marked with such attributes as unused 
-    /// (as well as by other usage inspections)
+    ///     Should be used on attributes and causes ReSharper to not mark symbols marked with such attributes as unused
+    ///     (as well as by other usage inspections)
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Class)]
     public sealed class MeansImplicitUseAttribute : Attribute
     {
         /// <summary>
-        /// 
         /// </summary>
         [UsedImplicitly]
         public MeansImplicitUseAttribute()
@@ -329,7 +326,6 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="useKindFlags"></param>
         /// <param name="targetFlags"></param>
@@ -342,7 +338,6 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="useKindFlags"></param>
         [UsedImplicitly]
@@ -353,7 +348,6 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="targetFlags"></param>
         [UsedImplicitly]
@@ -364,22 +358,20 @@ namespace Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         [UsedImplicitly]
-        public ImplicitUseKindFlags UseKindFlags { get; private set; }
+        public ImplicitUseKindFlags UseKindFlags { get; }
 
 
         /// <summary>
-        /// Gets value indicating what is meant to be used
+        ///     Gets value indicating what is meant to be used
         /// </summary>
         [UsedImplicitly]
-        public ImplicitUseTargetFlags TargetFlags { get; private set; }
+        public ImplicitUseTargetFlags TargetFlags { get; }
     }
 
 
     /// <summary>
-    /// 
     /// </summary>
     [Flags]
     public enum ImplicitUseKindFlags
@@ -387,25 +379,25 @@ namespace Common.Utils
         Default = Access | Assign | Instantiated,
 
         /// <summary>
-        /// Only entity marked with attribute considered used
+        ///     Only entity marked with attribute considered used
         /// </summary>
         Access = 1,
 
         /// <summary>
-        /// Indicates implicit assignment to a member
+        ///     Indicates implicit assignment to a member
         /// </summary>
         Assign = 2,
 
         /// <summary>
-        /// Indicates implicit instantiation of a type
+        ///     Indicates implicit instantiation of a type
         /// </summary>
-        Instantiated = 4,
+        Instantiated = 4
     }
 
 
     /// <summary>
-    /// Specify what is considered used implicitly when marked with <see cref="MeansImplicitUseAttribute"/> or 
-    /// <see cref="UsedImplicitlyAttribute"/>
+    ///     Specify what is considered used implicitly when marked with <see cref="MeansImplicitUseAttribute" /> or
+    ///     <see cref="UsedImplicitlyAttribute" />
     /// </summary>
     [Flags]
     public enum ImplicitUseTargetFlags
@@ -415,12 +407,12 @@ namespace Common.Utils
         Itself = 1,
 
         /// <summary>
-        /// Members of entity marked with attribute are considered used
+        ///     Members of entity marked with attribute are considered used
         /// </summary>
         Members = 2,
 
         /// <summary>
-        /// Entity marked with attribute and all its members considered used
+        ///     Entity marked with attribute and all its members considered used
         /// </summary>
         WithMembers = Itself | Members
     }

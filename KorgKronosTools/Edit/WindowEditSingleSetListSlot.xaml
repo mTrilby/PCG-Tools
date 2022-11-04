@@ -3,157 +3,158 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
-        Title="{x:Static common:Strings.EditSingleSetListSlot}" 
-        Name="windowEdit"  SizeToContent="WidthAndHeight"
+        Title="{x:Static common:Strings.EditSingleSetListSlot}"
+        Name="windowEdit" SizeToContent="WidthAndHeight"
         ShowInTaskbar="True" Loaded="WindowEditLoaded" Icon="/PcgTools;component/Gui/pcgtools.ico"
         WindowStartupLocation="CenterOwner">
     <WrapPanel>
-        <Expander  Header="{x:Static common:Strings.ID}"
-            	Margin="4" Padding="4" x:Name="expanderId" IsExpanded="True">
+        <Expander Header="{x:Static common:Strings.ID}"
+                  Margin="4" Padding="4" x:Name="expanderId" IsExpanded="True">
             <StackPanel>
                 <TextBox HorizontalAlignment="Left" Margin="4" MinWidth="30"
-                    Name="textBoxId" VerticalAlignment="Top" 
-                    IsReadOnly="True" />
+                         Name="textBoxId" VerticalAlignment="Top"
+                         IsReadOnly="True" />
             </StackPanel>
         </Expander>
 
         <Expander Header="{x:Static common:Strings.Reference}"
                   Margin="4" Padding="4" IsExpanded="True">
             <StackPanel>
-                <Label Content="{x:Static common:Strings.ReferenceType}" Margin="4,0"/>
-                <TextBox Margin="4,0" Name="TextBoxReferenceType" IsReadOnly="True"/>
-                <Label Content="{x:Static common:Strings.ReferenceId}" Margin="4,0"/>
-                <TextBox Margin="4,0" Name="TextBoxReferenceId" IsReadOnly="True"/>
-                <Label Content="{x:Static common:Strings.Name}" Margin="4,0"/>
-                <TextBox Margin="4,0" Name="TextBoxReferenceName" IsReadOnly="True"/>
+                <Label Content="{x:Static common:Strings.ReferenceType}" Margin="4,0" />
+                <TextBox Margin="4,0" Name="TextBoxReferenceType" IsReadOnly="True" />
+                <Label Content="{x:Static common:Strings.ReferenceId}" Margin="4,0" />
+                <TextBox Margin="4,0" Name="TextBoxReferenceId" IsReadOnly="True" />
+                <Label Content="{x:Static common:Strings.Name}" Margin="4,0" />
+                <TextBox Margin="4,0" Name="TextBoxReferenceName" IsReadOnly="True" />
             </StackPanel>
         </Expander>
 
         <StackPanel Orientation="Vertical">
 
             <Expander Header="{x:Static common:Strings.Name}"
-            		    Margin="4" Padding="4" x:Name="expanderName" IsExpanded="True">
+                      Margin="4" Padding="4" x:Name="expanderName" IsExpanded="True">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock HorizontalAlignment="Left" Margin="4" Text="(x of y characters)" Background="{x:Static SystemColors.ControlLightBrush}"
-                            Name="labelNameLength" VerticalAlignment="Top"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="4" Text="(x of y characters)"
+                                   Background="{x:Static SystemColors.ControlLightBrush}"
+                                   Name="labelNameLength" VerticalAlignment="Top" />
                     </StackPanel>
-                
-                    <TextBox HorizontalAlignment="Left" IsReadOnly="False"
-                        Margin="4" Name="textBoxName" MinWidth="30"
-                        VerticalAlignment="Top" TextChanged="TextBoxNameTextChanged" />
 
-                    <Label Foreground="#D80000" HorizontalAlignment="Left" 
-                        Margin="4" Name="labelErrorName" 
-                        VerticalAlignment="Top">
+                    <TextBox HorizontalAlignment="Left" IsReadOnly="False"
+                             Margin="4" Name="textBoxName" MinWidth="30"
+                             VerticalAlignment="Top" TextChanged="TextBoxNameTextChanged" />
+
+                    <Label Foreground="#D80000" HorizontalAlignment="Left"
+                           Margin="4" Name="labelErrorName"
+                           VerticalAlignment="Top">
                         <Label.Background>
                             <SolidColorBrush />
                         </Label.Background>
                     </Label>
                 </StackPanel>
             </Expander>
-       
-            <Expander   Header="{x:Static common:Strings.ControlColor}"
-            		        Margin="4" Padding="4" x:Name="expanderColor" IsExpanded="True">
+
+            <Expander Header="{x:Static common:Strings.ControlColor}"
+                      Margin="4" Padding="4" x:Name="expanderColor" IsExpanded="True">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style x:Key="ComboBoxItemDefault" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#4D4D4D"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorDefault}"/>
+                            <Setter Property="Background" Value="#4D4D4D" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorDefault}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemCharcoal" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#2F2F2F"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorCharcoal}"/>
+                            <Setter Property="Background" Value="#2F2F2F" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorCharcoal}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemBrick" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#B23F3F"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorBrick}"/>
+                            <Setter Property="Background" Value="#B23F3F" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorBrick}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemBurgundy" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#691B1B"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorBurgundy}"/>
+                            <Setter Property="Background" Value="#691B1B" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorBurgundy}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemIvy" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#91A730"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorIvy}"/>
+                            <Setter Property="Background" Value="#91A730" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorIvy}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemOlive" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#374520"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorOlive}"/>
+                            <Setter Property="Background" Value="#374520" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorOlive}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemGold" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#AA842A"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorGold}"/>
+                            <Setter Property="Background" Value="#AA842A" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorGold}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemCacao" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#7F4236"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorCacao}"/>
+                            <Setter Property="Background" Value="#7F4236" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorCacao}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemIndigo" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#5360A5"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorIndigo}"/>
+                            <Setter Property="Background" Value="#5360A5" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorIndigo}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemNavy" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#1A2B88"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorNavy}"/>
+                            <Setter Property="Background" Value="#1A2B88" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorNavy}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemRose" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#AB81A2"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorRose}"/>
+                            <Setter Property="Background" Value="#AB81A2" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorRose}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemLavender" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#9267BA"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorLavender}"/>
+                            <Setter Property="Background" Value="#9267BA" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorLavender}" />
                         </Style>
-                    
+
                         <Style x:Key="ComboBoxItemAzure" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#88A4C5"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorAzure}"/>
+                            <Setter Property="Background" Value="#88A4C5" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorAzure}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemDanim" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#6A7F96"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorDanim}"/>
+                            <Setter Property="Background" Value="#6A7F96" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorDanim}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemSilver" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#808080"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorSilver}"/>
+                            <Setter Property="Background" Value="#808080" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorSilver}" />
                         </Style>
 
                         <Style x:Key="ComboBoxItemSlate" TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Background" Value="#626262"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="Content" Value="{x:Static common:Strings.ColorSlate}"/>
+                            <Setter Property="Background" Value="#626262" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Content" Value="{x:Static common:Strings.ColorSlate}" />
                         </Style>
                     </StackPanel.Resources>
-                    
+
                     <ComboBox Name="comboBoxColor" Margin="4" SelectionChanged="comboBoxColor_SelectionChanged">
                         <!--Grid>
                             <Grid.RowDefinitions>
@@ -169,64 +170,66 @@
                                 <ColumnDefinition Width="150"></ColumnDefinition>
                             </Grid.ColumnDefinitions-->
 
-                            <ComboBoxItem Grid.Row="0" Grid.Column="0" Style="{DynamicResource ComboBoxItemDefault}" />
-                            <ComboBoxItem Grid.Row="0" Grid.Column="1" Style="{DynamicResource ComboBoxItemCharcoal}" />
-                            <ComboBoxItem Grid.Row="0" Grid.Column="2" Style="{DynamicResource ComboBoxItemBrick}" />
-                            <ComboBoxItem Grid.Row="0" Grid.Column="3" Style="{DynamicResource ComboBoxItemBurgundy}" />
-                            <ComboBoxItem Grid.Row="1" Grid.Column="0" Style="{DynamicResource ComboBoxItemIvy}" />
-                            <ComboBoxItem Grid.Row="1" Grid.Column="1" Style="{DynamicResource ComboBoxItemOlive}" />
-                            <ComboBoxItem Grid.Row="1" Grid.Column="2" Style="{DynamicResource ComboBoxItemGold}" />
-                            <ComboBoxItem Grid.Row="1" Grid.Column="3" Style="{DynamicResource ComboBoxItemCacao}" />
-                            <ComboBoxItem Grid.Row="2" Grid.Column="0" Style="{DynamicResource ComboBoxItemIndigo}" />
-                            <ComboBoxItem Grid.Row="2" Grid.Column="1" Style="{DynamicResource ComboBoxItemNavy}" />
-                            <ComboBoxItem Grid.Row="2" Grid.Column="2" Style="{DynamicResource ComboBoxItemRose}" />
-                            <ComboBoxItem Grid.Row="2" Grid.Column="3" Style="{DynamicResource ComboBoxItemLavender}" />
-                            <ComboBoxItem Grid.Row="3" Grid.Column="0" Style="{DynamicResource ComboBoxItemAzure}" />
-                            <ComboBoxItem Grid.Row="3" Grid.Column="1" Style="{DynamicResource ComboBoxItemDanim}" />
-                            <ComboBoxItem Grid.Row="3" Grid.Column="2" Style="{DynamicResource ComboBoxItemSilver}" />
-                            <ComboBoxItem Grid.Row="3" Grid.Column="3" Style="{DynamicResource ComboBoxItemSlate}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemDefault}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemCharcoal}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemBrick}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemBurgundy}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemIvy}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemOlive}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemGold}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemCacao}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemIndigo}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemNavy}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemRose}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemLavender}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemAzure}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemDanim}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemSilver}" />
+                        <ComboBoxItem Style="{DynamicResource ComboBoxItemSlate}" />
                     </ComboBox>
-                    <TextBox Name="textBoxColor" Height="16" Width="50" Margin="4"/>
+                    <TextBox Name="textBoxColor" Height="16" Width="50" Margin="4" />
                 </StackPanel>
             </Expander>
         </StackPanel>
 
         <Expander Header="{x:Static common:Strings.DescriptionControl}"
-            		    Margin="4" Padding="4" x:Name="expanderDescription"  IsExpanded="True">
+                  Margin="4" Padding="4" x:Name="expanderDescription" IsExpanded="True">
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <Label Content="{x:Static common:Strings.ControlTextSize}"  Margin="4"/>
+                    <Label Content="{x:Static common:Strings.ControlTextSize}" Margin="4" />
                     <RadioButton Name="radioButtonTextSizeXs" Content="{x:Static common:Strings.ControlTextSizeXs}"
-                                 Margin="4" 
-                                 Checked="RadioButtonTextSize_Checked"/>
+                                 Margin="4"
+                                 Checked="RadioButtonTextSize_Checked" />
                     <RadioButton Name="radioButtonTextSizeS" Content="{x:Static common:Strings.ControlTextSizeS}"
                                  Margin="4"
-                                 Checked="RadioButtonTextSize_Checked"/>
-                    <RadioButton Name="radioButtonTextSizeM" Content="{x:Static common:Strings.ControlTextSizeM}" 
+                                 Checked="RadioButtonTextSize_Checked" />
+                    <RadioButton Name="radioButtonTextSizeM" Content="{x:Static common:Strings.ControlTextSizeM}"
                                  Margin="4"
-                                 Checked="RadioButtonTextSize_Checked"/>
+                                 Checked="RadioButtonTextSize_Checked" />
                     <RadioButton Name="radioButtonTextSizeL" Content="{x:Static common:Strings.ControlTextSizeL}"
                                  Margin="4"
-                                 Checked="RadioButtonTextSize_Checked"/>
-                    <RadioButton Name="radioButtonTextSizeXl" Content="{x:Static common:Strings.ControlTextSizeXl}"  
+                                 Checked="RadioButtonTextSize_Checked" />
+                    <RadioButton Name="radioButtonTextSizeXl" Content="{x:Static common:Strings.ControlTextSizeXl}"
                                  Margin="4"
-                                 Checked="RadioButtonTextSize_Checked"/>
+                                 Checked="RadioButtonTextSize_Checked" />
                 </StackPanel>
                 <StackPanel>
-                    <TextBlock HorizontalAlignment="Left" Margin="4" Background="{x:Static SystemColors.ControlLightBrush}"
+                    <TextBlock HorizontalAlignment="Left" Margin="4"
+                               Background="{x:Static SystemColors.ControlLightBrush}"
                                Text="(x of y characters)"
-                       Name="labelDescriptionLength" VerticalAlignment="Top"/>
+                               Name="labelDescriptionLength" VerticalAlignment="Top" />
 
                     <!-- According to Korg, it should be 762 pixels without scroll bar, 744 with scroll bar. -->
-                    <TextBox HorizontalAlignment="Left" Width="536" IsReadOnly="False" 
-                         Margin="4" Name="textBoxDescription"
-                         VerticalAlignment="Top" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"
-                         TextChanged="TextBoxDescriptionTextChanged" AcceptsReturn="True" AcceptsTab="True" FontWeight="Bold" 
-                             FontFamily="Arial"/>
+                    <TextBox HorizontalAlignment="Left" Width="536" IsReadOnly="False"
+                             Margin="4" Name="textBoxDescription"
+                             VerticalAlignment="Top" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"
+                             TextChanged="TextBoxDescriptionTextChanged" AcceptsReturn="True" AcceptsTab="True"
+                             FontWeight="Bold"
+                             FontFamily="Arial" />
 
-                    <Label Foreground="#D80000" HorizontalAlignment="Left" 
-                        Margin="4" Name="labelErrorDescription" 
-                        VerticalAlignment="Top">
+                    <Label Foreground="#D80000" HorizontalAlignment="Left"
+                           Margin="4" Name="labelErrorDescription"
+                           VerticalAlignment="Top">
                         <Label.Background>
                             <SolidColorBrush />
                         </Label.Background>
@@ -236,34 +239,34 @@
         </Expander>
 
         <StackPanel Orientation="Vertical">
-            <Expander  Header="{x:Static common:Strings.ControlTranspose}"
-            		        Margin="4" Padding="4" x:Name="expanderTranspose" IsExpanded="True">
+            <Expander Header="{x:Static common:Strings.ControlTranspose}"
+                      Margin="4" Padding="4" x:Name="expanderTranspose" IsExpanded="True">
                 <StackPanel Orientation="Horizontal">
-                    <xctk:IntegerUpDown Name="intupdownTranspose" Value="15" Increment="1" 
-                                        Maximum="24" Minimum="-24" Margin="4"/>
+                    <xctk:IntegerUpDown Name="intupdownTranspose" Value="15" Increment="1"
+                                        Maximum="24" Minimum="-24" Margin="4" />
                 </StackPanel>
             </Expander>
 
-            <Expander  Header="{x:Static common:Strings.ControlVolume}"
-            		        Margin="4" Padding="4" x:Name="expanderVolume" IsExpanded="True">
+            <Expander Header="{x:Static common:Strings.ControlVolume}"
+                      Margin="4" Padding="4" x:Name="expanderVolume" IsExpanded="True">
                 <StackPanel Orientation="Horizontal">
-                    <xctk:IntegerUpDown Name="intupdownVolume" Value="123" Increment="1" 
-                                        Maximum="127" Minimum="0" Margin="4"/>
+                    <xctk:IntegerUpDown Name="intupdownVolume" Value="123" Increment="1"
+                                        Maximum="127" Minimum="0" Margin="4" />
                 </StackPanel>
             </Expander>
         </StackPanel>
-        
+
         <StackPanel Orientation="Horizontal">
             <Button Content="{x:Static common:Strings.Cancel}"
-                HorizontalAlignment="Left" 
-                IsDefault="False" Margin="4" Name="buttonCancel" 
-                VerticalAlignment="Top" Width="75" IsCancel="True" 
-                Click="ButtonCancelClick" />
-            
-            <Button Content="{x:Static common:Strings.OK}" 
-                HorizontalAlignment="Left" 
-                Margin="4" Name="buttonOk" VerticalAlignment="Top" 
-                Width="75" IsDefault="True" Click="ButtonOkClick" />
+                    HorizontalAlignment="Left"
+                    IsDefault="False" Margin="4" Name="buttonCancel"
+                    VerticalAlignment="Top" Width="75" IsCancel="True"
+                    Click="ButtonCancelClick" />
+
+            <Button Content="{x:Static common:Strings.OK}"
+                    HorizontalAlignment="Left"
+                    Margin="4" Name="buttonOk" VerticalAlignment="Top"
+                    Width="75" IsDefault="True" Click="ButtonOkClick" />
 
             <!--Button for checking description width/font.
                 Button Content="-1" 

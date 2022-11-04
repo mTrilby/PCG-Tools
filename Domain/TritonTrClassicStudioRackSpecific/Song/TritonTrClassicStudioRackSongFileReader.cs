@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
@@ -9,16 +12,14 @@ using PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth;
 namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
-    public class TritonTrClassicStudioRackSongFileReader: TritonSongFileReader
+    public class TritonTrClassicStudioRackSongFileReader : TritonSongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public TritonTrClassicStudioRackSongFileReader(ISongMemory songMemory, byte[] content) 
+        public TritonTrClassicStudioRackSongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }

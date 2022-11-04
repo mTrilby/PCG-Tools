@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchPrograms;
@@ -7,12 +10,10 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.KronosOasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class KronosOasysProgramBank : ProgramBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBanks"></param>
         /// <param name="type"></param>
@@ -21,7 +22,7 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
         /// <param name="synthesisType"></param>
         /// <param name="description"></param>
         protected KronosOasysProgramBank(IProgramBanks programBanks, BankType.EType type, string id, int pcgId,
-             SynthesisType synthesisType, string description)
+            SynthesisType synthesisType, string description)
             : base(programBanks, type, id, pcgId, synthesisType, description)
         {
         }

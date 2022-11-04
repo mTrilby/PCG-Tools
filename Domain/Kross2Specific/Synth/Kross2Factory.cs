@@ -1,30 +1,29 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common;
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.Kross2Specific.Pcg;
 using PcgTools.Model.Kross2Specific.Song;
-using PcgTools.Model.KrossSpecific.Pcg;
 using PcgTools.Model.MSpecific.Synth;
 
 namespace PcgTools.Model.Kross2Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Kross2Factory : MFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly PcgMemory.ContentType _contentType;
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="contentType"></param>
         public Kross2Factory(PcgMemory.ContentType contentType)
@@ -34,7 +33,6 @@ namespace PcgTools.Model.Kross2Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -47,7 +45,6 @@ namespace PcgTools.Model.Kross2Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -63,12 +60,12 @@ namespace PcgTools.Model.Kross2Specific.Synth
             {
                 reader = new Kross2PcgFileReader(pcgMemory, content);
             }
+
             return reader;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -80,7 +77,6 @@ namespace PcgTools.Model.Kross2Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

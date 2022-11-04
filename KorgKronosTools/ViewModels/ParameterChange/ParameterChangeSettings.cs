@@ -1,10 +1,14 @@
-﻿namespace PcgTools.ViewModels.ParameterChange
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+namespace PcgTools.ViewModels.ParameterChange
 {
     public class ParameterChangeSettings
     {
-
         /// <summary>
-        /// 
         /// </summary>
         public enum EChangeType
         {
@@ -15,10 +19,7 @@
 
 
         /// <summary>
-        /// 
         /// </summary>
         public EChangeType ChangeType { get; set; }
-
-
     }
 }

@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Collections.Generic;
 using PcgTools.Model.Common.Synth.OldParameters;
@@ -9,12 +12,10 @@ using PcgTools.Model.MSpecific.Synth;
 namespace PcgTools.Model.KromeExSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KromeExProgram : MProgram
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
@@ -24,9 +25,8 @@ namespace PcgTools.Model.KromeExSpecific.Synth
         }
 
 
-        ///
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
@@ -34,7 +34,6 @@ namespace PcgTools.Model.KromeExSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -46,7 +45,7 @@ namespace PcgTools.Model.KromeExSpecific.Synth
             {
                 case ParameterNames.ProgramParameterName.OscMode:
                     parameter = EnumParameter.Instance.Set(Root, Root.Content, ByteOffset + 836, 2, 0,
-                        new List<string> {"Single", "Double", "Drums"}, this);
+                        new List<string> { "Single", "Double", "Drums" }, this);
                     break;
 
                 case ParameterNames.ProgramParameterName.Category:
@@ -61,6 +60,7 @@ namespace PcgTools.Model.KromeExSpecific.Synth
                     parameter = base.GetParam(name);
                     break;
             }
+
             return parameter;
         }
     }

@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Collections.Generic;
 using PcgTools.Model.Common.Synth.Global;
@@ -11,36 +15,10 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.MicroKorgXlSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MicroKorgXlGlobal : Global
     {
         /// <summary>
-        /// 
-        /// </summary>
-        protected override int CategoryNameLength => 16;
-
-
-        /// <summary>
-        /// Hardcoded.
-        /// </summary>
-        protected override int PcgOffsetCategories => -1;
-
-
-        /// <summary>
-        /// Called genres.
-        /// </summary>
-        protected override int NrOfCategories => 8;
-
-
-        /// <summary>
-        /// Called Categories.
-        /// </summary>
-        protected override int NrOfSubCategories => 8;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public MicroKorgXlGlobal(IPcgMemory pcgMemory)
@@ -48,9 +26,30 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Synth
         {
         }
 
+        /// <summary>
+        /// </summary>
+        protected override int CategoryNameLength => 16;
+
 
         /// <summary>
-        /// 
+        ///     Hardcoded.
+        /// </summary>
+        protected override int PcgOffsetCategories => -1;
+
+
+        /// <summary>
+        ///     Called genres.
+        /// </summary>
+        protected override int NrOfCategories => 8;
+
+
+        /// <summary>
+        ///     Called Categories.
+        /// </summary>
+        protected override int NrOfSubCategories => 8;
+
+
+        /// <summary>
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>
@@ -84,7 +83,6 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>
@@ -114,6 +112,5 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Synth
             var name = categories[subCategory];
             return name;
         }
-
     }
 }

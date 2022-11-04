@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using PcgTools.Model.Common.Synth.Meta;
@@ -9,22 +13,19 @@ using PcgTools.Model.ZeroSeries.Synth;
 namespace PcgTools.Model.Zero3Rw.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Zero3RwCombi : ZeroSeriesCombi
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiBank"></param>
         /// <param name="index"></param>
         public Zero3RwCombi(ICombiBank combiBank, int index)
             : base(combiBank, index)
         {
-
             if (combiBank.Type == BankType.EType.Int)
             {
-                Id = $"{combiBank.Id}{(index).ToString("00")}";
+                Id = $"{combiBank.Id}{index.ToString("00")}";
             }
             else
             {
@@ -36,7 +37,6 @@ namespace PcgTools.Model.Zero3Rw.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -46,11 +46,11 @@ namespace PcgTools.Model.Zero3Rw.Synth
 
             switch (name)
             {
-
-            default:
-                parameter = base.GetParam(name);
-                break;
+                default:
+                    parameter = base.GetParam(name);
+                    break;
             }
+
             return parameter;
         }
     }

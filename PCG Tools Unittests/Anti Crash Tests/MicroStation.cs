@@ -1,4 +1,8 @@
-﻿// (c) 2011 Michel Keijzers
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

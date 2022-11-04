@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.TritonSpecific.Pcg;
@@ -6,12 +10,10 @@ using PcgTools.Model.TritonSpecific.Pcg;
 namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
-    public class TritonTrClassicStudioRackPcgFileReader: TritonPcgFileReader
+    public class TritonTrClassicStudioRackPcgFileReader : TritonPcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>

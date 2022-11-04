@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.File;
 using PcgTools.Model.Common.Synth.SongsRelated;
@@ -6,12 +10,10 @@ using PcgTools.Model.Common.Synth.SongsRelated;
 namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class Factory : IFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -19,7 +21,6 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -27,7 +28,6 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -36,7 +36,6 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>

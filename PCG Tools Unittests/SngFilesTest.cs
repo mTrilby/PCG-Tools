@@ -1,4 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.Model.Common.File;
 
 
@@ -54,6 +60,6 @@ namespace PCG_Tools_Unittests
             Run(@"Triton Extreme\PROSHARP.sng");
         }
  * 
- */ 
+ */
     }
 }

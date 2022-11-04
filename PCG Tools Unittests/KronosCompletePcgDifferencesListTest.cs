@@ -1,32 +1,37 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
+// (c) 2011 Michel Keijzers
 
 namespace PCG_Tools_Unittests
 {
     [TestClass]
     public class KronosCompletePcgDifferencesListTest
     {
-        const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\PRELOAD.pcg";
+        private const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\PRELOAD.pcg";
 
 
-        PcgMemory _pcgMemory;
+        private ListGeneratorDifferencesList _generator;
 
 
-        ListGeneratorDifferencesList _generator;
+        private string[] _lines;
 
 
-        string[] _lines;
+        private PcgMemory _pcgMemory;
 
 
         [TestInitialize]
@@ -88,7 +93,7 @@ namespace PCG_Tools_Unittests
 
             foreach (var item in _pcgMemory.CombiBanks.BankCollection)
             {
-                _generator.SelectedCombiBanks.Add((ICombiBank) item);
+                _generator.SelectedCombiBanks.Add((ICombiBank)item);
             }
 
             // Run.
@@ -119,10 +124,10 @@ namespace PCG_Tools_Unittests
                 OutputFileName = $"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.csv"
             };
 
-            _generator.SelectedCombiBanks.Add((CombiBank) _pcgMemory.CombiBanks[0]); // [0] = I-A
+            _generator.SelectedCombiBanks.Add((CombiBank)_pcgMemory.CombiBanks[0]); // [0] = I-A
             _generator.SelectedCombiBanks.Add((CombiBank)_pcgMemory.CombiBanks[2]); // [2] = I-C
             //foreach (var item in _pcgMemory.CombiBanks)
-           // {
+            // {
             //    _generator.SelectedCombiBanks.Add(item);
             //}
 

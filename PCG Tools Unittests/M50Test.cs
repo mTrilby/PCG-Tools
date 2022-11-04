@@ -1,4 +1,10 @@
-﻿using System.IO;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
@@ -6,26 +12,27 @@ using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
 // (c) 2011 Michel Keijzers
 
 namespace PCG_Tools_Unittests
 {
     /// <summary>
-    /// Tests Triton Extreme and all other Triton series.
+    ///     Tests Triton Extreme and all other Triton series.
     /// </summary>
     [TestClass]
     public class M50Test
     {
-        const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\M50";
-        
-
-        PcgMemory _pcgMemory;
+        private const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\M50";
 
 
-        ListGenerator _generator;
+        private ListGenerator _generator;
 
 
-        string[] _lines;
+        private string[] _lines;
+
+
+        private PcgMemory _pcgMemory;
 
 
         private void SetDefaults()
@@ -50,7 +57,7 @@ namespace PCG_Tools_Unittests
             {
                 _generator.SelectedCombiBanks.Add((ICombiBank)item);
             }
-            
+
             _generator.IgnoreInitCombis = true;
             _generator.IgnoreFirstProgram = false;
             _generator.IgnoreMutedOffTimbres = true;

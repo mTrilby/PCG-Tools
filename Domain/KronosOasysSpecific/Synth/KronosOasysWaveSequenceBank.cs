@@ -1,21 +1,35 @@
-﻿using System;
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
 
-// (c) 2011 Michel Keijzers
+#endregion
+
+using System;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchWaveSequences;
+
+// (c) 2011 Michel Keijzers
 
 namespace PcgTools.Model.KronosOasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class KronosOasysWaveSequenceBank : WaveSequenceBank
     {
         /// <summary>
-        /// 
         /// </summary>
-        public override int NrOfPatches 
+        /// <param name="waveSeqBanks"></param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="pcgId"></param>
+        protected KronosOasysWaveSequenceBank(IWaveSequenceBanks waveSeqBanks, BankType.EType type, string id,
+            int pcgId) : base(waveSeqBanks, type, id, pcgId)
+        {
+        }
+
+        /// <summary>
+        /// </summary>
+        public override int NrOfPatches
         {
             get
             {
@@ -23,7 +37,7 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
                 {
                     case BankType.EType.Int:
                         return 150;
-                    
+
                     case BankType.EType.User:
                         return 32;
 
@@ -34,18 +48,6 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
                         throw new ArgumentOutOfRangeException();
                 }
             }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="waveSeqBanks"></param>
-        /// <param name="type"></param>
-        /// <param name="id"></param>
-        /// <param name="pcgId"></param>
-        protected KronosOasysWaveSequenceBank(IWaveSequenceBanks waveSeqBanks, BankType.EType type, string id, int pcgId) : base(waveSeqBanks, type, id, pcgId)
-        {
         }
     }
 }

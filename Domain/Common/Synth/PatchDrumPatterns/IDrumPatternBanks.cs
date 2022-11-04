@@ -1,23 +1,25 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.Meta;
 
 namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
 {
     /// <summary>
-    /// 
     /// </summary>
     public interface IDrumPatternBanks : IBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         int Drk2PcgOffset { get; set; }
 
 
         /// <summary>
-        /// Returns the indexToSearch, starting with indexToSearch 0 as first bank, first indexToSearch, 
-        /// and continuing over banks.
+        ///     Returns the indexToSearch, starting with indexToSearch 0 as first bank, first indexToSearch,
+        ///     and continuing over banks.
         /// </summary>
         /// <param name="indexToSearch"></param>
         /// <returns></returns>
@@ -25,7 +27,7 @@ namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
 
 
         /// <summary>
-        /// Returns the drum Pattern index.
+        ///     Returns the drum Pattern index.
         /// </summary>
         /// <param name="drumPattern"></param>
         /// <returns></returns>
@@ -33,7 +35,6 @@ namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgId"></param>
         /// <returns></returns>

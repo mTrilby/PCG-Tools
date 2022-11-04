@@ -1,6 +1,9 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
-using System;
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using System.Collections.Generic;
 using System.Text;
 using PcgTools.Model.Common.Synth.OldParameters;
@@ -10,24 +13,22 @@ using PcgTools.Model.MntxSeriesSpecific.Synth;
 namespace PcgTools.Model.M1Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M1Program : MntxProgram
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
         public M1Program(ProgramBank programBank, int index)
             : base(programBank, index)
         {
-            Id = $"{programBank.Id}{(index).ToString("00")}";
+            Id = $"{programBank.Id}{index.ToString("00")}";
         }
 
-        
+
         /// <summary>
-        /// Note: M1 program names work different than M1 combi names.
+        ///     Note: M1 program names work different than M1 combi names.
         /// </summary>
         public override string Name
         {
@@ -44,7 +45,7 @@ namespace PcgTools.Model.M1Specific.Synth
                 {
                     var character = PcgRoot.Content[ByteOffset + index];
                     // A 0 does not mean end of string.
-                    name.Append((character == 0x00) ? ' ' : (char) character);
+                    name.Append(character == 0x00 ? ' ' : (char)character);
                 }
 
                 return name.ToString().Trim();
@@ -57,25 +58,22 @@ namespace PcgTools.Model.M1Specific.Synth
                     SetChars(0, MaxNameLength, value);
                     OnPropertyChanged("Name");
                 }
-
             }
         }
-     
+
 
         /// <summary>
-        /// 
         /// </summary>
         public override int MaxNameLength => 10;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public override bool IsEmptyOrInit => ((Name == string.Empty) || (Name.Contains("INIT") && Name.Contains("Prog")));
+        public override bool IsEmptyOrInit => Name == string.Empty || (Name.Contains("INIT") && Name.Contains("Prog"));
 
 
         /// <summary>
-        /// As overridden, but without changing genre/category (is fixed in MicroKorg XL).
+        ///     As overridden, but without changing genre/category (is fixed in MicroKorg XL).
         /// </summary>
         public override void Clear()
         {
@@ -85,7 +83,7 @@ namespace PcgTools.Model.M1Specific.Synth
 
 
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
@@ -93,7 +91,6 @@ namespace PcgTools.Model.M1Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -105,12 +102,12 @@ namespace PcgTools.Model.M1Specific.Synth
             {
                 case ParameterNames.ProgramParameterName.OscMode:
                     parameter = EnumParameter.Instance.Set(Root, Root.Content, ByteOffset + 10, 7, 0,
-                        new List<string> {"Single", "Double", "Drums"}, this);
+                        new List<string> { "Single", "Double", "Drums" }, this);
                     break;
 
                 case ParameterNames.ProgramParameterName.Category:
                     parameter = new FixedParameter();
-                    ((FixedParameter) parameter).Set(Root, Root.Content, FixedParameter.EType.Category, this);
+                    ((FixedParameter)parameter).Set(Root, Root.Content, FixedParameter.EType.Category, this);
                     break;
 
                 default:
@@ -121,4 +118,3 @@ namespace PcgTools.Model.M1Specific.Synth
         }
     }
 }
-

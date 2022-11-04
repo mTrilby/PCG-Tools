@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -10,25 +14,23 @@ using PcgTools.Model.MntxSeriesSpecific.Synth;
 namespace PcgTools.Model.TSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     // ReSharper disable once InconsistentNaming
     public class TSeriesProgram : MntxProgram
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
         public TSeriesProgram(IBank programBank, int index)
             : base(programBank, index)
         {
-            Id = $"{programBank.Id}{(index).ToString("00")}";
+            Id = $"{programBank.Id}{index.ToString("00")}";
         }
 
 
         /// <summary>
-        /// Note: TSeries program names work different than TSeries combi names.
+        ///     Note: TSeries program names work different than TSeries combi names.
         /// </summary>
         public override string Name
         {
@@ -45,7 +47,7 @@ namespace PcgTools.Model.TSeries.Synth
                 {
                     var character = PcgRoot.Content[ByteOffset + index];
                     // A 0 does not mean end of string.
-                    name.Append((character == 0x00) ? ' ' : (char) character);
+                    name.Append(character == 0x00 ? ' ' : (char)character);
                 }
 
                 return name.ToString().Trim();
@@ -58,25 +60,22 @@ namespace PcgTools.Model.TSeries.Synth
                     SetChars(0, MaxNameLength, value);
                     OnPropertyChanged("Name");
                 }
-
             }
         }
-     
+
 
         /// <summary>
-        /// 
         /// </summary>
         public override int MaxNameLength => 10;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public override bool IsEmptyOrInit => ((Name == string.Empty) || (Name.Contains("INIT") && Name.Contains("Prog")));
+        public override bool IsEmptyOrInit => Name == string.Empty || (Name.Contains("INIT") && Name.Contains("Prog"));
 
 
         /// <summary>
-        /// As overridden, but without changing genre/category (is fixed in MicroKorg XL).
+        ///     As overridden, but without changing genre/category (is fixed in MicroKorg XL).
         /// </summary>
         public override void Clear()
         {
@@ -86,7 +85,7 @@ namespace PcgTools.Model.TSeries.Synth
 
 
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
@@ -94,7 +93,6 @@ namespace PcgTools.Model.TSeries.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -122,4 +120,3 @@ namespace PcgTools.Model.TSeries.Synth
         }
     }
 }
-

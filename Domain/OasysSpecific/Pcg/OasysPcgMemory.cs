@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.KronosOasysSpecific.Pcg;
@@ -8,12 +11,10 @@ using PcgTools.Model.OasysSpecific.Synth;
 namespace PcgTools.Model.OasysSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class OasysPcgMemory : KronosOasysPcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public OasysPcgMemory(string fileName)

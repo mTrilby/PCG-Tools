@@ -1,16 +1,17 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.MntxSeriesSpecific.Pcg;
 using PcgTools.Model.M3rSpecific.Synth;
-
+using PcgTools.Model.MntxSeriesSpecific.Pcg;
 
 namespace PcgTools.Model.M3rSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M3RSysExMemory : MntxSysExMemory
     {
@@ -27,34 +28,25 @@ namespace PcgTools.Model.M3rSpecific.Pcg
             Global = new M3RGlobal(this);
             Model = Models.Find(Models.EOsVersion.EOsVersionM3R);
         }
-        
+
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasSubCategories => false;
 
 
         /// <summary>
-        /// Hardcoded (taken from Mode parameter).
+        ///     Hardcoded (taken from Mode parameter).
         /// </summary>
         public override int NumberOfCategories => 4;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public override int NumberOfSubCategories
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
+        public override int NumberOfSubCategories => throw new NotSupportedException();
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool AreCategoriesEditable => false;
     }

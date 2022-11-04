@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Linq;
@@ -10,12 +14,10 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.TrinitySpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TrinityProgramBanks : ProgramBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public TrinityProgramBanks(IPcgMemory pcgMemory)
@@ -25,7 +27,6 @@ namespace PcgTools.Model.TrinitySpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {
@@ -40,15 +41,16 @@ namespace PcgTools.Model.TrinitySpecific.Synth
             Add(new TrinityProgramBank(
                 this, BankType.EType.Int, "S", 4, ProgramBank.SynthesisType.MossZ1, "S")); //  4 ; Prophecy board
 
-            Add(new TrinityProgramBank(this, BankType.EType.Int, "M", 5, ProgramBank.SynthesisType.MossZ1, "M")); //  5 ; 
+            Add(new TrinityProgramBank(this, BankType.EType.Int, "M", 5, ProgramBank.SynthesisType.MossZ1,
+                "M")); //  5 ; 
         }
 
-            // Index:              0       1       2       3       4        4
-            // Name:               A       B       C       D       S        M
+        // Index:              0       1       2       3       4        4
+        // Name:               A       B       C       D       S        M
 
 
         /// <summary>
-        /// In the Trinity, when program S or M is referenced, use that bank.
+        ///     In the Trinity, when program S or M is referenced, use that bank.
         /// </summary>
         /// <param name="pcgId"></param>
         /// <returns></returns>
@@ -56,7 +58,7 @@ namespace PcgTools.Model.TrinitySpecific.Synth
         {
             IBank bank = null;
 
-            if ((pcgId == 4) || (pcgId == 5))
+            if (pcgId == 4 || pcgId == 5)
             {
                 var programBank = BankCollection[4];
                 if (programBank.IsLoaded)
@@ -84,9 +86,9 @@ namespace PcgTools.Model.TrinitySpecific.Synth
 
             if (bank == null)
             {
-                throw new NotSupportedException("No GM Bank present in Trinity");    
+                throw new NotSupportedException("No GM Bank present in Trinity");
             }
-            
+
             return bank as IProgramBank;
         }
     }

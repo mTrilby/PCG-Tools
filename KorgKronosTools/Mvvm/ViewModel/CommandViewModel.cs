@@ -1,15 +1,20 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Windows.Input;
 
 namespace PcgTools.Mvvm.ViewModel
 {
     /// <summary>
-    /// Represents an actionable item displayed by a View.
+    ///     Represents an actionable item displayed by a View.
     /// </summary>
     public class CommandViewModel : ViewModelBase
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="displayName"></param>
         /// <param name="command"></param>
@@ -24,8 +29,7 @@ namespace PcgTools.Mvvm.ViewModel
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public ICommand Command { get; private set; }
+        public ICommand Command { get; }
     }
 }

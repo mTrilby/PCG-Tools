@@ -1,34 +1,18 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 
 namespace PcgTools.Model.Common.Synth.MemoryAndFactory
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Chunk : IChunk
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Offset { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Size { get; private set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <param name="offset"></param>
@@ -42,5 +26,19 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
             Offset = offset;
             Size = size;
         }
+
+        /// <summary>
+        /// </summary>
+        public string Name { get; }
+
+
+        /// <summary>
+        /// </summary>
+        public int Offset { get; }
+
+
+        /// <summary>
+        /// </summary>
+        public int Size { get; }
     }
 }

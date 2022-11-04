@@ -4,311 +4,317 @@
         xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
         Title="{x:Static common:Strings.ListGenerator}" ResizeMode="CanResizeWithGrip"
         Icon="/PcgTools;component/Gui/pcgtools.ico" Loaded="Window_Loaded" Closed="Window_Closed"
-        ShowInTaskbar="True" WindowStartupLocation="CenterOwner" Width="1000" 
+        ShowInTaskbar="True" WindowStartupLocation="CenterOwner" Width="1000"
         SizeToContent="Height">
     <WrapPanel Name="wrapPanel" Margin="4" Orientation="Horizontal">
 
         <Expander Header="{x:Static common:Strings.ListType}" Margin="4" Padding="4" IsExpanded="True">
             <StackPanel>
-                <RadioButton Content="{x:Static common:Strings.PatchList}" 
-        			    Margin="4" x:Name="radioButtonPatchList" Checked="RadioButtonPatchListChecked"/>
+                <RadioButton Content="{x:Static common:Strings.PatchList}"
+                             Margin="4" x:Name="radioButtonPatchList" Checked="RadioButtonPatchListChecked" />
                 <RadioButton Content="{x:Static common:Strings.ProgramUsageList}"
-            		    Margin="4" x:Name="radioButtonProgramUsageList" Checked="RadioButtonProgramUsageListChecked" />
+                             Margin="4" x:Name="radioButtonProgramUsageList"
+                             Checked="RadioButtonProgramUsageListChecked" />
                 <RadioButton Content="{x:Static common:Strings.CombiContentList}"
-        		        Margin="4" Checked="RadioButtonCombiContentListChecked"
-            		    x:Name="radioButtonCombiContentList"/>
+                             Margin="4" Checked="RadioButtonCombiContentListChecked"
+                             x:Name="radioButtonCombiContentList" />
                 <RadioButton Content="{x:Static common:Strings.DifferencesList}"
-        			    Margin="4" x:Name="radioButtonDifferencesList" Checked="RadioButtonDifferencesListChecked"/>
+                             Margin="4" x:Name="radioButtonDifferencesList" Checked="RadioButtonDifferencesListChecked" />
                 <RadioButton Content="{x:Static common:Strings.FileContentList}"
-            		    Margin="4" x:Name="radioButtonFileContentList" Checked="RadioButtonFileContentListChecked"/>
+                             Margin="4" x:Name="radioButtonFileContentList" Checked="RadioButtonFileContentListChecked" />
 
-                <Label Content="{x:Static common:Strings.ListSubType}" 
-        			    Margin="4" x:Name="labelListSubType"/>
-                    <ComboBox Margin="4" x:Name="comboBoxListSubType"
-        			    SelectionChanged="ComboBoxListSubTypeSelectionChanged"/>
-                </StackPanel>
-            </Expander>
+                <Label Content="{x:Static common:Strings.ListSubType}"
+                       Margin="4" x:Name="labelListSubType" />
+                <ComboBox Margin="4" x:Name="comboBoxListSubType"
+                          SelectionChanged="ComboBoxListSubTypeSelectionChanged" />
+            </StackPanel>
+        </Expander>
 
-            <Expander Header="{x:Static common:Strings.DifferencesListOptions}"
-                        x:Name="groupBoxDifferencesListOptions" Padding="4" Margin="4" IsExpanded="True">
-                <StackPanel>
-                    <Label Content="{x:Static common:Strings.MaxNumberOfDifferences}"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Slider x:Name="sliderDiffListMaxNumberOfDifferences"
-                                Width="180" Interval="1" Maximum="500" TickPlacement="Both"
-                                TickFrequency="1" ValueChanged="SliderDiffListMaxNumberOfDifferencesValueChanged" SmallChange="1"
-                                IsSnapToTickEnabled="True" Delay="50" LargeChange="10" Margin="4" />
-                        <TextBox HorizontalAlignment="Right" LostFocus="TextBoxSetListsFromLostFocus" 
-                                x:Name="textBoxDiffListMaxNumberOfDifferences" Margin="4" MinWidth="20"
-                                IsReadOnly="True" />
-                    </StackPanel>
-
-                    <CheckBox Checked="CheckBoxSetListsEnableCheckedChanged"
-                                Content="{x:Static common:Strings.IgnorePatchNames}" DataContext="{Binding}"
-                                IsThreeState="False" Margin="4"
-                                x:Name="checkBoxDiffListIgnorePatchNames" Unchecked="CheckBoxSetListsEnableCheckedChanged"
-                                IsChecked="False"/>
-                    <CheckBox Content="{x:Static common:Strings.IgnoreSetListSlotDescriptions}"
-                                DataContext="{Binding}" IsChecked="False" IsThreeState="False" Margin="4"
-                                x:Name="checkBoxDiffListIgnoreSetListSlotDescriptions"/>
-                    <CheckBox Content="{x:Static common:Strings.SearchBothDirections}" DataContext="{Binding}"
-                                IsChecked="False" IsThreeState="False" Margin="4" x:Name="checkBoxDiffListSearchBothDirections"/>
-                </StackPanel>
-            </Expander>
-
-            <Expander Header="{x:Static common:Strings.FilterProgramBanks}" Margin="4" Padding="4"
-                    x:Name="groupBoxFilterProgramBanks" IsExpanded="True">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="checkBoxProgramBankIa" Content="I-_A" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankIb" Content="I-_B" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankIc" Content="I-_C" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankId" Content="I-_D" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankIe" Content="I-_E" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankIf" Content="I-_F" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankIg" Content="I-_G" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankIh" Content="I-_H" Margin="4"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="checkBoxProgramBankGm" Content="_GM"  Margin="4"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="checkBoxProgramBankUa" Content="U-_A" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUb" Content="U-_B" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUc" Content="U-_C" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUd" Content="U-_D" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUe" Content="U-_E" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUf" Content="U-_F" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUg" Content="U-_G" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUh" Content="U-_H" Margin="4"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="checkBoxProgramBankUaa" Content="U-_AA" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUbb" Content="U-_BB" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUcc" Content="U-_CC" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUdd" Content="U-_DD" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUee" Content="U-_EE" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUff" Content="U-_FF" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUgg" Content="U-_GG" Margin="4"/>
-                        <CheckBox x:Name="checkBoxProgramBankUhh" Content="U-_HH" Margin="4"/>
-                    </StackPanel>
-
+        <Expander Header="{x:Static common:Strings.DifferencesListOptions}"
+                  x:Name="groupBoxDifferencesListOptions" Padding="4" Margin="4" IsExpanded="True">
+            <StackPanel>
+                <Label Content="{x:Static common:Strings.MaxNumberOfDifferences}" />
                 <StackPanel Orientation="Horizontal">
-                    <CheckBox x:Name="checkBoxProgramBanksVirtual" Content="_All Virtual Banks"  Margin="4"/>
+                    <Slider x:Name="sliderDiffListMaxNumberOfDifferences"
+                            Width="180" Interval="1" Maximum="500" TickPlacement="Both"
+                            TickFrequency="1" ValueChanged="SliderDiffListMaxNumberOfDifferencesValueChanged"
+                            SmallChange="1"
+                            IsSnapToTickEnabled="True" Delay="50" LargeChange="10" Margin="4" />
+                    <TextBox HorizontalAlignment="Right" LostFocus="TextBoxSetListsFromLostFocus"
+                             x:Name="textBoxDiffListMaxNumberOfDifferences" Margin="4" MinWidth="20"
+                             IsReadOnly="True" />
+                </StackPanel>
+
+                <CheckBox Checked="CheckBoxSetListsEnableCheckedChanged"
+                          Content="{x:Static common:Strings.IgnorePatchNames}" DataContext="{Binding}"
+                          IsThreeState="False" Margin="4"
+                          x:Name="checkBoxDiffListIgnorePatchNames" Unchecked="CheckBoxSetListsEnableCheckedChanged"
+                          IsChecked="False" />
+                <CheckBox Content="{x:Static common:Strings.IgnoreSetListSlotDescriptions}"
+                          DataContext="{Binding}" IsChecked="False" IsThreeState="False" Margin="4"
+                          x:Name="checkBoxDiffListIgnoreSetListSlotDescriptions" />
+                <CheckBox Content="{x:Static common:Strings.SearchBothDirections}" DataContext="{Binding}"
+                          IsChecked="False" IsThreeState="False" Margin="4"
+                          x:Name="checkBoxDiffListSearchBothDirections" />
+            </StackPanel>
+        </Expander>
+
+        <Expander Header="{x:Static common:Strings.FilterProgramBanks}" Margin="4" Padding="4"
+                  x:Name="groupBoxFilterProgramBanks" IsExpanded="True">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="checkBoxProgramBankIa" Content="I-_A" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankIb" Content="I-_B" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankIc" Content="I-_C" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankId" Content="I-_D" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankIe" Content="I-_E" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankIf" Content="I-_F" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankIg" Content="I-_G" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankIh" Content="I-_H" Margin="4" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitPrograms_slg}"
-                                HorizontalAlignment="Left" Margin="4"
-                                x:Name="checkBoxProgramBanksIgnoreInitPrograms" />
-                            <CheckBox Content="{x:Static common:Strings.IgnoreFirstProgram}"
-                                Margin="4" x:Name="checkBoxIgnoreFirstProgram"/>
-                        </StackPanel>
+                    <CheckBox x:Name="checkBoxProgramBankGm" Content="_GM" Margin="4" />
+                </StackPanel>
 
-                        <StackPanel  Orientation="Horizontal" VerticalAlignment="Top">
-                            <Button Content="{x:Static common:Strings.SelectAll}"
-                				    Margin="4" Padding="4" Click="ButtonProgramBanksSelectAllClick"/>
-                            <Button Content="{x:Static common:Strings.DeselectAll}"
-                				    Margin="4" Padding="4" Click="ButtonProgramBanksDeselectAllClick"/>
-                        </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="checkBoxProgramBankUa" Content="U-_A" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUb" Content="U-_B" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUc" Content="U-_C" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUd" Content="U-_D" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUe" Content="U-_E" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUf" Content="U-_F" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUg" Content="U-_G" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUh" Content="U-_H" Margin="4" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="checkBoxProgramBankUaa" Content="U-_AA" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUbb" Content="U-_BB" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUcc" Content="U-_CC" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUdd" Content="U-_DD" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUee" Content="U-_EE" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUff" Content="U-_FF" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUgg" Content="U-_GG" Margin="4" />
+                    <CheckBox x:Name="checkBoxProgramBankUhh" Content="U-_HH" Margin="4" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="checkBoxProgramBanksVirtual" Content="_All Virtual Banks" Margin="4" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitPrograms_slg}"
+                                  HorizontalAlignment="Left" Margin="4"
+                                  x:Name="checkBoxProgramBanksIgnoreInitPrograms" />
+                        <CheckBox Content="{x:Static common:Strings.IgnoreFirstProgram}"
+                                  Margin="4" x:Name="checkBoxIgnoreFirstProgram" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <Button Content="{x:Static common:Strings.SelectAll}"
+                                Margin="4" Padding="4" Click="ButtonProgramBanksSelectAllClick" />
+                        <Button Content="{x:Static common:Strings.DeselectAll}"
+                                Margin="4" Padding="4" Click="ButtonProgramBanksDeselectAllClick" />
                     </StackPanel>
                 </StackPanel>
-            </Expander>
+            </StackPanel>
+        </Expander>
 
-            <Expander Header="{x:Static common:Strings.FilterCombiBanks_slg}"
-            		Margin="4" Padding="4" x:Name="groupBoxFilterCombiBanks" IsExpanded="True">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="I-_A" Margin="4" x:Name="checkBoxCombiBankIa"/>
-                        <CheckBox Content="I-_B" Margin="4" x:Name="checkBoxCombiBankIb"/>
-                        <CheckBox Content="I-_C" Margin="4" x:Name="checkBoxCombiBankIc"/>
-                        <CheckBox Content="I-_D" Margin="4" x:Name="checkBoxCombiBankId"/>
-                        <CheckBox Content="I-_E" Margin="4" x:Name="checkBoxCombiBankIe"/>
-                        <CheckBox Content="I-_F" Margin="4" x:Name="checkBoxCombiBankIf"/>
-                        <CheckBox Content="I-_G" Margin="4" x:Name="checkBoxCombiBankIg"/>
-                        <CheckBox Content="I-_H" Margin="4" x:Name="checkBoxCombiBankIh"/>
+        <Expander Header="{x:Static common:Strings.FilterCombiBanks_slg}"
+                  Margin="4" Padding="4" x:Name="groupBoxFilterCombiBanks" IsExpanded="True">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="I-_A" Margin="4" x:Name="checkBoxCombiBankIa" />
+                    <CheckBox Content="I-_B" Margin="4" x:Name="checkBoxCombiBankIb" />
+                    <CheckBox Content="I-_C" Margin="4" x:Name="checkBoxCombiBankIc" />
+                    <CheckBox Content="I-_D" Margin="4" x:Name="checkBoxCombiBankId" />
+                    <CheckBox Content="I-_E" Margin="4" x:Name="checkBoxCombiBankIe" />
+                    <CheckBox Content="I-_F" Margin="4" x:Name="checkBoxCombiBankIf" />
+                    <CheckBox Content="I-_G" Margin="4" x:Name="checkBoxCombiBankIg" />
+                    <CheckBox Content="I-_H" Margin="4" x:Name="checkBoxCombiBankIh" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="U-_A" Margin="4" x:Name="checkBoxCombiBankUa" />
+                    <CheckBox Content="U-_B" Margin="4" x:Name="checkBoxCombiBankUb" />
+                    <CheckBox Content="U-_C" Margin="4" x:Name="checkBoxCombiBankUc" />
+                    <CheckBox Content="U-_D" Margin="4" x:Name="checkBoxCombiBankUd" />
+                    <CheckBox Content="U-_E" Margin="4" x:Name="checkBoxCombiBankUe" />
+                    <CheckBox Content="U-_F" Margin="4" x:Name="checkBoxCombiBankUf" />
+                    <CheckBox Content="U-_G" Margin="4" x:Name="checkBoxCombiBankUg" />
+                    <CheckBox Content="U-_H" Margin="4" x:Name="checkBoxCombiBankUh" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="checkBoxCombiBanksVirtual" Content="_All Virtual Banks" Margin="4" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitCombis}"
+                                  HorizontalAlignment="Left" Margin="4" x:Name="checkBoxCombiBanksIgnoreInitCombis" />
+                        <CheckBox Content="{x:Static common:Strings.IgnoreMutedOffTimbres}"
+                                  Margin="4" x:Name="checkBoxIgnoreMutedOffTimbres" />
+                        <CheckBox Content="{x:Static common:Strings.IgnoreMutedOffFirstProgramTimbre}"
+                                  Margin="4" x:Name="checkBoxIgnoreMutedOffFirstProgramTimbre" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="U-_A" Margin="4" x:Name="checkBoxCombiBankUa"/>
-                        <CheckBox Content="U-_B" Margin="4" x:Name="checkBoxCombiBankUb"/>
-                        <CheckBox Content="U-_C" Margin="4" x:Name="checkBoxCombiBankUc"/>
-                        <CheckBox Content="U-_D" Margin="4" x:Name="checkBoxCombiBankUd"/>
-                        <CheckBox Content="U-_E" Margin="4" x:Name="checkBoxCombiBankUe"/>
-                        <CheckBox Content="U-_F" Margin="4" x:Name="checkBoxCombiBankUf"/>
-                        <CheckBox Content="U-_G" Margin="4" x:Name="checkBoxCombiBankUg"/>
-                        <CheckBox Content="U-_H" Margin="4" x:Name="checkBoxCombiBankUh"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="checkBoxCombiBanksVirtual" Content="_All Virtual Banks"  Margin="4"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitCombis}"
-                				HorizontalAlignment="Left" Margin="4" x:Name="checkBoxCombiBanksIgnoreInitCombis"  />
-                            <CheckBox Content="{x:Static common:Strings.IgnoreMutedOffTimbres}" 
-                				Margin="4" x:Name="checkBoxIgnoreMutedOffTimbres"/>
-                        <CheckBox Content="{x:Static common:Strings.IgnoreMutedOffFirstProgramTimbre}" 
-                				Margin="4" x:Name="checkBoxIgnoreMutedOffFirstProgramTimbre"/>
-                    </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="{x:Static common:Strings.SelectAll}"
-                				Margin="4" Padding="4" Click="ButtonCombiBanksSelectAllClick" Height="23"/>
-                            <Button Content="{x:Static common:Strings.DeselectAll}"
-                				Margin="4" Padding="4" Click="ButtonCombiBanksDeselectAllClick" Height="23"/>
-                        </StackPanel>
+                        <Button Content="{x:Static common:Strings.SelectAll}"
+                                Margin="4" Padding="4" Click="ButtonCombiBanksSelectAllClick" Height="23" />
+                        <Button Content="{x:Static common:Strings.DeselectAll}"
+                                Margin="4" Padding="4" Click="ButtonCombiBanksDeselectAllClick" Height="23" />
                     </StackPanel>
                 </StackPanel>
-            </Expander>
+            </StackPanel>
+        </Expander>
 
-            <Expander Header="{x:Static common:Strings.FilterSetLists}"
-            		    Margin="4" Padding="4" x:Name="groupBoxSetLists" IsExpanded="True">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="{x:Static common:Strings.Enabled}" 
-            					    Margin="4" x:Name="checkBoxSetListsEnable" IsThreeState="False" DataContext="{Binding}"
-            					    Checked="CheckBoxSetListsEnableCheckedChanged" Unchecked="CheckBoxSetListsEnableCheckedChanged"
-            					    VerticalAlignment="Center"/>
-                        <Label Content="{x:Static common:Strings.Range}"
-            					    Margin="4" x:Name="labelSetListRange" VerticalAlignment="Center"/>
-                        <TextBox HorizontalAlignment="Left" Margin="4" MinWidth="20" x:Name="textBoxSetListsFrom" 
-            					    LostFocus="TextBoxSetListsFromLostFocus"/>
-                        <Label Content="{x:Static common:Strings.To}"
-            					    Margin="4" x:Name="labelSetListsRangeTo" VerticalAlignment="Center"/>
-                        <TextBox  HorizontalAlignment="Right" Margin="4" MinWidth="20" x:Name="textBoxSetListsTo"
-            					    LostFocus="TextBoxSetListsToLostFocus"/>
-                        <Button Content="{x:Static common:Strings.SelectAll}" 
-            					    Margin="4" Padding="4" x:Name="buttonSetListsSelectAll" Click="ButtonSetListsSelectAllClick"/>
-                    </StackPanel>
-                    <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitSetListSlots}"
-            				    x:Name="checkBoxSetListsIgnoreInitSetListSlots" Margin="4"   />
+        <Expander Header="{x:Static common:Strings.FilterSetLists}"
+                  Margin="4" Padding="4" x:Name="groupBoxSetLists" IsExpanded="True">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="{x:Static common:Strings.Enabled}"
+                              Margin="4" x:Name="checkBoxSetListsEnable" IsThreeState="False" DataContext="{Binding}"
+                              Checked="CheckBoxSetListsEnableCheckedChanged"
+                              Unchecked="CheckBoxSetListsEnableCheckedChanged"
+                              VerticalAlignment="Center" />
+                    <Label Content="{x:Static common:Strings.Range}"
+                           Margin="4" x:Name="labelSetListRange" VerticalAlignment="Center" />
+                    <TextBox HorizontalAlignment="Left" Margin="4" MinWidth="20" x:Name="textBoxSetListsFrom"
+                             LostFocus="TextBoxSetListsFromLostFocus" />
+                    <Label Content="{x:Static common:Strings.To}"
+                           Margin="4" x:Name="labelSetListsRangeTo" VerticalAlignment="Center" />
+                    <TextBox HorizontalAlignment="Right" Margin="4" MinWidth="20" x:Name="textBoxSetListsTo"
+                             LostFocus="TextBoxSetListsToLostFocus" />
+                    <Button Content="{x:Static common:Strings.SelectAll}"
+                            Margin="4" Padding="4" x:Name="buttonSetListsSelectAll"
+                            Click="ButtonSetListsSelectAllClick" />
                 </StackPanel>
-            </Expander>
+                <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitSetListSlots}"
+                          x:Name="checkBoxSetListsIgnoreInitSetListSlots" Margin="4" />
+            </StackPanel>
+        </Expander>
 
-            <Expander Header="{x:Static common:Strings.FilterWaveSequences}" 
-                            x:Name="groupBoxFilterWaveSequences" Margin="4" Padding="4" IsExpanded="True">
-                <StackPanel>
-                    <CheckBox Margin="4" x:Name="checkBoxFilterWaveSequences"
-                                    Content="{x:Static common:Strings.Enabled}" />
-                    <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitWaveSequences}"
-                                    x:Name="checkBoxWaveSequencesIgnoreInitWaveSequences" Margin="4" />
-                </StackPanel>
-            </Expander>
+        <Expander Header="{x:Static common:Strings.FilterWaveSequences}"
+                  x:Name="groupBoxFilterWaveSequences" Margin="4" Padding="4" IsExpanded="True">
+            <StackPanel>
+                <CheckBox Margin="4" x:Name="checkBoxFilterWaveSequences"
+                          Content="{x:Static common:Strings.Enabled}" />
+                <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitWaveSequences}"
+                          x:Name="checkBoxWaveSequencesIgnoreInitWaveSequences" Margin="4" />
+            </StackPanel>
+        </Expander>
 
         <Expander x:Name="groupBoxFilterDrumKits" Header="{x:Static common:Strings.FilterDrumKits}"
-                           Margin="4"  Padding="4" IsExpanded="True">
+                  Margin="4" Padding="4" IsExpanded="True">
             <StackPanel>
                 <CheckBox Margin="4" x:Name="checkBoxFilterDrumKits"
-                                Content="{x:Static common:Strings.Enabled}" />
+                          Content="{x:Static common:Strings.Enabled}" />
                 <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitDrumKits}"
-                                x:Name="checkBoxDrumKitsIgnoreInitDrumKits" Margin="4"/>
+                          x:Name="checkBoxDrumKitsIgnoreInitDrumKits" Margin="4" />
             </StackPanel>
         </Expander>
 
         <Expander x:Name="groupBoxFilterDrumPatterns" Header="{x:Static common:Strings.FilterDrumPatterns}"
-                           Margin="4"  Padding="4" IsExpanded="True">
+                  Margin="4" Padding="4" IsExpanded="True">
             <StackPanel>
                 <CheckBox Margin="4" x:Name="checkBoxFilterDrumPatterns"
-                                Content="{x:Static common:Strings.Enabled}" />
+                          Content="{x:Static common:Strings.Enabled}" />
                 <CheckBox Content="{x:Static common:Strings.IgnoreEmptyInitDrumPatterns}"
-                                x:Name="checkBoxDrumPatternsIgnoreInitDrumPatterns" Margin="4"/>
+                          x:Name="checkBoxDrumPatternsIgnoreInitDrumPatterns" Margin="4" />
             </StackPanel>
         </Expander>
 
-        <Expander Header="{x:Static common:Strings.FilterOnFavorites}"  Margin="4" Padding="4"
-                             x:Name="groupBoxFilterOnFavorites" IsExpanded="True">
-                <StackPanel>
-                    <CheckBox Margin="4" x:Name="threeStateCheckBoxFavorites"
-                                           IsThreeState="True" Content="{x:Static common:Strings.Favorites}" />
-                </StackPanel>
-            </Expander>
-
-            <Expander Header="{x:Static common:Strings.FilterOnText}"
-                           Margin="4"  Padding="4" x:Name="groupBoxFilterOnText" IsExpanded="True">
-
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="{x:Static common:Strings.FilterOnTextControl}"
-                                      x:Name="checkBoxFilterOnText" Checked="CheckBoxFilterOnTextChecked"
-                                      Unchecked="CheckBoxFilterOnTextChecked" Margin="4"/>
-                        <TextBox HorizontalAlignment="Left" Margin="4" x:Name="textBoxTextToFilterOn"
-                                      VerticalAlignment="Top" MinWidth="50"/>
-                    </StackPanel>
-                    <CheckBox Content="{x:Static common:Strings.CaseSensitive}"
-                                  Margin="4" x:Name="checkBoxCaseSensitive"/>
-                    <CheckBox Content="{x:Static common:Strings.FilterProgramNames}"
-                                  Margin="4" x:Name="checkBoxFilterProgramNames"/>
-                    <CheckBox Content="{x:Static common:Strings.FilterCombiNames}"
-                                  Margin="4" x:Name="checkBoxFilterCombiNames"/>
-                    <CheckBox Content="{x:Static common:Strings.FilterSetListSlotNames}"
-                                  Margin="4" x:Name="checkBoxFilterSetListSlotNames"/>
-                    <CheckBox Content="{x:Static common:Strings.FilterSetListSlotDescriptions}"
-                                  Margin="4" x:Name="checkBoxFilterSetListSlotDescriptions"/>
-                    <CheckBox Content="{x:Static common:Strings.FilterWaveSequenceNames}"
-                                  Margin="4" x:Name="checkBoxFilterWaveSequenceNames"/>
-                    <CheckBox Content="{x:Static common:Strings.FilterDrumKitNames}"
-                                  Margin="4" x:Name="checkBoxFilterDrumKitNames"/>
-                <CheckBox Content="{x:Static common:Strings.FilterDrumPatternNames}"
-                                  Margin="4" x:Name="checkBoxFilterDrumPatternNames"/>
+        <Expander Header="{x:Static common:Strings.FilterOnFavorites}" Margin="4" Padding="4"
+                  x:Name="groupBoxFilterOnFavorites" IsExpanded="True">
+            <StackPanel>
+                <CheckBox Margin="4" x:Name="threeStateCheckBoxFavorites"
+                          IsThreeState="True" Content="{x:Static common:Strings.Favorites}" />
             </StackPanel>
-            </Expander>
+        </Expander>
 
-        <Expander  x:Name="groupBoxOptionalColumns" Header="{x:Static common:Strings.OptionalColumns}" Margin="4" Padding="4" IsExpanded="True">
+        <Expander Header="{x:Static common:Strings.FilterOnText}"
+                  Margin="4" Padding="4" x:Name="groupBoxFilterOnText" IsExpanded="True">
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="{x:Static common:Strings.FilterOnTextControl}"
+                              x:Name="checkBoxFilterOnText" Checked="CheckBoxFilterOnTextChecked"
+                              Unchecked="CheckBoxFilterOnTextChecked" Margin="4" />
+                    <TextBox HorizontalAlignment="Left" Margin="4" x:Name="textBoxTextToFilterOn"
+                             VerticalAlignment="Top" MinWidth="50" />
+                </StackPanel>
+                <CheckBox Content="{x:Static common:Strings.CaseSensitive}"
+                          Margin="4" x:Name="checkBoxCaseSensitive" />
+                <CheckBox Content="{x:Static common:Strings.FilterProgramNames}"
+                          Margin="4" x:Name="checkBoxFilterProgramNames" />
+                <CheckBox Content="{x:Static common:Strings.FilterCombiNames}"
+                          Margin="4" x:Name="checkBoxFilterCombiNames" />
+                <CheckBox Content="{x:Static common:Strings.FilterSetListSlotNames}"
+                          Margin="4" x:Name="checkBoxFilterSetListSlotNames" />
+                <CheckBox Content="{x:Static common:Strings.FilterSetListSlotDescriptions}"
+                          Margin="4" x:Name="checkBoxFilterSetListSlotDescriptions" />
+                <CheckBox Content="{x:Static common:Strings.FilterWaveSequenceNames}"
+                          Margin="4" x:Name="checkBoxFilterWaveSequenceNames" />
+                <CheckBox Content="{x:Static common:Strings.FilterDrumKitNames}"
+                          Margin="4" x:Name="checkBoxFilterDrumKitNames" />
+                <CheckBox Content="{x:Static common:Strings.FilterDrumPatternNames}"
+                          Margin="4" x:Name="checkBoxFilterDrumPatternNames" />
+            </StackPanel>
+        </Expander>
+
+        <Expander x:Name="groupBoxOptionalColumns" Header="{x:Static common:Strings.OptionalColumns}" Margin="4"
+                  Padding="4" IsExpanded="True">
             <StackPanel>
                 <CheckBox Content="{x:Static common:Strings.ColumnCrcValueExcludingName}"
-                    x:Name="checkBoxCrcExcludingName" Margin="4"/>
+                          x:Name="checkBoxCrcExcludingName" Margin="4" />
                 <CheckBox Content="{x:Static common:Strings.ColumnCrcValueIncludingName}"
-                    x:Name="checkBoxCrcIncludingName" Margin="4"/>
+                          x:Name="checkBoxCrcIncludingName" Margin="4" />
                 <CheckBox Content="{x:Static common:Strings.ColumnSetListSlotReferenceId}"
-                    x:Name="checkBoxSetListSlotReferenceId" Margin="4"/>
+                          x:Name="checkBoxSetListSlotReferenceId" Margin="4" />
                 <CheckBox Content="{x:Static common:Strings.ColumnSetListSlotReferenceName}"
-                    x:Name="checkBoxSetListSlotReferenceName" Margin="4"/>
+                          x:Name="checkBoxSetListSlotReferenceName" Margin="4" />
             </StackPanel>
         </Expander>
-        
-            <Expander Header="{x:Static common:Strings.Sorting}"
-                    Margin="4" Padding="4" x:Name="groupBoxSorting" IsExpanded="True">
-                <StackPanel>
-                    <RadioButton Content="{x:Static common:Strings.TypeBankIndex}"
-                                Margin="4" x:Name="radioButtonTypeBankIndex"/>
-                    <RadioButton Content="{x:Static common:Strings.CategoryThanPatchName}"
-                                Margin="4" x:Name="radioButtonCategorical"/>
-                    <RadioButton Content="{x:Static common:Strings.PatchName}"
-                                Margin="4" x:Name="radioButtonAlphabetical"/>
-                </StackPanel>
-            </Expander>
-        
-            <Expander Header="{x:Static common:Strings.Output}"  HorizontalAlignment="Left"
-                    Margin="4" Padding="4" IsExpanded="True">
-                <StackPanel>
-                    <RadioButton Content="{x:Static common:Strings.AsciiTable}" 
-                            x:Name="radioButtonAsciiTable" Checked="RadioButtonAsciiTableChecked" Margin="4"/>
-                    <RadioButton Content="{x:Static common:Strings.Text}"
-                            x:Name="radioButtonText" Checked="RadioButtonTextChecked" Margin="4" />
-                    <RadioButton Content="{x:Static common:Strings.CommaSeparatedValues}"
-                            Margin="4" x:Name="radioButtonCsv" Checked="RadioButtonCsvChecked" />
-                    <RadioButton Content="{x:Static common:Strings.Xml}" 
-                            Margin="4" x:Name="radioButtonXml" Checked="RadioButtonXmlChecked"/>
-                
-                    <Label Content="{x:Static common:Strings.OutputFile}" Margin="4"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Margin="4" x:Name="textBoxOutputFile" 
-                                    IsReadOnly="False" />
-                        <Button Content="..."  Margin="4" Padding="8,0" Click="ButtonOutputFileBrowseClick"/>
-                    </StackPanel>
-                </StackPanel>
-            </Expander>
 
-            <Button Content="{x:Static common:Strings.Generate}" HorizontalAlignment="Left"
-                    Margin="4" Padding="8" IsDefault="True" Click="ButtonGenerateClick" FontWeight="Bold" FontSize="16"/>
+        <Expander Header="{x:Static common:Strings.Sorting}"
+                  Margin="4" Padding="4" x:Name="groupBoxSorting" IsExpanded="True">
+            <StackPanel>
+                <RadioButton Content="{x:Static common:Strings.TypeBankIndex}"
+                             Margin="4" x:Name="radioButtonTypeBankIndex" />
+                <RadioButton Content="{x:Static common:Strings.CategoryThanPatchName}"
+                             Margin="4" x:Name="radioButtonCategorical" />
+                <RadioButton Content="{x:Static common:Strings.PatchName}"
+                             Margin="4" x:Name="radioButtonAlphabetical" />
+            </StackPanel>
+        </Expander>
 
-        </WrapPanel>
-    
+        <Expander Header="{x:Static common:Strings.Output}" HorizontalAlignment="Left"
+                  Margin="4" Padding="4" IsExpanded="True">
+            <StackPanel>
+                <RadioButton Content="{x:Static common:Strings.AsciiTable}"
+                             x:Name="radioButtonAsciiTable" Checked="RadioButtonAsciiTableChecked" Margin="4" />
+                <RadioButton Content="{x:Static common:Strings.Text}"
+                             x:Name="radioButtonText" Checked="RadioButtonTextChecked" Margin="4" />
+                <RadioButton Content="{x:Static common:Strings.CommaSeparatedValues}"
+                             Margin="4" x:Name="radioButtonCsv" Checked="RadioButtonCsvChecked" />
+                <RadioButton Content="{x:Static common:Strings.Xml}"
+                             Margin="4" x:Name="radioButtonXml" Checked="RadioButtonXmlChecked" />
+
+                <Label Content="{x:Static common:Strings.OutputFile}" Margin="4" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Margin="4" x:Name="textBoxOutputFile"
+                             IsReadOnly="False" />
+                    <Button Content="..." Margin="4" Padding="8,0" Click="ButtonOutputFileBrowseClick" />
+                </StackPanel>
+            </StackPanel>
+        </Expander>
+
+        <Button Content="{x:Static common:Strings.Generate}" HorizontalAlignment="Left"
+                Margin="4" Padding="8" IsDefault="True" Click="ButtonGenerateClick" FontWeight="Bold" FontSize="16" />
+
+    </WrapPanel>
+
 </Window>

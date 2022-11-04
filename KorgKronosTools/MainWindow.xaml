@@ -3,80 +3,82 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mdi="clr-namespace:WPF.MDI;assembly=WPF.MDI"
         xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
-        Height="328" 
-        Width="996" 
-        Name="mainWindow" 
-        Icon="/PcgTools;component/Gui/pcgtools.ico" 
-        WindowStartupLocation="CenterOwner" 
+        Height="328"
+        Width="996"
+        Name="mainWindow"
+        Icon="/PcgTools;component/Gui/pcgtools.ico"
+        WindowStartupLocation="CenterOwner"
         WindowState="Maximized"
-        Loaded="MainWindowLoaded" 
-        Closing="MainWindowClosing" 
-        Title="{Binding Path=AppTitle}" 
+        Loaded="MainWindowLoaded"
+        Closing="MainWindowClosing"
+        Title="{Binding Path=AppTitle}"
         ResizeMode="CanResizeWithGrip">
     <Window.Resources>
         <Style TargetType="{x:Type Image}" x:Key="toolbarImageStyle">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}, AncestorLevel=1}, Path=IsEnabled}" 
-                             Value="False">
-                    <Setter Property="Opacity" Value="0.25"></Setter>
+                <DataTrigger
+                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}, AncestorLevel=1}, Path=IsEnabled}"
+                    Value="False">
+                    <Setter Property="Opacity" Value="0.25" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type MenuItem}" x:Key="menuItemWithCommand">
             <Style.Triggers>
                 <Trigger Property="Command" Value="{x:Null}">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="IsEnabled" Value="False" />
                 </Trigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    
+
     <Window.InputBindings>
-        <KeyBinding Command="{Binding Path=OpenFileCommand}"                                Gesture="Ctrl+O"      />
-        <KeyBinding Command="{Binding Path=SaveFileCommand}"                                Gesture="Ctrl+S"      />
-        <KeyBinding Command="{Binding Path=SaveAsFileCommand}"                              Gesture="Ctrl+Shift+S"/>
-        <KeyBinding Command="{Binding Path=CloseFileCommand}"                               Gesture="Ctrl+F4"/>
-        <KeyBinding Command="{Binding Path=CurrentChildViewModel.RunListGeneratorCommand}"  Gesture="Ctrl+G"/>
-        <KeyBinding Command="{Binding Path=CurrentChildViewModel.EditSelectedItemCommand}"  Gesture="F2"/>
-        <KeyBinding Command="{Binding Path=CurrentChildViewModel.CutCommand}"               Gesture="Ctrl+X"/>
-        <KeyBinding Command="{Binding Path=CurrentChildViewModel.CopyCommand}"              Gesture="Ctrl+C"/>
-        <KeyBinding Command="{Binding Path=CurrentChildViewModel.PasteCommand}"             Gesture="Ctrl+V"/>
-        <KeyBinding Command="{Binding Path=CurrentChildViewModel.MoveUpCommand}"            Gesture="NumPad8"/>
-        <KeyBinding Command="{Binding Path=CurrentChildViewModel.MoveDownCommand}"          Gesture="NumPad2"/>
-        <KeyBinding Command="{Binding Path=GotoNextWindowCommand}"                          Gesture="F6"/>
-        <KeyBinding Command="{Binding Path=GotoPreviousWindowCommand}"                      Gesture="Ctrl+F6"/>
+        <KeyBinding Command="{Binding Path=OpenFileCommand}" Gesture="Ctrl+O" />
+        <KeyBinding Command="{Binding Path=SaveFileCommand}" Gesture="Ctrl+S" />
+        <KeyBinding Command="{Binding Path=SaveAsFileCommand}" Gesture="Ctrl+Shift+S" />
+        <KeyBinding Command="{Binding Path=CloseFileCommand}" Gesture="Ctrl+F4" />
+        <KeyBinding Command="{Binding Path=CurrentChildViewModel.RunListGeneratorCommand}" Gesture="Ctrl+G" />
+        <KeyBinding Command="{Binding Path=CurrentChildViewModel.EditSelectedItemCommand}" Gesture="F2" />
+        <KeyBinding Command="{Binding Path=CurrentChildViewModel.CutCommand}" Gesture="Ctrl+X" />
+        <KeyBinding Command="{Binding Path=CurrentChildViewModel.CopyCommand}" Gesture="Ctrl+C" />
+        <KeyBinding Command="{Binding Path=CurrentChildViewModel.PasteCommand}" Gesture="Ctrl+V" />
+        <KeyBinding Command="{Binding Path=CurrentChildViewModel.MoveUpCommand}" Gesture="NumPad8" />
+        <KeyBinding Command="{Binding Path=CurrentChildViewModel.MoveDownCommand}" Gesture="NumPad2" />
+        <KeyBinding Command="{Binding Path=GotoNextWindowCommand}" Gesture="F6" />
+        <KeyBinding Command="{Binding Path=GotoPreviousWindowCommand}" Gesture="Ctrl+F6" />
     </Window.InputBindings>
 
     <DockPanel>
         <Grid>
             <Menu Height="23" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="2000">
                 <MenuItem Header="{x:Static common:Strings.File}" VerticalAlignment="Bottom">
-                    <MenuItem Header="{x:Static common:Strings.Open}" 
+                    <MenuItem Header="{x:Static common:Strings.Open}"
                               ToolTip="{x:Static common:Strings.OpenFileCommand_mainw_tt}"
-                              Name="FileOpenMenuItem" Command="{Binding Path=OpenFileCommand}" InputGestureText="Ctrl+O"/>
+                              Name="FileOpenMenuItem" Command="{Binding Path=OpenFileCommand}"
+                              InputGestureText="Ctrl+O" />
                     <MenuItem Header="{x:Static common:Strings.Save}" Command="{Binding Path=SaveFileCommand}"
                               ToolTip="{x:Static common:Strings.SaveFileCommand_mainw_tt}"
-                              InputGestureText="Ctrl+S"/>
-                    <MenuItem Header="{x:Static common:Strings.SaveAs}" Command="{Binding Path=SaveAsFileCommand}" 
+                              InputGestureText="Ctrl+S" />
+                    <MenuItem Header="{x:Static common:Strings.SaveAs}" Command="{Binding Path=SaveAsFileCommand}"
                               ToolTip="{x:Static common:Strings.SaveFileAsCommand_mainw_tt}"
-                              InputGestureText="Ctrl+Shift+S"/>
-                    <Separator/>
+                              InputGestureText="Ctrl+Shift+S" />
+                    <Separator />
                     <MenuItem Header="{x:Static common:Strings.ExportForSequencer}">
                         <MenuItem Header="{x:Static common:Strings.Cubase}"
-                                  Style="{StaticResource menuItemWithCommand}" 
-                            Command="{Binding Path=CurrentChildViewModel.ExportToCubaseCommand}"/>
+                                  Style="{StaticResource menuItemWithCommand}"
+                                  Command="{Binding Path=CurrentChildViewModel.ExportToCubaseCommand}" />
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="{x:Static common:Strings.RevertToSaved}" 
-                              Command="{Binding Path=RevertToSavedFileCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.Close}" 
-                              InputGestureText="Ctrl+F4" Command="{Binding Path=CloseFileCommand}"/>
+                    <MenuItem Header="{x:Static common:Strings.RevertToSaved}"
+                              Command="{Binding Path=RevertToSavedFileCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.Close}"
+                              InputGestureText="Ctrl+F4" Command="{Binding Path=CloseFileCommand}" />
                     <Separator />
-                    <MenuItem Header="{x:Static common:Strings.Exit}" 
-                              InputGestureText="Alt+F4" Command="{Binding Path=ExitCommand}"/>
+                    <MenuItem Header="{x:Static common:Strings.Exit}"
+                              InputGestureText="Alt+F4" Command="{Binding Path=ExitCommand}" />
                 </MenuItem>
-                
-                
+
+
                 <!--" MenuItem Header="{x:Static common:Strings.Select_menu}">
                     <MenuItem Header="{x:Static common:Strings.SelectAll_menu}" 
                 Style="{StaticResource menuItemWithCommand}" 
@@ -84,89 +86,90 @@
                 </-->
 
                 <MenuItem Header="{x:Static common:Strings.EditMenu}" VerticalAlignment="Center">
-                    <MenuItem Header="{x:Static common:Strings.EditMenuItem}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.EditSelectedItemCommand}" InputGestureText="F2"/>
-                    <MenuItem Header="{x:Static common:Strings.SetFavorite}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.SetFavoriteCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.UnsetFavorite}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.UnsetFavoriteCommand}"/>
+                    <MenuItem Header="{x:Static common:Strings.EditMenuItem}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.EditSelectedItemCommand}"
+                              InputGestureText="F2" />
+                    <MenuItem Header="{x:Static common:Strings.SetFavorite}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.SetFavoriteCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.UnsetFavorite}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.UnsetFavoriteCommand}" />
                     <Separator />
-                    <MenuItem Header="{x:Static common:Strings.Clear}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.ClearCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.ClearDuplicates}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                              Command="{Binding Path=CurrentChildViewModel.ClearDuplicatesCommand}"/>
+                    <MenuItem Header="{x:Static common:Strings.Clear}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.ClearCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.ClearDuplicates}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.ClearDuplicatesCommand}" />
                     <!--MenuItem Header="{x:Static common:Strings.CleanTimbres_menu}"
                     Style="{StaticResource menuItemWithCommand}" 
                                 Command="{Binding Path=CurrentChildViewModel.CleanTimbresCommand}"/-->
-                    <MenuItem Header="{x:Static common:Strings.Compact}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.CompactCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.Sort_menu}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.SortCommand}"/>
+                    <MenuItem Header="{x:Static common:Strings.Compact}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.CompactCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.Sort_menu}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.SortCommand}" />
                     <!--MenuItem Header="{x:Static common:Strings.SortTimbres_menu}" 
                     Style="{StaticResource menuItemWithCommand}" 
                                 Command="{Binding Path=CurrentChildViewModel.SortTimbresCommand}"-->
                     <Separator />
-                    <MenuItem Header="{x:Static common:Strings.Cut}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.CutCommand}" 
-                              InputGestureText="Ctrl+X"/>
-                    <MenuItem Header="{x:Static common:Strings.Copy}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.CopyCommand}" 
-                              InputGestureText="Ctrl+C"/>
-                    <MenuItem Header="{x:Static common:Strings.Paste}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.PasteCommand}" 
-                              InputGestureText="Ctrl+V"/>
-                    <MenuItem Header="{x:Static common:Strings.ExitCutCopyPasteMode}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.ExitCopyPasteModeCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.Recall}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.RecallCommand}"/>
+                    <MenuItem Header="{x:Static common:Strings.Cut}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.CutCommand}"
+                              InputGestureText="Ctrl+X" />
+                    <MenuItem Header="{x:Static common:Strings.Copy}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.CopyCommand}"
+                              InputGestureText="Ctrl+C" />
+                    <MenuItem Header="{x:Static common:Strings.Paste}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.PasteCommand}"
+                              InputGestureText="Ctrl+V" />
+                    <MenuItem Header="{x:Static common:Strings.ExitCutCopyPasteMode}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.ExitCopyPasteModeCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.Recall}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.RecallCommand}" />
                     <Separator />
-                    <MenuItem Header="{x:Static common:Strings.MoveUp}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.MoveUpCommand}" 
-                              InputGestureText="NumPad8"/>
-                    <MenuItem Header="{x:Static common:Strings.MoveDown}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.MoveDownCommand}" 
-                              InputGestureText="NumPad2"/>
-                    <Separator/>
+                    <MenuItem Header="{x:Static common:Strings.MoveUp}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.MoveUpCommand}"
+                              InputGestureText="NumPad8" />
+                    <MenuItem Header="{x:Static common:Strings.MoveDown}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.MoveDownCommand}"
+                              InputGestureText="NumPad2" />
+                    <Separator />
                     <MenuItem Header="{x:Static common:Strings.ChangeVolume}"
                               Style="{StaticResource menuItemWithCommand}"
-                                Command="{Binding Path=CurrentChildViewModel.ChangeVolumeCommand}"/>
+                              Command="{Binding Path=CurrentChildViewModel.ChangeVolumeCommand}" />
 
-                  <Separator/>
-                    <MenuItem Header="{x:Static common:Strings.InitAsMpeCombi}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.InitAsMpeCombiCommand}"/>
-                    <Separator/>
-                    <MenuItem Header="{x:Static common:Strings.AssignToSetListSlot}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.AssignCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.AutoFillInSetListSlotNames}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.AutoFillInSetListSlotNamesCommand}"/>
-                    <Separator/>
+                    <Separator />
+                    <MenuItem Header="{x:Static common:Strings.InitAsMpeCombi}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.InitAsMpeCombiCommand}" />
+                    <Separator />
+                    <MenuItem Header="{x:Static common:Strings.AssignToSetListSlot}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.AssignCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.AutoFillInSetListSlotNames}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.AutoFillInSetListSlotNamesCommand}" />
+                    <Separator />
                     <MenuItem Header="{x:Static common:Strings.Capitalization}">
                         <MenuItem Header="{x:Static common:Strings.CapitalizeName}"
                                   Style="{StaticResource menuItemWithCommand}"
-                                  Command="{Binding Path=CurrentChildViewModel.CapitalizeNameCommand}"/>
+                                  Command="{Binding Path=CurrentChildViewModel.CapitalizeNameCommand}" />
                         <MenuItem Header="{x:Static common:Strings.TitleCaseName}"
                                   Style="{StaticResource menuItemWithCommand}"
-                                  Command="{Binding Path=CurrentChildViewModel.TitleCaseNameCommand}"/>
+                                  Command="{Binding Path=CurrentChildViewModel.TitleCaseNameCommand}" />
                         <MenuItem Header="{x:Static common:Strings.DecapitalizeName}"
                                   Style="{StaticResource menuItemWithCommand}"
-                                  Command="{Binding Path=CurrentChildViewModel.DecapitalizeNameCommand}"/>
+                                  Command="{Binding Path=CurrentChildViewModel.DecapitalizeNameCommand}" />
                     </MenuItem>
                     <!--Separator />
 
@@ -177,239 +180,259 @@
                 </MenuItem>
 
                 <MenuItem Header="{x:Static common:Strings.ShowMenu}" VerticalAlignment="Center">
-                    <MenuItem Header="{x:Static common:Strings.Timbres}" 
-                              Style="{StaticResource menuItemWithCommand}" 
+                    <MenuItem Header="{x:Static common:Strings.Timbres}"
+                              Style="{StaticResource menuItemWithCommand}"
                               Command="{Binding Path=CurrentChildViewModel.ShowTimbresCommand}" />
-                    <MenuItem Header="{x:Static common:Strings.HexExport}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                              Command="{Binding Path=CurrentChildViewModel.ExportToHexCommand}"/>
+                    <MenuItem Header="{x:Static common:Strings.HexExport}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.ExportToHexCommand}" />
 
-                    <Separator/>
-                    <MenuItem IsCheckable="True" IsChecked="{Binding IsShowSingleLinedSetListSlotDescriptions}" 
+                    <Separator />
+                    <MenuItem IsCheckable="True" IsChecked="{Binding IsShowSingleLinedSetListSlotDescriptions}"
                               Header="{x:Static common:Strings.ShowSingleLinedSetListSlotDescriptions}"
                               Style="{StaticResource menuItemWithCommand}"
-                              Command="{Binding Path=ShowSingleLinedSetListSlotDescriptionsCommand}"/>
-                    <Separator/>
-                    <MenuItem Header="{x:Static common:Strings.SpecialEvent}" 
+                              Command="{Binding Path=ShowSingleLinedSetListSlotDescriptionsCommand}" />
+                    <Separator />
+                    <MenuItem Header="{x:Static common:Strings.SpecialEvent}"
                               Style="{StaticResource menuItemWithCommand}"
-                            Command="{Binding Path=ShowSpecialEventCommand}"/>
+                              Command="{Binding Path=ShowSpecialEventCommand}" />
                 </MenuItem>
 
                 <MenuItem Header="{x:Static common:Strings.Tools}" VerticalAlignment="Center">
                     <MenuItem Header="{x:Static common:Strings.MasterFiles}">
-                        <MenuItem Header="{x:Static common:Strings.Show}" 
+                        <MenuItem Header="{x:Static common:Strings.Show}"
                                   Style="{StaticResource menuItemWithCommand}"
-                                Command="{Binding Path=ShowMasterFilesCommand}"/>
-                        <MenuItem Header="{x:Static common:Strings.SetPcgFileAsMasterFile}" 
+                                  Command="{Binding Path=ShowMasterFilesCommand}" />
+                        <MenuItem Header="{x:Static common:Strings.SetPcgFileAsMasterFile}"
                                   Style="{StaticResource menuItemWithCommand}"
-                                  Command="{Binding Path=CurrentChildViewModel.SetPcgFileAsMasterFileCommand}"/>
+                                  Command="{Binding Path=CurrentChildViewModel.SetPcgFileAsMasterFileCommand}" />
                     </MenuItem>
-                    <Separator/>
-                    <MenuItem Header="{x:Static common:Strings.GenerateList}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                        Command="{Binding Path=CurrentChildViewModel.RunListGeneratorCommand}" InputGestureText="Ctrl+G"/>
-                    <Separator/>
+                    <Separator />
+                    <MenuItem Header="{x:Static common:Strings.GenerateList}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.RunListGeneratorCommand}"
+                              InputGestureText="Ctrl+G" />
+                    <Separator />
                     <MenuItem Header="{x:Static common:Strings.ProgramReferenceChanger}"
                               Style="{StaticResource menuItemWithCommand}"
-                        Command="{Binding Path=CurrentChildViewModel.RunProgramReferencesChangerCommand}"/>
+                              Command="{Binding Path=CurrentChildViewModel.RunProgramReferencesChangerCommand}" />
 
-                    <Separator/>
-                    <MenuItem Header="{x:Static common:Strings.DoubleToSingleKeyboard}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                                Command="{Binding Path=CurrentChildViewModel.DoubleToSingleKeyboardCommand}"/>
+                    <Separator />
+                    <MenuItem Header="{x:Static common:Strings.DoubleToSingleKeyboard}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=CurrentChildViewModel.DoubleToSingleKeyboardCommand}" />
 
                 </MenuItem>
 
                 <MenuItem Header="{x:Static common:Strings.Theme}" VerticalAlignment="Center">
-                    <MenuItem Header="{x:Static common:Strings.Generic}"  
-                              ToolTip="{x:Static common:Strings.Generic_mainw_tt}"  IsCheckable="True" 
+                    <MenuItem Header="{x:Static common:Strings.Generic}"
+                              ToolTip="{x:Static common:Strings.Generic_mainw_tt}" IsCheckable="True"
                               IsChecked="{Binding Path=SelectedTheme, Converter={StaticResource EnumToBooleanConverter},
-                              ConverterParameter=Generic}"/>
-                    <MenuItem Header="{x:Static common:Strings.Luna}" 
-                              ToolTip="{x:Static common:Strings.Luna_mainw_tt}"  IsCheckable="True" 
+                              ConverterParameter=Generic}" />
+                    <MenuItem Header="{x:Static common:Strings.Luna}"
+                              ToolTip="{x:Static common:Strings.Luna_mainw_tt}" IsCheckable="True"
                               IsChecked="{Binding Path=SelectedTheme, Converter={StaticResource EnumToBooleanConverter},
-                                    ConverterParameter=Luna}"/>
-                    <MenuItem Header="{x:Static common:Strings.Aero}" 
-                              ToolTip="{x:Static common:Strings.Aero_mainw_tt}"  IsCheckable="True" 
-                                IsChecked="{Binding Path=SelectedTheme, Converter={StaticResource EnumToBooleanConverter},
+                                    ConverterParameter=Luna}" />
+                    <MenuItem Header="{x:Static common:Strings.Aero}"
+                              ToolTip="{x:Static common:Strings.Aero_mainw_tt}" IsCheckable="True"
+                              IsChecked="{Binding Path=SelectedTheme, Converter={StaticResource EnumToBooleanConverter},
                                     ConverterParameter=Aero}" />
                 </MenuItem>
 
-                <MenuItem Name="menuItemUiLanguages" Header="{x:Static common:Strings.Language}" 
+                <MenuItem Name="menuItemUiLanguages" Header="{x:Static common:Strings.Language}"
                           VerticalAlignment="Center">
                     <!-- SEE http://msdn.microsoft.com/en-us/library/hh441729.aspx for a list of language codes/culture codes /-->
-                    <MenuItem Header="{x:Static common:Strings.Czech}" Tag="cs" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.Dutch}" Tag="nl" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.English}" Tag="en-US" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.French}" Tag="fr" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.German}" Tag="de" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.Greek}" Tag="el" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.Italian}" Tag="it" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.Polish}" Tag="pl" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.PortugueseBrazil}" 
-                              Tag="pt-BR" Click="SelectUiLanguage"/>
+                    <MenuItem Header="{x:Static common:Strings.Czech}" Tag="cs" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.Dutch}" Tag="nl" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.English}" Tag="en-US" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.French}" Tag="fr" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.German}" Tag="de" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.Greek}" Tag="el" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.Italian}" Tag="it" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.Polish}" Tag="pl" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.PortugueseBrazil}"
+                              Tag="pt-BR" Click="SelectUiLanguage" />
                     <MenuItem Header="{x:Static common:Strings.PortuguesePortugal}"
-                              Tag="pt-PT" Click="SelectUiLanguage"/>
+                              Tag="pt-PT" Click="SelectUiLanguage" />
                     <MenuItem Header="{x:Static common:Strings.Russian}"
-                              Tag="ru" Click="SelectUiLanguage"/>
+                              Tag="ru" Click="SelectUiLanguage" />
                     <MenuItem Header="{x:Static common:Strings.SerbianLatin}"
-                              Tag="sr-Latn-RS" Click="SelectUiLanguage"/>
-                    <MenuItem Header="{x:Static common:Strings.Spanish}" Tag="es" Click="SelectUiLanguage"/>
+                              Tag="sr-Latn-RS" Click="SelectUiLanguage" />
+                    <MenuItem Header="{x:Static common:Strings.Spanish}" Tag="es" Click="SelectUiLanguage" />
                     <!--MenuItem Name="TextIds" Header="Show Text IDs" Tag="en-TT" Click="SelectUiLanguage"/-->
-                    <MenuItem Header="{x:Static common:Strings.Turkish}" Tag="tr" Click="SelectUiLanguage"/>
+                    <MenuItem Header="{x:Static common:Strings.Turkish}" Tag="tr" Click="SelectUiLanguage" />
                 </MenuItem>
 
                 <MenuItem Header="{x:Static common:Strings.Options}" VerticalAlignment="Center">
                     <MenuItem Header="{x:Static common:Strings.SettingsCommand}"
-                              Command="{Binding Path=ShowSettingsCommand}"/>
+                              Command="{Binding Path=ShowSettingsCommand}" />
                     <MenuItem Header="{x:Static common:Strings.AssignClearProgram}"
                               Style="{StaticResource menuItemWithCommand}"
-                        Command="{Binding Path=CurrentChildViewModel.AssignClearProgramCommand}"/>
+                              Command="{Binding Path=CurrentChildViewModel.AssignClearProgramCommand}" />
                 </MenuItem>
 
                 <MenuItem Header="{x:Static common:Strings.Windows_menu}" VerticalAlignment="Center">
-                    <MenuItem Header="{x:Static common:Strings.GotoNextWindow_menu}" 
-                              Style="{StaticResource menuItemWithCommand}" 
-                              Command="{Binding Path=GotoNextWindowCommand}" InputGestureText="F6"/>
+                    <MenuItem Header="{x:Static common:Strings.GotoNextWindow_menu}"
+                              Style="{StaticResource menuItemWithCommand}"
+                              Command="{Binding Path=GotoNextWindowCommand}" InputGestureText="F6" />
                     <MenuItem Header="{x:Static common:Strings.GotoPreviousWindow_menu}"
                               Style="{StaticResource menuItemWithCommand}"
-                              Command="{Binding Path=GotoPreviousWindowCommand}" InputGestureText="Ctrl+F6"/>
+                              Command="{Binding Path=GotoPreviousWindowCommand}" InputGestureText="Ctrl+F6" />
                 </MenuItem>
 
                 <MenuItem Header="{x:Static common:Strings.Help}" VerticalAlignment="Center">
-                    <MenuItem Header="{x:Static common:Strings.AboutMenuItem}" 
-                              Command="{Binding Path=ShowAboutCommand}"/>
-                    <Separator/>
-                    <MenuItem Header="{x:Static common:Strings.PcgToolsHomePage}" 
-                              Command="{Binding Path=ShowHomePageCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.Manual}" 
-                              Command="{Binding Path=ShowManualCommand}"/>
-                    <Separator/>
-                    <MenuItem Header="{x:Static common:Strings.ExternalLinksKorgRelatedMenuItem}" 
-                              Command="{Binding Path=ShowExternalLinksKorgRelatedCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.ExternalLinksContributorsMenuItem}" 
-                              Command="{Binding Path=ShowExternalLinksContributorsCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.ExternalLinksVideoCreatorsMenuItem}" 
-                              Command="{Binding Path=ShowExternalLinksVideoCreatorsCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.ExternalLinksDonatorsMenuItem}" 
-                              Command="{Binding Path=ShowExternalLinksDonatorsCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.ExternalLinksTranslatorsMenuItem}" 
-                              Command="{Binding Path=ShowExternalLinksTranslatorsCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.ExternalLinksThirdPartiesMenuItem}" 
-                              Command="{Binding Path=ShowExternalLinksThirdPartiesCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.ExternalLinksOasysVoucherCodeSponsorsMenuItem}" 
-                              Command="{Binding Path=ShowExternalLinksOasysVoucherCodeSponsorsCommand}"/>
-                    <MenuItem Header="{x:Static common:Strings.ExternalLinksPersonalMenuItem}" 
-                              Command="{Binding Path=ShowExternalLinksPersonalCommand}"/>
+                    <MenuItem Header="{x:Static common:Strings.AboutMenuItem}"
+                              Command="{Binding Path=ShowAboutCommand}" />
+                    <Separator />
+                    <MenuItem Header="{x:Static common:Strings.PcgToolsHomePage}"
+                              Command="{Binding Path=ShowHomePageCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.Manual}"
+                              Command="{Binding Path=ShowManualCommand}" />
+                    <Separator />
+                    <MenuItem Header="{x:Static common:Strings.ExternalLinksKorgRelatedMenuItem}"
+                              Command="{Binding Path=ShowExternalLinksKorgRelatedCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.ExternalLinksContributorsMenuItem}"
+                              Command="{Binding Path=ShowExternalLinksContributorsCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.ExternalLinksVideoCreatorsMenuItem}"
+                              Command="{Binding Path=ShowExternalLinksVideoCreatorsCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.ExternalLinksDonatorsMenuItem}"
+                              Command="{Binding Path=ShowExternalLinksDonatorsCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.ExternalLinksTranslatorsMenuItem}"
+                              Command="{Binding Path=ShowExternalLinksTranslatorsCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.ExternalLinksThirdPartiesMenuItem}"
+                              Command="{Binding Path=ShowExternalLinksThirdPartiesCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.ExternalLinksOasysVoucherCodeSponsorsMenuItem}"
+                              Command="{Binding Path=ShowExternalLinksOasysVoucherCodeSponsorsCommand}" />
+                    <MenuItem Header="{x:Static common:Strings.ExternalLinksPersonalMenuItem}"
+                              Command="{Binding Path=ShowExternalLinksPersonalCommand}" />
                 </MenuItem>
             </Menu>
 
-            <ToolBar Height="36" HorizontalAlignment="Left" Margin="0,21,0,0" Name="toolBar" VerticalAlignment="Top" Width="2000" 
-                    HorizontalContentAlignment="Left">
-                    
-                <Button Command="{Binding Path=OpenFileCommand}" 
-                        ToolTip="{x:Static common:Strings.OpenFileCommand_mainw_tt}" >
-                    <Image Source="Gui/Tool Bar Icons/folder_out.png" Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+            <ToolBar Height="36" HorizontalAlignment="Left" Margin="0,21,0,0" Name="toolBar" VerticalAlignment="Top"
+                     Width="2000"
+                     HorizontalContentAlignment="Left">
+
+                <Button Command="{Binding Path=OpenFileCommand}"
+                        ToolTip="{x:Static common:Strings.OpenFileCommand_mainw_tt}">
+                    <Image Source="Gui/Tool Bar Icons/folder_out.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                <Button Command="{Binding Path=SaveFileCommand}" 
+                <Button Command="{Binding Path=SaveFileCommand}"
                         ToolTip="{x:Static common:Strings.SaveFileCommand_mainw_tt}">
-                    <Image Source="Gui/Tool Bar Icons/disk_blue.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/disk_blue.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                <Button Command="{Binding Path=SaveAsFileCommand}" 
+                <Button Command="{Binding Path=SaveAsFileCommand}"
                         ToolTip="{x:Static common:Strings.SaveFileAsCommand_mainw_tt}">
-                    <Image Source="Gui/Tool Bar Icons/save_as.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}" />
+                    <Image Source="Gui/Tool Bar Icons/save_as.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
 
-                <Separator></Separator>
-                    
+                <Separator />
+
                 <Button Command="{Binding Path=CurrentChildViewModel.EditSelectedItemCommand}"
                         ToolTip="{x:Static common:Strings.EditSelectedPatch}">
-                    <Image Source="Gui/Tool Bar Icons/document_edit.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/document_edit.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                    
-                <Button Command="{Binding Path=CurrentChildViewModel.SetFavoriteCommand}" 
+
+                <Button Command="{Binding Path=CurrentChildViewModel.SetFavoriteCommand}"
                         ToolTip="{x:Static common:Strings.MarkAsFavorite}">
-                    <Image Source="Gui/Tool Bar Icons/star_blue.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/star_blue.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                    
+
                 <Button Command="{Binding Path=CurrentChildViewModel.UnsetFavoriteCommand}"
                         ToolTip="{x:Static common:Strings.UnmarkAsFavorite}">
-                    <Image Source="Gui/Tool Bar Icons/star_blue - remove.png"   Stretch="Fill" 
-                           Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/star_blue - remove.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                    
+
                 <Button Command="{Binding Path=CurrentChildViewModel.ClearCommand}"
                         ToolTip="{x:Static common:Strings.ClearSelected}">
-                    <Image Source="Gui/Tool Bar Icons/document_plain.png"   Stretch="Fill" 
-                           Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/document_plain.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                    
+
                 <Button Command="{Binding Path=CurrentChildViewModel.CompactCommand}"
                         ToolTip="{x:Static common:Strings.CompactSelected}">
-                    <Image Source="Gui/Tool Bar Icons/compact.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/compact.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                    
+
                 <Button Command="{Binding Path=CurrentChildViewModel.ShowTimbresCommand}"
                         ToolTip="{x:Static common:Strings.ShowTimbres}">
-                    <Image Source="Gui/Tool Bar Icons/show_timbres.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/show_timbres.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                <Separator></Separator>
+                <Separator />
                 <Button Command="{Binding Path=CurrentChildViewModel.CutCommand}"
                         ToolTip="{x:Static common:Strings.CutSelected}">
-                    <Image Source="Gui/Tool Bar Icons/cut.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/cut.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.CopyCommand}"
                         ToolTip="{x:Static common:Strings.CopySelected}">
-                    <Image Source="Gui/Tool Bar Icons/copy.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/copy.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.PasteCommand}"
                         ToolTip="{x:Static common:Strings.PasteSelected}">
-                    <Image Source="Gui/Tool Bar Icons/paste.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/paste.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
                 <Button Command="{Binding Path=ShowSettingsCommand}"
                         ToolTip="{x:Static common:Strings.EditSettings}">
-                    <Image Source="Gui/Tool Bar Icons/document_gear.png" Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/document_gear.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.ExitCopyPasteModeCommand}"
                         ToolTip="{x:Static common:Strings.ExitCutCopyPasteModeToolTip}">
-                    <Image Source="Gui/Tool Bar Icons/copy - exit.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/copy - exit.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.RecallCommand}"
                         ToolTip="{x:Static common:Strings.RecallClipboard}">
-                    <Image Source="Gui/Tool Bar Icons/copy - recall.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/copy - recall.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                <Separator></Separator>
+                <Separator />
                 <Button Command="{Binding Path=CurrentChildViewModel.MoveUpCommand}"
-                    ToolTip="{x:Static common:Strings.MoveUpToolTip}">
-                    <Image Source="Gui/Tool Bar Icons/navigate_up.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                        ToolTip="{x:Static common:Strings.MoveUpToolTip}">
+                    <Image Source="Gui/Tool Bar Icons/navigate_up.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
                 <Button Command="{Binding Path=CurrentChildViewModel.MoveDownCommand}"
                         ToolTip="{x:Static common:Strings.MoveDownToolTip}">
-                    <Image Source="Gui/Tool Bar Icons/navigate_down.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/navigate_down.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                <Separator></Separator>
+                <Separator />
                 <Button Command="{Binding Path=CurrentChildViewModel.RunListGeneratorCommand}"
                         ToolTip="{x:Static common:Strings.GenerateAList}">
-                    <Image Source="Gui/Tool Bar Icons/text_align_justified.png"   Stretch="Fill"
-                           Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/text_align_justified.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                <Separator></Separator>
-                <Button Command="{Binding Path=ShowAboutCommand}" 
+                <Separator />
+                <Button Command="{Binding Path=ShowAboutCommand}"
                         ToolTip="{x:Static common:Strings.ShowInformation}">
-                    <Image Source="Gui/Tool Bar Icons/about.png"   Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
+                    <Image Source="Gui/Tool Bar Icons/about.png" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
                 </Button>
-                <Button Command="{Binding Path=ShowSpecialEventCommand}" 
+                <Button Command="{Binding Path=ShowSpecialEventCommand}"
                         ToolTip="{x:Static common:Strings.SpecialEventToolTip}">
-                    <Image Source="Gui/Images/SpecialEvent.jpg"  Stretch="Fill" Style="{StaticResource toolbarImageStyle}"/>
-                </Button> 
+                    <Image Source="Gui/Images/SpecialEvent.jpg" Stretch="Fill"
+                           Style="{StaticResource toolbarImageStyle}" />
+                </Button>
             </ToolBar>
-                
+
             <Grid Margin="0,57,0,18">
-                <mdi:MdiContainer  Name="Container" Theme="Aero"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <mdi:MdiContainer Name="Container" Theme="Aero" VerticalAlignment="Stretch"
+                                  HorizontalAlignment="Stretch">
                     <mdi:MdiContainer.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="Black"/>
-                            <GradientStop Color="#E50050D2" Offset="1"/>
+                            <GradientStop Color="Black" />
+                            <GradientStop Color="#E50050D2" Offset="1" />
                         </LinearGradientBrush>
                     </mdi:MdiContainer.Background>
                 </mdi:MdiContainer>
@@ -446,23 +469,25 @@
                 </StatusBarItem>
 
                 <StatusBarItem Foreground="DarkGreen">
-                    <TextBlock x:Name="StatusBarDrumKits" Text="{Binding Path=StatusBarDrumKits}" Margin="0,0,4,0"/>
+                    <TextBlock x:Name="StatusBarDrumKits" Text="{Binding Path=StatusBarDrumKits}" Margin="0,0,4,0" />
                 </StatusBarItem>
 
                 <StatusBarItem Foreground="DarkGreen">
-                    <TextBlock x:Name="StatusBarDrumPatterns" Text="{Binding Path=StatusBarDrumPatterns}" Margin="0,0,4,0"/>
+                    <TextBlock x:Name="StatusBarDrumPatterns" Text="{Binding Path=StatusBarDrumPatterns}"
+                               Margin="0,0,4,0" />
                 </StatusBarItem>
 
                 <StatusBarItem Foreground="DarkGreen">
-                    <TextBlock x:Name="StatusBarWaveSequences" Text="{Binding Path=StatusBarWaveSequences}" Margin="0,0,4,0"/>
-                </StatusBarItem>
-                
-                <StatusBarItem >
-                    <Separator></Separator>
+                    <TextBlock x:Name="StatusBarWaveSequences" Text="{Binding Path=StatusBarWaveSequences}"
+                               Margin="0,0,4,0" />
                 </StatusBarItem>
 
-                <StatusBarItem >
-                    <Separator></Separator>
+                <StatusBarItem>
+                    <Separator />
+                </StatusBarItem>
+
+                <StatusBarItem>
+                    <Separator />
                 </StatusBarItem>
 
                 <StatusBarItem Foreground="DarkRed">

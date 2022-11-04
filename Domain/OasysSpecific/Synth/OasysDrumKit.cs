@@ -1,4 +1,9 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 using PcgTools.Model.KronosOasysSpecific.Synth;
 
@@ -7,12 +12,10 @@ using PcgTools.Model.KronosOasysSpecific.Synth;
 namespace PcgTools.Model.OasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class OasysDrumKit : KronosOasysDrumKit
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumKitBank"></param>
         /// <param name="index"></param>
@@ -21,9 +24,9 @@ namespace PcgTools.Model.OasysSpecific.Synth
         {
         }
 
-        
+
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {

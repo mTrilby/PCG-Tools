@@ -1,6 +1,9 @@
-﻿
+﻿#region copyright
 
-// (c) 2011 Michel Keijzers
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
@@ -8,12 +11,10 @@ using PcgTools.Model.Common.Synth.PatchDrumKits;
 namespace PcgTools.Model.TrinitySpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TrinityDrumKitBanks : DrumKitBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public TrinityDrumKitBanks(IPcgMemory pcgMemory)
@@ -23,7 +24,6 @@ namespace PcgTools.Model.TrinitySpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {

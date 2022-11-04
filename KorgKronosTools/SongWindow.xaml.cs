@@ -1,6 +1,13 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -24,18 +31,27 @@ using WPF.MDI;
 namespace PcgTools
 {
     /// <summary>
-    /// Interaction logic for SongWindow.xaml
+    ///     Interaction logic for SongWindow.xaml
     /// </summary>
     public partial class SongWindow : IChildWindow
     {
         /// <summary>
-        /// 
+        /// </summary>
+        // ReSharper disable NotAccessedField.Local
+        private readonly MainWindow _mainWindow;
+
+
+        /// <summary>
+        /// </summary>
+        // ReSharper disable once MemberCanBePrivate.Global
+        public ISongViewModel SongViewModel => (ISongViewModel)ViewModel;
+
+        /// <summary>
         /// </summary>
         public IViewModel ViewModel { get; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="property"></param>
         public void ActOnSettingsChanged(string property)
@@ -45,45 +61,28 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        // ReSharper disable once MemberCanBePrivate.Global
-        public ISongViewModel SongViewModel => (ISongViewModel) ViewModel;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        // ReSharper disable NotAccessedField.Local
-        private readonly MainWindow _mainWindow;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public MdiChild MdiChild { get; set; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         public ISongMemory SongMemory { get; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         public IMemory Memory => SongMemory;
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="mainWindow"></param>
         /// <param name="songFileName"></param>
         /// <param name="songMemory"></param>
         /// <param name="openedPcgWindows"></param>
-        public SongWindow(MainWindow mainWindow, string songFileName, ISongMemory songMemory, OpenedPcgWindows openedPcgWindows)
+        public SongWindow(MainWindow mainWindow, string songFileName, ISongMemory songMemory,
+            OpenedPcgWindows openedPcgWindows)
         {
             InitializeComponent();
 
@@ -110,22 +109,22 @@ namespace PcgTools
 
 
         /// <summary>
-        /// Returns only if from some model (both OS) and Kronos only.
-        /// Note: Not used.
+        ///     Returns only if from some model (both OS) and Kronos only.
+        ///     Note: Not used.
         /// </summary>
         /// <param name="sender"></param>
         /// <returns></returns>
         private bool ViewFilter(object sender)
         {
-            var window = (OpenedPcgWindow) sender;
-            return (SongMemory.Model.ModelType == Models.EModelType.Kronos) &&
-                ModelCompatibility.AreModelsCompatible(window.PcgMemory.Model, SongMemory.Model);
+            var window = (OpenedPcgWindow)sender;
+            return SongMemory.Model.ModelType == Models.EModelType.Kronos &&
+                   ModelCompatibility.AreModelsCompatible(window.PcgMemory.Model, SongMemory.Model);
         }
 
 
         /// <summary>
-        /// For satisfying XAML.
-        /// Note: Not used.
+        ///     For satisfying XAML.
+        ///     Note: Not used.
         /// </summary>
         public SongWindow()
         {
@@ -133,7 +132,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -148,7 +146,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void FillListView()
         {
@@ -158,7 +155,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="listView"></param>
         private void UpdateListView([NotNull] ListBox listView)
@@ -198,23 +194,22 @@ namespace PcgTools
         }
 
 
-
         /// <summary>
-        /// Note: Not used.
+        ///     Note: Not used.
         /// </summary>
         // ReSharper disable MemberCanBePrivate.Global
         public void CloseWindow()
         {
             MdiChild.Close();
 
-            Settings.Default.UI_SongWindowWidth = (int) MdiChild.Width;
-            Settings.Default.UI_SongWindowHeight = (int) MdiChild.Height;
+            Settings.Default.UI_SongWindowWidth = (int)MdiChild.Width;
+            Settings.Default.UI_SongWindowHeight = (int)MdiChild.Height;
             Settings.Default.Save();
         }
 
 
         /// <summary>
-        /// Note: Not used.
+        ///     Note: Not used.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -222,7 +217,6 @@ namespace PcgTools
         {
             switch (e.PropertyName)
             {
-
                 case "WindowTitle":
                     MdiChild.Title = SongViewModel.WindowTitle;
                     break;
@@ -235,7 +229,7 @@ namespace PcgTools
 
 
         /// <summary>
-        /// Show (MIDI) tracks/timbres.
+        ///     Show (MIDI) tracks/timbres.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -244,15 +238,15 @@ namespace PcgTools
             {
                 // Check if already exists. If so, show the already opened window.
                 foreach (var child in from child in _mainWindow.Container.Children
-                    where (child.Content is SongTimbresWindow)
-                    let sngTimbresIteration = child.Content as SongTimbresWindow
-                    where sngTimbresIteration.SngTimbresViewModel.Song == SongViewModel.Song
-                    select child)
+                         where child.Content is SongTimbresWindow
+                         let sngTimbresIteration = child.Content as SongTimbresWindow
+                         where sngTimbresIteration.SngTimbresViewModel.Song == SongViewModel.Song
+                         select child)
                 {
                     child.Focus();
                     return;
                 }
-                 
+
 
                 // Create combi window if not already present.
                 var mdiChild = new MdiChild
@@ -262,11 +256,13 @@ namespace PcgTools
                     MinimizeBox = false,
                     MaximizeBox = false,
                     Width = Settings.Default.UI_SongWindowWidth == 0 ? 700 : Settings.Default.UI_SongTimbresWindowWidth,
-                    Height = Settings.Default.UI_SongWindowHeight == 0 ? 500 : Settings.Default.UI_SongTimbresWindowHeight,
+                    Height = Settings.Default.UI_SongWindowHeight == 0
+                        ? 500
+                        : Settings.Default.UI_SongTimbresWindowHeight,
                     Margin = new Thickness(0, 0, 0, 0)
                 };
 
-                ((SongTimbresWindow) (mdiChild.Content)).MdiChild = mdiChild;
+                ((SongTimbresWindow)mdiChild.Content).MdiChild = mdiChild;
                 _mainWindow.Container.Children.Add(mdiChild);
                 mdiChild.GotFocus += _mainWindow.MdiGotFocus;
                 mdiChild.Closing += _mainWindow.MdiClosing;
@@ -286,21 +282,21 @@ namespace PcgTools
                 index++;
                 builder.AppendLine($"{index,3} {song.Name}");
             }
-            
-            string fileName = $"{SongMemory.FileName}_output.txt";
+
+            var fileName = $"{SongMemory.FileName}_output.txt";
 
             try
             {
-                System.IO.File.WriteAllText(fileName, builder.ToString());
+                File.WriteAllText(fileName, builder.ToString());
                 Mouse.OverrideCursor = Cursors.Wait;
-                    Process.Start(fileName);
+                Process.Start(fileName);
             }
             catch (UnauthorizedAccessException ex)
             {
-                var stringCaption = $"{Strings.ErrorOccurred}: \n\n" + 
-                    $"{Strings.Message}: {ex.Message}\n\n" +
-                    $"{Strings.InnerExceptionMessage}: {ex.InnerException?.Message ?? string.Empty}\n\n" + 
-                    $"{Strings.StackTrace}: {ex.StackTrace}";
+                var stringCaption = $"{Strings.ErrorOccurred}: \n\n" +
+                                    $"{Strings.Message}: {ex.Message}\n\n" +
+                                    $"{Strings.InnerExceptionMessage}: {ex.InnerException?.Message ?? string.Empty}\n\n" +
+                                    $"{Strings.StackTrace}: {ex.StackTrace}";
 
                 Mouse.OverrideCursor = Cursors.Arrow;
                 MessageBox.Show(Strings.PcgTools, stringCaption, MessageBoxButton.OK, MessageBoxImage.Error,
@@ -310,38 +306,36 @@ namespace PcgTools
             {
                 Mouse.OverrideCursor = Cursors.Arrow;
             }
-
         }
 
 
         private void SamplesExportToFile_Click(object sender, RoutedEventArgs e)
         {
-            
             var builder = new StringBuilder();
             builder.AppendLine(" #  Sample Name                                                  Sample File Name");
-            builder.AppendLine("--- ------------------------------------------------------------ ------------------------------------------------------------");
+            builder.AppendLine(
+                "--- ------------------------------------------------------------ ------------------------------------------------------------");
 
             foreach (var region in SongMemory.Regions.RegionsCollection)
             {
-                var sample = (Region) region;
-                builder.AppendLine($"{sample.Index, 3} {sample.Name,-60} {sample.SampleFileName,-60}");
+                var sample = (Region)region;
+                builder.AppendLine($"{sample.Index,3} {sample.Name,-60} {sample.SampleFileName,-60}");
             }
 
-            string fileName = $"{SongMemory.FileName}_output.txt";
+            var fileName = $"{SongMemory.FileName}_output.txt";
 
             try
             {
-                System.IO.File.WriteAllText(fileName, builder.ToString());
+                File.WriteAllText(fileName, builder.ToString());
                 Mouse.OverrideCursor = Cursors.Wait;
                 Process.Start(fileName);
-
             }
             catch (UnauthorizedAccessException ex)
             {
                 var stringCaption = $"{Strings.ErrorOccurred}: \n\n" +
-                    $"{Strings.Message}: {ex.Message}\n\n" +
-                    $"{Strings.InnerExceptionMessage}: {ex.InnerException?.Message ?? string.Empty}\n\n" +
-                    $"{Strings.StackTrace}: {ex.StackTrace}";
+                                    $"{Strings.Message}: {ex.Message}\n\n" +
+                                    $"{Strings.InnerExceptionMessage}: {ex.InnerException?.Message ?? string.Empty}\n\n" +
+                                    $"{Strings.StackTrace}: {ex.StackTrace}";
 
                 Mouse.OverrideCursor = Cursors.Arrow;
                 MessageBox.Show(Strings.PcgTools, stringCaption, MessageBoxButton.OK, MessageBoxImage.Error,
@@ -351,32 +345,31 @@ namespace PcgTools
             {
                 Mouse.OverrideCursor = Cursors.Arrow;
             }
-
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         private string GenerateSngTimbresWindowTitle()
         {
-            return MdiChild.Title + " - " + SongViewModel.Song.Name; //return MdiChild.WindowTitle "SONG"; // Use SelectedSong
+            return MdiChild.Title + " - " +
+                   SongViewModel.Song.Name; //return MdiChild.WindowTitle "SONG"; // Use SelectedSong
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ListViewSongs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SongViewModel.Song = SongMemory.Songs.SongCollection[listViewSongs.SelectedIndex];
-            ButtonMidiTracks.IsEnabled = ((SongViewModel.Song != null) && (SongMemory is KronosSongMemory));
+            ButtonMidiTracks.IsEnabled = SongViewModel.Song != null && SongMemory is KronosSongMemory;
         }
 
 
         /// <summary>
-        /// Note: Not used.
+        ///     Note: Not used.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

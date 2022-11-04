@@ -1,19 +1,20 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Zero3Rw.Synth;
 using PcgTools.Model.ZeroSeries.Pcg;
 
-
 namespace PcgTools.Model.Zero3Rw.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Zero3RwSysExMemory : ZeroSeriesSysExMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="contentType"></param>
@@ -35,4 +36,3 @@ namespace PcgTools.Model.Zero3Rw.Pcg
         }
     }
 }
-

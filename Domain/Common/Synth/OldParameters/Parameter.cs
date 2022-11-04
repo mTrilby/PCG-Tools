@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
@@ -6,36 +10,35 @@ using PcgTools.Model.Common.Synth.Meta;
 namespace PcgTools.Model.Common.Synth.OldParameters
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class Parameter : IParameter
     {
         /// <summary>
-        /// 
         /// </summary>
         protected IMemory PcgMemory { get; private set; }
 
-        
+
         /// <summary>
-        /// 
         /// </summary>
         protected byte[] PcgData { get; private set; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected int PcgOffset { get; set; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         public IPatch Patch { get; set; }
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        public abstract dynamic Value { get; set; }
+
+
+        /// <summary>
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="data"></param>
@@ -48,11 +51,5 @@ namespace PcgTools.Model.Common.Synth.OldParameters
             PcgOffset = offset;
             Patch = patch;
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public abstract dynamic Value { get; set; }
     }
 }

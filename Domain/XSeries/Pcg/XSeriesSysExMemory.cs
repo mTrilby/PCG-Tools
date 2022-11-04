@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -8,12 +12,10 @@ using PcgTools.Model.XSeries.Synth;
 namespace PcgTools.Model.XSeries.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class XSeriesSysExMemory : MntxSysExMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="contentType"></param>
@@ -32,34 +34,25 @@ namespace PcgTools.Model.XSeries.Pcg
             Global = new XSeriesGlobal(this);
             Model = Models.Find(Models.EOsVersion.EOsVersionXSeries);
         }
-        
+
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasSubCategories => false;
 
 
         /// <summary>
-        /// Hardcoded (taken from Mode parameter).
+        ///     Hardcoded (taken from Mode parameter).
         /// </summary>
         public override int NumberOfCategories => 4;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public override int NumberOfSubCategories
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
+        public override int NumberOfSubCategories => throw new NotSupportedException();
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool AreCategoriesEditable => false;
     }

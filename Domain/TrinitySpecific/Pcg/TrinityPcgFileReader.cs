@@ -1,10 +1,13 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Diagnostics;
 using PcgTools.Model.Common;
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
@@ -13,48 +16,40 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.TrinitySpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TrinityPcgFileReader : PcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         private const int SampledProgramSize = 433;
 
 
         /// <summary>
-        /// 
         /// </summary>
         private const int ModeledProgramSize = 521;
 
 
         /// <summary>
-        /// 
         /// </summary>
         private const int CombiSize = 388;
 
 
         /// <summary>
-        /// 
         /// </summary>
         private const int DrumKitSize = 1426;
 
 
         /// <summary>
-        /// 
         /// </summary>
         private const int GlobalSize = 1175; // 0x499 - 2
 
 
         /// <summary>
-        /// 
         /// </summary>
         private int _index;
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -75,7 +70,44 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
 
 
         /// <summary>
-        /// Trinity does not use chunks.
+        /// </summary>
+        protected override int Div1Offset => throw new NotSupportedException("Trinity has no chunks");
+
+
+        /// <summary>
+        /// </summary>
+        protected override int BetweenChunkGapSize => throw new NotSupportedException("Trinity has no chunks");
+
+
+        /// <summary>
+        /// </summary>
+        protected override int GapSizeAfterMbk1ChunkName => throw new NotSupportedException("Trinity has no chunks");
+
+
+        /// <summary>
+        /// </summary>
+        protected override int Pbk1NumberOfProgramsOffset => throw new NotSupportedException("Trinity has no chunks");
+
+
+        /// <summary>
+        /// </summary>
+        protected override int SizeBetweenCmb1AndCbk1 => throw new NotSupportedException("Trinity has no chunks");
+
+
+        /// <summary>
+        /// </summary>
+        protected override int Cbk1NumberOfCombisOffset => throw new NotSupportedException("Trinity has no chunks");
+
+
+        /// <summary>
+        /// </summary>
+        protected override int Dbk1NumberOfDrumKitsOffset => throw new NotSupportedException("Trinity has no chunks");
+
+        protected override int Dpi1NumberOfDrumPatternsOffset => throw new NotImplementedException();
+
+
+        /// <summary>
+        ///     Trinity does not use chunks.
         /// </summary>
         public override void ReadContent(Memory.FileType filetype, Models.EModelType modelType)
         {
@@ -97,7 +129,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
             int drumKits;
             int drumKitsInDrumKitBank;
             ReadBanksUsage(out drumKits, out drumKitsInDrumKitBank, DrumKitSize, false);
-            
+
             int global;
             int globalBanks;
             ReadBanksUsage(out global, out globalBanks, GlobalSize, false);
@@ -109,9 +141,9 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
             if (mProgramBanks > 0)
             {
                 // Only V3 have M (Moss) bank(s).
-                CurrentPcgMemory.Model = Models.Find(Models.EOsVersion.EOsVersionTrinityV3); 
+                CurrentPcgMemory.Model = Models.Find(Models.EOsVersion.EOsVersionTrinityV3);
             }
-            
+
             ReadProgramBanks(programBanks, programsInProgramBank);
             ReadSProgramBanks(sProgramBanks, sProgramsInProgramBank);
             ReadCombiBanks(combiBanks);
@@ -124,15 +156,14 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="banks"></param>
         /// <param name="patchesPerBank"></param>
         /// <param name="patchSize"></param>
         /// <param name="check"></param>
-        private void ReadBanksUsage(out int banks, out int patchesPerBank, int patchSize, 
+        private void ReadBanksUsage(out int banks, out int patchesPerBank, int patchSize,
 // ReSharper disable once UnusedParameter.Local; check is used but only for a debug check.
-             bool check = true)
+            bool check = true)
         {
             Debug.Assert(patchSize > 0);
 
@@ -151,21 +182,21 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 // Division might be a float just above the integer value but patchesPerBank is an integer
                 // so (automatic) casting makes it correct.
                 // THis is a very dirty way since sometimes I am a few bytes off what I would expect.
-                var patchesPerBankFloat = banks == 0 ? 0.0 : (double) size / patchSize / banks;
-                Debug.Assert(patchesPerBankFloat  % 1.0 <= 0.01) ;
+                var patchesPerBankFloat = banks == 0 ? 0.0 : (double)size / patchSize / banks;
+                Debug.Assert(patchesPerBankFloat % 1.0 <= 0.01);
                 patchesPerBank = banks == 0 ? 0 : size / patchSize / banks;
             }
-           
+
             if (check)
             {
                 Debug.Assert(patchesPerBank % 64 == 0);
             }
+
             _index += 4;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="banks"></param>
         /// <param name="patches"></param>
@@ -200,7 +231,6 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="banks"></param>
         /// <param name="patches"></param>
@@ -212,7 +242,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 Debug.Assert(Util.GetInt(CurrentPcgMemory.Content, _index, 2) == 4);
                 _index += 2;
 
-                var bank = (IProgramBank) CurrentPcgMemory.ProgramBanks[4]; // Fixed
+                var bank = (IProgramBank)CurrentPcgMemory.ProgramBanks[4]; // Fixed
                 //bank.PcgId = bankId;
                 bank.ByteOffset = _index;
                 bank.ByteLength = ModeledProgramSize;
@@ -224,7 +254,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 for (var index = 0; index < patches; index++)
                 {
                     // Place in PcgMemory.
-                    var program = (Program) bank[index];
+                    var program = (Program)bank[index];
                     program.ByteOffset = _index;
                     program.ByteLength = bank.ByteLength;
                     program.IsLoaded = true;
@@ -236,7 +266,6 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="banks"></param>
         private void ReadCombiBanks(int banks)
@@ -246,7 +275,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 // Normally the bank index should be 2 bytes, however, PRELOAD1.PCG's second bank at 0x2F3B4 has
                 // value 0x0500.
                 var unusedMsbBankIndex = Util.GetInt(CurrentPcgMemory.Content, _index, 1);
-                Debug.Assert((unusedMsbBankIndex == 0x00) || (unusedMsbBankIndex == 0x05));
+                Debug.Assert(unusedMsbBankIndex == 0x00 || unusedMsbBankIndex == 0x05);
                 _index += 1;
 
                 var bankIndex = Util.GetInt(CurrentPcgMemory.Content, _index, 1);
@@ -274,7 +303,6 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumkits"></param>
         private void ReadDrumKitBanks(int drumkits)
@@ -286,7 +314,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 var startIndex = _index;
                 _index += 2;
 
-                var bank = (IDrumKitBank) CurrentPcgMemory.DrumKitBanks[0];
+                var bank = (IDrumKitBank)CurrentPcgMemory.DrumKitBanks[0];
                 bank.ByteOffset = startIndex;
                 bank.ByteLength = DrumKitSize;
                 bank.IsWritable = true;
@@ -295,7 +323,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 for (var index = 0; index < drumkits; index++)
                 {
                     // Place in PcgMemory.
-                    var drumKit = (DrumKit) bank[index];
+                    var drumKit = (DrumKit)bank[index];
                     drumKit.ByteOffset = _index;
                     drumKit.ByteLength = bank.ByteLength;
                     drumKit.IsLoaded = true;
@@ -304,10 +332,9 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 }
             }
         }
-    
+
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="present"></param>
         private void ReadGlobal(bool present)
@@ -322,7 +349,6 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="banks"></param>
         /// <param name="patches"></param>
@@ -333,7 +359,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
             {
                 var bankIndex = Util.GetInt(CurrentPcgMemory.Content, _index, 2);
                 Debug.Assert(bankIndex == 4);
-                
+
                 _index += 2;
 
                 var bank = (IProgramBank)CurrentPcgMemory.ProgramBanks[5]; // Store in M bank.
@@ -356,74 +382,6 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                     _index += bank.ByteLength;
                 }
             }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int Div1Offset
-        {
-            get { throw new NotSupportedException("Trinity has no chunks"); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int BetweenChunkGapSize
-        {
-            get { throw new NotSupportedException("Trinity has no chunks"); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int GapSizeAfterMbk1ChunkName
-        {
-            get { throw new NotSupportedException("Trinity has no chunks"); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int Pbk1NumberOfProgramsOffset
-        {
-            get { throw new NotSupportedException("Trinity has no chunks"); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int SizeBetweenCmb1AndCbk1
-        {
-            get { throw new NotSupportedException("Trinity has no chunks"); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int Cbk1NumberOfCombisOffset
-        {
-            get { throw new NotSupportedException("Trinity has no chunks"); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int Dbk1NumberOfDrumKitsOffset
-        {
-            get { throw new NotSupportedException("Trinity has no chunks"); }
-        }
-
-        protected override int Dpi1NumberOfDrumPatternsOffset
-        {
-            get { throw new NotImplementedException(); }
         }
     }
 }

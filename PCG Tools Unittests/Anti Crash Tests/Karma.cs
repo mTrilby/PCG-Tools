@@ -1,4 +1,8 @@
-﻿// (c) 2011-2019 Michel Keijzers
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -300,6 +304,5 @@ namespace PCG_Tools_Unittests
         {
             TestAll(@"Workstations\Karma\Z-SOUNDS.PCG");
         }
-
     }
 }

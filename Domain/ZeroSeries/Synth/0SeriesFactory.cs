@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Diagnostics;
@@ -12,36 +16,10 @@ using PcgTools.Model.ZeroSeries.Song;
 namespace PcgTools.Model.ZeroSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ZeroSeriesFactory : MntxFactory
     {
         /// <summary>
-        /// 
-        /// </summary>
-        protected Memory.FileType FileType { get; private set; }
-
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        protected PcgMemory.ContentType ContentType { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected int SysExStartOffset { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected int SysExEndOffset { get; private set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileType"></param>
         /// <param name="contentType"></param>
@@ -56,9 +34,27 @@ namespace PcgTools.Model.ZeroSeries.Synth
             SysExEndOffset = sysExEndOffset;
         }
 
+        /// <summary>
+        /// </summary>
+        protected Memory.FileType FileType { get; }
+
 
         /// <summary>
-        /// 
+        /// </summary>
+        protected PcgMemory.ContentType ContentType { get; }
+
+
+        /// <summary>
+        /// </summary>
+        protected int SysExStartOffset { get; }
+
+
+        /// <summary>
+        /// </summary>
+        protected int SysExEndOffset { get; }
+
+
+        /// <summary>
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -71,10 +67,11 @@ namespace PcgTools.Model.ZeroSeries.Synth
                 case Memory.FileType.Syx: // Fall through
                 case Memory.FileType.Mid: // Fall through
                 case Memory.FileType.Raw:
-                    pcgMemory = new ZeroSeriesSysExMemory(fileName, ContentType, SysExStartOffset, SysExEndOffset, FileType ==
+                    pcgMemory = new ZeroSeriesSysExMemory(fileName, ContentType, SysExStartOffset, SysExEndOffset,
+                        FileType ==
                         Memory.FileType.Raw);
                     break;
-                    
+
                 default:
                     throw new NotSupportedException("Unsupported file type");
             }
@@ -86,7 +83,6 @@ namespace PcgTools.Model.ZeroSeries.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -98,7 +94,6 @@ namespace PcgTools.Model.ZeroSeries.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -110,7 +105,6 @@ namespace PcgTools.Model.ZeroSeries.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

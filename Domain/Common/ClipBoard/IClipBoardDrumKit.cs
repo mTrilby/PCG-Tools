@@ -1,9 +1,12 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 namespace PcgTools.ClipBoard
 {
     /// <summary>
-    /// 
     /// </summary>
     public interface IClipBoardDrumKit : IClipBoardPatch
     {

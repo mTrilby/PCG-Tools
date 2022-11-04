@@ -7,8 +7,9 @@
              Loaded="Window_Loaded">
 
     <Grid MinWidth="400" MinHeight="200" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <ListView HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Margin="4,4,4,39" Name="listViewTimbres" SelectionMode="Extended"
-                    VerticalContentAlignment="Stretch" SelectionChanged="ListViewTimbresSelectionChanged">
+        <ListView HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Margin="4,4,4,39" Name="listViewTimbres"
+                  SelectionMode="Extended"
+                  VerticalContentAlignment="Stretch" SelectionChanged="ListViewTimbresSelectionChanged">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
@@ -16,28 +17,29 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="#" Width="30" DisplayMemberBinding="{Binding Path=ColumnIndex}"/>
+                    <GridViewColumn Header="#" Width="30" DisplayMemberBinding="{Binding Path=ColumnIndex}" />
                     <GridViewColumn Header="{x:Static common:Strings.PrgId}"
-                                    Width="80" DisplayMemberBinding="{Binding Path=ColumnProgramId}"/>
+                                    Width="80" DisplayMemberBinding="{Binding Path=ColumnProgramId}" />
                     <GridViewColumn Header="{x:Static common:Strings.ProgramName}"
-                                    Width="150" DisplayMemberBinding="{Binding Path=ColumnProgramName}"/>
+                                    Width="150" DisplayMemberBinding="{Binding Path=ColumnProgramName}" />
                     <GridViewColumn Header="{x:Static common:Strings.Category}"
-                                    Width="150" DisplayMemberBinding="{Binding Path=ColumnCategory}"/>
+                                    Width="150" DisplayMemberBinding="{Binding Path=ColumnCategory}" />
                     <GridViewColumn Header="{x:Static common:Strings.SubCategory}"
-                                    Width="150" DisplayMemberBinding="{Binding Path=ColumnSubCategory}"/>
-                    <GridViewColumn Header="Vol" Width="35" DisplayMemberBinding="{Binding Path=ColumnVolume}"/>
-                    <GridViewColumn Header="Sta" Width="30" DisplayMemberBinding="{Binding Path=ColumnStatus}"/>
-                    <GridViewColumn Header="Mute" Width="35" DisplayMemberBinding="{Binding Path=ColumnMute}"/>
-                    <GridViewColumn Header="Pri" Width="30" DisplayMemberBinding="{Binding Path=ColumnPriority}"/>
-                    <GridViewColumn Header="MIDI" Width="35" DisplayMemberBinding="{Binding Path=ColumnMidiChannel}"/>
-                    <GridViewColumn Header="Key Zone" Width="80" DisplayMemberBinding="{Binding Path=ColumnKeyZone}"/>
-                    <GridViewColumn Header="Vel. Zone" Width="60" DisplayMemberBinding="{Binding Path=ColumnVelocityZone}"/>
-                    <GridViewColumn Header="OSC Mode" Width="75" DisplayMemberBinding="{Binding Path=ColumnOscMode}"/>
-                    <GridViewColumn Header="OSC Sel" Width="70" DisplayMemberBinding="{Binding Path=ColumnOscSelect}"/>
-                    <GridViewColumn Header="Trans" Width="45" DisplayMemberBinding="{Binding Path=ColumnTranspose}"/>
-                    <GridViewColumn Header="Detune" Width="45" DisplayMemberBinding="{Binding Path=ColumnDetune}"/>
-                    <GridViewColumn Header="Porta" Width="50" DisplayMemberBinding="{Binding Path=ColumnPortamento}"/>
-                    <GridViewColumn Header="BRng" Width="35" DisplayMemberBinding="{Binding Path=ColumnBendRange}"/>
+                                    Width="150" DisplayMemberBinding="{Binding Path=ColumnSubCategory}" />
+                    <GridViewColumn Header="Vol" Width="35" DisplayMemberBinding="{Binding Path=ColumnVolume}" />
+                    <GridViewColumn Header="Sta" Width="30" DisplayMemberBinding="{Binding Path=ColumnStatus}" />
+                    <GridViewColumn Header="Mute" Width="35" DisplayMemberBinding="{Binding Path=ColumnMute}" />
+                    <GridViewColumn Header="Pri" Width="30" DisplayMemberBinding="{Binding Path=ColumnPriority}" />
+                    <GridViewColumn Header="MIDI" Width="35" DisplayMemberBinding="{Binding Path=ColumnMidiChannel}" />
+                    <GridViewColumn Header="Key Zone" Width="80" DisplayMemberBinding="{Binding Path=ColumnKeyZone}" />
+                    <GridViewColumn Header="Vel. Zone" Width="60"
+                                    DisplayMemberBinding="{Binding Path=ColumnVelocityZone}" />
+                    <GridViewColumn Header="OSC Mode" Width="75" DisplayMemberBinding="{Binding Path=ColumnOscMode}" />
+                    <GridViewColumn Header="OSC Sel" Width="70" DisplayMemberBinding="{Binding Path=ColumnOscSelect}" />
+                    <GridViewColumn Header="Trans" Width="45" DisplayMemberBinding="{Binding Path=ColumnTranspose}" />
+                    <GridViewColumn Header="Detune" Width="45" DisplayMemberBinding="{Binding Path=ColumnDetune}" />
+                    <GridViewColumn Header="Porta" Width="50" DisplayMemberBinding="{Binding Path=ColumnPortamento}" />
+                    <GridViewColumn Header="BRng" Width="35" DisplayMemberBinding="{Binding Path=ColumnBendRange}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -46,18 +48,18 @@
             <!--Button Content="{x:Static common:Strings.ShowEdit}" Margin="4" Width="80"  Command="{Binding Path=EditCombiCommand}" /-->
             <!--Button Content="{x:Static common:Strings.ShowEdit}" Margin="4" Width="80"  Command="{Binding Path=EditCombiCommand}" /-->
             <Button Content="{x:Static common:Strings.Up}"
-            	    Margin="4" Width="80" Command="{Binding MoveUpCommand}" />
+                    Margin="4" Width="80" Command="{Binding MoveUpCommand}" />
             <Button Content="{x:Static common:Strings.Down}"
-            	    Margin="4"  Command="{Binding MoveDownCommand}" Width="80"/>
+                    Margin="4" Command="{Binding MoveDownCommand}" Width="80" />
             <Button Content="{x:Static common:Strings.Clear}"
-            	    Margin="4" Width="80" Command="{Binding ClearCommand}"/>
+                    Margin="4" Width="80" Command="{Binding ClearCommand}" />
             <!--Button Content="{x:Static common:Strings.Clean_tw}" Margin="4" Width="80" Command="{Binding CleanCommand}"/-->
             <!--Button Content="{x:Static common:Strings.Sort_tw}" Margin="4" Width="80" Command="{Binding SortTimbresCommand}"/-->
 
             <Label Content="{x:Static common:Strings.AssignedClearProgram}" Height="16"
-            	    Margin="4" />
+                   Margin="4" />
             <TextBox Margin="4" Width="Auto" IsReadOnly="True"
-            	    Text="{Binding AssignedClearProgram, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding AssignedClearProgram, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
     </Grid>
 </UserControl>

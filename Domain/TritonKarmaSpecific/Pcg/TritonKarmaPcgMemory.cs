@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.TritonKarmaSpecific.Synth;
@@ -8,12 +11,10 @@ using PcgTools.Model.TritonSpecific.Pcg;
 namespace PcgTools.Model.TritonKarmaSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonKarmaPcgMemory : TritonPcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public TritonKarmaPcgMemory(string fileName)
@@ -28,6 +29,5 @@ namespace PcgTools.Model.TritonKarmaSpecific.Pcg
             Global = new TritonKarmaGlobal(this);
             Model = Models.Find(Models.EOsVersion.EOsVersionTritonKarma);
         }
-
     }
 }

@@ -1,4 +1,9 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 using PcgTools.Model.MSpecific.Synth;
 
@@ -9,7 +14,6 @@ namespace PcgTools.Model.M50Specific.Synth
     public class M50DrumKit : MDrumKit
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumKitBank"></param>
         /// <param name="index"></param>
@@ -19,9 +23,8 @@ namespace PcgTools.Model.M50Specific.Synth
         }
 
 
-        ///
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {

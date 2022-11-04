@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Diagnostics;
@@ -6,31 +10,28 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using Common.PcgToolsResources;
 using PcgTools.ClipBoard;
 using PcgTools.Edit;
+using PcgTools.Extensions;
 using PcgTools.Model.Common.Synth.PatchSorting;
 using PcgTools.Properties;
-using Common.PcgToolsResources;
-using PcgTools.Extensions;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 namespace PcgTools
 {
     /// <summary>
-    /// Interaction logic for SettingsWindow.xaml
+    ///     Interaction logic for SettingsWindow.xaml
     /// </summary>
     public partial class SettingsWindow // : Window
     {
         /// <summary>
-        /// 
-        /// </summary>
-        private bool _isSplitCharacterSelected;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         private const string DefaultSplitCharacter = "-";
+
+        /// <summary>
+        /// </summary>
+        private bool _isSplitCharacterSelected;
 
 
         // private readonly List<CheckBox> _midiChannelCheckBoxes = new List<CheckBox>();
@@ -39,7 +40,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         public SettingsWindow()
         {
@@ -87,7 +87,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -98,7 +97,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -116,14 +114,14 @@ namespace PcgTools
             WindowLoadedClearPatches();
 
             CheckBoxFixReferencesToClearedUsedPatches.IsChecked = Settings.Default.UI_ClearPatchesFixReferences;
-            
+
             // Load file settings.
             WindowLoadedAutoBackupFiles();
-            
+
             WindowLoadedMasterFile();
 
-            if ((Settings.Default.Slg_DefaultOutputFolder == string.Empty) || 
-                    !Directory.Exists(Settings.Default.Slg_DefaultOutputFolder))
+            if (Settings.Default.Slg_DefaultOutputFolder == string.Empty ||
+                !Directory.Exists(Settings.Default.Slg_DefaultOutputFolder))
             {
                 Settings.Default.Slg_DefaultOutputFolder =
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -131,7 +129,7 @@ namespace PcgTools
 
             textBoxDefaultOutputDirectory.Text = Settings.Default.Slg_DefaultOutputFolder;
 
-            if ((Settings.Default.Slg_DefaultOutputFolderForSequencerFiles == string.Empty) ||
+            if (Settings.Default.Slg_DefaultOutputFolderForSequencerFiles == string.Empty ||
                 !Directory.Exists(Settings.Default.Slg_DefaultOutputFolderForSequencerFiles))
             {
                 Settings.Default.Slg_DefaultOutputFolderForSequencerFiles =
@@ -183,91 +181,90 @@ namespace PcgTools
            TEMPORARY REMOVED: CLEAN TIMBRES */
 
             // SortMethod tab.
-           textBoxSplitCharacter.Text = Settings.Default.Sort_SplitCharacter;
-           radioButtonSortArtistTitle.IsChecked = Settings.Default.Sort_ArtistTitleSortOrder;
+            textBoxSplitCharacter.Text = Settings.Default.Sort_SplitCharacter;
+            radioButtonSortArtistTitle.IsChecked = Settings.Default.Sort_ArtistTitleSortOrder;
 
-           WindowLoadedSortOrder();
+            WindowLoadedSortOrder();
 
-           UpdateSortOrder();
-           UpdateSortType();
+            UpdateSortOrder();
+            UpdateSortType();
 
-           // SortMethod Timbres tab.
-           /* TEMPORARY REMOVED: CLEAN TIMBRES
-           listBoxTimbreSortKeys.Items.Clear();
-           foreach (var sortKey in Settings.Default.SortTimbres_SortKeys) // Chars
-           {
-               listBoxTimbreSortKeys.Items.Add(_sortTimbresKeys[sortKey]);
-           }
-
-           if (Settings.Default.SortTimbres_FixedGaps)
-           {
-               radioButtonFixedGaps.IsChecked = true;
-           }
-           else
-           {
-               radioButtonDynamicGaps.IsChecked = true;
-           }
-
-           checkBoxCreateGapsBetweenMidiChannels.IsChecked = Settings.Default.SortTimbres_GapsBetweenMidiChannels == 0;
-
-           switch (Settings.Default.SortTimbres_GapsBetweenMidiChannels)
-           {
-               case 0:
-                   radioButtonMidiChannels0Gaps.IsChecked = true;
-                   break;
-
-               case 1:
-                   radioButtonMidiChannels1Gap.IsChecked = true;
-                   break;
-
-               case 2:
-
-                   radioButtonMidiChannels2Gaps.IsChecked = true;
-                   break;
-
-               default:
-                   throw new ApplicationException();
-           }
-
-           checkBoxCreateGapsBetweenKeyZones.IsChecked = Settings.Default.SortTimbres_GapsBetweenKeyZones == 0;
-
-           switch (Settings.Default.SortTimbres_GapsBetweenKeyZones)
-           {
-               case 0:
-                   radioButtonKeyZones0Gaps.IsChecked = true;
-                   break;
-
-               case 1:
-                   radioButtonKeyZones1Gap.IsChecked = true;
-                   break;
-
-               case 2:
-
-                   radioButtonKeyZones2Gaps.IsChecked = true;
-                   break;
-
-               default:
-                   throw new ApplicationException();
-           }
-
-           checkBoxUse8TimbresMaxIfPossible.IsChecked = Settings.Default.SortTimbres_Use8TimbresMax;
-           checkBoxKeepTimbre10Fixed.IsChecked = Settings.Default.SortTimbres_KeepTimbre10Fixed;
-
-           // Category (Trinity) settings.
-           if ((Settings.Default.TrinityCategorySetA))
-           {
-               rbCategoryA.IsChecked = true;
-           }
-           else
-           {
-               rbCategoryB.IsChecked = true;
-           }
-           */
+            // SortMethod Timbres tab.
+            /* TEMPORARY REMOVED: CLEAN TIMBRES
+            listBoxTimbreSortKeys.Items.Clear();
+            foreach (var sortKey in Settings.Default.SortTimbres_SortKeys) // Chars
+            {
+                listBoxTimbreSortKeys.Items.Add(_sortTimbresKeys[sortKey]);
+            }
+ 
+            if (Settings.Default.SortTimbres_FixedGaps)
+            {
+                radioButtonFixedGaps.IsChecked = true;
+            }
+            else
+            {
+                radioButtonDynamicGaps.IsChecked = true;
+            }
+ 
+            checkBoxCreateGapsBetweenMidiChannels.IsChecked = Settings.Default.SortTimbres_GapsBetweenMidiChannels == 0;
+ 
+            switch (Settings.Default.SortTimbres_GapsBetweenMidiChannels)
+            {
+                case 0:
+                    radioButtonMidiChannels0Gaps.IsChecked = true;
+                    break;
+ 
+                case 1:
+                    radioButtonMidiChannels1Gap.IsChecked = true;
+                    break;
+ 
+                case 2:
+ 
+                    radioButtonMidiChannels2Gaps.IsChecked = true;
+                    break;
+ 
+                default:
+                    throw new ApplicationException();
+            }
+ 
+            checkBoxCreateGapsBetweenKeyZones.IsChecked = Settings.Default.SortTimbres_GapsBetweenKeyZones == 0;
+ 
+            switch (Settings.Default.SortTimbres_GapsBetweenKeyZones)
+            {
+                case 0:
+                    radioButtonKeyZones0Gaps.IsChecked = true;
+                    break;
+ 
+                case 1:
+                    radioButtonKeyZones1Gap.IsChecked = true;
+                    break;
+ 
+                case 2:
+ 
+                    radioButtonKeyZones2Gaps.IsChecked = true;
+                    break;
+ 
+                default:
+                    throw new ApplicationException();
+            }
+ 
+            checkBoxUse8TimbresMaxIfPossible.IsChecked = Settings.Default.SortTimbres_Use8TimbresMax;
+            checkBoxKeepTimbre10Fixed.IsChecked = Settings.Default.SortTimbres_KeepTimbre10Fixed;
+ 
+            // Category (Trinity) settings.
+            if ((Settings.Default.TrinityCategorySetA))
+            {
+                rbCategoryA.IsChecked = true;
+            }
+            else
+            {
+                rbCategoryB.IsChecked = true;
+            }
+            */
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void WindowLoadedCopyPasteSettings()
         {
@@ -290,11 +287,10 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void WindowLoadedSortOrder()
         {
-            switch ((PatchSorter.SortOrder) (Settings.Default.Sort_Order))
+            switch ((PatchSorter.SortOrder)Settings.Default.Sort_Order)
             {
                 case PatchSorter.SortOrder.ESortOrderNameCategory:
                     radioButtonNameCategory.IsChecked = true;
@@ -327,11 +323,10 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void WindowLoadedCopyPastePatchDuplication()
         {
-            switch ((CopyPaste.PatchDuplication) (Settings.Default.CopyPaste_PatchDuplicationName))
+            switch ((CopyPaste.PatchDuplication)Settings.Default.CopyPaste_PatchDuplicationName)
             {
                 case CopyPaste.PatchDuplication.DoNotUsePatchNames:
                     radioButtonDoNotUsePatchNames.IsChecked = true;
@@ -352,11 +347,10 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void WindowLoadedClearPatches()
         {
-            switch ((ClearCommands.ClearPatchesAlgorithm)(Settings.Default.UI_ClearPatches))
+            switch ((ClearCommands.ClearPatchesAlgorithm)Settings.Default.UI_ClearPatches)
             {
                 case ClearCommands.ClearPatchesAlgorithm.None:
                     RadioButtonClearPatchesNone.IsChecked = true;
@@ -381,7 +375,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void WindowLoadedAutoBackupFiles()
         {
@@ -392,11 +385,10 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void WindowLoadedMasterFile()
         {
-            switch ((MasterFiles.MasterFiles.AutoLoadMasterFiles) (Settings.Default.MasterFiles_AutoLoad))
+            switch ((MasterFiles.MasterFiles.AutoLoadMasterFiles)Settings.Default.MasterFiles_AutoLoad)
             {
                 case MasterFiles.MasterFiles.AutoLoadMasterFiles.Always:
                     rbFilesAutoLoadMasterFileAlways.IsChecked = true;
@@ -417,7 +409,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -430,7 +421,7 @@ namespace PcgTools
                 SelectedPath = Settings.Default.Slg_DefaultOutputFolder
             };
 
-            if ((dialog.SelectedPath == string.Empty) || !Directory.Exists(dialog.SelectedPath))
+            if (dialog.SelectedPath == string.Empty || !Directory.Exists(dialog.SelectedPath))
             {
                 dialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
@@ -443,7 +434,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -456,7 +446,7 @@ namespace PcgTools
                 SelectedPath = Settings.Default.Slg_DefaultOutputFolderForSequencerFiles
             };
 
-            if ((dialog.SelectedPath == string.Empty) || !Directory.Exists(dialog.SelectedPath))
+            if (dialog.SelectedPath == string.Empty || !Directory.Exists(dialog.SelectedPath))
             {
                 dialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
@@ -469,13 +459,12 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonDefaultManualPath_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog()
+            var dialog = new OpenFileDialog
             {
                 Title = Strings.SelectFolderOfManual_settw,
                 Filter = "PDF Files (*.pdf)|*.pdf",
@@ -495,7 +484,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -521,7 +509,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -538,11 +525,9 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void UpdateSortOrder()
         {
-
             if (radioButtonSortArtistTitle != null)
             {
                 _isSplitCharacterSelected = textBoxSplitCharacter.Text != string.Empty;
@@ -561,7 +546,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void UpdateSortType()
         {
@@ -572,9 +556,8 @@ namespace PcgTools
             }
         }
 
-        
+
         /// <summary>
-        /// 
         /// </summary>
         private void UpdateSortTypeEnableRadioButtons()
         {
@@ -586,7 +569,7 @@ namespace PcgTools
 
 
         /// <summary>
-        /// In case a radio button is selected that is disabled, select a valid radio button.
+        ///     In case a radio button is selected that is disabled, select a valid radio button.
         /// </summary>
         private void UpdateSortTypeCheckRadioButtons()
         {
@@ -606,9 +589,7 @@ namespace PcgTools
         }
 
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -658,7 +639,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SavePcgWindowSettings()
         {
@@ -666,26 +646,25 @@ namespace PcgTools
 
             Settings.Default.SingleLinedSetListSlotDescriptions =
                 CheckBoxShowSingleLinedSetListSlotDescriptions.IsReallyChecked();
-            
+
 
             Settings.Default.SingleLinedSetListSlotDescriptions =
                 CheckBoxShowSingleLinedSetListSlotDescriptions.IsReallyChecked();
 
             Settings.Default.UI_ClearPatches =
                 RadioButtonClearPatchesNone.IsReallyChecked()
-                    ? (int) ClearCommands.ClearPatchesAlgorithm.None
+                    ? (int)ClearCommands.ClearPatchesAlgorithm.None
                     : RadioButtonClearPatchesUnusedOnly.IsReallyChecked()
-                        ? (int) ClearCommands.ClearPatchesAlgorithm.UnusedOnly
+                        ? (int)ClearCommands.ClearPatchesAlgorithm.UnusedOnly
                         : RadioButtonClearPatchesAsk.IsReallyChecked()
-                            ? (int) ClearCommands.ClearPatchesAlgorithm.Ask
-                            : (int) ClearCommands.ClearPatchesAlgorithm.UnusedAndUsed;
+                            ? (int)ClearCommands.ClearPatchesAlgorithm.Ask
+                            : (int)ClearCommands.ClearPatchesAlgorithm.UnusedAndUsed;
 
             Settings.Default.UI_ClearPatchesFixReferences = CheckBoxFixReferencesToClearedUsedPatches.IsReallyChecked();
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SaveFileSettings()
         {
@@ -697,10 +676,10 @@ namespace PcgTools
             // Master files.
             Settings.Default.MasterFiles_AutoLoad =
                 rbFilesAutoLoadMasterFileAlways.IsReallyChecked()
-                    ? (int) MasterFiles.MasterFiles.AutoLoadMasterFiles.Always
+                    ? (int)MasterFiles.MasterFiles.AutoLoadMasterFiles.Always
                     : rbFilesAutoLoadMasterFileAsk.IsReallyChecked()
-                        ? (int) MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask
-                        : (int) MasterFiles.MasterFiles.AutoLoadMasterFiles.Never;
+                        ? (int)MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask
+                        : (int)MasterFiles.MasterFiles.AutoLoadMasterFiles.Never;
 
             // Output folders.
             Settings.Default.Slg_DefaultOutputFolder = textBoxDefaultOutputDirectory.Text;
@@ -713,7 +692,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SaveEditSettings()
         {
@@ -723,20 +701,23 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SaveCopyPasteSettings()
         {
             Settings.Default.CopyPaste_CopyIncompleteCombis = checkBoxCopyIncompleteCombis.IsReallyChecked();
-            Settings.Default.CopyPaste_CopyIncompleteSetListSlots = checkBoxCopyIncompleteSetListSlots.IsReallyChecked();
+            Settings.Default.CopyPaste_CopyIncompleteSetListSlots =
+                checkBoxCopyIncompleteSetListSlots.IsReallyChecked();
             Settings.Default.CopyPaste_CopyPatchesFromMasterFile = checkBoxCopyPatchesFromMasterFile.IsReallyChecked();
 
             Settings.Default.CopyPaste_PasteDuplicatePrograms = checkBoxPasteDuplicatePrograms.IsReallyChecked();
             Settings.Default.CopyPaste_PasteDuplicateCombis = checkBoxPasteDuplicateCombis.IsReallyChecked();
-            Settings.Default.CopyPaste_PasteDuplicateSetListSlots = checkBoxPasteDuplicateSetListSlots.IsReallyChecked();
+            Settings.Default.CopyPaste_PasteDuplicateSetListSlots =
+                checkBoxPasteDuplicateSetListSlots.IsReallyChecked();
             Settings.Default.CopyPaste_PasteDuplicateDrumKits = checkBoxPasteDuplicateDrumKits.IsReallyChecked();
-            Settings.Default.CopyPaste_PasteDuplicateDrumPatterns = checkBoxPasteDuplicateDrumPatterns.IsReallyChecked();
-            Settings.Default.CopyPaste_PasteDuplicateWaveSequences = checkBoxPasteDuplicateWaveSequences.IsReallyChecked();
+            Settings.Default.CopyPaste_PasteDuplicateDrumPatterns =
+                checkBoxPasteDuplicateDrumPatterns.IsReallyChecked();
+            Settings.Default.CopyPaste_PasteDuplicateWaveSequences =
+                checkBoxPasteDuplicateWaveSequences.IsReallyChecked();
 
             Settings.Default.CopyPaste_AutoExtendedSinglePatchSelectionPaste =
                 checkBoxAutoExtendedSinglePatchSelectionPaste.IsReallyChecked();
@@ -751,23 +732,21 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SaveCopyPastePatchDuplicationSettings()
         {
             Settings.Default.CopyPaste_PatchDuplicationName =
                 radioButtonDoNotUsePatchNames.IsReallyChecked()
-                    ? (int) CopyPaste.PatchDuplication.DoNotUsePatchNames
+                    ? (int)CopyPaste.PatchDuplication.DoNotUsePatchNames
                     : radioButtonEquallyNamedPatches.IsReallyChecked()
-                        ? (int) CopyPaste.PatchDuplication.EqualNames
+                        ? (int)CopyPaste.PatchDuplication.EqualNames
                         : radioButtonLikeNamedPatches.IsReallyChecked()
-                            ? (int) CopyPaste.PatchDuplication.LikeNamedNames
+                            ? (int)CopyPaste.PatchDuplication.LikeNamedNames
                             : -1;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SaveCopyPasteOverwriteSettings()
         {
@@ -776,14 +755,14 @@ namespace PcgTools
             Settings.Default.CopyPaste_OverwriteFilledSetListSlots =
                 checkBoxOverwriteFilledSetListSlots.IsReallyChecked();
             Settings.Default.CopyPaste_OverwriteFilledDrumKits = checkBoxOverwriteFilledDrumKits.IsReallyChecked();
-            Settings.Default.CopyPaste_OverwriteFilledDrumPatterns = checkBoxOverwriteFilledDrumPatterns.IsReallyChecked();
+            Settings.Default.CopyPaste_OverwriteFilledDrumPatterns =
+                checkBoxOverwriteFilledDrumPatterns.IsReallyChecked();
             Settings.Default.CopyPaste_OverwriteFilledWaveSequences =
                 checkBoxOverwriteFilledWaveSequences.IsReallyChecked();
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SaveSortOrderSettings()
         {
@@ -792,15 +771,15 @@ namespace PcgTools
 
             Settings.Default.Sort_Order =
                 radioButtonArtistTitleCategory.IsReallyChecked()
-                    ? (int) PatchSorter.SortOrder.ESortOrderArtistTitleCategory
+                    ? (int)PatchSorter.SortOrder.ESortOrderArtistTitleCategory
                     : radioButtonCategoryArtistTitle.IsReallyChecked()
-                        ? (int) PatchSorter.SortOrder.ESortOrderCategoryArtistTitle
+                        ? (int)PatchSorter.SortOrder.ESortOrderCategoryArtistTitle
                         : radioButtonCategoryName.IsReallyChecked()
-                            ? (int) PatchSorter.SortOrder.ESortOrderCategoryName
+                            ? (int)PatchSorter.SortOrder.ESortOrderCategoryName
                             : radioButtonCategoryTitleArtist.IsReallyChecked()
-                                ? (int) PatchSorter.SortOrder.ESortOrderCategoryTitleArtist
+                                ? (int)PatchSorter.SortOrder.ESortOrderCategoryTitleArtist
                                 : radioButtonNameCategory.IsReallyChecked()
-                                    ? (int) PatchSorter.SortOrder.ESortOrderNameCategory
+                                    ? (int)PatchSorter.SortOrder.ESortOrderNameCategory
                                     : -1;
 
             Debug.Assert(Settings.Default.Sort_Order != -1);
@@ -808,7 +787,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SaveCategorySettings()
         {
@@ -817,7 +795,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -828,7 +805,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -839,7 +815,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -850,7 +825,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void UpdateTimbreFilterControls()
         {

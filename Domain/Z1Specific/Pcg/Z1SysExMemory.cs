@@ -1,21 +1,21 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.MntxSeriesSpecific.Pcg;
 using PcgTools.Model.Z1Specific.Synth;
 
-
 namespace PcgTools.Model.Z1Specific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Z1SysExMemory : MntxSysExMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="contentType"></param>
@@ -34,40 +34,30 @@ namespace PcgTools.Model.Z1Specific.Pcg
             Global = new Z1Global(this);
             Model = Models.Find(Models.EOsVersion.EOsVersionZ1);
         }
-        
+
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasProgramCategories => true;
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasCombiCategories => false;
 
 
         /// <summary>
-        /// Hardcoded (taken from Mode parameter).
+        ///     Hardcoded (taken from Mode parameter).
         /// </summary>
         public override int NumberOfCategories => 18;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public override int NumberOfSubCategories
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
+        public override int NumberOfSubCategories => throw new NotSupportedException();
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool AreCategoriesEditable => true;
     }

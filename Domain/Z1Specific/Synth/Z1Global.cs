@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -11,39 +15,12 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.Z1Specific.Synth
 {
     /// <summary>
-    /// Note/Improvement: User groups are not taken into account.
-    /// There are 16 user groups, independent of categories.
+    ///     Note/Improvement: User groups are not taken into account.
+    ///     There are 16 user groups, independent of categories.
     /// </summary>
     public class Z1Global : Global
     {
         /// <summary>
-        /// Category names are not in PCG.
-        /// </summary>
-        protected override int CategoryNameLength => 14;
-
-
-        /// <summary>
-        /// Hardcoded.
-        /// </summary>
-        protected override int PcgOffsetCategories => -1;
-
-
-        /// <summary>
-        /// Categories are fixed.
-        /// </summary>
-        protected override int NrOfCategories => 18;
-
-
-        /// <summary>
-        /// </summary>
-        protected override int NrOfSubCategories
-        {
-            get { throw new NotSupportedException("No sub categories available"); }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public Z1Global(IPcgMemory pcgMemory)
@@ -51,9 +28,30 @@ namespace PcgTools.Model.Z1Specific.Synth
         {
         }
 
+        /// <summary>
+        ///     Category names are not in PCG.
+        /// </summary>
+        protected override int CategoryNameLength => 14;
+
 
         /// <summary>
-        /// 
+        ///     Hardcoded.
+        /// </summary>
+        protected override int PcgOffsetCategories => -1;
+
+
+        /// <summary>
+        ///     Categories are fixed.
+        /// </summary>
+        protected override int NrOfCategories => 18;
+
+
+        /// <summary>
+        /// </summary>
+        protected override int NrOfSubCategories => throw new NotSupportedException("No sub categories available");
+
+
+        /// <summary>
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -86,14 +84,14 @@ namespace PcgTools.Model.Z1Specific.Synth
                 };
             }
             // Else keep empty
-            
+
             return names;
         }
 
 
         /// <summary>
-        /// Only programs have categories, not multis.
-        /// IMPR: Check Z1Programm for duplicate code.
+        ///     Only programs have categories, not multis.
+        ///     IMPR: Check Z1Programm for duplicate code.
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>
@@ -111,7 +109,7 @@ namespace PcgTools.Model.Z1Specific.Synth
                     "Arpeggio", "SFX/Other"
                 };
 
-                categoryName = names[((IProgram) patch).GetParam(ParameterNames.ProgramParameterName.Category).Value];
+                categoryName = names[((IProgram)patch).GetParam(ParameterNames.ProgramParameterName.Category).Value];
             }
             //else
             //{

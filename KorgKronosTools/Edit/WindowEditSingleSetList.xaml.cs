@@ -1,28 +1,28 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.PcgToolsResources;
-
 
 namespace PcgTools.Edit
 {
     /// <summary>
-    /// Interaction logic for WindowEdit.xaml
+    ///     Interaction logic for WindowEdit.xaml
     /// </summary>
     public partial class WindowEditSingleSetList // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
-        readonly ISetList _setList;
+        private readonly ISetList _setList;
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="setList"></param>
         public WindowEditSingleSetList(ISetList setList)
@@ -33,7 +33,6 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -47,7 +46,6 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -56,18 +54,17 @@ namespace PcgTools.Edit
             Check();
         }
 
-        
+
         /// <summary>
-        /// 
         /// </summary>
         private void Check()
         {
             var usedSize = textBoxName.Text.Length;
 
-            labelNameLength.Text = string.Format('(' + Strings.XOfYCharacters_editw + ')', usedSize, 
+            labelNameLength.Text = string.Format('(' + Strings.XOfYCharacters_editw + ')', usedSize,
                 _setList.MaxNameLength);
 
-            labelError.Content = EditUtils.CheckText(textBoxName.Text, _setList.MaxNameLength, 
+            labelError.Content = EditUtils.CheckText(textBoxName.Text, _setList.MaxNameLength,
                 EditUtils.ECheckType.Name);
 
             buttonOk.IsEnabled = labelError.Content.Equals(string.Empty);
@@ -75,7 +72,6 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -92,7 +88,6 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

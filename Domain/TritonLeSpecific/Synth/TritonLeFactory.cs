@@ -1,7 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.TritonLeSpecific.Pcg;
@@ -11,12 +14,10 @@ using PcgTools.Model.TritonSpecific.Synth;
 namespace PcgTools.Model.TritonLeSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonLeFactory : TritonFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -29,7 +30,6 @@ namespace PcgTools.Model.TritonLeSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -41,7 +41,6 @@ namespace PcgTools.Model.TritonLeSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -53,7 +52,6 @@ namespace PcgTools.Model.TritonLeSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

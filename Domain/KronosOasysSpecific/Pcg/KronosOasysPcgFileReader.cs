@@ -1,18 +1,19 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 
 namespace PcgTools.Model.KronosOasysSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
-    public abstract class KronosOasysPcgFileReader: PcgFileReader
+    public abstract class KronosOasysPcgFileReader : PcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -34,43 +35,36 @@ namespace PcgTools.Model.KronosOasysSpecific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int Div1Offset => 0x1C;
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int BetweenChunkGapSize => 12;
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int Pbk1NumberOfProgramsOffset => 12;
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int GapSizeAfterMbk1ChunkName => 4;
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int SizeBetweenCmb1AndCbk1 => 8;
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int Cbk1NumberOfCombisOffset => 12;
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int Dbk1NumberOfDrumKitsOffset => 12;
     }

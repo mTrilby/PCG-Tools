@@ -1,21 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.KronosOasysSpecific.Pcg;
 
 namespace PcgTools.Model.OasysSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class OasysPcgFileReader : KronosOasysPcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
-        public OasysPcgFileReader(IPcgMemory currentPcgMemory, byte[] content): 
+        public OasysPcgFileReader(IPcgMemory currentPcgMemory, byte[] content) :
             base(currentPcgMemory, content)
         {
             // PcgFileHeader PcgFileHeader;
@@ -30,9 +33,6 @@ namespace PcgTools.Model.OasysSpecific.Pcg
             // Glb1Chunk Glb1Chunk;
         }
 
-        protected override int Dpi1NumberOfDrumPatternsOffset
-        {
-            get { throw new System.NotImplementedException(); }
-        }
+        protected override int Dpi1NumberOfDrumPatternsOffset => throw new NotImplementedException();
     }
 }

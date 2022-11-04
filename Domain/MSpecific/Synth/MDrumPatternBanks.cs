@@ -1,4 +1,9 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumPatterns;
@@ -8,12 +13,10 @@ using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 namespace PcgTools.Model.MSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MDrumPatternBanks : DrumPatternBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public MDrumPatternBanks(IPcgMemory pcgMemory)
@@ -23,7 +26,6 @@ namespace PcgTools.Model.MSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {

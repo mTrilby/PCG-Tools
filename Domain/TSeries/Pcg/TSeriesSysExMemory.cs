@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -8,13 +12,11 @@ using PcgTools.Model.TSeries.Synth;
 namespace PcgTools.Model.TSeries.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
-// ReSharper disable once InconsistentNaming
+    // ReSharper disable once InconsistentNaming
     public class TSeriesSysExMemory : MntxSysExMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="contentType"></param>
@@ -32,34 +34,25 @@ namespace PcgTools.Model.TSeries.Pcg
             Global = new TSeriesGlobal(this);
             Model = Models.Find(Models.EOsVersion.EOsVersionTSeries);
         }
-        
+
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasSubCategories => false;
 
 
         /// <summary>
-        /// Hardcoded (taken from Mode parameter).
+        ///     Hardcoded (taken from Mode parameter).
         /// </summary>
         public override int NumberOfCategories => 4;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public override int NumberOfSubCategories
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
+        public override int NumberOfSubCategories => throw new NotSupportedException();
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool AreCategoriesEditable => false;
     }

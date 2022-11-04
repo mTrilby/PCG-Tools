@@ -1,35 +1,17 @@
-﻿namespace PcgTools.Model.Common.Synth.OldParameters
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+namespace PcgTools.Model.Common.Synth.OldParameters
 {
     /// <summary>
-    /// Contains parameter names.
+    ///     Contains parameter names.
     /// </summary>
     public class ParameterNames
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public enum ProgramParameterName
-        {
-            OscMode, 
-            Mode,
-            
-            Favorite,
-
-            Category,
-            SubCategory,
-            
-
-            DrumTrackCommonPatternBank,
-            DrumTrackCommonPatternNumber,
-
-            DrumTrackProgramBank,
-            DrumTrackProgramNumber,
-            
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public enum CombiParameterName
         {
@@ -44,9 +26,50 @@
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public enum TimbreParameterName 
+        public enum DrumKitParameterName
+        {
+            Category
+        }
+
+
+        /// <summary>
+        /// </summary>
+        public enum DrumPatternParameterName
+        {
+        }
+
+        /// <summary>
+        /// </summary>
+        public enum ProgramParameterName
+        {
+            OscMode,
+            Mode,
+
+            Favorite,
+
+            Category,
+            SubCategory,
+
+
+            DrumTrackCommonPatternBank,
+            DrumTrackCommonPatternNumber,
+
+            DrumTrackProgramBank,
+            DrumTrackProgramNumber
+        }
+
+
+        /// <summary>
+        /// </summary>
+        public enum SetListSlotParameterName
+        {
+        }
+
+
+        /// <summary>
+        /// </summary>
+        public enum TimbreParameterName
         {
             Status,
             Mute,
@@ -55,12 +78,12 @@
             Priority,
 
             MidiChannel,
-            
+
             Volume,
-            
+
             BottomKey,
             TopKey,
-            
+
             BottomVelocity,
             TopVelocity,
 
@@ -72,37 +95,9 @@
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        public enum SetListSlotParameterName
-        {
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum DrumKitParameterName
-        {
-            Category
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum DrumPatternParameterName
-        {
-
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public enum WaveSequencetParameterName
         {
-
         }
     }
 }

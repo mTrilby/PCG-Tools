@@ -1,28 +1,28 @@
-﻿using PcgTools.Model.Common.Synth.MemoryAndFactory;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Mvvm;
 
 namespace PcgTools.OpenedFiles
 {
     /// <summary>
-    /// 
     /// </summary>
     public class OpenedPcgWindow : ObservableObject
     {
         /// <summary>
-        /// 
         /// </summary>
         private PcgMemory _pcgMemory;
 
 
         /// <summary>
-        /// 
         /// </summary>
         public PcgMemory PcgMemory
         {
-            get
-            {
-                return _pcgMemory;
-            }
+            get => _pcgMemory;
 
             set
             {

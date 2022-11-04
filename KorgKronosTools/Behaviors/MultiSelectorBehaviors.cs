@@ -1,4 +1,10 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,7 +13,7 @@ using System.Windows.Controls.Primitives;
 namespace PcgTools.Behaviors
 {
     /// <summary>
-    /// A sync behavior for a multiselector.
+    ///     A sync behavior for a multiselector.
     /// </summary>
     public static class MultiSelectorBehaviors
     {
@@ -17,12 +23,12 @@ namespace PcgTools.Behaviors
 
 
         private static readonly DependencyProperty SynchronizationManagerProperty = DependencyProperty.RegisterAttached(
-            "SynchronizationManager", typeof(SynchronizationManager), typeof(MultiSelectorBehaviors), 
+            "SynchronizationManager", typeof(SynchronizationManager), typeof(MultiSelectorBehaviors),
             new PropertyMetadata(null));
 
 
         /// <summary>
-        /// Gets the synchronized selected items.
+        ///     Gets the synchronized selected items.
         /// </summary>
         /// <param name="dependencyObject">The dependency object.</param>
         /// <returns>The list that is acting as the sync list.</returns>
@@ -33,7 +39,7 @@ namespace PcgTools.Behaviors
 
 
         /// <summary>
-        /// Sets the synchronized selected items.
+        ///     Sets the synchronized selected items.
         /// </summary>
         /// <param name="dependencyObject">The dependency object.</param>
         /// <param name="value">The value to be set as synchronized items.</param>
@@ -49,7 +55,7 @@ namespace PcgTools.Behaviors
         }
 
 
-        private static void SetSynchronizationManager(DependencyObject dependencyObject, 
+        private static void SetSynchronizationManager(DependencyObject dependencyObject,
             SynchronizationManager value)
         {
             dependencyObject.SetValue(SynchronizationManagerProperty, value);
@@ -61,19 +67,19 @@ namespace PcgTools.Behaviors
         {
             if (e.OldValue != null)
             {
-                SynchronizationManager synchronizer = GetSynchronizationManager(dependencyObject);
+                var synchronizer = GetSynchronizationManager(dependencyObject);
                 synchronizer.StopSynchronizing();
 
                 SetSynchronizationManager(dependencyObject, null);
             }
 
-            IList list = e.NewValue as IList;
-            Selector selector = dependencyObject as Selector;
+            var list = e.NewValue as IList;
+            var selector = dependencyObject as Selector;
 
             // check that this property is an IList, and that it is being set on a ListBox
             if (list != null && selector != null)
             {
-                SynchronizationManager synchronizer = GetSynchronizationManager(dependencyObject);
+                var synchronizer = GetSynchronizationManager(dependencyObject);
                 if (synchronizer == null)
                 {
                     synchronizer = new SynchronizationManager(selector);
@@ -86,7 +92,7 @@ namespace PcgTools.Behaviors
 
 
         /// <summary>
-        /// A synchronization manager.
+        ///     A synchronization manager.
         /// </summary>
         private class SynchronizationManager
         {
@@ -96,7 +102,7 @@ namespace PcgTools.Behaviors
 
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="SynchronizationManager"/> class.
+            ///     Initializes a new instance of the <see cref="SynchronizationManager" /> class.
             /// </summary>
             /// <param name="selector">The selector.</param>
             internal SynchronizationManager(Selector selector)
@@ -106,11 +112,11 @@ namespace PcgTools.Behaviors
 
 
             /// <summary>
-            /// Starts synchronizing the list.
+            ///     Starts synchronizing the list.
             /// </summary>
             public void StartSynchronizingList()
             {
-                IList list = GetSynchronizedSelectedItems(_multiSelector);
+                var list = GetSynchronizedSelectedItems(_multiSelector);
 
                 if (list != null)
                 {
@@ -121,7 +127,7 @@ namespace PcgTools.Behaviors
 
 
             /// <summary>
-            /// Stops synchronizing the list.
+            ///     Stops synchronizing the list.
             /// </summary>
             public void StopSynchronizing()
             {
@@ -135,14 +141,13 @@ namespace PcgTools.Behaviors
                 {
                     return (selector as MultiSelector).SelectedItems;
                 }
-                else if (selector is ListBox)
+
+                if (selector is ListBox)
                 {
                     return (selector as ListBox).SelectedItems;
                 }
-                else
-                {
-                    throw new InvalidOperationException("Target object has no SelectedItems property to bind.");
-                }
+
+                throw new InvalidOperationException("Target object has no SelectedItems property to bind.");
             }
         }
     }

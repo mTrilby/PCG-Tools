@@ -1,10 +1,13 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using PcgTools.Model.Common;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Kross2Specific.Synth;
 using PcgTools.Model.MSpecific.Pcg;
@@ -12,12 +15,10 @@ using PcgTools.Model.MSpecific.Pcg;
 namespace PcgTools.Model.Kross2Specific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Kross2PcgMemory : MPcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public Kross2PcgMemory(string fileName)
@@ -35,25 +36,22 @@ namespace PcgTools.Model.Kross2Specific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override int NumberOfCategories => 12;
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override int NumberOfSubCategories => 8;
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="checksumType"></param>
         protected override void FixChecksumValues(ChecksumType checksumType)
         {
             // Loop through all chunks and fix the checksum.
-            var checksumChunks = new List<string> {"PBK1", "MBK1", "CBK1", "SBK1", "GLB1"};
+            var checksumChunks = new List<string> { "PBK1", "MBK1", "CBK1", "SBK1", "GLB1" };
             var pbkIndex = 0;
             var mbkIndex = 0;
             var cbkIndex = 0;
@@ -65,7 +63,8 @@ namespace PcgTools.Model.Kross2Specific.Pcg
                     var checksum = 0;
                     for (var dataIndex = chunk.Offset + 12; dataIndex < chunk.Offset + chunk.Size + 12; dataIndex++)
                     {
-                        checksum = (checksum + Content[dataIndex]) % 256; // Since checksum is a byte it will be automatically moduloed by 256
+                        checksum = (checksum + Content[dataIndex]) %
+                                   256; // Since checksum is a byte it will be automatically moduloed by 256
                     }
 
                     // Save in INI2.
@@ -76,7 +75,7 @@ namespace PcgTools.Model.Kross2Specific.Pcg
                     }
 
                     Debug.Assert(offsetInIni2 >= 4); // Don't overwrite KORG header
-                    Content[offsetInIni2 + 22] = (byte) checksum;
+                    Content[offsetInIni2 + 22] = (byte)checksum;
 
                     //Console.WriteLine(string.Format(
                     //    "Chunk {0} offset {1:x} size {2:x} has checksum ({3:x}..{4:x}): {5:x}, written to {6:x} and {7:x}",
@@ -84,14 +83,13 @@ namespace PcgTools.Model.Kross2Specific.Pcg
                     //    chunk.Offset + 12, chunk.Offset + chunk.Size + 12, checksum, offsetInIni2 + 54, chunk.Offset + 11));
 
                     Debug.Assert(chunk.Offset >= 4); // Don't overwrite KORG header
-                    Content[chunk.Offset + 11] = (byte) checksum; // 11 is checksum byte offset
+                    Content[chunk.Offset + 11] = (byte)checksum; // 11 is checksum byte offset
                 }
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunk"></param>
         /// <param name="offsetInIni2"></param>
@@ -99,7 +97,8 @@ namespace PcgTools.Model.Kross2Specific.Pcg
         /// <param name="mbkIndex"></param>
         /// <param name="cbkIndex"></param>
         /// <returns></returns>
-        private bool SaveIni2Offset(IChunk chunk, out int offsetInIni2, ref int pbkIndex, ref int mbkIndex, ref int cbkIndex)
+        private bool SaveIni2Offset(IChunk chunk, out int offsetInIni2, ref int pbkIndex, ref int mbkIndex,
+            ref int cbkIndex)
         {
             switch (chunk.Name)
             {
@@ -125,17 +124,17 @@ namespace PcgTools.Model.Kross2Specific.Pcg
                 default:
                     throw new ApplicationException("Switch error");
             }
+
             return false;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkNameInIni2"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        int FindIni2Offset(string chunkNameInIni2, int index)
+        private int FindIni2Offset(string chunkNameInIni2, int index)
         {
             Debug.Assert(Chunks.Collection[1].Name == "INI2");
             var ini2Start = Chunks.Collection[1].Offset; // Index 1 = INI2
@@ -156,6 +155,7 @@ namespace PcgTools.Model.Kross2Specific.Pcg
 
                 offsetInIni += 64; // Size of a chunk in INI2.
             }
+
             return offsetInIni;
         }
     }

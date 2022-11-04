@@ -3,26 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PcgTools"
         xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
-        mc:Ignorable="d" 
-        ShowInTaskbar="True" 
-        WindowStartupLocation="CenterOwner" 
+        mc:Ignorable="d"
+        ShowInTaskbar="True"
+        WindowStartupLocation="CenterOwner"
         Title="{x:Static common:Strings.HexExportDlgTitle}"
-        Height="600" 
-        Width="500" 
+        Height="600"
+        Width="500"
         SizeToContent="Width"
-        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+        ScrollViewer.HorizontalScrollBarVisibility="Auto"
         ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid>
         <ScrollViewer>
             <TextBox Background="Transparent"
-                BorderThickness="0"
-                Text="{Binding Text, Mode=OneWay}"
-                IsReadOnly="True"
-                TextWrapping="Wrap"
-                x:Name="TextBlock" HorizontalAlignment="Left" Margin="4" 
-                VerticalAlignment="Top" FontFamily="Courier New" FontSize="12"/>
+                     BorderThickness="0"
+                     Text="{Binding Text, Mode=OneWay}"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     x:Name="TextBlock" HorizontalAlignment="Left" Margin="4"
+                     VerticalAlignment="Top" FontFamily="Courier New" FontSize="12" />
         </ScrollViewer>
     </Grid>
 </Window>

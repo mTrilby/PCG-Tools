@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -8,48 +12,10 @@ using PcgTools.Model.MntxSeriesSpecific.Synth;
 namespace PcgTools.Model.M3rSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M3RGlobal : MntxGlobal
     {
         /// <summary>
-        /// Category names are not in PCG.
-        /// </summary>
-        protected override int CategoryNameLength
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// Hardcoded.
-        /// </summary>
-        protected override int PcgOffsetCategories
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// Categories are taken from Mode.
-        /// </summary>
-        protected override int NrOfCategories
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int NrOfSubCategories
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public M3RGlobal(PcgMemory pcgMemory)
@@ -57,9 +23,30 @@ namespace PcgTools.Model.M3rSpecific.Synth
         {
         }
 
+        /// <summary>
+        ///     Category names are not in PCG.
+        /// </summary>
+        protected override int CategoryNameLength => throw new NotSupportedException();
+
 
         /// <summary>
-        /// 
+        ///     Hardcoded.
+        /// </summary>
+        protected override int PcgOffsetCategories => throw new NotSupportedException();
+
+
+        /// <summary>
+        ///     Categories are taken from Mode.
+        /// </summary>
+        protected override int NrOfCategories => throw new NotSupportedException();
+
+
+        /// <summary>
+        /// </summary>
+        protected override int NrOfSubCategories => throw new NotSupportedException();
+
+
+        /// <summary>
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>

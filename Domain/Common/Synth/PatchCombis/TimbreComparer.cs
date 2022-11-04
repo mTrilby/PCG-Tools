@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -7,18 +11,11 @@ using PcgTools.Model.Common.Synth.OldParameters;
 namespace PcgTools.Model.Common.Synth.PatchCombis
 {
     /// <summary>
-    /// Class for comparing on status.
+    ///     Class for comparing on status.
     /// </summary>
     internal sealed class TimbreComparer : Comparer<Timbre>
     {
         /// <summary>
-        /// 
-        /// </summary>
-        private TimbreSorting.ESortKey SortKey { get; set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="key"></param>
         public TimbreComparer(TimbreSorting.ESortKey key)
@@ -26,9 +23,13 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             SortKey = key;
         }
 
+        /// <summary>
+        /// </summary>
+        private TimbreSorting.ESortKey SortKey { get; }
+
 
         /// <summary>
-        /// [IMPR] Split into different comparers and add singleton pattern (like in PatchSorting).
+        ///     [IMPR] Split into different comparers and add singleton pattern (like in PatchSorting).
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -68,8 +69,8 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
 
 
         /// <summary>
-        ///SortMethod order of status is: Int, Both, Off, Ext, Ex2
-        /// Rationale: move Int and Both to the left, move Ext and Ex2 to the right, keep unused timbres in between.
+        ///     SortMethod order of status is: Int, Both, Off, Ext, Ex2
+        ///     Rationale: move Int and Both to the left, move Ext and Ex2 to the right, keep unused timbres in between.
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -78,7 +79,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
         {
             int order;
             {
-                var values = new List<string> {"Int", "On", "Both", "Off", "Ext", "Ex2"};
+                var values = new List<string> { "Int", "On", "Both", "Off", "Ext", "Ex2" };
 
                 var p1Status = p1.GetParam(ParameterNames.TimbreParameterName.Status).Value;
                 var p1Value = values.IndexOf(p1Status);
@@ -86,14 +87,13 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                 var p2Status = p2.GetParam(ParameterNames.TimbreParameterName.Status).Value;
                 var p2Value = values.IndexOf(p2Status);
 
-                order = (p1Value < p2Value) ? -1 : p1Value > p2Value ? 1 : 0;
+                order = p1Value < p2Value ? -1 : p1Value > p2Value ? 1 : 0;
             }
             return order;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -103,19 +103,18 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             int order;
             {
                 var p1Mute = p1.GetParam(ParameterNames.TimbreParameterName.Mute);
-                var p1Value = (p1Mute == null) ? false : p1Mute.Value; // If not existing, it is not muted
+                var p1Value = p1Mute == null ? false : p1Mute.Value; // If not existing, it is not muted
 
                 var p2Mute = p2.GetParam(ParameterNames.TimbreParameterName.Mute);
-                var p2Value = (p2Mute == null) ? false : p2Mute.Value; // If not existing, it is not muted
+                var p2Value = p2Mute == null ? false : p2Mute.Value; // If not existing, it is not muted
 
-                order = p1Value ? (p2Value ? 0 : 1) : (p2Value ? -1 : 0); // Unmuted first
+                order = p1Value ? p2Value ? 0 : 1 : p2Value ? -1 : 0; // Unmuted first
             }
             return order;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -136,16 +135,18 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             }
             else
             {
-                order = p2.HasMidiChannelGch ? 1 :
-                    p1.GetParam(ParameterNames.TimbreParameterName.MidiChannel).Value.CompareTo(
-                    p2.GetParam(ParameterNames.TimbreParameterName.MidiChannel).Value);
+                order = p2.HasMidiChannelGch
+                    ? 1
+                    : p1.GetParam(ParameterNames.TimbreParameterName.MidiChannel).Value.CompareTo(
+                        p2.GetParam(ParameterNames.TimbreParameterName.MidiChannel).Value);
             }
+
             return order;
         }
 
 
         /// <summary>
-        /// Bottom first, top last.
+        ///     Bottom first, top last.
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -160,12 +161,12 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                 order = p1.GetParam(ParameterNames.TimbreParameterName.TopVelocity).Value.CompareTo(
                     p2.GetParam(ParameterNames.TimbreParameterName.TopVelocity).Value);
             }
+
             return order;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -180,6 +181,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                 order = p1.GetParam(ParameterNames.TimbreParameterName.TopKey).Value.CompareTo(
                     p2.GetParam(ParameterNames.TimbreParameterName.TopKey).Value);
             }
+
             return order;
         }
     }

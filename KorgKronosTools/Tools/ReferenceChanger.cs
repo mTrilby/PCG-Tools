@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -11,23 +17,26 @@ using PcgTools.Model.Common.Synth.PatchSetLists;
 namespace PcgTools.Tools
 {
     /// <summary>
-    /// 
-   /// </summary>
+    /// </summary>
     public class ReferenceChanger
     {
         /// <summary>
-        /// 
+        ///     Delegate for progress handler.
+        /// </summary>
+        /// <param name="args"></param>
+        public delegate void ProgressMadeHandler(ProgressChangedEventArgs args);
+
+        /// <summary>
         /// </summary>
         private readonly IPcgMemory _memory;
 
+        // Processed set list slots/timbres
+        private readonly List<ISetListSlot> _processedSetListSlots;
+        private readonly List<ITimbre> _processedTimbres;
+
         private RuleParser _ruleParser;
 
-        // Processed set list slots/timbres
-        private List<ISetListSlot> _processedSetListSlots;
-        private List<ITimbre> _processedTimbres;
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         public ReferenceChanger(IPcgMemory memory)
@@ -39,10 +48,9 @@ namespace PcgTools.Tools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
-        public  void ParseRules(RuleParser ruleParser, string rules)
+        public void ParseRules(RuleParser ruleParser, string rules)
         {
             _ruleParser = ruleParser;
             _ruleParser.Parse(rules);
@@ -50,7 +58,7 @@ namespace PcgTools.Tools
 
 
         /// <summary>
-        /// Change references. Should be called after ParseRules.
+        ///     Change references. Should be called after ParseRules.
         /// </summary>
         public void ChangeReferences()
         {
@@ -62,17 +70,16 @@ namespace PcgTools.Tools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="changes"></param>
-        void ChangeReferences(ICollection<KeyValuePair<IPatch, IPatch>> changes)
+        private void ChangeReferences(ICollection<KeyValuePair<IPatch, IPatch>> changes)
         {
             var ruleNumber = 0;
             var currentPercentage = 0;
             foreach (var rule in changes)
             {
                 ruleNumber++;
-                var newPercentage = (int) ((ruleNumber*100.0)/changes.Count);
+                var newPercentage = (int)(ruleNumber * 100.0 / changes.Count);
                 if (currentPercentage != newPercentage)
                 {
                     OnProgress(newPercentage);
@@ -87,7 +94,6 @@ namespace PcgTools.Tools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="rule"></param>
         private void ChangeReferencesInSetListSlots(KeyValuePair<IPatch, IPatch> rule)
@@ -96,9 +102,9 @@ namespace PcgTools.Tools
             {
                 for (var index = 0; index < setList.Patches.Count; index++)
                 {
-                    var setListSlot = (ISetListSlot) setList[index];
-                    if ((setListSlot.SelectedPatchType == SetListSlot.PatchType.Program) &&
-                        (setListSlot.UsedPatch == rule.Key) &&
+                    var setListSlot = (ISetListSlot)setList[index];
+                    if (setListSlot.SelectedPatchType == SetListSlot.PatchType.Program &&
+                        setListSlot.UsedPatch == rule.Key &&
                         !_processedSetListSlots.Contains(setListSlot))
                     {
                         setListSlot.UsedPatch = rule.Value;
@@ -110,13 +116,14 @@ namespace PcgTools.Tools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="rule"></param>
         private void ChangeReferencesInCombis(KeyValuePair<IPatch, IPatch> rule)
         {
-            foreach (var combi in from combiBank in _memory.CombiBanks.BankCollection 
-                                  where combiBank.IsFilled from ICombi combi in combiBank.Patches select combi)
+            foreach (var combi in from combiBank in _memory.CombiBanks.BankCollection
+                     where combiBank.IsFilled
+                     from ICombi combi in combiBank.Patches
+                     select combi)
             {
                 ChangeReferencesInTimbres(rule, combi);
             }
@@ -124,7 +131,6 @@ namespace PcgTools.Tools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="rule"></param>
         /// <param name="combi"></param>
@@ -132,8 +138,8 @@ namespace PcgTools.Tools
         {
             foreach (var timbre in combi.Timbres.TimbresCollection.Where(timbre => timbre.UsedProgram == rule.Key))
             {
-                if (((timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value == "Off") ||
-                     (timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value == "Int")) &&
+                if ((timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value == "Off" ||
+                     timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value == "Int") &&
                     !_processedTimbres.Contains(timbre))
                 {
                     timbre.UsedProgram = (IProgram)rule.Value;
@@ -142,22 +148,15 @@ namespace PcgTools.Tools
             }
         }
 
-        
-        /// <summary>
-        /// Delegate for progress handler.
-        /// </summary>
-        /// <param name="args"></param>
-        public delegate void ProgressMadeHandler(ProgressChangedEventArgs args);
 
-        
         /// <summary>
-        /// Event for progress.
+        ///     Event for progress.
         /// </summary>
         public event ProgressMadeHandler OnProgressHandler;
 
 
         /// <summary>
-        /// Called when progress changed.
+        ///     Called when progress changed.
         /// </summary>
         /// <param name="percentage"></param>
         private void OnProgress(int percentage)

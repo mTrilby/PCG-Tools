@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Collections.Generic;
 using System.IO;
@@ -6,17 +10,17 @@ using System.IO;
 namespace Common.Utils
 {
     /// <summary>
-    /// File utilities.
+    ///     File utilities.
     /// </summary>
     public abstract class FileUtils
     {
         /// <summary>
-        /// File comparer for creation time.
+        ///     File comparer for creation time.
         /// </summary>
         public class FileAgeComparer : IComparer<string>
         {
             /// <summary>
-            /// Compares two file strings.
+            ///     Compares two file strings.
             /// </summary>
             /// <param name="file1"></param>
             /// <param name="file2"></param>

@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,21 +11,11 @@ using PcgTools.Model.Common.Synth.PatchSorting;
 namespace PcgTools.Model.Common.Synth.PatchCombis
 {
     /// <summary>
-    /// Utility class.
+    ///     Utility class.
     /// </summary>
     public abstract class TimbreSorting
     {
         /// <summary>
-        /// 
-        /// </summary>
-        private TimbreSorting()
-        {
-            // Not implemented.
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public enum ESortKey
         {
@@ -31,11 +25,17 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             ESortKeyKeyVelocity,
             ESortKeyKeyKeyZone,
             Last
-        };
+        }
+
+        /// <summary>
+        /// </summary>
+        private TimbreSorting()
+        {
+            // Not implemented.
+        }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="sortKeys"></param>
@@ -48,7 +48,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                 comparers.Comparers.Add(new TimbreComparer(key));
             }
 
-            Debug.Assert(comparers.Comparers.Count == (int) ESortKey.Last);
+            Debug.Assert(comparers.Comparers.Count == (int)ESortKey.Last);
 
             timbres.Sort(comparers);
         }

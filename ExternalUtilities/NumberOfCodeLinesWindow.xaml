@@ -4,6 +4,6 @@
         Title="NumberOfCodeLinesWindow" Height="800" Width="1000" Loaded="Window_Loaded">
     <Grid>
         <TextBox x:Name="TextBoxOutput" FontFamily="Courier New" FontSize="10" HorizontalScrollBarVisibility="Auto"
-                 VerticalScrollBarVisibility="Auto"/>
+                 VerticalScrollBarVisibility="Auto" />
     </Grid>
 </Window>

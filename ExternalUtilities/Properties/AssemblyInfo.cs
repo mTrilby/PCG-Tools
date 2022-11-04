@@ -1,4 +1,10 @@
-﻿using System.Reflection;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 

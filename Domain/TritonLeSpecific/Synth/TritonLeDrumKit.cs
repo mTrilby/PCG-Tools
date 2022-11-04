@@ -1,4 +1,9 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 using PcgTools.Model.TritonSpecific.Synth;
 
@@ -7,12 +12,10 @@ using PcgTools.Model.TritonSpecific.Synth;
 namespace PcgTools.Model.TritonLeSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonLeDrumKit : TritonDrumKit
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumKitBank"></param>
         /// <param name="index"></param>
@@ -23,7 +26,6 @@ namespace PcgTools.Model.TritonLeSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override void SetParameters()
         {

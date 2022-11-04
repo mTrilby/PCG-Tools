@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -26,60 +30,26 @@ using WPF.MDI;
 namespace PcgTools
 {
     /// <summary>
-    /// Interaction logic for PcgWindow.xaml
+    ///     Interaction logic for PcgWindow.xaml
     /// </summary>
     public partial class PcgWindow : IChildWindow
     {
         /// <summary>
-        /// 
         /// </summary>
-        public IViewModel ViewModel { get; private set; }
-        
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IPcgViewModel PcgViewModel => (IPcgViewModel) ViewModel;
+        private readonly MainWindow _mainWindow;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        readonly IPcgMemory _pcgMemory; // Only for moving variable from PcgWindow constructor to Window_Loaded.
-        
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IPcgMemory PcgMemory => PcgViewModel.SelectedPcgMemory;
+        private readonly IPcgMemory _pcgMemory; // Only for moving variable from PcgWindow constructor to Window_Loaded.
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public IMemory Memory => PcgMemory;
+        private ICollectionView _listViewBanksView;
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        public MdiChild MdiChild { private get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        readonly MainWindow _mainWindow;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ICollectionView _listViewBanksView;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="mainWindow"></param>
         /// <param name="pcgFileName"></param>
@@ -97,9 +67,9 @@ namespace PcgTools
 
                     switch (type)
                     {
-                            // Programs
+                        // Programs
                         case DialogType.EditSingleProgram:
-                            window = new WindowEditSingleProgram(items.First() as IProgram) {Owner = _mainWindow};
+                            window = new WindowEditSingleProgram(items.First() as IProgram) { Owner = _mainWindow };
                             break;
 
                         case DialogType.EditMultiplePrograms:
@@ -114,9 +84,9 @@ namespace PcgTools
                             //window = new WindowEditMultipleProgramBanks(items as List<IProgramBank>) { Owner = _mainWindow };
                             break;
 
-                            // Combis
+                        // Combis
                         case DialogType.EditSingleCombi:
-                            window = new WindowEditSingleCombi(items.First() as ICombi) {Owner = _mainWindow};
+                            window = new WindowEditSingleCombi(items.First() as ICombi) { Owner = _mainWindow };
                             break;
 
                         case DialogType.EditMultipleCombis:
@@ -132,9 +102,10 @@ namespace PcgTools
                             break;
 
 
-                            // Set list slots                                    
+                        // Set list slots                                    
                         case DialogType.EditSingleSetListSlot:
-                            window = new WindowEditSingleSetListSlot(items.First() as ISetListSlot) {Owner = _mainWindow};
+                            window = new WindowEditSingleSetListSlot(items.First() as ISetListSlot)
+                                { Owner = _mainWindow };
                             break;
 
                         case DialogType.EditMultipleSetListSlots:
@@ -145,7 +116,7 @@ namespace PcgTools
                             break;
 
                         case DialogType.EditSingleSetList:
-                            window = new WindowEditSingleSetList(items.First() as ISetList) {Owner = _mainWindow};
+                            window = new WindowEditSingleSetList(items.First() as ISetList) { Owner = _mainWindow };
                             break;
 
                         case DialogType.EditMultipleSetLists:
@@ -162,7 +133,7 @@ namespace PcgTools
 
                 ShowPasteWindow = () =>
                 {
-                    var window = new SettingsWindow {Owner = _mainWindow};
+                    var window = new SettingsWindow { Owner = _mainWindow };
                     window.ShowDialog();
                 },
 
@@ -177,7 +148,7 @@ namespace PcgTools
 
                 ShowListGenerator = () =>
                 {
-                    var window = new ListGeneratorWindow((PcgMemory) ViewModel.SelectedMemory)
+                    var window = new ListGeneratorWindow((PcgMemory)ViewModel.SelectedMemory)
                     {
                         Owner = _mainWindow
                     };
@@ -194,7 +165,7 @@ namespace PcgTools
 
                 ShowProgramReferencesChanger = () =>
                 {
-                    var window = new ProgramReferenceChangerWindow((PcgMemory) ViewModel.SelectedMemory)
+                    var window = new ProgramReferenceChangerWindow((PcgMemory)ViewModel.SelectedMemory)
                     {
                         Owner = _mainWindow
                     };
@@ -213,10 +184,10 @@ namespace PcgTools
                 {
                     // Check if already exists. If so, show the already opened window.
                     foreach (var child in from child in _mainWindow.Container.Children
-                        where (child.Content is CombiWindow)
-                        let combiWindowIteration = child.Content as CombiWindow
-                        where combiWindowIteration.CombiViewModel.Combi == combi
-                        select child)
+                             where child.Content is CombiWindow
+                             let combiWindowIteration = child.Content as CombiWindow
+                             where combiWindowIteration.CombiViewModel.Combi == combi
+                             select child)
                     {
                         child.Focus();
                         return;
@@ -234,7 +205,7 @@ namespace PcgTools
                         Margin = new Thickness(0, 0, 0, 0)
                     };
 
-                    ((CombiWindow) (mdiChild.Content)).MdiChild = mdiChild;
+                    ((CombiWindow)mdiChild.Content).MdiChild = mdiChild;
                     _mainWindow.Container.Children.Add(mdiChild);
                     mdiChild.GotFocus += _mainWindow.MdiGotFocus;
                     mdiChild.Closing += _mainWindow.MdiClosing;
@@ -251,10 +222,10 @@ namespace PcgTools
                 {
                     // Update every timbre window.
                     foreach (var child in from child in _mainWindow.Container.Children
-                        where (child.Content is CombiWindow)
-                        select child)
+                             where child.Content is CombiWindow
+                             select child)
                     {
-                        var viewModel = ((CombiWindow) (child.Content)).CombiViewModel;
+                        var viewModel = ((CombiWindow)child.Content).CombiViewModel;
                         viewModel.UpdateUiContent();
                         child.Title = GenerateCombiWindowTitle(viewModel.Combi);
                     }
@@ -305,21 +276,76 @@ namespace PcgTools
             }
 
             //ToolTipService.ShowOnDisabled = "True"
-             //         ToolTipService.IsEnabled = "{Binding Path=ToolTipEnabled, Converter={StaticResource InverseBooleanConverter}}"
-              //        ToolTipService.ToolTip = "{Binding Path=ToolTip, Mode=OneTime}"
+            //         ToolTipService.IsEnabled = "{Binding Path=ToolTipEnabled, Converter={StaticResource InverseBooleanConverter}}"
+            //        ToolTipService.ToolTip = "{Binding Path=ToolTip, Mode=OneTime}"
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         public PcgWindow()
         {
         }
-         
+
 
         /// <summary>
-        /// 
+        /// </summary>
+        private IPcgViewModel PcgViewModel => (IPcgViewModel)ViewModel;
+
+
+        /// <summary>
+        /// </summary>
+        public IPcgMemory PcgMemory => PcgViewModel.SelectedPcgMemory;
+
+
+        /// <summary>
+        /// </summary>
+        public MdiChild MdiChild { private get; set; }
+
+        /// <summary>
+        /// </summary>
+        public IViewModel ViewModel { get; }
+
+
+        /// <summary>
+        /// </summary>
+        public IMemory Memory => PcgMemory;
+
+
+        /// <summary>
+        ///     Settings have been changed, so ShowNumberOfReferences might have changed.
+        ///     So update, the column (to hide/show it).
+        /// </summary>
+        /// <param name="property"></param>
+        public void ActOnSettingsChanged(string property)
+        {
+            OnViewPropertyChangedProgramBanksSelected();
+            OnViewPropertyChangedCombiBanksSelected();
+            OnViewPropertyChangedSetListsSelected();
+            OnViewPropertyChangedDrumKitBanksSelected();
+            OnViewPropertyChangedDrumPatternBanksSelected();
+            OnViewPropertyChangedWaveSequenceBanksSelected();
+            OnViewPropertyChangedAllPatchesSelected();
+
+            if (listViewPatches.ItemsSource != null)
+            {
+                foreach (IPatch patch in listViewPatches.ItemsSource)
+                {
+                    patch.Update("NumberOfReferencesShown");
+                }
+            }
+
+            if (listViewPatches.ItemsSource != null)
+            {
+                foreach (var patch in listViewPatches.ItemsSource.OfType<ISetListSlot>())
+                {
+                    patch.Update("ShowSingleLinedSetListSlotDescriptions");
+                }
+            }
+        }
+
+
+        /// <summary>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -331,7 +357,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SetProgramBanksGridViews()
         {
@@ -339,8 +364,8 @@ namespace PcgTools
             {
                 return;
             }
-            
-            var columns = ((GridView) listViewBanks.View).Columns;
+
+            var columns = ((GridView)listViewBanks.View).Columns;
 
             columns[0].Width = 50;
             columns[1].Width = 120;
@@ -358,8 +383,8 @@ namespace PcgTools
             }
 
             _listViewBanksView = CollectionViewSource.GetDefaultView(listViewBanks.ItemsSource);
-            _listViewBanksView.Filter = bank => ((IBank) bank).FilterForUi;
-            
+            _listViewBanksView.Filter = bank => ((IBank)bank).FilterForUi;
+
             HideAllGridViewPatchesColumns();
 
             SetGridViewPatchesColumn(Strings.ID, 70.0);
@@ -377,8 +402,8 @@ namespace PcgTools
                 SetGridViewPatchesColumn(Strings.SubCategory, 100.0);
             }
 
-            if (Settings.Default.UI_ShowNumberOfReferencesColumn && 
-                ((PcgMemory.CombiBanks != null) || (PcgMemory.SetLists != null)))
+            if (Settings.Default.UI_ShowNumberOfReferencesColumn &&
+                (PcgMemory.CombiBanks != null || PcgMemory.SetLists != null))
             {
                 SetGridViewPatchesColumn(Strings.NumberOfReferences, 50);
             }
@@ -386,7 +411,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SetCombiBanksGridViews()
         {
@@ -433,7 +457,7 @@ namespace PcgTools
             }
 
             if (Settings.Default.UI_ShowNumberOfReferencesColumn &&
-                ((PcgMemory.CombiBanks != null) || (PcgMemory.SetLists != null)))
+                (PcgMemory.CombiBanks != null || PcgMemory.SetLists != null))
             {
                 SetGridViewPatchesColumn(Strings.NumberOfReferences, 50);
             }
@@ -441,7 +465,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SetSetListsGridViews()
         {
@@ -482,7 +505,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SetDrumKitBanksGridViews()
         {
@@ -519,7 +541,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SetDrumPatternBanksGridViews()
         {
@@ -556,7 +577,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SetWaveSequenceBanksGridViews()
         {
@@ -593,7 +613,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void SetAllPatchesGridViews()
         {
@@ -630,15 +649,15 @@ namespace PcgTools
             }
 
             if (Settings.Default.UI_ShowNumberOfReferencesColumn &&
-                ((PcgMemory.CombiBanks != null) || (PcgMemory.SetLists != null)))
+                (PcgMemory.CombiBanks != null || PcgMemory.SetLists != null))
             {
                 SetGridViewPatchesColumn(Strings.NumberOfReferences, 50);
             }
         }
-        
+
 
         /// <summary>
-        /// Set column width of a column.
+        ///     Set column width of a column.
         /// </summary>
         /// <param name="columnName"></param>
         /// <param name="width"></param>
@@ -655,7 +674,7 @@ namespace PcgTools
 
 
         /// <summary>
-        /// Hiding all grid viewi patches columns before setting them.
+        ///     Hiding all grid viewi patches columns before setting them.
         /// </summary>
         private void HideAllGridViewPatchesColumns()
         {
@@ -668,7 +687,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void MoveSelectedPatchesUp()
         {
@@ -680,7 +698,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void MoveSelectedPatchesDown()
         {
@@ -692,19 +709,16 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="model"></param>
         /// <param name="fileName"></param>
         private void SetPcgFileAsMasterFile(IModel model, string fileName)
         {
             MasterFiles.MasterFiles.Instances.SetPcgFileAsMasterFile(model, fileName);
-
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         /// <returns></returns>
@@ -716,7 +730,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -735,15 +748,17 @@ namespace PcgTools
             {
                 // Ignore.
             }
-            
+
             if (e.RemovedItems.Count > 0)
             {
                 var selectedBanks = PcgViewModel.Banks.Where(item => item.IsSelected &&
-                 item.Parent == ((IBank)(e.RemovedItems[0])).Parent).ToList().Count;
+                                                                     item.Parent == ((IBank)e.RemovedItems[0]).Parent)
+                    .ToList().Count;
 
                 if (selectedBanks != e.RemovedItems.Count)
                 {
-                    foreach (var bank in PcgViewModel.Banks.Where(item => item.IsSelected && (e.RemovedItems.Contains(item))))
+                    foreach (var bank in PcgViewModel.Banks.Where(item =>
+                                 item.IsSelected && e.RemovedItems.Contains(item)))
                     {
                         bank.IsSelected = false;
                     }
@@ -755,7 +770,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -767,13 +781,14 @@ namespace PcgTools
             {
                 listViewPatches.ScrollIntoView(e.AddedItems[0]);
             }
+
             ((PcgViewModel)PcgViewModel).EditSelectedItemCommand.CanExecute(null);
 
             var selectedPatches = listViewPatches.SelectedItems.Count;
-            if ((selectedPatches == 1) && (listViewPatches.SelectedItem is IProgram) ||
+            if ((selectedPatches == 1 && listViewPatches.SelectedItem is IProgram) ||
                 listViewPatches.SelectedItem is ICombi)
             {
-                PcgViewModel.LastSelectedProgramOrCombi = (IPatch) listViewPatches.SelectedItem;
+                PcgViewModel.LastSelectedProgramOrCombi = (IPatch)listViewPatches.SelectedItem;
             }
 
             PcgViewModel.NumberOfSelectedPatches = PcgViewModel.Patches.Count(item => item.IsSelected);
@@ -781,7 +796,7 @@ namespace PcgTools
 
 
         /// <summary>
-        /// Since WPF does not take into account binding for nonvisible patches in a listview, it needs to be done manually.
+        ///     Since WPF does not take into account binding for nonvisible patches in a listview, it needs to be done manually.
         /// </summary>
         private void SyncPatches(SelectionChangedEventArgs e)
         {
@@ -803,7 +818,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -814,7 +828,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -822,12 +835,11 @@ namespace PcgTools
         {
             PcgViewModel.SelectedScopeSet = ScopeSet.Patches;
         }
-        
+
 
         /// <summary>
-        /// 
         /// </summary>
-        void CloseWindow()
+        private void CloseWindow()
         {
             MdiChild.Close();
             foreach (var child in GetChilds())
@@ -835,79 +847,74 @@ namespace PcgTools
                 _mainWindow.Container.Children.Remove(child);
             }
 
-            Settings.Default.UI_PcgWindowWidth = (int) MdiChild.Width;
-            Settings.Default.UI_PcgWindowHeight = (int) MdiChild.Height;
+            Settings.Default.UI_PcgWindowWidth = (int)MdiChild.Width;
+            Settings.Default.UI_PcgWindowHeight = (int)MdiChild.Height;
             Settings.Default.Save();
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
-        IEnumerable<MdiChild> GetChilds()
+        private IEnumerable<MdiChild> GetChilds()
         {
             return (from child in _mainWindow.Container.Children
-                    let combiWindow = child.Content as CombiWindow
-                    where (combiWindow != null) && (combiWindow.CombiViewModel.Combi.Root == PcgViewModel.SelectedPcgMemory)
-                    select child).ToList();
+                let combiWindow = child.Content as CombiWindow
+                where combiWindow != null && combiWindow.CombiViewModel.Combi.Root == PcgViewModel.SelectedPcgMemory
+                select child).ToList();
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void OnViewPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnViewPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
-            case "ProgramBanksSelected":
-                OnViewPropertyChangedProgramBanksSelected();
-                break;
+                case "ProgramBanksSelected":
+                    OnViewPropertyChangedProgramBanksSelected();
+                    break;
 
-            case "CombiBanksSelected":
-                OnViewPropertyChangedCombiBanksSelected();
-                break;
+                case "CombiBanksSelected":
+                    OnViewPropertyChangedCombiBanksSelected();
+                    break;
 
-            case "SetListsSelected":
-                OnViewPropertyChangedSetListsSelected();
-                break;
+                case "SetListsSelected":
+                    OnViewPropertyChangedSetListsSelected();
+                    break;
 
-            case "DrumKitBanksSelected":
-                OnViewPropertyChangedDrumKitBanksSelected();
-                break;
+                case "DrumKitBanksSelected":
+                    OnViewPropertyChangedDrumKitBanksSelected();
+                    break;
 
-            case "DrumPatternBanksSelected":
-                OnViewPropertyChangedDrumPatternBanksSelected();
-                break;
+                case "DrumPatternBanksSelected":
+                    OnViewPropertyChangedDrumPatternBanksSelected();
+                    break;
 
-            case "WaveSequenceBanksSelected":
-                OnViewPropertyChangedWaveSequenceBanksSelected();
-                break;
+                case "WaveSequenceBanksSelected":
+                    OnViewPropertyChangedWaveSequenceBanksSelected();
+                    break;
 
-            case "AllPatchesSelected":
-                OnViewPropertyChangedAllPatchesSelected();
-                break;
+                case "AllPatchesSelected":
+                    OnViewPropertyChangedAllPatchesSelected();
+                    break;
 
-            case "SelectedScopeSet":
-                OnViewPropertyChangedSelectedScopeSet();
-                break;
- 
-            case "WindowTitle":
-                // Can be called from background worker.
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    MdiChild.Title = PcgViewModel.WindowTitle;
-                }));
-                break;
+                case "SelectedScopeSet":
+                    OnViewPropertyChangedSelectedScopeSet();
+                    break;
 
-            case "Patches":
-                Patches();
-                break;
+                case "WindowTitle":
+                    // Can be called from background worker.
+                    Dispatcher.BeginInvoke(new Action(() => { MdiChild.Title = PcgViewModel.WindowTitle; }));
+                    break;
 
-            //default:
+                case "Patches":
+                    Patches();
+                    break;
+
+                //default:
                 // Do nothing, not all properties need to be listened to.
                 //break;
             }
@@ -915,7 +922,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void OnViewPropertyChangedProgramBanksSelected()
         {
@@ -929,7 +935,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void OnViewPropertyChangedCombiBanksSelected()
         {
@@ -943,7 +948,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void OnViewPropertyChangedSetListsSelected()
         {
@@ -957,7 +961,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void OnViewPropertyChangedDrumKitBanksSelected()
         {
@@ -971,7 +974,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void OnViewPropertyChangedDrumPatternBanksSelected()
         {
@@ -985,7 +987,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void OnViewPropertyChangedWaveSequenceBanksSelected()
         {
@@ -999,7 +1000,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void OnViewPropertyChangedAllPatchesSelected()
         {
@@ -1013,7 +1013,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void OnViewPropertyChangedSelectedScopeSet()
         {
@@ -1038,7 +1037,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1049,46 +1047,12 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnBanksDoubleClick(object sender, MouseButtonEventArgs e)
         {
             PcgViewModel.EditSelectedItem();
-        }
-
-
-        /// <summary>
-        /// Settings have been changed, so ShowNumberOfReferences might have changed.
-        /// So update, the column (to hide/show it).
-        /// </summary>
-        /// <param name="property"></param>
-        public void ActOnSettingsChanged(string property)
-        {
-            OnViewPropertyChangedProgramBanksSelected();
-            OnViewPropertyChangedCombiBanksSelected();
-            OnViewPropertyChangedSetListsSelected();
-            OnViewPropertyChangedDrumKitBanksSelected();
-            OnViewPropertyChangedDrumPatternBanksSelected();
-            OnViewPropertyChangedWaveSequenceBanksSelected();
-            OnViewPropertyChangedAllPatchesSelected();
-
-            if (listViewPatches.ItemsSource != null)
-            {
-                foreach (IPatch patch in listViewPatches.ItemsSource)
-                {
-                    patch.Update("NumberOfReferencesShown");
-                }
-            }
-
-            if (listViewPatches.ItemsSource != null)
-            {
-                foreach (ISetListSlot patch in listViewPatches.ItemsSource.OfType<ISetListSlot>())
-                {
-                    patch.Update("ShowSingleLinedSetListSlotDescriptions");
-                }
-            }
         }
     }
 }

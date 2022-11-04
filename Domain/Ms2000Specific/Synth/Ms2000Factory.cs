@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Diagnostics;
@@ -11,36 +15,29 @@ using PcgTools.Model.Ms2000Specific.Song;
 namespace PcgTools.Model.Ms2000Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Ms2000Factory : SysExFactory
     {
         /// <summary>
-        /// 
-        /// </summary>
-        private readonly Memory.FileType _fileType ;
-
-        
-        /// <summary>
-        /// 
         /// </summary>
         private readonly PcgMemory.ContentType _contentType;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        private readonly int _sysExStartOffset;
+        private readonly Memory.FileType _fileType;
 
 
         /// <summary>
-        /// 
         /// </summary>
         private readonly int _sysExEndOffset;
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        private readonly int _sysExStartOffset;
+
+
+        /// <summary>
         /// </summary>
         /// <param name="fileType"></param>
         /// <param name="contentType"></param>
@@ -57,7 +54,6 @@ namespace PcgTools.Model.Ms2000Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -77,10 +73,10 @@ namespace PcgTools.Model.Ms2000Specific.Synth
                 case Memory.FileType.Syx: // Fall through
                 case Memory.FileType.Mid:
                     pcgMemory = new Ms2000SysExMemory(
-                         fileName, _contentType, _sysExStartOffset, _sysExEndOffset);
+                        fileName, _contentType, _sysExStartOffset, _sysExEndOffset);
                     break;
 
-                    
+
                 default:
                     throw new NotSupportedException("Unsupported file type");
             }
@@ -92,7 +88,6 @@ namespace PcgTools.Model.Ms2000Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -104,7 +99,6 @@ namespace PcgTools.Model.Ms2000Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -116,7 +110,6 @@ namespace PcgTools.Model.Ms2000Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

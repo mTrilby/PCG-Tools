@@ -1,6 +1,11 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Windows;
+using System.Windows.Controls;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
@@ -9,30 +14,11 @@ using WPF.MDI;
 namespace PcgTools
 {
     /// <summary>
-    /// Interaction logic for SngTimbres window.xaml
+    ///     Interaction logic for SngTimbres window.xaml
     /// </summary>
     public partial class SongTimbresWindow : IChildWindow
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public IViewModel ViewModel { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ISngTimbresViewModel SngTimbresViewModel => (ISngTimbresViewModel) ViewModel;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public MdiChild MdiChild { private get; set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="songViewModel"></param>
         public SongTimbresWindow(ISongViewModel songViewModel)
@@ -54,7 +40,6 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         public SongTimbresWindow()
         {
@@ -62,7 +47,34 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        public ISngTimbresViewModel SngTimbresViewModel => (ISngTimbresViewModel)ViewModel;
+
+
+        /// <summary>
+        /// </summary>
+        public MdiChild MdiChild { private get; set; }
+
+        /// <summary>
+        /// </summary>
+        public IViewModel ViewModel { get; }
+
+
+        /// <summary>
+        /// </summary>
+        public IMemory Memory => ViewModel.SelectedMemory;
+
+
+        /// <summary>
+        /// </summary>
+        /// <param name="property"></param>
+        public void ActOnSettingsChanged(string property)
+        {
+            // No action needed.
+        }
+
+
+        /// <summary>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -75,11 +87,10 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ListViewTimbresSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ListViewTimbresSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
             {
@@ -92,31 +103,14 @@ namespace PcgTools
         // IChildWindow
 
         /// <summary>
-        /// 
         /// </summary>
-        void CloseWindow()
+        private void CloseWindow()
         {
             MdiChild.Close();
 
             Settings.Default.UI_SongTimbresWindowWidth = (int)MdiChild.Width;
             Settings.Default.UI_SongTimbresWindowHeight = (int)MdiChild.Height;
             Settings.Default.Save();
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IMemory Memory => ViewModel.SelectedMemory;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="property"></param>
-        public void ActOnSettingsChanged(string property)
-        {
-            // No action needed.
         }
     }
 }

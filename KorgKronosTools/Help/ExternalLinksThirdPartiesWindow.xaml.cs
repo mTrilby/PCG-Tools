@@ -1,22 +1,25 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Help
 {
     /// <summary>
-    /// 
     /// </summary>
     public partial class ExternalLinksThirdPartiesWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public ExternalLinksThirdPartiesWindow()
         {
@@ -24,22 +27,21 @@ namespace PcgTools.Help
 
             var externalItems = new List<ExternalItem>
             {
-
-                new ExternalItem
+                new()
                 {
                     Name = "Microsoft Visual Studio",
                     Description = "Developer software",
                     Url = "http://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx",
                     BitmapPath = "VisualStudio.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Stack Overflow",
                     Description = "Programmer forum",
                     Url = "http://www.stackoverflow.com",
                     BitmapPath = "stackoverflow.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Flexera Installshield LE",
                     Description = "Installer software",
@@ -47,48 +49,48 @@ namespace PcgTools.Help
                         "http://www.flexerasoftware.com/products/software-installation/installshield-software-installer/",
                     BitmapPath = "Flexera.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Assembla",
                     Description = "Versioning website",
                     Url = "https://www.assembla.com/home",
                     BitmapPath = "Assembla.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Git",
                     Description = "Free versioning software",
                     Url = "http://git-scm.com/",
                     BitmapPath = "git.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Git Extensions",
                     Description = "Free extension for Git",
                     Url = "http://sourceforge.net/projects/gitextensions",
                     BitmapPath = "git.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "WPF.MDI (CodePlex)",
                     Description = "Free Multiple Document Interface library",
                     Url = "http://wpfmdi.codeplex.com",
                     BitmapPath = ""
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Core FTP LE",
                     Description = "Free software for FTP",
                     Url = "http://coreftp.com",
                     BitmapPath = "coreftple.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "MIDI-OX",
                     Description = "Free MIDI application",
                     Url = "http://www.midiox.com/",
                     BitmapPath = "midiox.png"
-                },
+                }
             };
 
             var linkButtons = new List<UserControlExternalLink>
@@ -166,7 +168,7 @@ namespace PcgTools.Help
             if (userControlExternalLink != null)
             {
                 var item = userControlExternalLink.Tag as ExternalItem;
-                if ((item != null) && (item.Url != null))
+                if (item != null && item.Url != null)
                 {
                     ShowUrl(item.Url);
                 }
@@ -175,7 +177,6 @@ namespace PcgTools.Help
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ShowUrl(string url)
         {
@@ -192,5 +193,3 @@ namespace PcgTools.Help
         }
     }
 }
-
-

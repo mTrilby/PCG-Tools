@@ -1,6 +1,9 @@
-﻿
+﻿#region copyright
 
-// (c) 2011 Michel Keijzers
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
@@ -8,12 +11,10 @@ using PcgTools.Model.Common.Synth.PatchDrumKits;
 namespace PcgTools.Model.MicroStationSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MicroStationDrumKitBanks : DrumKitBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public MicroStationDrumKitBanks(IPcgMemory pcgMemory)
@@ -23,7 +24,6 @@ namespace PcgTools.Model.MicroStationSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {
@@ -33,7 +33,7 @@ namespace PcgTools.Model.MicroStationSpecific.Synth
             // commented out model 0x8D), I did some basic testing on the drumkit part.
             // Needs more testing once microStation is fully supported in PcgTools though, since I did 
             // not get past other exceptions thrown for this model. I commented out the 0x8D again.
-            Add(new MicroStationDrumKitBank(this, BankType.EType.Int,  "INT", -1));
+            Add(new MicroStationDrumKitBank(this, BankType.EType.Int, "INT", -1));
             Add(new MicroStationDrumKitBank(this, BankType.EType.User, "USER", -1));
         }
     }

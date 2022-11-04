@@ -1,16 +1,19 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Windows;
 
 namespace PcgTools.Edit
 {
     /// <summary>
-    /// Interaction logic for WindowEdit.xaml
+    ///     Interaction logic for WindowEdit.xaml
     /// </summary>
     public partial class WindowEditMultipleCombiBanks // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public WindowEditMultipleCombiBanks()
         {
@@ -19,7 +22,6 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

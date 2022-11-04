@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +13,21 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.Common.Synth.PatchCombis
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class CombiBanks : Banks<ICombiBank>, ICombiBanks
     {
+        // Virtual banks.
+
         /// <summary>
-        /// 
+        /// </summary>
+        public const int FirstVirtualBankId = 0x30;
+
+
+        /// <summary>
+        /// </summary>
+        public const int NumberOfVirtualBanks = 100;
+
+        /// <summary>
         /// </summary>
         /// <param name="pcgMemory"></param>
         protected CombiBanks(IPcgMemory pcgMemory) : base(pcgMemory)
@@ -23,13 +36,6 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        protected abstract void CreateBanks();
-        
-
-        /// <summary>
-        /// 
         /// </summary>
         public override void Fill()
         {
@@ -37,11 +43,34 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             FillCombis();
         }
 
-        
+
         /// <summary>
-        /// 
         /// </summary>
-        void FillCombis()
+        /// <param name="changes"></param>
+        /// <param name="pcgMemory">PCG Memory of changes</param>
+        public void ChangeTimbreReferences(Dictionary<IProgram, IProgram> changes, IPcgMemory pcgMemory)
+        {
+            foreach (var timbre in from bank in BankCollection
+                     where bank.IsFilled
+                     from combi in bank.Patches
+                     from timbre in ((Combi)combi).Timbres.TimbresCollection
+                     where (!timbre.UsedProgram.IsFromMasterFile || timbre.UsedProgram.PcgRoot == pcgMemory) &&
+                           changes.ContainsKey(timbre.UsedProgram)
+                     select timbre)
+            {
+                timbre.UsedProgram = changes[timbre.UsedProgram];
+            }
+        }
+
+
+        /// <summary>
+        /// </summary>
+        protected abstract void CreateBanks();
+
+
+        /// <summary>
+        /// </summary>
+        private void FillCombis()
         {
             foreach (var bank in BankCollection)
             {
@@ -52,43 +81,9 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             }
         }
 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="changes"></param>
-        /// <param name="pcgMemory">PCG Memory of changes</param>
-        public void ChangeTimbreReferences(Dictionary<IProgram, IProgram> changes, IPcgMemory pcgMemory)
-        {
-            foreach (var timbre in from bank in BankCollection
-                                   where bank.IsFilled
-                                   from combi in bank.Patches
-                                   from timbre in ((Combi)combi).Timbres.TimbresCollection
-                                   where  (!timbre.UsedProgram.IsFromMasterFile || timbre.UsedProgram.PcgRoot == pcgMemory) &&
-                                   changes.ContainsKey(timbre.UsedProgram)
-                                   select timbre)
-            {
-                timbre.UsedProgram = changes[timbre.UsedProgram];
-            }
-        }
-
-
-        // Virtual banks.
 
         /// <summary>
-        /// 
-        /// </summary>
-        public const int FirstVirtualBankId = 0x30;
-
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const int NumberOfVirtualBanks = 100;
-
-
-        /// <summary>
-        /// Default do not create virtual banks.
+        ///     Default do not create virtual banks.
         /// </summary>
         protected virtual void CreateVirtualBanks()
         {

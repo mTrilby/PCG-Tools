@@ -1,32 +1,32 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Windows;
 using System.Windows.Controls;
 using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Edit
 {
     /// <summary>
-    /// Interaction logic for WindowEdit.xaml
+    ///     Interaction logic for WindowEdit.xaml
     /// </summary>
     public partial class WindowEditMultipleSetListSlot // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
-        readonly ISetListSlot _patch;
+        private readonly ISetListSlot _patch;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        bool _ok = true;
+        private bool _ok = true;
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="patch"></param>
         public WindowEditMultipleSetListSlot(ISetListSlot patch)
@@ -37,7 +37,6 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -45,14 +44,13 @@ namespace PcgTools.Edit
         {
             textBoxId.Text = _patch.Id;
             textBoxName.Text = _patch.Name;
-            
+
             textBoxDescription.Text = _patch.Description;
             intupdownVolume.Value = _patch.Volume;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -61,9 +59,8 @@ namespace PcgTools.Edit
             Check();
         }
 
-        
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -74,14 +71,13 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void Check()
         {
             var usedSize = textBoxName.Text.Length;
             labelNameLength.Content = string.Format(Strings.XOfYCharacters_editw, usedSize, _patch.MaxNameLength);
             labelError.Content = EditUtils.CheckText(textBoxName.Text, _patch.MaxNameLength, EditUtils.ECheckType.Name);
-        
+
             // Check set list slot description.
             if (labelError.Content.Equals(string.Empty))
             {
@@ -102,7 +98,6 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -117,7 +112,7 @@ namespace PcgTools.Edit
                 _patch.Description = textBoxDescription.Text;
 
                 // Set volume.
-                _patch.Volume = intupdownVolume.Value.HasValue ? (int) intupdownVolume.Value : 0;
+                _patch.Volume = intupdownVolume.Value.HasValue ? (int)intupdownVolume.Value : 0;
 
                 // Notify others.
                 _patch.Update("ContentChanged");
@@ -129,7 +124,6 @@ namespace PcgTools.Edit
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

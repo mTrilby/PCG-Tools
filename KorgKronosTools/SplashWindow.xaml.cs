@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Windows.Media.Imaging;
@@ -8,18 +12,16 @@ using PcgTools.ViewModels;
 namespace PcgTools
 {
     /// <summary>
-    /// Interaction logic for SplashWindow.xaml
+    ///     Interaction logic for SplashWindow.xaml
     /// </summary>
     public partial class SplashWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
-        const int ImagePixelArea = 10000;
+        private const int ImagePixelArea = 10000;
 
 
         /// <summary>
-        /// 
         /// </summary>
         public SplashWindow()
         {
@@ -29,9 +31,8 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
-        void DrawLogoAndName()
+        private void DrawLogoAndName()
         {
             var logo = new Logos().GetRandomLogo();
             if (logo.ImageName != string.Empty)
@@ -57,11 +58,10 @@ namespace PcgTools
 
 
         /// <summary>
-        /// 
         /// </summary>
         public void CloseWindow()
         {
-           Close();
+            Close();
         }
     }
 }

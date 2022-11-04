@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.ZeroSeries.Synth;
@@ -7,12 +10,10 @@ using PcgTools.Model.ZeroSeries.Synth;
 namespace PcgTools.Model.Zero3Rw.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public sealed class Zero3RwTimbres : ZeroSeriesTimbres
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         public Zero3RwTimbres(ICombi combi)
@@ -24,6 +25,5 @@ namespace PcgTools.Model.Zero3Rw.Synth
                 TimbresCollection.Add(new Zero3RwTimbre(this, n));
             }
         }
-
     }
 }

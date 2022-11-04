@@ -1,19 +1,22 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.PcgToolsResources;
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Model.Common.Synth.PatchWaveSequences
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class WaveSequenceBank : Bank<WaveSequence>, IWaveSequenceBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="waveSeqBanks"></param>
         /// <param name="type"></param>
@@ -26,14 +29,15 @@ namespace PcgTools.Model.Common.Synth.PatchWaveSequences
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public override string Name { get { return "n.a."; } set { throw new ApplicationException("Not yet implemented"); } }
-
+        public override string Name
+        {
+            get => "n.a.";
+            set => throw new ApplicationException("Not yet implemented");
+        }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         public override string ToString()

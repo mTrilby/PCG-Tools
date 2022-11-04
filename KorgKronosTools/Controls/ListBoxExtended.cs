@@ -1,14 +1,18 @@
-﻿using System.Windows.Controls;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System.Windows.Controls;
 
 namespace PcgTools.Controls
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ListBoxExtended : ListBox
     {
         /// <summary>
-        /// 
         /// </summary>
         public ListBoxExtended()
         {
@@ -17,11 +21,10 @@ namespace PcgTools.Controls
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ListBoxExtended_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBoxExtended_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ScrollIntoView(SelectedItem);
         }

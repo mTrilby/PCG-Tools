@@ -11,24 +11,24 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel>
                 <Label Content="{x:Static common:Strings.ID}"
-               HorizontalAlignment="Left"
-               Name="label1" VerticalAlignment="Top" Margin="4" />
+                       HorizontalAlignment="Left"
+                       Name="label1" VerticalAlignment="Top" Margin="4" />
                 <TextBox HorizontalAlignment="Left" Margin="4"
-                 Name="textBoxId" VerticalAlignment="Top"
-                 IsReadOnly="True" />
+                         Name="textBoxId" VerticalAlignment="Top"
+                         IsReadOnly="True" />
             </StackPanel>
 
             <StackPanel>
                 <Label Content="{x:Static common:Strings.Name}"
-               HorizontalAlignment="Left"
-               Margin="4" Name="label2" VerticalAlignment="Top" />
+                       HorizontalAlignment="Left"
+                       Margin="4" Name="label2" VerticalAlignment="Top" />
                 <TextBox HorizontalAlignment="Left" IsReadOnly="False"
-                 Margin="4" Name="textBoxName"
-                 VerticalAlignment="Top" TextChanged="TextBoxNameTextChanged" Grid.ColumnSpan="2" />
+                         Margin="4" Name="textBoxName"
+                         VerticalAlignment="Top" TextChanged="TextBoxNameTextChanged" />
             </StackPanel>
 
             <Label HorizontalAlignment="Left" Margin="4"
-               Name="labelNameLength" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                   Name="labelNameLength" VerticalAlignment="Top">
                 <Label.Background>
                     <SolidColorBrush />
                 </Label.Background>
@@ -37,45 +37,45 @@
 
         <StackPanel Orientation="Horizontal">
             <Label Content="{x:Static common:Strings.ControlVolume}"
-        	HorizontalAlignment="Left"
-        	Margin="4" VerticalAlignment="Top"/>
-            <xctk:IntegerUpDown Name="intupdownVolume" Value="123" Increment="1" Maximum="127" Minimum="0" Margin="4"/>
+                   HorizontalAlignment="Left"
+                   Margin="4" VerticalAlignment="Top" />
+            <xctk:IntegerUpDown Name="intupdownVolume" Value="123" Increment="1" Maximum="127" Minimum="0" Margin="4" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
             <Label Content="{x:Static common:Strings.DescriptionControl}"
-               HorizontalAlignment="Left"
-               Margin="4" Name="labelDescription" VerticalAlignment="Top" />
+                   HorizontalAlignment="Left"
+                   Margin="4" Name="labelDescription" VerticalAlignment="Top" />
 
-            <TextBlock HorizontalAlignment="Left" Margin="4"  Background="{x:Static SystemColors.ControlLightBrush}" Text="X of y Characters"
-               Name="labelDescriptionLength" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="4" Background="{x:Static SystemColors.ControlLightBrush}"
+                       Text="X of y Characters"
+                       Name="labelDescriptionLength" VerticalAlignment="Top" />
         </StackPanel>
 
         <TextBox MaxWidth="320" HorizontalAlignment="Left" IsReadOnly="False"
                  Margin="4" Name="textBoxDescription"
                  VerticalAlignment="Top" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"
-                 TextChanged="TextBoxDescriptionTextChanged" AcceptsReturn="True" AcceptsTab="True" Grid.ColumnSpan="2" />
+                 TextChanged="TextBoxDescriptionTextChanged" AcceptsReturn="True" AcceptsTab="True" />
 
         <StackPanel Orientation="Horizontal">
             <Label Foreground="#FFD80000" HorizontalAlignment="Left"
-               Margin="4" Name="labelError"
-               VerticalAlignment="Top" Grid.ColumnSpan="2">
+                   Margin="4" Name="labelError"
+                   VerticalAlignment="Top">
                 <Label.Background>
                     <SolidColorBrush />
                 </Label.Background>
             </Label>
             <Button Content="{x:Static common:Strings.Cancel}"
-                HorizontalAlignment="Left"
-                IsDefault="False" Margin="4" Name="buttonCancel"
-                VerticalAlignment="Top" Width="75" IsCancel="True"
-                Click="ButtonCancelClick"/>
+                    HorizontalAlignment="Left"
+                    IsDefault="False" Margin="4" Name="buttonCancel"
+                    VerticalAlignment="Top" Width="75" IsCancel="True"
+                    Click="ButtonCancelClick" />
             <Button Content="{x:Static common:Strings.OK}"
-                HorizontalAlignment="Left"
-                Margin="4" Name="buttonOk" VerticalAlignment="Top"
-                Width="75" IsDefault="True" Click="ButtonOkClick"/>
+                    HorizontalAlignment="Left"
+                    Margin="4" Name="buttonOk" VerticalAlignment="Top"
+                    Width="75" IsDefault="True" Click="ButtonOkClick" />
 
         </StackPanel>
-
 
 
     </StackPanel>

@@ -1,7 +1,12 @@
-﻿namespace PcgTools.Common.Utils;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+namespace PcgTools.Common.Utils;
 
 /// <summary>
-///
 /// </summary>
 public enum DialogType
 {
@@ -33,6 +38,5 @@ public enum DialogType
     EditSingleWaveSequence,
     EditMultipleWaveSequences,
     EditSingleWaveSequenceBank,
-    EditMultipleWaveSequenceBanks,
-
+    EditMultipleWaveSequenceBanks
 }

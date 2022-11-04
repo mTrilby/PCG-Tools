@@ -1,22 +1,22 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.Utils;
-using Cursor = System.Windows.Input.Cursor;
-using MessageBox = System.Windows.MessageBox;
 
 namespace PcgTools.Common.Utils
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class WindowUtils
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="window"></param>
         /// <param name="text"></param>
@@ -31,7 +31,7 @@ namespace PcgTools.Common.Utils
         {
             Debug.Assert(!string.IsNullOrEmpty(text));
             Debug.Assert(!string.IsNullOrEmpty(title));
-            
+
             MessageBoxButton button;
             switch (messageBoxButton)
             {
@@ -42,7 +42,7 @@ namespace PcgTools.Common.Utils
                 case WindowUtil.EMessageBoxButton.YesNo:
                     button = MessageBoxButton.YesNo;
                     break;
-                
+
                 case WindowUtil.EMessageBoxButton.YesNoCancel:
                     button = MessageBoxButton.YesNoCancel;
                     break;
@@ -54,81 +54,82 @@ namespace PcgTools.Common.Utils
             MessageBoxImage image;
             switch (messageBoxImage)
             {
-            case WindowUtil.EMessageBoxImage.Error:
-                image = MessageBoxImage.Error;
-                break;
+                case WindowUtil.EMessageBoxImage.Error:
+                    image = MessageBoxImage.Error;
+                    break;
 
-            case WindowUtil.EMessageBoxImage.Warning:
-                image = MessageBoxImage.Warning;
-                break;
+                case WindowUtil.EMessageBoxImage.Warning:
+                    image = MessageBoxImage.Warning;
+                    break;
 
-            case WindowUtil.EMessageBoxImage.Exclamation:
-                image = MessageBoxImage.Exclamation;
-                break;
+                case WindowUtil.EMessageBoxImage.Exclamation:
+                    image = MessageBoxImage.Exclamation;
+                    break;
 
-            case WindowUtil.EMessageBoxImage.Information:
-                image = MessageBoxImage.Information;
-                break;
+                case WindowUtil.EMessageBoxImage.Information:
+                    image = MessageBoxImage.Information;
+                    break;
 
-            default:
-                throw new ApplicationException("Illegal message box image");
+                default:
+                    throw new ApplicationException("Illegal message box image");
             }
 
             MessageBoxResult result;
             switch (messageBoxResult)
             {
-            case WindowUtil.EMessageBoxResult.Ok:
-                result = MessageBoxResult.OK;
-                break;
+                case WindowUtil.EMessageBoxResult.Ok:
+                    result = MessageBoxResult.OK;
+                    break;
 
-            case WindowUtil.EMessageBoxResult.Yes:
-                result = MessageBoxResult.Yes;
-                break;
+                case WindowUtil.EMessageBoxResult.Yes:
+                    result = MessageBoxResult.Yes;
+                    break;
 
-            case WindowUtil.EMessageBoxResult.No:
-                result = MessageBoxResult.No;
-                break;
+                case WindowUtil.EMessageBoxResult.No:
+                    result = MessageBoxResult.No;
+                    break;
 
-            case WindowUtil.EMessageBoxResult.None:
-                result = MessageBoxResult.None;
-                break;
+                case WindowUtil.EMessageBoxResult.None:
+                    result = MessageBoxResult.None;
+                    break;
 
-            case WindowUtil.EMessageBoxResult.Cancel:
-                result = MessageBoxResult.Cancel;
-                break;
+                case WindowUtil.EMessageBoxResult.Cancel:
+                    result = MessageBoxResult.Cancel;
+                    break;
 
-            default:
-                throw new ApplicationException("Illegal message box result");
+                default:
+                    throw new ApplicationException("Illegal message box result");
             }
 
-            MessageBoxResult dialogResult = window == null ? MessageBox.Show(text, title, button, image, result) : 
-                                                MessageBox.Show(window, text, title, button, image, result);
+            var dialogResult = window == null
+                ? MessageBox.Show(text, title, button, image, result)
+                : MessageBox.Show(window, text, title, button, image, result);
 
             WindowUtil.EMessageBoxResult returnResult;
             switch (dialogResult)
             {
-            case MessageBoxResult.OK:
-                returnResult = WindowUtil.EMessageBoxResult.Ok;
-                break;
+                case MessageBoxResult.OK:
+                    returnResult = WindowUtil.EMessageBoxResult.Ok;
+                    break;
 
-            case MessageBoxResult.Yes:
-                returnResult = WindowUtil.EMessageBoxResult.Yes;
-                break;
+                case MessageBoxResult.Yes:
+                    returnResult = WindowUtil.EMessageBoxResult.Yes;
+                    break;
 
-            case MessageBoxResult.No:
-                returnResult = WindowUtil.EMessageBoxResult.No;
-                break;
+                case MessageBoxResult.No:
+                    returnResult = WindowUtil.EMessageBoxResult.No;
+                    break;
 
-            case MessageBoxResult.Cancel:
-                returnResult = WindowUtil.EMessageBoxResult.Cancel;
-                break;
+                case MessageBoxResult.Cancel:
+                    returnResult = WindowUtil.EMessageBoxResult.Cancel;
+                    break;
 
-            case MessageBoxResult.None:
-                returnResult = WindowUtil.EMessageBoxResult.None;
-                break;
+                case MessageBoxResult.None:
+                    returnResult = WindowUtil.EMessageBoxResult.None;
+                    break;
 
-            default:
-                throw new ApplicationException("Illegal message box result");
+                default:
+                    throw new ApplicationException("Illegal message box result");
             }
 
             return returnResult;
@@ -136,7 +137,6 @@ namespace PcgTools.Common.Utils
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="eCursor"></param>
         public static void SetCursor(WindowUtil.ECursor eCursor)
@@ -145,7 +145,7 @@ namespace PcgTools.Common.Utils
             switch (eCursor)
             {
                 case WindowUtil.ECursor.Wait:
-                cursor = Cursors.Wait;
+                    cursor = Cursors.Wait;
                     break;
 
                 case WindowUtil.ECursor.Arrow:

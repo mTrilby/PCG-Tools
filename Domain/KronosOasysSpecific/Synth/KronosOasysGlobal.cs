@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.Global;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -7,18 +10,22 @@ using PcgTools.Model.Common.Synth.MemoryAndFactory;
 namespace PcgTools.Model.KronosOasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KronosOasysGlobal : Global
     {
         /// <summary>
-        /// 
+        /// </summary>
+        /// <param name="pcgMemory"></param>
+        protected KronosOasysGlobal(IPcgMemory pcgMemory) : base(pcgMemory)
+        {
+        }
+
+        /// <summary>
         /// </summary>
         protected override int CategoryNameLength => 24;
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int PcgOffsetCategories => 12912;
 
@@ -26,23 +33,12 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int NrOfCategories => 18;
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int NrOfSubCategories => 8;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pcgMemory"></param>
-        protected KronosOasysGlobal(IPcgMemory pcgMemory): base(pcgMemory)
-        {
-        }
     }
 }

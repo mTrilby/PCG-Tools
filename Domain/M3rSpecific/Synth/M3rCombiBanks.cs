@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
@@ -8,12 +11,10 @@ using PcgTools.Model.MntxSeriesSpecific.Synth;
 namespace PcgTools.Model.M3rSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M3RCombiBanks : MntxCombiBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public M3RCombiBanks(IPcgMemory pcgMemory)
@@ -23,7 +24,6 @@ namespace PcgTools.Model.M3rSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {

@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
@@ -6,16 +10,23 @@ using PcgTools.Model.Common.Synth.PatchCombis;
 namespace PcgTools.Model.MSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
-    public abstract class MCombi: Combi
+    public abstract class MCombi : Combi
     {
         /// <summary>
-        /// 
+        /// </summary>
+        /// <param name="combiBank"></param>
+        /// <param name="index"></param>
+        protected MCombi(IBank combiBank, int index)
+            : base(combiBank, index)
+        {
+        }
+
+        /// <summary>
         /// </summary>
         public override string Name
         {
-            get { return GetChars(0, MaxNameLength); }
+            get => GetChars(0, MaxNameLength);
 
             set
             {
@@ -29,25 +40,12 @@ namespace PcgTools.Model.MSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override int MaxNameLength => 24;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public override bool IsEmptyOrInit => ((Name == string.Empty) || (Name.Contains("Init") && Name.Contains("Combi")));
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="combiBank"></param>
-        /// <param name="index"></param>
-        protected MCombi(IBank combiBank, int index)
-            : base(combiBank, index)
-        {
-        }
+        public override bool IsEmptyOrInit => Name == string.Empty || (Name.Contains("Init") && Name.Contains("Combi"));
     }
 }

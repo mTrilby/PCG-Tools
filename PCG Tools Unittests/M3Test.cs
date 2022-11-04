@@ -1,33 +1,38 @@
-﻿using System.IO;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+// (c) 2011 Michel Keijzers
+
 namespace PCG_Tools_Unittests
 {
     /// <summary>
-    /// Tests Triton Extreme and all other Triton series.
+    ///     Tests Triton Extreme and all other Triton series.
     /// </summary>
     [TestClass]
     public class M3Test
     {
-        const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\M3";
+        private const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\M3";
 
 
-        PcgMemory _pcgMemory;
+        private ListGenerator _generator;
 
 
-        ListGenerator _generator;
+        private string[] _lines;
 
 
-        string[] _lines;
+        private PcgMemory _pcgMemory;
 
 
         private void SetDefaults()
@@ -52,7 +57,7 @@ namespace PCG_Tools_Unittests
             {
                 _generator.SelectedCombiBanks.Add((ICombiBank)item);
             }
-            
+
             _generator.IgnoreInitCombis = true;
             _generator.IgnoreFirstProgram = false;
             _generator.IgnoreMutedOffTimbres = true;
@@ -139,7 +144,8 @@ namespace PCG_Tools_Unittests
             SetDefaults();
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -161,7 +167,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -177,13 +184,14 @@ namespace PCG_Tools_Unittests
             // Run.
             var korgFileReader = new KorgFileReader();
             _pcgMemory = (PcgMemory)korgFileReader.Read(PcgDirectory + @"\NEOSOUL.PCG");
-            
+
             _generator = new ListGeneratorPatchList();
             SetDefaults();
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -202,10 +210,11 @@ namespace PCG_Tools_Unittests
 
             _generator = new ListGeneratorPatchList();
             SetDefaults();
-            
+
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -226,7 +235,8 @@ namespace PCG_Tools_Unittests
             SetDefaults();
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();

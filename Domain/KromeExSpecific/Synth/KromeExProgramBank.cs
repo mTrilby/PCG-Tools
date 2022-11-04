@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using PcgTools.Model.Common.Synth;
@@ -8,12 +12,10 @@ using PcgTools.Model.MSpecific.Synth;
 namespace PcgTools.Model.KromeExSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KromeExProgramBank : MProgramBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBanks"></param>
         /// <param name="type"></param>
@@ -29,27 +31,21 @@ namespace PcgTools.Model.KromeExSpecific.Synth
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        public override SynthesisType DefaultModeledSynthesisType => throw new NotSupportedException();
+
+
+        /// <summary>
+        /// </summary>
+        public override SynthesisType DefaultSampledSynthesisType => SynthesisType.Edsx;
+
+
+        /// <summary>
         /// </summary>
         /// <param name="index"></param>
         public override void CreatePatch(int index)
         {
             Add(new KromeExProgram(this, index));
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override SynthesisType DefaultModeledSynthesisType
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override SynthesisType DefaultSampledSynthesisType => SynthesisType.Edsx;
     }
 }

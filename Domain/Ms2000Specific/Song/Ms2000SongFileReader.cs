@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using PcgTools.Model.Common.File;
@@ -8,16 +12,14 @@ using PcgTools.Model.Common.Synth.SongsRelated;
 namespace PcgTools.Model.Ms2000Specific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Ms2000SongFileReader : SongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public Ms2000SongFileReader(ISongMemory songMemory, byte[] content) 
+        public Ms2000SongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }

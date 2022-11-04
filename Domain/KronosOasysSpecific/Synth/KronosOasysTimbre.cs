@@ -1,7 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Collections.Generic;
-
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
@@ -9,12 +12,10 @@ using PcgTools.Model.Common.Synth.PatchCombis;
 namespace PcgTools.Model.KronosOasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class KronosOasysTimbre : Timbre
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="index"></param>
@@ -26,7 +27,6 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
                 case ParameterNames.TimbreParameterName.Status:
                     parameter = EnumParameter.Instance.Set(
                         Root, Root.Content, TimbresOffset + 2, 7, 5,
-                        new List<string> {"Off", "Int", "Both", "Ext", "Ex2"}, Parent as IPatch);
+                        new List<string> { "Off", "Int", "Both", "Ext", "Ex2" }, Parent as IPatch);
                     break;
 
                 case ParameterNames.TimbreParameterName.Mute:
@@ -75,13 +75,13 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
                 case ParameterNames.TimbreParameterName.OscMode:
                     parameter = EnumParameter.Instance.Set(
                         Root, Root.Content, TimbresOffset + 35, 1, 0,
-                        new List<string> {"Prg", "Poly", "Mono", "Legato"}, Parent as IPatch);
+                        new List<string> { "Prg", "Poly", "Mono", "Legato" }, Parent as IPatch);
                     break;
 
                 case ParameterNames.TimbreParameterName.OscSelect:
                     parameter = EnumParameter.Instance.Set(
                         Root, Root.Content, TimbresOffset + 35, 3, 2,
-                        new List<string> {"Both", "Osc1", "Osc2"}, Parent as IPatch);
+                        new List<string> { "Both", "Osc1", "Osc2" }, Parent as IPatch);
                     break;
 
                 case ParameterNames.TimbreParameterName.Portamento:
@@ -92,6 +92,7 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
                 default:
                     return base.GetParam(name);
             }
+
             return parameter;
         }
     }

@@ -1,100 +1,74 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Linq;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.KromeSpecific.Synth;
 using PcgTools.Model.KromeExSpecific.Synth;
+using PcgTools.Model.KromeSpecific.Synth;
 using PcgTools.Model.KronosSpecific.Synth;
 using PcgTools.Model.Kross2Specific.Synth;
 using PcgTools.Model.KrossSpecific.Synth;
 using PcgTools.Model.M1Specific.Synth;
-using PcgTools.Model.M3Specific.Synth;
 using PcgTools.Model.M3rSpecific.Synth;
+using PcgTools.Model.M3Specific.Synth;
 using PcgTools.Model.M50Specific.Synth;
+using PcgTools.Model.MicroKorgXlSpecific.Synth;
+using PcgTools.Model.MicroStationSpecific.Synth;
 using PcgTools.Model.Ms2000Specific.Synth;
+using PcgTools.Model.OasysSpecific.Synth;
+using PcgTools.Model.TrinitySpecific.Synth;
+using PcgTools.Model.TritonExtremeSpecific.Synth;
+using PcgTools.Model.TritonKarmaSpecific.Synth;
+using PcgTools.Model.TritonLeSpecific.Synth;
+using PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth;
 using PcgTools.Model.TSeries.Synth;
 using PcgTools.Model.XSeries.Synth;
 using PcgTools.Model.Z1Specific.Synth;
-using PcgTools.Model.ZeroSeries.Synth;
-using PcgTools.Model.MicroKorgXlSpecific.Synth;
-using PcgTools.Model.MicroStationSpecific.Synth;
-using PcgTools.Model.OasysSpecific.Synth;
-using PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth;
-using PcgTools.Model.TritonExtremeSpecific.Synth;
-using PcgTools.Model.TritonKarmaSpecific.Synth;
-using PcgTools.Model.TrinitySpecific.Synth;
-using PcgTools.Model.TritonLeSpecific.Synth;
 using PcgTools.Model.Zero3Rw.Synth;
+using PcgTools.Model.ZeroSeries.Synth;
 
 namespace PcgTools.Model.Common.File
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KorgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         private byte[] Content { get; set; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         public Models.EModelType ModelType { get; private set; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         public Memory.FileType FileType { get; private set; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private PcgMemory.ContentType ContentType { get; set; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private int SysExStartOffset { get; set; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private int SysExEndOffset { get; set; }
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public IMemory Read(string fileName)
-        {
-            ReadFile(fileName);
-
-            IMemory memory = null;
-            if (Content != null)
-            {
-                var factory = Factory;
-
-                memory = ReadContent(fileName, factory);
-            }
-
-            return memory;
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         private Factory Factory
         {
@@ -202,13 +176,33 @@ namespace PcgTools.Model.Common.File
                     default:
                         throw new NotSupportedException("Unsupported Korg ModelType");
                 }
+
                 return factory;
             }
         }
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public IMemory Read(string fileName)
+        {
+            ReadFile(fileName);
+
+            IMemory memory = null;
+            if (Content != null)
+            {
+                var factory = Factory;
+
+                memory = ReadContent(fileName, factory);
+            }
+
+            return memory;
+        }
+
+
+        /// <summary>
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="factory"></param>
@@ -222,11 +216,8 @@ namespace PcgTools.Model.Common.File
             return memory;
         }
 
-        
 
-         
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="factory"></param>
@@ -267,7 +258,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="factory"></param>
@@ -283,7 +273,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="factory"></param>
@@ -298,12 +287,12 @@ namespace PcgTools.Model.Common.File
                 sngFileReader.ReadChunks();
                 memory = client.SongMemory;
             }
+
             return memory;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="factory"></param>
@@ -315,7 +304,7 @@ namespace PcgTools.Model.Common.File
             fileReader.ReadContent(FileType, ModelType);
 
             // If global is not read, set it to null.
-            if ((client.PcgMemory.Global != null) && (client.PcgMemory.Global.ByteOffset == 0))
+            if (client.PcgMemory.Global != null && client.PcgMemory.Global.ByteOffset == 0)
             {
                 client.PcgMemory.Global = null;
             }
@@ -325,7 +314,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         private void RemoveExcessivePatches(IMemory memory)
@@ -344,7 +332,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         private static void SetParameters(IMemory memory)
@@ -361,8 +348,9 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Remove all programs and combis which are not part of the PCG file OR not from a GM or virtual bank.
-        /// Only remove it for banks which contains at least one patch (to prevent problems with combi/program relations/ references).
+        ///     Remove all programs and combis which are not part of the PCG file OR not from a GM or virtual bank.
+        ///     Only remove it for banks which contains at least one patch (to prevent problems with combi/program relations/
+        ///     references).
         /// </summary>
         private static void RemoveExcessivePatches(IPcgMemory memory)
         {
@@ -372,7 +360,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         private static void RemoveExcessivePrograms(IPcgMemory memory)
@@ -380,10 +367,10 @@ namespace PcgTools.Model.Common.File
             if (memory.ProgramBanks != null)
             {
                 foreach (var bank in memory.ProgramBanks.BankCollection.Where(
-                    bank =>
-                        (bank.Type != BankType.EType.Gm) &&
-                        (bank.Type != BankType.EType.Virtual) &&
-                        (bank.CountWritablePatches > 0)))
+                             bank =>
+                                 bank.Type != BankType.EType.Gm &&
+                                 bank.Type != BankType.EType.Virtual &&
+                                 bank.CountWritablePatches > 0))
                 {
                     for (var patchIndex = bank.Patches.Count - 1; patchIndex >= 0; patchIndex--)
                     {
@@ -398,16 +385,15 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         private static void RemoveExcessiveCombis(IPcgMemory memory)
         {
             if (memory.CombiBanks != null)
             {
-                foreach (var bank in memory.CombiBanks.BankCollection.Where(bank => (
-                    bank.Type != BankType.EType.Virtual &&
-                    bank.CountWritablePatches > 0)))
+                foreach (var bank in memory.CombiBanks.BankCollection.Where(bank =>
+                             bank.Type != BankType.EType.Virtual &&
+                             bank.CountWritablePatches > 0))
                 {
                     for (var patchIndex = bank.Patches.Count - 1; patchIndex >= 0; patchIndex--)
                     {
@@ -422,39 +408,38 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Bytes:   0   1   2   3      4          5      6     7    8
-        ///         "K" "O" "R" "G" ProductId  MemoryFileType Major Minor Product
-        ///                                                         SubId
-        ///                            19                                       M1/M1EX/M1R/M1R-EX
-        ///                            24                                       M3R
-        ///                            3B                                       Trinity
-        ///                            46                                       Z1
-        ///                            50                            00         Triton / Triton Studio
-        ///                            50                                       Triton TR Rack
-        ///                            50                            01         Triton Extreme
-        ///                            58                                       MS2000
-        ///                            5D                                       Karma
-        ///                            63                                       Triton LE
-        ///                            68                                       Kronos
-        ///                            70                                       Oasys
-        ///                            75       0x00     0x02 0x00              M3 pcm_version checksum_flag, see x4100pcg.txt
-        ///                            7A                                       X50/microX
-        ///                            85                                       M50
-        ///                            8D                                       microSTATION
-        ///                            95                                       Krome
-        ///                            96                                       Kross
-        ///                            C9                                       Kross2
-        ///                            D2                                       Krome Ex                            
-        /// 
-        /// MemoryFileType: 00 = PCG 01=SNG 02=EXL
+        ///     Bytes:   0   1   2   3      4          5      6     7    8
+        ///     "K" "O" "R" "G" ProductId  MemoryFileType Major Minor Product
+        ///     SubId
+        ///     19                                       M1/M1EX/M1R/M1R-EX
+        ///     24                                       M3R
+        ///     3B                                       Trinity
+        ///     46                                       Z1
+        ///     50                            00         Triton / Triton Studio
+        ///     50                                       Triton TR Rack
+        ///     50                            01         Triton Extreme
+        ///     58                                       MS2000
+        ///     5D                                       Karma
+        ///     63                                       Triton LE
+        ///     68                                       Kronos
+        ///     70                                       Oasys
+        ///     75       0x00     0x02 0x00              M3 pcm_version checksum_flag, see x4100pcg.txt
+        ///     7A                                       X50/microX
+        ///     85                                       M50
+        ///     8D                                       microSTATION
+        ///     95                                       Krome
+        ///     96                                       Kross
+        ///     C9                                       Kross2
+        ///     D2                                       Krome Ex
+        ///     MemoryFileType: 00 = PCG 01=SNG 02=EXL
         /// </summary>
         private void ReadFile(string fileName)
         {
             ReadAllBytes(fileName);
 
-            switch ((char) Content[0])
+            switch ((char)Content[0])
             {
-                case (char) 0x00:
+                case (char)0x00:
                     ReadFileStartingWith00();
                     break;
 
@@ -486,10 +471,10 @@ namespace PcgTools.Model.Common.File
                     ReadFileStartingWith_t();
                     break;
 
-                case (char) 0xF0:
+                case (char)0xF0:
                     ReadSysExFile();
                     break;
-                     
+
                 default:
                     throw new NotSupportedException("Unsupported format");
             }
@@ -497,7 +482,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         private void ReadAllBytes(string fileName)
@@ -514,7 +498,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadFileStartingWith_t()
         {
@@ -530,7 +513,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadFileStartingWithS()
         {
@@ -546,11 +528,10 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadFileStartingWithM()
         {
-            switch ((char) Content[1])
+            switch ((char)Content[1])
             {
                 case 'T':
                     ReadMidiFile();
@@ -567,12 +548,11 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadFileStartingWithK()
         {
-            if ((Util.GetChars(Content, 1, 3) == "ORG") && (Content[4] == ';') &&
-                (Util.GetInt(Content, 5, 2) == 2))
+            if (Util.GetChars(Content, 1, 3) == "ORG" && Content[4] == ';' &&
+                Util.GetInt(Content, 5, 2) == 2)
             {
                 ReadExlFile();
             }
@@ -584,7 +564,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadFileStartingWith00()
         {
@@ -604,7 +583,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadBnkFile()
         {
@@ -639,7 +617,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadPcgFile()
         {
@@ -654,7 +631,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void GetModelType()
         {
@@ -719,7 +695,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void GetModelTypeOf50()
         {
@@ -740,7 +715,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void GetFileType()
         {
@@ -761,7 +735,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Reads OrigKorg file (see: M1: ORIGPROG.syx).
+        ///     Reads OrigKorg file (see: M1: ORIGPROG.syx).
         /// </summary>
         private void ReadOrigKorgFile()
         {
@@ -779,10 +753,10 @@ namespace PcgTools.Model.Common.File
             SysExEndOffset = Content.Length - 1;
             FileType = Memory.FileType.Syx;
         }
-        
+
 
         /// <summary>
-        /// Read Sysex Manager file (see Korg M1 file: Haupt-Bank_B.syx).
+        ///     Read Sysex Manager file (see Korg M1 file: Haupt-Bank_B.syx).
         /// </summary>
         private void ReadSysexManagerFile()
         {
@@ -803,7 +777,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Read Kross TR (editor) file. Use Sysexfunction also.
+        ///     Read Kross TR (editor) file. Use Sysexfunction also.
         /// </summary>
         private void ReadTrFile()
         {
@@ -812,7 +786,7 @@ namespace PcgTools.Model.Common.File
 
             switch (Util.GetChars(Content, 0, 4))
             {
-                    // Add cases with spaces later, because these are stripped from GetChars.
+                // Add cases with spaces later, because these are stripped from GetChars.
 
                 case "tra":
                     ContentType = PcgMemory.ContentType.All;
@@ -857,7 +831,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Read 01/W disk image file.
+        ///     Read 01/W disk image file.
         /// </summary>
         private void ReadRawDiskImageFile()
         {
@@ -875,15 +849,14 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Reads MIDI files (MThd chunk). 
-        /// See https://hostr.co/download/LJUEw0K/midiformat.pdf for more info.
-        /// 
-        /// Read MS2000 format.
+        ///     Reads MIDI files (MThd chunk).
+        ///     See https://hostr.co/download/LJUEw0K/midiformat.pdf for more info.
+        ///     Read MS2000 format.
         /// </summary>
         private void ReadMidiFile()
         {
-            if ((Util.GetChars(Content, 0, 4) != "MThd") ||
-                (Util.GetInt(Content, 4, 4) != 6)) // Length: always 6, see website link above
+            if (Util.GetChars(Content, 0, 4) != "MThd" ||
+                Util.GetInt(Content, 4, 4) != 6) // Length: always 6, see website link above
                 //(Util.GetInt(Content, 8, 2) != 0)) // Format: 0=Single Multi Track Channel, 
                 //         1=One or more simultanious tracks of a sequence
                 //         2=One or more sequentially independant single-track patterns
@@ -905,7 +878,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -937,14 +909,14 @@ namespace PcgTools.Model.Common.File
 
                 ReadMidiContentBytes(index, length);
 
-                ContentType = (PcgMemory.ContentType) Content[index + 3];
+                ContentType = (PcgMemory.ContentType)Content[index + 3];
             }
+
             return index;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <param name="length"></param>
@@ -999,7 +971,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <param name="length"></param>
@@ -1016,7 +987,7 @@ namespace PcgTools.Model.Common.File
             }
             else
             {
-                if ((Content[index] != 0xF0))
+                if (Content[index] != 0xF0)
                 {
                     throw new NotSupportedException("No sysex part found.");
                 }
@@ -1024,18 +995,17 @@ namespace PcgTools.Model.Common.File
                 // Assuming sysex follows.
                 index++;
                 length = ReadVariableLengthQuality(ref index); // Read delta time (unused return parameter)
-                if ((Content[index] != 0x42)) // KORG ID)
+                if (Content[index] != 0x42) // KORG ID)
                 {
                     throw new NotSupportedException("Not a Korg sysex file");
                 }
             }
+
             return index;
         }
 
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <param name="length"></param>
@@ -1053,9 +1023,9 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset = index + 7; // Memory Allocation Bank: 1 byte + Seq Data Size 2 bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
 
             // Skip Korg header + 2 bytes more for Memory Allocation Bank and Sequencer Data Size
@@ -1064,7 +1034,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         private void ReadTSeriesMidiContent(int index)
@@ -1082,18 +1051,16 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 3; // Zero byte + Seq Data Size 2 bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
 
             SysExEndOffset = Content.Length - 18; // Unknown why (last F7 found)
         }
 
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         private void ReadZeroSeriesMidiContent(int index)
@@ -1111,9 +1078,9 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 3; // Zero byte + Seq Data Size 2 bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
 
             SysExEndOffset = WalkUntilJustBeforeLastF7(Content.Length - 16);
@@ -1121,7 +1088,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         private void ReadXSeriesMidiContent(int index)
@@ -1139,9 +1105,9 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 3; // Zero byte + Seq Data Size 2 bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
 
             SysExEndOffset = Content.Length - 18; // Unknown why (last F7 found)
@@ -1149,7 +1115,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <param name="length"></param>
@@ -1160,7 +1125,7 @@ namespace PcgTools.Model.Common.File
             SysExEndOffset = index + length - 2;
 
 
-            ContentType = (PcgMemory.ContentType) Content[index + 3];
+            ContentType = (PcgMemory.ContentType)Content[index + 3];
             switch (ContentType)
             {
                 case PcgMemory.ContentType.CurrentProgram: // Fall through
@@ -1184,8 +1149,8 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Walks from the index to the byte before F7.
-        /// Only use if it is uncertain what the end location of a MIDI / MTrk Chunk is.
+        ///     Walks from the index to the byte before F7.
+        ///     Only use if it is uncertain what the end location of a MIDI / MTrk Chunk is.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -1205,7 +1170,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Returns index after last meta message.
+        ///     Returns index after last meta message.
         /// </summary>
         /// <param name="index"></param>
         private void SkipMetaMessages(ref int index)
@@ -1219,7 +1184,7 @@ namespace PcgTools.Model.Common.File
                 if (Content[index] == 0xFF)
                 {
                     // Meta event, containing: FF <type> <length> <bytes>
-                    index += 2;  // Ignore type (2 bytes)
+                    index += 2; // Ignore type (2 bytes)
                     var length = ReadVariableLengthQuality(ref index);
                     index += length;
                 }
@@ -1233,7 +1198,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Reads MIDI variable length quality value.
+        ///     Reads MIDI variable length quality value.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -1250,9 +1215,7 @@ namespace PcgTools.Model.Common.File
                     length = length << 7;
                     length += Content[index] & 0x7f;
                     index++;
-
                 } while ((Content[index - 1] & 0x80) > 0);
-
             }
 
             return length;
@@ -1260,13 +1223,13 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Reads Syx file.
-        /// Read MS2000 format.
+        ///     Reads Syx file.
+        ///     Read MS2000 format.
         /// </summary>
         private void ReadSysExFile()
         {
-            if (((Content[1] != 0x42) || // Korg ID
-                ((Content[2] & 0xF0) != 0x30))) // MIDI Channel 3x
+            if (Content[1] != 0x42 || // Korg ID
+                (Content[2] & 0xF0) != 0x30) // MIDI Channel 3x
             {
                 throw new NotSupportedException("Unsupported Syx format");
             }
@@ -1276,8 +1239,8 @@ namespace PcgTools.Model.Common.File
             SysExEndOffset = Content.Length - 1;
 
             // Sometimes a file ends with F7 0A instead of F7 only.
-            if ((Content[SysExEndOffset] != 0xF7) &&
-                ((Content[SysExEndOffset - 1] != 0xF7) && (Content[SysExEndOffset] != 0x0A)))
+            if (Content[SysExEndOffset] != 0xF7 &&
+                Content[SysExEndOffset - 1] != 0xF7 && Content[SysExEndOffset] != 0x0A)
             {
                 throw new ApplicationException("No end of SYSEX command found");
             }
@@ -1287,7 +1250,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSyxContent()
         {
@@ -1323,7 +1285,7 @@ namespace PcgTools.Model.Common.File
 
                 case 0x58: // MS2000 (compatible with microKorg)
                     ModelType = Models.EModelType.Ms2000;
-                    ContentType = (PcgMemory.ContentType) Content[4]; // Fixed
+                    ContentType = (PcgMemory.ContentType)Content[4]; // Fixed
                     SysExStartOffset = 5; // Fixed
                     break;
 
@@ -1334,12 +1296,11 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSyxM1Content()
         {
             ModelType = Models.EModelType.M1;
-            ContentType = (PcgMemory.ContentType) Content[4]; // Fixed
+            ContentType = (PcgMemory.ContentType)Content[4]; // Fixed
             SysExStartOffset = 5;
 
             switch (ContentType)
@@ -1353,20 +1314,19 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 3; // Memory Allocation Bank: 1 byte + Seq Data Size 2 bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSyxM3RContent()
         {
             ModelType = Models.EModelType.M3R;
-            ContentType = (PcgMemory.ContentType) Content[4]; // Fixed
+            ContentType = (PcgMemory.ContentType)Content[4]; // Fixed
 
             SysExStartOffset = 5;
 
@@ -1378,18 +1338,17 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 1;
                     break;
 
-                    // default: no action needed//default:
+                // default: no action needed//default:
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSyxTSeriesContent()
         {
             ModelType = Models.EModelType.TSeries;
-            ContentType = (PcgMemory.ContentType) Content[4]; // Fixed
+            ContentType = (PcgMemory.ContentType)Content[4]; // Fixed
             SysExStartOffset = 5;
 
             switch (ContentType)
@@ -1402,20 +1361,19 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 3; // Zero byte + Seq Data Size 2 bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
         }
 
-        
+
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSyxZeroSeriesContent()
         {
             ModelType = Models.EModelType.ZeroSeries;
-            ContentType = (PcgMemory.ContentType) Content[4]; // Fixed
+            ContentType = (PcgMemory.ContentType)Content[4]; // Fixed
             SysExStartOffset = 5;
 
             switch (ContentType)
@@ -1428,20 +1386,19 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 3; // Zero byte + Seq Data Size 2 bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSyxZero3RwContent()
         {
             ModelType = Models.EModelType.Zero3Rw;
-            ContentType = (PcgMemory.ContentType) Content[4]; // Fixed
+            ContentType = (PcgMemory.ContentType)Content[4]; // Fixed
             SysExStartOffset = 6; // Korg file header + 1 byte
 
             switch (ContentType)
@@ -1453,20 +1410,19 @@ namespace PcgTools.Model.Common.File
                 case PcgMemory.ContentType.All:
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSyxXSeriesContent()
         {
             ModelType = Models.EModelType.XSeries;
-            ContentType = (PcgMemory.ContentType) Content[4]; // Fixed
+            ContentType = (PcgMemory.ContentType)Content[4]; // Fixed
             SysExStartOffset = 5;
 
             switch (ContentType)
@@ -1479,20 +1435,19 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 3; // Zero byte + Seq Data Size 2 bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSyxZ1Content()
         {
             ModelType = Models.EModelType.Z1;
-            ContentType = (PcgMemory.ContentType) Content[4]; // Fixed
+            ContentType = (PcgMemory.ContentType)Content[4]; // Fixed
 
             SysExStartOffset = 5; // Korg header
 
@@ -1512,21 +1467,21 @@ namespace PcgTools.Model.Common.File
                     SysExStartOffset += 2; // 2 Extra 00-bytes
                     break;
 
-                    //default:
-                    // Do nothing
-                    //break;
+                //default:
+                // Do nothing
+                //break;
             }
         }
 
 
         /// <summary>
-        /// Reads EXL format (Korg MS2000). Looks like MIDI, but with KORG; as first bytes, 
-        /// like a regular PCG file.
+        ///     Reads EXL format (Korg MS2000). Looks like MIDI, but with KORG; as first bytes,
+        ///     like a regular PCG file.
         /// </summary>
         private void ReadExlFile()
         {
-            if ((Content[0x18] != 0xF0) &&
-                (Content[0x19] != 0x42))
+            if (Content[0x18] != 0xF0 &&
+                Content[0x19] != 0x42)
             {
                 throw new NotSupportedException("Unsupported MIDI format");
             }
@@ -1541,7 +1496,7 @@ namespace PcgTools.Model.Common.File
                     throw new NotSupportedException("Unsupported model");
             }
 
-            ContentType = (PcgMemory.ContentType) Content[0x1C];
+            ContentType = (PcgMemory.ContentType)Content[0x1C];
             SysExStartOffset = 0x1D;
             SysExEndOffset = Content.Length - 2;
 
@@ -1555,17 +1510,16 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Reads Mkxl files:
-        /// 
-        /// Header Sub      Content | Workstation Model File Type   Supported
-        /// ------ -------- ------- + ----------------- ----------- ----------
-        /// 614    0        AllD    | MicroKorg XL      mkxl_all    Yes
-        /// 614    1        AllD    | MicroKorg XL Plus mkxlp_all   Yes
-        /// 614    1        PrgD    | MicroKorg XL Plus mkxlp_prog  Yes
-        /// 614    1        CmbD?   | MicroKorg XL Plus mkxlp_combi No
-        /// 614    1        GlbD?   | MicroKorg XL Plus mkxlp_glob  No
-        ///  </summary>
-        void ReadMkxlFile()
+        ///     Reads Mkxl files:
+        ///     Header Sub      Content | Workstation Model File Type   Supported
+        ///     ------ -------- ------- + ----------------- ----------- ----------
+        ///     614    0        AllD    | MicroKorg XL      mkxl_all    Yes
+        ///     614    1        AllD    | MicroKorg XL Plus mkxlp_all   Yes
+        ///     614    1        PrgD    | MicroKorg XL Plus mkxlp_prog  Yes
+        ///     614    1        CmbD?   | MicroKorg XL Plus mkxlp_combi No
+        ///     614    1        GlbD?   | MicroKorg XL Plus mkxlp_glob  No
+        /// </summary>
+        private void ReadMkxlFile()
         {
             if (Util.GetChars(Content, 1, 2) != "14")
             {
@@ -1600,6 +1554,7 @@ namespace PcgTools.Model.Common.File
                         default:
                             throw new NotSupportedException("Unsupported format");
                     }
+
                     break;
 
                 default:
@@ -1609,8 +1564,8 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Reads a file, with no extension or syx extension, starting with "mkP0".
-        /// For MS2000.
+        ///     Reads a file, with no extension or syx extension, starting with "mkP0".
+        ///     For MS2000.
         /// </summary>
         private void ReadMkP0File()
         {
@@ -1625,8 +1580,8 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Reads a file, with .LIB extension
-        /// For MS2000.
+        ///     Reads a file, with .LIB extension
+        ///     For MS2000.
         /// </summary>
         private void ReadLibFile()
         {

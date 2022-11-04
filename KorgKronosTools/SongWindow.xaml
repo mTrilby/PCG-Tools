@@ -1,15 +1,15 @@
 ﻿<UserControl x:Class="PcgTools.SongWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-        Loaded="Window_Loaded" 
-        mc:Ignorable="d" 
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
-        d:DesignHeight="84"
-        d:DesignWidth="237" 
-        MinHeight="150"
-        MinWidth="300">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Loaded="Window_Loaded"
+             mc:Ignorable="d"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
+             d:DesignHeight="84"
+             d:DesignWidth="237"
+             MinHeight="150"
+             MinWidth="300">
 
     <!--DataTemplate DataType="{x:Type ViewModels:SongViewModel}"-->
     <Grid>
@@ -21,23 +21,25 @@
                           SelectedItem="{Binding SelectedMemory.ConnectedPcgWindow}"
                           MinWidth="100" Margin="4"/>
             <StackPanel /-->
-        
-            <TabControl HorizontalAlignment="Stretch" Margin="4" Name="tabControl1" VerticalAlignment="Stretch" Grid.RowSpan="2">
+
+            <TabControl HorizontalAlignment="Stretch" Margin="4" Name="tabControl1" VerticalAlignment="Stretch">
                 <TabItem Header="{x:Static common:Strings.Songs}" Name="tabItem1">
-                    
+
                     <StackPanel Orientation="Vertical">
-                        
-                        <ListView Margin="4" HorizontalAlignment="Stretch"  Name="listViewSongs" VerticalAlignment="Stretch" 
+
+                        <ListView Margin="4" HorizontalAlignment="Stretch" Name="listViewSongs"
+                                  VerticalAlignment="Stretch"
                                   SelectionMode="Extended" VerticalContentAlignment="Stretch"
-                                  
-                                  HorizontalContentAlignment="Stretch" AlternationCount="1" 
-                                  SelectionChanged="ListViewSongs_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+
+                                  HorizontalContentAlignment="Stretch" AlternationCount="1"
+                                  SelectionChanged="ListViewSongs_SelectionChanged"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="{x:Static common:Strings.Index}"
-                                                        Width="40" DisplayMemberBinding="{Binding Index}" />
-                                    <GridViewColumn Header="{x:Static common:Strings.Name}" 
-                                                        Width="150" DisplayMemberBinding="{Binding Name}" />
+                                                    Width="40" DisplayMemberBinding="{Binding Index}" />
+                                    <GridViewColumn Header="{x:Static common:Strings.Name}"
+                                                    Width="150" DisplayMemberBinding="{Binding Name}" />
                                     <!--GridViewColumn  DisplayMemberBinding="{Binding Column2}"/-->
                                     <!--GridViewColumn  DisplayMemberBinding="{Binding Column3}"/-->
                                     <!--GridViewColumn  DisplayMemberBinding="{Binding Column4}"/-->
@@ -50,27 +52,31 @@
                             </ListView.ItemContainerStyle>
                         </ListView>
                         <StackPanel Orientation="Horizontal">
-                            <Button Name="ButtonMidiTracks" Content="{x:Static common:Strings.MidiTracks}" 
-                                    Click="Button_Click" 
-                                    HorizontalAlignment="Left" Margin="4" Padding="4"/>
-                            <Button Name="ButtonExportToFileTracks" Content="{x:Static common:Strings.ExportToFile}" 
-                                    Click="ExportToFile_Click" 
-                                    HorizontalAlignment="Left" Margin="4" Padding="4"/>
-                            
+                            <Button Name="ButtonMidiTracks" Content="{x:Static common:Strings.MidiTracks}"
+                                    Click="Button_Click"
+                                    HorizontalAlignment="Left" Margin="4" Padding="4" />
+                            <Button Name="ButtonExportToFileTracks" Content="{x:Static common:Strings.ExportToFile}"
+                                    Click="ExportToFile_Click"
+                                    HorizontalAlignment="Left" Margin="4" Padding="4" />
+
                         </StackPanel>
-                        
+
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="{x:Static common:Strings.Samples}" Name="tabItem2">
                     <StackPanel>
-                        <ListView HorizontalAlignment="Stretch" Margin="4" Name="listViewSamples" VerticalAlignment="Stretch" 
+                        <ListView HorizontalAlignment="Stretch" Margin="4" Name="listViewSamples"
+                                  VerticalAlignment="Stretch"
                                   SelectionMode="Extended" VerticalContentAlignment="Stretch"
-                                  HorizontalContentAlignment="Stretch" AlternationCount="1" >
+                                  HorizontalContentAlignment="Stretch" AlternationCount="1">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="{x:Static common:Strings.Index}" Width="40" DisplayMemberBinding="{Binding Index}" />
-                                    <GridViewColumn Header="{x:Static common:Strings.Name}" Width="150" DisplayMemberBinding="{Binding Name}" />
-                                    <GridViewColumn Header="{x:Static common:Strings.SampleFileName}" Width="250" DisplayMemberBinding="{Binding SampleFileName}" />
+                                    <GridViewColumn Header="{x:Static common:Strings.Index}" Width="40"
+                                                    DisplayMemberBinding="{Binding Index}" />
+                                    <GridViewColumn Header="{x:Static common:Strings.Name}" Width="150"
+                                                    DisplayMemberBinding="{Binding Name}" />
+                                    <GridViewColumn Header="{x:Static common:Strings.SampleFileName}" Width="250"
+                                                    DisplayMemberBinding="{Binding SampleFileName}" />
                                     <!--GridViewColumn  DisplayMemberBinding="{Binding Column2}"/-->
                                     <!--GridViewColumn  DisplayMemberBinding="{Binding Column3}"/-->
                                     <!--GridViewColumn  DisplayMemberBinding="{Binding Column4}"/-->
@@ -84,13 +90,14 @@
                         </ListView>
 
                         <StackPanel Orientation="Horizontal">
-                            <Button Name="ButtonSamplesExportToFileTracks" Content="{x:Static common:Strings.ExportToFile}" 
-                                    Click="SamplesExportToFile_Click" 
-                                    HorizontalAlignment="Left" Margin="4" Padding="4"/>
+                            <Button Name="ButtonSamplesExportToFileTracks"
+                                    Content="{x:Static common:Strings.ExportToFile}"
+                                    Click="SamplesExportToFile_Click"
+                                    HorizontalAlignment="Left" Margin="4" Padding="4" />
                         </StackPanel>
                     </StackPanel>
 
-                    
+
                 </TabItem>
             </TabControl>
         </StackPanel>

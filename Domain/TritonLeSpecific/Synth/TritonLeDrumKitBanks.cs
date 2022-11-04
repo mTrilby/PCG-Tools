@@ -1,6 +1,9 @@
-﻿
+﻿#region copyright
 
-// (c) 2011 Michel Keijzers
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
@@ -8,12 +11,10 @@ using PcgTools.Model.Common.Synth.PatchDrumKits;
 namespace PcgTools.Model.TritonLeSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonLeDrumKitBanks : DrumKitBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public TritonLeDrumKitBanks(IPcgMemory pcgMemory)
@@ -23,7 +24,6 @@ namespace PcgTools.Model.TritonLeSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {
@@ -35,7 +35,7 @@ namespace PcgTools.Model.TritonLeSpecific.Synth
             // Also have a look at PcgFileReader.DrumKitBankId2DrumKitIndex() especially for which bank ids in the PCG are >=0x20000.
             // Sorry but I could not do better than this at the moment, the Triton Drumkit banks are very differently organized...
 
-            foreach (var id in new[] { "A", "B", "C", "D"})
+            foreach (var id in new[] { "A", "B", "C", "D" })
             {
                 Add(new TritonLeDrumKitBank(this, BankType.EType.Int, id, -1));
             }

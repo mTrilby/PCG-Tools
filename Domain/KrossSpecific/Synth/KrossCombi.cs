@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
@@ -8,12 +11,10 @@ using PcgTools.Model.MSpecific.Synth;
 namespace PcgTools.Model.KrossSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KrossCombi : MCombi
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiBank"></param>
         /// <param name="index"></param>
@@ -25,7 +26,7 @@ namespace PcgTools.Model.KrossSpecific.Synth
 
 
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
@@ -33,7 +34,6 @@ namespace PcgTools.Model.KrossSpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -43,22 +43,23 @@ namespace PcgTools.Model.KrossSpecific.Synth
 
             switch (name)
             {
-            case ParameterNames.CombiParameterName.Category:
+                case ParameterNames.CombiParameterName.Category:
                     parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 1268, 4, 0, false, this);
-                break;
+                    break;
 
-            case ParameterNames.CombiParameterName.SubCategory:
-                parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 1268, 7, 5, false, this);
-                break;
+                case ParameterNames.CombiParameterName.SubCategory:
+                    parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 1268, 7, 5, false, this);
+                    break;
 
-            case ParameterNames.CombiParameterName.Tempo:
-                parameter = WordParameter.Instance.Set(Root, Root.Content, ByteOffset + 792, false, 100, this);
-                break;
+                case ParameterNames.CombiParameterName.Tempo:
+                    parameter = WordParameter.Instance.Set(Root, Root.Content, ByteOffset + 792, false, 100, this);
+                    break;
 
-            default:
-                parameter = base.GetParam(name);
-                break;
+                default:
+                    parameter = base.GetParam(name);
+                    break;
             }
+
             return parameter;
         }
     }

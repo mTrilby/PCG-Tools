@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
@@ -8,12 +11,10 @@ using PcgTools.Model.Common.Synth.PatchCombis;
 namespace PcgTools.Model.TrinitySpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TrinityCombiBanks : CombiBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public TrinityCombiBanks(IPcgMemory pcgMemory)
@@ -23,12 +24,11 @@ namespace PcgTools.Model.TrinitySpecific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {
             //                         0    1    2    3
-            foreach (var id in new[] {"A", "B", "C", "D"})
+            foreach (var id in new[] { "A", "B", "C", "D" })
             {
                 Add(new TrinityCombiBank(this, BankType.EType.Int, id, -1));
             }

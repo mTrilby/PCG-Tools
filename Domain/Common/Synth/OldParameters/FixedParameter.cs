@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
@@ -7,12 +11,10 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.Common.Synth.OldParameters
 {
     /// <summary>
-    /// 
     /// </summary>
     public class FixedParameter : Parameter, IFixedParameter
     {
         /// <summary>
-        /// 
         /// </summary>
         public enum EType
         {
@@ -23,25 +25,21 @@ namespace PcgTools.Model.Common.Synth.OldParameters
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        private EType Type { get; set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         private static FixedParameter _instance;
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        private EType Type { get; set; }
+
+
+        /// <summary>
         /// </summary>
         public static FixedParameter Instance => _instance ?? (_instance = new FixedParameter());
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="data"></param>
@@ -55,13 +53,12 @@ namespace PcgTools.Model.Common.Synth.OldParameters
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override dynamic Value
         {
-            get { return ((IProgram)Patch).GetFixedParameterValue(Type); }
+            get => ((IProgram)Patch).GetFixedParameterValue(Type);
 
-            set { ((IProgram)Patch).SetFixedParameterValue(Type, value); }
+            set => ((IProgram)Patch).SetFixedParameterValue(Type, value);
         }
     }
 }

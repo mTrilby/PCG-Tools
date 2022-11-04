@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
@@ -9,23 +12,20 @@ using PcgTools.Model.MSpecific.Song;
 namespace PcgTools.Model.M3Specific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
-    public class M3SongFileReader: MSongFileReader
+    public class M3SongFileReader : MSongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public M3SongFileReader(ISongMemory songMemory, byte[] content) 
+        public M3SongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="index"></param>

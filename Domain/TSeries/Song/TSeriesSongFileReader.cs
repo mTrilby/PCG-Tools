@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
@@ -8,17 +12,15 @@ using PcgTools.Model.TSeries.Synth;
 namespace PcgTools.Model.TSeriesSpecific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
     // ReSharper disable once InconsistentNaming
     public class TSeriesSongFileReader : MntxSongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public TSeriesSongFileReader(ISongMemory songMemory, byte[] content) 
+        public TSeriesSongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }

@@ -1,17 +1,19 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
 
 namespace PcgTools.Common
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class BoolExtensions
     {
         /// <summary>
-        /// Should not be used because of internationalization.
+        ///     Should not be used because of internationalization.
         /// </summary>
         /// <param name="b"></param>
         /// <returns></returns>

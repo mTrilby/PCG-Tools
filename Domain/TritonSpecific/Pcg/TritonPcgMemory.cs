@@ -1,17 +1,18 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 
 namespace PcgTools.Model.TritonSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class TritonPcgMemory : PcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="modelType"></param>
@@ -22,19 +23,16 @@ namespace PcgTools.Model.TritonSpecific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasSubCategories => false;
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override int NumberOfCategories => 16;
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override int NumberOfSubCategories => 0;
     }

@@ -1,16 +1,20 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.ComponentModel;
 using System.Linq;
 
 namespace PcgTools.Common
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class EnumExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -21,13 +25,13 @@ namespace PcgTools.Common
 
 
         /// <summary>
-        /// Returns the attribute like in:
-        /// public enum EModule
-        /// {
-        /// [componentModel.Description(Introducing Extension Methods")]
-        /// Intro,
-        /// Advanced
-        /// ...
+        ///     Returns the attribute like in:
+        ///     public enum EModule
+        ///     {
+        ///     [componentModel.Description(Introducing Extension Methods")]
+        ///     Intro,
+        ///     Advanced
+        ///     ...
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -35,7 +39,7 @@ namespace PcgTools.Common
         {
             var fieldInfo = value.GetType().GetField(value.GetName());
             var descriptionAttribute = fieldInfo.GetCustomAttributes(
-                typeof (DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
+                typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
             return descriptionAttribute == null
                 ? value.GetName()
                 : descriptionAttribute.Description;

@@ -1,4 +1,9 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.PatchWaveSequences;
 using PcgTools.Model.KronosOasysSpecific.Synth;
 
@@ -7,12 +12,10 @@ using PcgTools.Model.KronosOasysSpecific.Synth;
 namespace PcgTools.Model.OasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class OasysWaveSequence : KronosOasysWaveSequence
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="waveSeqBank"></param>
         /// <param name="index"></param>

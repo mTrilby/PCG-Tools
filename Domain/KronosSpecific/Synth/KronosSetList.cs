@@ -1,19 +1,20 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common;
-
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 
 namespace PcgTools.Model.KronosSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KronosSetList : SetList
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="setLists"></param>
         /// <param name="index"></param>
@@ -23,24 +24,13 @@ namespace PcgTools.Model.KronosSpecific.Synth
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        public override void CreatePatch(int index)
-        {
-            Add(new KronosSetListSlot(this, index));
-        }
-
-        
         // Name
 
         /// <summary>
-        /// 
         /// </summary>
         public override string Name
         {
-            get { return Util.GetChars(Root.Content, ByteOffset, MaxNameLength); }
+            get => Util.GetChars(Root.Content, ByteOffset, MaxNameLength);
 
             set
             {
@@ -50,6 +40,15 @@ namespace PcgTools.Model.KronosSpecific.Synth
                     OnPropertyChanged("", false);
                 }
             }
+        }
+
+
+        /// <summary>
+        /// </summary>
+        /// <param name="index"></param>
+        public override void CreatePatch(int index)
+        {
+            Add(new KronosSetListSlot(this, index));
         }
     }
 }

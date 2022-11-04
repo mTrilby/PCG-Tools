@@ -1,15 +1,20 @@
-﻿using PcgTools.Model.Common.Synth.MemoryAndFactory;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using PcgTools.Model.Common.Synth.MemoryAndFactory;
 
 namespace PcgTools.Model.Common.Synth.SongsRelated
 {
     /// <summary>
-    /// 
     /// </summary>
     public interface ISongMemory : ISongMemoryInit
     {
         /// <summary>
-        /// PCG memory is connected with; should be of same model.
+        ///     PCG memory is connected with; should be of same model.
         /// </summary>
-        IPcgMemory  ConnectedPcgMemory { get; set; }
+        IPcgMemory ConnectedPcgMemory { get; set; }
     }
 }

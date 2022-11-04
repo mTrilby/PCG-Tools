@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Collections.Generic;
 using PcgTools.Model.Common;
@@ -10,18 +14,10 @@ using PcgTools.Model.MntxSeriesSpecific.Synth;
 namespace PcgTools.Model.Z1Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public sealed class Z1Timbre : MntxTimbre
     {
         /// <summary>
-        /// 
-        /// </summary>
-        private static int TimbresSizeConstant => 16;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="index"></param>
@@ -30,9 +26,22 @@ namespace PcgTools.Model.Z1Specific.Synth
         {
         }
 
+        /// <summary>
+        /// </summary>
+        private static int TimbresSizeConstant => 16;
+
 
         /// <summary>
-        /// 
+        /// </summary>
+        protected override int UsedProgramBankId => Util.GetBits(Combi.PcgRoot.Content, TimbresOffset, 7, 7);
+
+
+        /// <summary>
+        /// </summary>
+        protected override int UsedProgramId => Util.GetBits(Combi.PcgRoot.Content, TimbresOffset, 6, 0);
+
+
+        /// <summary>
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -42,15 +51,16 @@ namespace PcgTools.Model.Z1Specific.Synth
 
             switch (name)
             {
-                case ParameterNames.TimbreParameterName.Status: // Voice Reserve Total, 0 = OFF, 1~18 = reserve voice value (5 bytes), treat all as Int
+                case ParameterNames.TimbreParameterName.Status
+                    : // Voice Reserve Total, 0 = OFF, 1~18 = reserve voice value (5 bytes), treat all as Int
                     parameter = EnumParameter.Instance.Set(
                         PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 1, 4, 0, new List<string>
-                    {
-                        "Off", "Int", "Int", "Int", "Int", "Int", "Int", "Int", "Int", // 1~8
-                        "Int", "Int", "Int", "Int", "Int", "Int", "Int", "Int", "Int", "Int" // 9~1~2
-                    }, Parent as IPatch);
+                        {
+                            "Off", "Int", "Int", "Int", "Int", "Int", "Int", "Int", "Int", // 1~8
+                            "Int", "Int", "Int", "Int", "Int", "Int", "Int", "Int", "Int", "Int" // 9~1~2
+                        }, Parent as IPatch);
                     break;
-                    
+
                 case ParameterNames.TimbreParameterName.TopKey:
                     parameter = IntParameter.Instance.Set(
                         PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 8, 7, 0, false, Parent as IPatch);
@@ -94,17 +104,8 @@ namespace PcgTools.Model.Z1Specific.Synth
                 default:
                     return base.GetParam(name);
             }
+
             return parameter;
         }
-
-
-        /// <summary>
-        /// </summary>
-        protected override int UsedProgramBankId => Util.GetBits(Combi.PcgRoot.Content, TimbresOffset, 7, 7);
-
-
-        /// <summary>
-        /// </summary>
-        protected override int UsedProgramId => Util.GetBits(Combi.PcgRoot.Content, TimbresOffset, 6, 0);
     }
 }

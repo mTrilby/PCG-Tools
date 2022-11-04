@@ -1,22 +1,25 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Help
 {
     /// <summary>
-    ///
     /// </summary>
     public partial class ExternalLinksContributorsWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public ExternalLinksContributorsWindow()
         {
@@ -26,25 +29,25 @@ namespace PcgTools.Help
             {
                 // Developers
 
-                new ExternalItem
+                new()
                 {
-                    Name = "KorganizR", Description = "Feature Developer",
+                    Name = "KorganizR", Description = "Feature Developer"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "mTrilby", Description = "Feature Developer",
+                    Name = "mTrilby", Description = "Feature Developer"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Vanni Torelli", Description = "Feature Developer",
+                    Name = "Vanni Torelli", Description = "Feature Developer"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Mike Hildner", Description = "Bug Fixer",
+                    Name = "Mike Hildner", Description = "Bug Fixer"
                 },
-  
+
                 // Korg
-                             
+
                 /*new ExternalItem
                 {
                     Name = "Richard Formidoni", Description = "Information Supplier",
@@ -61,158 +64,158 @@ namespace PcgTools.Help
 
                 // Important people
 
-                new ExternalItem
+                new()
                 {
                     Name = "Sharp (Irish Acts Studio)", Description = "Forum Moderator",
                     Url = "http://www.irishacts.com/", BitmapPath = "IrishActsStudio.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "François Rossi", Description = "Language Support Expert",
                     Url = "http://www.kronoscopie.fr", BitmapPath = "Kronoscopie.jpg"
                 },
 
                 // Idea Notificators
-                
-                new ExternalItem
+
+                new()
                 {
-                    Name = "Tim Godfrey", Description = "Idea Notificator",
+                    Name = "Tim Godfrey", Description = "Idea Notificator"
                 },
                 //new ExternalItem
                 //{
-                    // Does not want to be mentioned.
-                    // Name = "Sander Veeken", Description = "Idea Notificator",
+                // Does not want to be mentioned.
+                // Name = "Sander Veeken", Description = "Idea Notificator",
                 //},
-                new ExternalItem
+                new()
                 {
-                    Name = "mTrilby", Description = "Idea Notificator",
+                    Name = "mTrilby", Description = "Idea Notificator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Sunriser", Description = "Idea Supplier / Tester",
+                    Name = "Sunriser", Description = "Idea Supplier / Tester"
                 },
 
                 // Information Suppliers
 
-                new ExternalItem
+                new()
                 {
-                    Name = "Cynkh", Description = "Information Supplier / Tester",
+                    Name = "Cynkh", Description = "Information Supplier / Tester"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "McHale", Description = "Information Supplier",
+                    Name = "McHale", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Matt Gerasimof", Description = "Information Supplier",
+                    Name = "Matt Gerasimof", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Gary Slattery", Description = "Information Supplier",
+                    Name = "Gary Slattery", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "CJ Johansson", Description = "Information Supplier",
+                    Name = "CJ Johansson", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Paul Hirschvogel", Description = "Information Supplier",
+                    Name = "Paul Hirschvogel", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Patrick Keijzer", Description = "Information Supplier",
+                    Name = "Patrick Keijzer", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Joost Wilgehof", Description = "Information Supplier",
+                    Name = "Joost Wilgehof", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Ed Fenner", Description = "Information Supplier",
+                    Name = "Ed Fenner", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Xavier Miller", Description = "Information Supplier",
+                    Name = "Xavier Miller", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "PpublicDuendo", Description = "Information Supplier",
+                    Name = "PpublicDuendo", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Youri", Description = "Information Supplier",
+                    Name = "Youri", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Mark Steven McLeod", Description = "Information Supplier",
+                    Name = "Mark Steven McLeod", Description = "Information Supplier"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Mark White", Description = "Information Supplier",
+                    Name = "Mark White", Description = "Information Supplier"
                 },
-                new ExternalItem()
+                new()
                 {
-                    Name="keyboarder", Description = "Information Supplier",
+                    Name = "keyboarder", Description = "Information Supplier",
                     Url = "http://forum.rmmedia.ru", BitmapPath = "rmmedia.png"
                 },
-                new ExternalItem()
+                new()
                 {
-                    Name="Igor Elshaidt", Description = "Information Supplier"
+                    Name = "Igor Elshaidt", Description = "Information Supplier"
                 },
-                new ExternalItem()
+                new()
                 {
-                    Name="JohnS", Description = "Information Supplier",
+                    Name = "JohnS", Description = "Information Supplier",
                     Url = "http://www.artlum.com/microkorg", BitmapPath = "Artlum.png"
                 },
 
                 // Testers
-                
-                new ExternalItem
+
+                new()
                 {
-                    Name = "Cello", Description = "Tester",
+                    Name = "Cello", Description = "Tester"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Jim Knopf", Description = "Tester",
+                    Name = "Jim Knopf", Description = "Tester"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "John Laumen", Description = "Tester",
+                    Name = "John Laumen", Description = "Tester"
                 },
-                 new ExternalItem
+                new()
                 {
-                    Name = "Matej Golian", Description = "Tester",
+                    Name = "Matej Golian", Description = "Tester"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "AdDeRoo", Description = "Tester",
+                    Name = "AdDeRoo", Description = "Tester"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Klaus Jäde", Description = "Tester",
+                    Name = "Klaus Jäde", Description = "Tester"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Paul Hirschvogel", Description = "Tester",
+                    Name = "Paul Hirschvogel", Description = "Tester"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Jörn Westhoff", Description = "Bug Reporter",
+                    Name = "Jörn Westhoff", Description = "Bug Reporter"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Karim El-Far", Description="Bug Reporter",
-                    Url="http://www.kelfar.net", BitmapPath= "kelfar.png"
+                    Name = "Karim El-Far", Description = "Bug Reporter",
+                    Url = "http://www.kelfar.net", BitmapPath = "kelfar.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Michael Maschek", Description="Bug Reporter",
-                    Url="https://www.facebook.com/celticvoyagerband", BitmapPath= "celticvoyager.png"
+                    Name = "Michael Maschek", Description = "Bug Reporter",
+                    Url = "https://www.facebook.com/celticvoyagerband", BitmapPath = "celticvoyager.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Dan Stesco", Description="Information Supplier",
-                    Url="http://www.danstesco.ro", BitmapPath="DanStesco.png"
+                    Name = "Dan Stesco", Description = "Information Supplier",
+                    Url = "http://www.danstesco.ro", BitmapPath = "DanStesco.png"
                 }
             };
 
@@ -296,7 +299,6 @@ namespace PcgTools.Help
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="mouseButtonEventArgs"></param>
@@ -306,16 +308,15 @@ namespace PcgTools.Help
             if (userControlExternalLink != null)
             {
                 var item = userControlExternalLink.Tag as ExternalItem;
-                if ((item != null) && (item.Url != null))
+                if (item != null && item.Url != null)
                 {
                     ShowUrl(item.Url);
                 }
             }
         }
-        
+
 
         /// <summary>
-        /// 
         /// </summary>
         private void ShowUrl(string url)
         {
@@ -325,12 +326,10 @@ namespace PcgTools.Help
             }
             catch (Exception exception)
             {
-                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}:{exception.Message}", 
+                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}:{exception.Message}",
                     Strings.PcgTools,
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
 }
-
-

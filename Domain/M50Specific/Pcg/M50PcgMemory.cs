@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.M50Specific.Synth;
@@ -8,12 +11,10 @@ using PcgTools.Model.MSpecific.Pcg;
 namespace PcgTools.Model.M50Specific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M50PcgMemory : MPcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public M50PcgMemory(string fileName)

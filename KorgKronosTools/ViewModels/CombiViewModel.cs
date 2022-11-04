@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.ComponentModel;
@@ -11,24 +15,32 @@ using PcgTools.Mvvm;
 namespace PcgTools.ViewModels
 {
     /// <summary>
-    /// 
     /// </summary>
     public class CombiViewModel : ViewModel, ICombiViewModel
     {
         /// <summary>
-        /// 
         /// </summary>
-        public ICombi Combi { get; private set; }
+        private string _assignedClearProgram;
 
 
         /// <summary>
-        /// 
         /// </summary>
-        private IPcgViewModel PcgViewModel { get; set; }
+        private ICommand _clearCommand;
+
+        private ICommand _editCombiCommand;
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        private ICommand _moveDownCommand;
+
+
+        /// <summary>
+        /// </summary>
+        private ICommand _moveUpCommand;
+
+
+        /// <summary>
         /// </summary>
         /// <param name="pcgViewModel"></param>
         /// <param name="combi"></param>
@@ -39,8 +51,8 @@ namespace PcgTools.ViewModels
             Combi = combi;
 
             // Select first if none selected.
-            if ((Combi.Timbres.TimbresCollection.Any()) && 
-                (Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) == 0))
+            if (Combi.Timbres.TimbresCollection.Any() &&
+                Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) == 0)
             {
                 Combi.Timbres.TimbresCollection[0].IsSelected = true;
             }
@@ -51,71 +63,41 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
         /// </summary>
-        public Action UpdateUiContent { get; set; }
+        private IPcgViewModel PcgViewModel { get; }
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        ICommand _moveUpCommand;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         // ReSharper disable once UnusedMember.Global
-        [UsedImplicitly] public ICommand MoveUpCommand
+        [UsedImplicitly]
+        public ICommand MoveUpCommand
         {
             get
             {
-                return _moveUpCommand ?? (_moveUpCommand = new RelayCommand(param => MoveUp(), param => CanExecuteMoveUpCommand));
+                return _moveUpCommand ??
+                       (_moveUpCommand = new RelayCommand(param => MoveUp(), param => CanExecuteMoveUpCommand));
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
-        bool CanExecuteMoveUpCommand
+        private bool CanExecuteMoveUpCommand
         {
             get
             {
-                return ((Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) > 0) && 
-                    !Combi.Timbres.TimbresCollection[0].IsSelected);
+                return Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) > 0 &&
+                       !Combi.Timbres.TimbresCollection[0].IsSelected;
             }
         }
-        
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void MoveUp()
-        {
-            foreach (var timbre in Combi.Timbres.TimbresCollection.Where(item => item.IsSelected))
-            {
-                var otherTimbre = ((ICombi)(timbre.Parent.Parent)).Timbres.TimbresCollection[timbre.Index - 1];
-                timbre.Swap(otherTimbre);
-
-                timbre.IsSelected = false;
-                otherTimbre.IsSelected = true;
-            }
-            UpdateUiContent();
-        }
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        ICommand _moveDownCommand;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         // ReSharper disable once UnusedMember.Global
-        [UsedImplicitly] public ICommand MoveDownCommand
+        [UsedImplicitly]
+        public ICommand MoveDownCommand
 
         {
             get
@@ -127,117 +109,85 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
         /// </summary>
-        bool CanExecuteMoveDownCommand
+        private bool CanExecuteMoveDownCommand
         {
             get
             {
-                return ((Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) > 0) &&
-                    !Combi.Timbres.TimbresCollection[Combi.Timbres.TimbresCollection.Count - 1].IsSelected);
+                return Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) > 0 &&
+                       !Combi.Timbres.TimbresCollection[Combi.Timbres.TimbresCollection.Count - 1].IsSelected;
             }
         }
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        void MoveDown()
-        {
-            for (var timbreIndex = Combi.Timbres.TimbresCollection.Count - 1; timbreIndex >= 0; timbreIndex--)
-            {
-                var timbre = Combi.Timbres.TimbresCollection[timbreIndex];
-                if (Combi.Timbres.TimbresCollection.Where(item => item.IsSelected).Contains(timbre))
-                {
-                    var otherTimbre = ((ICombi)(timbre.Parent.Parent)).Timbres.TimbresCollection[timbre.Index + 1];
-                    otherTimbre.IsSelected = true;
-                    timbre.IsSelected = false;
-
-                    timbre.Swap(otherTimbre);
-                }
-            }
-            UpdateUiContent();
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ICommand _clearCommand;
-
-        
-        /// <summary>
-        /// 
         /// </summary>
         // ReSharper disable once UnusedMember.Global
-        [UsedImplicitly] public ICommand ClearCommand
+        [UsedImplicitly]
+        public ICommand ClearCommand
         {
             get
             {
-                return _clearCommand ?? (_clearCommand = new RelayCommand(param => Clear(), param => CanExecuteClearCommand));
+                return _clearCommand ??
+                       (_clearCommand = new RelayCommand(param => Clear(), param => CanExecuteClearCommand));
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
-        bool CanExecuteClearCommand
+        private bool CanExecuteClearCommand
         {
-            get
-            {
-                return (Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) > 0);
-            }
+            get { return Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) > 0; }
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void Clear()
-        {
-            foreach (var timbre in Combi.Timbres.TimbresCollection.Where(item => item.IsSelected))
-            {
-                timbre.Clear();
-            }
-
-            UpdateUiContent();
-        }
-        
 
         public Func<bool> ShowEditDialog { private get; set; }
 
-        ICommand _editCombiCommand;
         // ReSharper disable once UnusedMember.Global
-        [UsedImplicitly] public ICommand EditCombiCommand
+        [UsedImplicitly]
+        public ICommand EditCombiCommand
         {
             get
             {
-                return _editCombiCommand ?? 
-                    (_editCombiCommand = new RelayCommand(param => EditCombi(), param => CanExecuteEditCombiCommand));
+                return _editCombiCommand ??
+                       (_editCombiCommand =
+                           new RelayCommand(param => EditCombi(), param => CanExecuteEditCombiCommand));
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
-        bool CanExecuteEditCombiCommand
+        private bool CanExecuteEditCombiCommand
         {
-            get
+            get { return Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) == 1; }
+        }
+
+        [UsedImplicitly]
+        // ReSharper disable once MemberCanBePrivate.Global
+        public string AssignedClearProgram
+        {
+            // ReSharper disable once UnusedMember.Global
+            get => _assignedClearProgram;
+            set
             {
-                return (Combi.Timbres.TimbresCollection.Count(item => item.IsSelected) == 1);
+                if (_assignedClearProgram != value)
+                {
+                    _assignedClearProgram = value;
+                    OnPropertyChanged("AssignedClearProgram");
+                }
             }
         }
 
+        /// <summary>
+        /// </summary>
+        public ICombi Combi { get; }
+
 
         /// <summary>
-        /// 
         /// </summary>
-        void EditCombi()
-        {
-            ShowEditDialog();
-        }
+        public Action UpdateUiContent { get; set; }
 
 
         /// <summary>
@@ -251,7 +201,6 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="exit"></param>
         /// <returns></returns>
@@ -263,30 +212,67 @@ namespace PcgTools.ViewModels
 
 
         /// <summary>
-        /// 
         /// </summary>
-        string _assignedClearProgram;
-        [UsedImplicitly]
-    // ReSharper disable once MemberCanBePrivate.Global
-        public string AssignedClearProgram
+        private void MoveUp()
         {
-            // ReSharper disable once UnusedMember.Global
-            get { return _assignedClearProgram; }
-            set
+            foreach (var timbre in Combi.Timbres.TimbresCollection.Where(item => item.IsSelected))
             {
-                if (_assignedClearProgram != value)
-                {
-                    _assignedClearProgram = value;
-                    OnPropertyChanged("AssignedClearProgram");
-                }
+                var otherTimbre = ((ICombi)timbre.Parent.Parent).Timbres.TimbresCollection[timbre.Index - 1];
+                timbre.Swap(otherTimbre);
+
+                timbre.IsSelected = false;
+                otherTimbre.IsSelected = true;
             }
+
+            UpdateUiContent();
         }
-        
+
 
         /// <summary>
-        /// 
         /// </summary>
-        void ReassignClearProgram()
+        private void MoveDown()
+        {
+            for (var timbreIndex = Combi.Timbres.TimbresCollection.Count - 1; timbreIndex >= 0; timbreIndex--)
+            {
+                var timbre = Combi.Timbres.TimbresCollection[timbreIndex];
+                if (Combi.Timbres.TimbresCollection.Where(item => item.IsSelected).Contains(timbre))
+                {
+                    var otherTimbre = ((ICombi)timbre.Parent.Parent).Timbres.TimbresCollection[timbre.Index + 1];
+                    otherTimbre.IsSelected = true;
+                    timbre.IsSelected = false;
+
+                    timbre.Swap(otherTimbre);
+                }
+            }
+
+            UpdateUiContent();
+        }
+
+
+        /// <summary>
+        /// </summary>
+        private void Clear()
+        {
+            foreach (var timbre in Combi.Timbres.TimbresCollection.Where(item => item.IsSelected))
+            {
+                timbre.Clear();
+            }
+
+            UpdateUiContent();
+        }
+
+
+        /// <summary>
+        /// </summary>
+        private void EditCombi()
+        {
+            ShowEditDialog();
+        }
+
+
+        /// <summary>
+        /// </summary>
+        private void ReassignClearProgram()
         {
             var root = Combi.PcgRoot;
             var assignedClearProgram = root.AssignedClearProgram ?? root.ProgramBanks[0][0];
@@ -295,7 +281,7 @@ namespace PcgTools.ViewModels
 
 
         [UsedImplicitly]
-        void OnPcgRootChanged(object sender, PropertyChangedEventArgs e)
+        private void OnPcgRootChanged(object sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
@@ -311,13 +297,11 @@ namespace PcgTools.ViewModels
                     PcgViewModel.UpdateTimbresWindows();
                     break;
 
-               // default: Ignore file name (and possibly more.
+                // default: Ignore file name (and possibly more.
             }
         }
     }
 }
-
-
 
 
 /*

@@ -1,4 +1,10 @@
-﻿using PcgTools.Model.Common.Synth.PatchDrumPatterns;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 using PcgTools.Model.MSpecific.Synth;
 
 // (c) 2011 Michel Keijzers
@@ -6,12 +12,10 @@ using PcgTools.Model.MSpecific.Synth;
 namespace PcgTools.Model.KromeExSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KromeExDrumPattern : MDrumPattern
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumPatternBank"></param>
         /// <param name="index"></param>

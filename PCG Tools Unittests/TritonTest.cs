@@ -1,35 +1,40 @@
-﻿using System.IO;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+// (c) 2011 Michel Keijzers
+
 namespace PCG_Tools_Unittests
 {
     /// <summary>
-    /// Tests Triton Extreme and all other Triton series.
+    ///     Tests Triton Extreme and all other Triton series.
     /// </summary>
     [TestClass]
     public class TritonTest
     {
-        const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\TritonExtreme";
-        
-        
-        PcgMemory _pcgMemory;
+        private const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\TritonExtreme";
 
 
-        ListGenerator _generator;
+        private ListGenerator _generator;
 
 
-        string[] _lines;
+        private string[] _lines;
 
-        
+
+        private PcgMemory _pcgMemory;
+
+
         private void SetDefaults()
         {
             _generator.PcgMemory = _pcgMemory;
@@ -41,7 +46,7 @@ namespace PCG_Tools_Unittests
 
             foreach (var item in _pcgMemory.ProgramBanks.BankCollection)
             {
-                _generator.SelectedProgramBanks.Add((IProgramBank) item);
+                _generator.SelectedProgramBanks.Add((IProgramBank)item);
             }
 
             _generator.IgnoreInitPrograms = true;
@@ -52,7 +57,7 @@ namespace PCG_Tools_Unittests
             {
                 _generator.SelectedCombiBanks.Add((ICombiBank)item);
             }
-            
+
             _generator.IgnoreInitCombis = true;
             _generator.IgnoreFirstProgram = false;
             _generator.IgnoreMutedOffTimbres = true;
@@ -134,7 +139,7 @@ namespace PCG_Tools_Unittests
             Run();
 
             // Length.
-            Assert.AreEqual(256, _lines.Length);   // Including GM
+            Assert.AreEqual(256, _lines.Length); // Including GM
         }
 
 
@@ -152,7 +157,7 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(1613, _lines.Length);
         }
-        
+
 
         [TestMethod]
         public void Test1CombiBankPatchList()
@@ -166,7 +171,7 @@ namespace PCG_Tools_Unittests
             Run();
 
             // Length.
-            Assert.AreEqual(256, _lines.Length);   // Including GM
+            Assert.AreEqual(256, _lines.Length); // Including GM
         }
 
 
@@ -182,7 +187,7 @@ namespace PCG_Tools_Unittests
             Run();
 
             // Length.
-            Assert.AreEqual(128, _lines.Length);   // Including GM
+            Assert.AreEqual(128, _lines.Length); // Including GM
         }
 
 
@@ -198,7 +203,7 @@ namespace PCG_Tools_Unittests
             Run();
 
             // Length.
-            Assert.AreEqual(128, _lines.Length);   // Including GM
+            Assert.AreEqual(128, _lines.Length); // Including GM
         }
 
 
@@ -246,7 +251,7 @@ namespace PCG_Tools_Unittests
             Run();
 
             // Length.
-            Assert.AreEqual(0, _lines.Length);   // Including GM
+            Assert.AreEqual(0, _lines.Length); // Including GM
         }
 
 
@@ -278,7 +283,7 @@ namespace PCG_Tools_Unittests
             Run();
 
             // Length.
-            Assert.AreEqual(400, _lines.Length);   // Including GM
+            Assert.AreEqual(400, _lines.Length); // Including GM
         }
 
 
@@ -294,7 +299,7 @@ namespace PCG_Tools_Unittests
             Run();
 
             // Length.
-            Assert.AreEqual(0, _lines.Length);   // Including GM
+            Assert.AreEqual(0, _lines.Length); // Including GM
         }
 
 
@@ -310,7 +315,7 @@ namespace PCG_Tools_Unittests
             Run();
 
             // Length.
-            Assert.AreEqual(0, _lines.Length);   // Including GM
+            Assert.AreEqual(0, _lines.Length); // Including GM
         }
 
 
@@ -326,7 +331,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -348,7 +354,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -386,7 +393,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -394,7 +402,5 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(256, _lines.Length);
         }
-
-
     }
 }

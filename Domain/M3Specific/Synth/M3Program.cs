@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System.Collections.Generic;
 using PcgTools.Model.Common.Synth.OldParameters;
@@ -9,7 +12,6 @@ using PcgTools.Model.MSpecific.Synth;
 namespace PcgTools.Model.M3Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M3Program : MProgram
     {
@@ -20,7 +22,7 @@ namespace PcgTools.Model.M3Specific.Synth
 
 
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
@@ -28,7 +30,6 @@ namespace PcgTools.Model.M3Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -45,28 +46,29 @@ namespace PcgTools.Model.M3Specific.Synth
 
                 case ParameterNames.ProgramParameterName.Category:
                     parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 3266, 4, 0, false, this);
-                break;
+                    break;
 
                 case ParameterNames.ProgramParameterName.SubCategory:
-                parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 3266, 7, 5, false, this);
-                break;
+                    parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 3266, 7, 5, false, this);
+                    break;
 
-            default:
-                parameter = base.GetParam(name);
-                break;
+                default:
+                    parameter = base.GetParam(name);
+                    break;
             }
+
             return parameter;
         }
 
 
         /// <summary>
-        /// Do not take drum track program references into account.
+        ///     Do not take drum track program references into account.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
         protected override bool UseIndexForDifferencing(int index)
         {
-            return ((index != 3250) && (index != 3251));
+            return index != 3250 && index != 3251;
         }
     }
 }

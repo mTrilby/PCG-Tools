@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -13,12 +17,10 @@ using PcgTools.Model.MSpecific.Synth;
 namespace PcgTools.Model.M3Specific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M3PcgMemory : MPcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public M3PcgMemory(string fileName)
@@ -35,13 +37,12 @@ namespace PcgTools.Model.M3Specific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="checksumType"></param>
         protected override void FixChecksumValues(ChecksumType checksumType)
         {
             // Loop through all chunks and fix the checksum.
-            var checksumChunks = new List<string> {"PBK1", "MBK1", "CBK1", "SBK1", "GLB1"};
+            var checksumChunks = new List<string> { "PBK1", "MBK1", "CBK1", "SBK1", "GLB1" };
             var mbkIndex = 0;
             var cbkIndex = 0;
 
@@ -51,7 +52,6 @@ namespace PcgTools.Model.M3Specific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunk"></param>
         /// <param name="pbkIndex"></param>
@@ -63,8 +63,8 @@ namespace PcgTools.Model.M3Specific.Pcg
             var checksum = 0;
             for (var dataIndex = chunk.Offset + 12; dataIndex < chunk.Offset + chunk.Size + 12; dataIndex++)
             {
-                checksum = (checksum + Content[dataIndex])%256;
-                    // Since checksum is a byte it will be automatically moduloed by 256
+                checksum = (checksum + Content[dataIndex]) % 256;
+                // Since checksum is a byte it will be automatically moduloed by 256
             }
 
             // Save in INI2.
@@ -94,7 +94,7 @@ namespace PcgTools.Model.M3Specific.Pcg
             }
 
             Debug.Assert(offsetInIni2 >= 4); // Don't overwrite KORG header
-            Content[offsetInIni2 + 54] = (byte) checksum;
+            Content[offsetInIni2 + 54] = (byte)checksum;
 
             //Console.WriteLine(string.Format(
             //    "Chunk {0} offset {1:x} size {2:x} has checksum ({3:x}..{4:x}): {5:x}, written to {6:x} and {7:x}",
@@ -102,18 +102,17 @@ namespace PcgTools.Model.M3Specific.Pcg
             //    chunk.Offset + 12, chunk.Offset + chunk.Size + 12, checksum, offsetInIni2 + 54, chunk.Offset + 11));
 
             Debug.Assert(chunk.Offset >= 4); // Don't overwrite KORG header
-            Content[chunk.Offset + 11] = (byte) checksum; // 11 is checksum byte offset
+            Content[chunk.Offset + 11] = (byte)checksum; // 11 is checksum byte offset
             return pbkIndex;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkNameInIni2"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        int FindIni2Offset(string chunkNameInIni2, int index)
+        private int FindIni2Offset(string chunkNameInIni2, int index)
         {
             Debug.Assert(Chunks.Collection[1].Name == "INI2");
             var ini2Start = Chunks.Collection[1].Offset; // Index 1 = INI2
@@ -134,6 +133,7 @@ namespace PcgTools.Model.M3Specific.Pcg
 
                 offsetInIni += 64; // Size of a chunk in INI2.
             }
+
             return offsetInIni;
         }
     }

@@ -1,4 +1,9 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using System.Collections.Generic;
 using System.Linq;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -8,27 +13,22 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Tools
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ProgramPatchParser
     {
         /// <summary>
-        /// A part can be a 'From' or 'To' syntax.
-        /// From syntax: 
-        /// bank_name                               e.g. I-A
-        /// bank_name start_index..end_index        e.g. I-A040..080
-        /// bank_name index>                        e.g. I-A040
-        /// 
-        /// To syntax, same as From syntax but with addition:
-        /// bank name start_index..                 e.g. I-A040..      (uses From patch to find end index)
-        /// 
+        ///     A part can be a 'From' or 'To' syntax.
+        ///     From syntax:
+        ///     bank_name                               e.g. I-A
+        ///     bank_name start_index..end_index        e.g. I-A040..080
+        ///     bank_name index>                        e.g. I-A040
+        ///     To syntax, same as From syntax but with addition:
+        ///     bank name start_index..                 e.g. I-A040..      (uses From patch to find end index)
         /// </summary>
-
         private readonly IPcgMemory _memory;
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         public ProgramPatchParser(IPcgMemory memory)
@@ -38,7 +38,6 @@ namespace PcgTools.Tools
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="part"></param>
         /// <param name="toPatches"></param>
@@ -75,7 +74,7 @@ namespace PcgTools.Tools
             }
 
             // Now the bank is known, take the whole bank if both indices are -1.
-            if ((startIndex == -1) && (endIndex == -1))
+            if (startIndex == -1 && endIndex == -1)
             {
                 startIndex = 0;
                 endIndex = bank.Patches.Count - 1;
@@ -86,24 +85,24 @@ namespace PcgTools.Tools
             {
                 list.Add(bank[index]);
             }
-            
+
             return list;
         }
 
 
         /// <summary>
-        /// Strip bank (until last three digits).
+        ///     Strip bank (until last three digits).
         /// </summary>
         /// <param name="part"></param>
         /// <returns></returns>
         private IProgramBank ParseBank(string part)
         {
-            return _memory.ProgramBanks.BankCollection.FirstOrDefault(bankToCheck => bankToCheck.Id == part) as IProgramBank;
+            return _memory.ProgramBanks.BankCollection.FirstOrDefault(bankToCheck => bankToCheck.Id == part) as
+                IProgramBank;
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="part"></param>
         /// <param name="endIndex"></param>
@@ -112,7 +111,7 @@ namespace PcgTools.Tools
         private static bool ParseIndices(ref string part, out int endIndex, out int startIndex)
         {
             startIndex = -1;
-            if (Int32.TryParse(part.Substring(part.Length - 3), out endIndex))
+            if (int.TryParse(part.Substring(part.Length - 3), out endIndex))
             {
                 part = part.Substring(0, part.Length - 3);
             }
@@ -130,7 +129,7 @@ namespace PcgTools.Tools
                 }
 
                 part = part.Replace("..", "");
-                if (!Int32.TryParse(part.Substring(part.Length - 3), out startIndex))
+                if (!int.TryParse(part.Substring(part.Length - 3), out startIndex))
                 {
                     return false;
                 }

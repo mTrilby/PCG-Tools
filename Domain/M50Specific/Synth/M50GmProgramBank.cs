@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using PcgTools.Model.Common.Synth.Meta;
@@ -7,12 +11,10 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.M50Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M50GmProgramBank : ProgramBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBanks"></param>
         /// <param name="type"></param>
@@ -28,34 +30,29 @@ namespace PcgTools.Model.M50Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
-        /// <param name="index"></param>
-        public override void CreatePatch(int index)
-        {
-            Add(new M50GmProgram(this, index, "GM" + (index + 1))); //FUTURE: Real name instead of GMn, use GmPrograms.cs
-        }
+        public override SynthesisType DefaultModeledSynthesisType =>
+            throw new NotSupportedException("Unsupported synthesis engine");
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        public override SynthesisType DefaultModeledSynthesisType
-        {
-            get { throw new NotSupportedException("Unsupported synthesis engine"); }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public override SynthesisType DefaultSampledSynthesisType => SynthesisType.Eds;
 
 
         /// <summary>
-        /// E.g. GM banks have index 1.
+        ///     E.g. GM banks have index 1.
         /// </summary>
         public override int IndexOffset => 1;
+
+
+        /// <summary>
+        /// </summary>
+        /// <param name="index"></param>
+        public override void CreatePatch(int index)
+        {
+            Add(new M50GmProgram(this, index,
+                "GM" + (index + 1))); //FUTURE: Real name instead of GMn, use GmPrograms.cs
+        }
     }
-    
 }

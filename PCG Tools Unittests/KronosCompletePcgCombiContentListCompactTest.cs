@@ -1,16 +1,21 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
+// (c) 2011 Michel Keijzers
 
 namespace PCG_Tools_Unittests
 {
@@ -20,13 +25,13 @@ namespace PCG_Tools_Unittests
         private const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\DEFAULT.pcg";
 
 
-        PcgMemory _pcgMemory;
+        private ListGeneratorCombiContentList _generator;
 
-        
-        ListGeneratorCombiContentList _generator;
 
-        
-        string[] _lines;
+        private string[] _lines;
+
+
+        private PcgMemory _pcgMemory;
 
 
         [TestInitialize]
@@ -36,28 +41,28 @@ namespace PCG_Tools_Unittests
             _pcgMemory = (PcgMemory)korgFileReader.Read(PcgFileName);
 
             _generator = new ListGeneratorCombiContentList
-                         {
-                             PcgMemory = _pcgMemory,
-                             IgnoreFirstProgram = false,
-                             IgnoreMutedOffTimbres = true,
-                             IgnoreMutedOffFirstProgramTimbre = true,
-                             IgnoreInitCombis = true,
-                             SelectedProgramBanks = new ObservableBankCollection<IProgramBank>(),
-                             SelectedCombiBanks = new ObservableBankCollection<ICombiBank>(),
-                             ListOutputFormat = ListGenerator.OutputFormat.Text,
-                             OutputFileName = $"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt"
-                         };
+            {
+                PcgMemory = _pcgMemory,
+                IgnoreFirstProgram = false,
+                IgnoreMutedOffTimbres = true,
+                IgnoreMutedOffFirstProgramTimbre = true,
+                IgnoreInitCombis = true,
+                SelectedProgramBanks = new ObservableBankCollection<IProgramBank>(),
+                SelectedCombiBanks = new ObservableBankCollection<ICombiBank>(),
+                ListOutputFormat = ListGenerator.OutputFormat.Text,
+                OutputFileName = $"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt"
+            };
 
             if (_pcgMemory != null)
             {
                 foreach (var item in _pcgMemory.ProgramBanks.BankCollection)
                 {
-                    _generator.SelectedProgramBanks.Add((IProgramBank) item);
+                    _generator.SelectedProgramBanks.Add((IProgramBank)item);
                 }
-            
+
                 foreach (var item in _pcgMemory.CombiBanks.BankCollection)
                 {
-                    _generator.SelectedCombiBanks.Add((ICombiBank) item);
+                    _generator.SelectedCombiBanks.Add((ICombiBank)item);
                 }
             }
 
@@ -131,8 +136,8 @@ namespace PCG_Tools_Unittests
             // Set non defaults and run.
             var selection = new ObservableBankCollection<IProgramBank>
             {
-                (IProgramBank) (_pcgMemory.ProgramBanks[0]), 
-                (IProgramBank) (_pcgMemory.ProgramBanks[1])
+                (IProgramBank)_pcgMemory.ProgramBanks[0],
+                (IProgramBank)_pcgMemory.ProgramBanks[1]
             };
 
             _generator.SelectedProgramBanks = selection;
@@ -182,8 +187,8 @@ namespace PCG_Tools_Unittests
             // Set non defaults and run.
             var selection = new ObservableBankCollection<ICombiBank>
             {
-                (ICombiBank) (_pcgMemory.CombiBanks[0]), 
-                (ICombiBank) (_pcgMemory.CombiBanks[1])
+                (ICombiBank)_pcgMemory.CombiBanks[0],
+                (ICombiBank)_pcgMemory.CombiBanks[1]
             };
 
             _generator.SelectedCombiBanks = selection;
@@ -195,7 +200,7 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(256, _lines.Length);
         }
-        
+
 
         [TestMethod]
         public void TestIgnoreInitCombisOff()
@@ -225,7 +230,7 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(480, _lines.Length);
         }
-        
+
 
         [TestMethod]
         public void TestOutputAsciiTable()

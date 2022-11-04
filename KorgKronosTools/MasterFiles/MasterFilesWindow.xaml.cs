@@ -1,8 +1,13 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Properties;
@@ -14,36 +19,16 @@ using WPF.MDI;
 namespace PcgTools.MasterFiles
 {
     /// <summary>
-    /// Interaction logic for MasterFilesWindow.xaml
+    ///     Interaction logic for MasterFilesWindow.xaml
     /// </summary>
     public partial class MasterFilesWindow : IChildWindow
     {
         /// <summary>
-        /// 
         /// </summary>
-        public IViewModel ViewModel { get; private set; }
+        private readonly MainWindow _mainWindow;
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        readonly MainWindow _mainWindow;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public MdiChild MdiChild { private get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IMemory Memory => null;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="mainWindow"></param>
         public MasterFilesWindow(MainWindow mainWindow)
@@ -52,13 +37,13 @@ namespace PcgTools.MasterFiles
 
             InitializeComponent();
 
-            ViewModel = new MasterFilesViewModel(_mainWindow.ViewModel) { CloseWindow = CloseWindow};
+            ViewModel = new MasterFilesViewModel(_mainWindow.ViewModel) { CloseWindow = CloseWindow };
 
             DataContext = ViewModel;
         }
 
         /// <summary>
-        /// For satisfying XAML.
+        ///     For satisfying XAML.
         /// </summary>
         public MasterFilesWindow()
         {
@@ -66,7 +51,29 @@ namespace PcgTools.MasterFiles
 
 
         /// <summary>
-        /// 
+        /// </summary>
+        public MdiChild MdiChild { private get; set; }
+
+        /// <summary>
+        /// </summary>
+        public IViewModel ViewModel { get; }
+
+
+        /// <summary>
+        /// </summary>
+        public IMemory Memory => null;
+
+
+        /// <summary>
+        /// </summary>
+        /// <param name="property"></param>
+        public void ActOnSettingsChanged(string property)
+        {
+            // No action needed
+        }
+
+
+        /// <summary>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -78,7 +85,6 @@ namespace PcgTools.MasterFiles
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void FillListView()
         {
@@ -87,7 +93,6 @@ namespace PcgTools.MasterFiles
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="listView"></param>
         private void UpdateListView(ListView listView)
@@ -100,7 +105,7 @@ namespace PcgTools.MasterFiles
                     listView.ScrollIntoView(listView.Items.Cast<ISelectable>().First(item => item.IsSelected));
                 }
             }
-           
+
             listView.Items.Refresh();
             try
             {
@@ -114,7 +119,6 @@ namespace PcgTools.MasterFiles
 
 
         /// <summary>
-        /// 
         /// </summary>
         public void CloseWindow()
         {
@@ -125,16 +129,6 @@ namespace PcgTools.MasterFiles
             Settings.Default.Save();
 
             MdiChild.Close();
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="property"></param>
-        public void ActOnSettingsChanged(string property)
-        {
-            // No action needed
         }
     }
 }

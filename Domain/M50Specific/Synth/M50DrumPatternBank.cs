@@ -1,4 +1,9 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 using PcgTools.Model.MSpecific.Synth;
@@ -8,12 +13,10 @@ using PcgTools.Model.MSpecific.Synth;
 namespace PcgTools.Model.M50Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M50DrumPatternBank : MDrumPatternBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumPatternBanks"></param>
         /// <param name="type"></param>
@@ -26,7 +29,6 @@ namespace PcgTools.Model.M50Specific.Synth
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         public override void CreatePatch(int index)

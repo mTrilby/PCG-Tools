@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -18,12 +22,10 @@ using PcgTools.Model.KronosSpecific.Synth;
 namespace PcgTools.Model.Common.File
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class PcgFileReader : PatchesFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -33,7 +35,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Reads content of a PCG file.
+        ///     Reads content of a PCG file.
         /// </summary>
         /// <param name="filetype"></param>
         /// <param name="modelType"></param>
@@ -57,26 +59,22 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected abstract int Div1Offset { get; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected abstract int BetweenChunkGapSize { get; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkSize"></param>
         private delegate void Function(int chunkSize);
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkName"></param>
         /// <param name="chunkSize"></param>
@@ -84,18 +82,18 @@ namespace PcgTools.Model.Common.File
         {
             var map = new Dictionary<string, Function>
             {
-                {"INI2", ReadIni2Chunk},
-                {"INI3", ReadIni3Chunk},
-                {"CMB1", ReadCmb1Chunk},
-                {"CMB2", ReadCmb2Chunk},
-                {"PRG1", ReadPrg1Chunk},
-                {"PRG2", ReadPrg2Chunk},
-                {"SLS1", ReadSls1Chunk},
-                {"STL2", ReadStl2Chunk},
-                {"WSQ1", ReadWsq1Chunk},
-                {"DKT1", ReadDkt1Chunk},
-                {"GLB1", ReadGlb1Chunk},
-                {"DPI1", ReadDpi1Chunk}
+                { "INI2", ReadIni2Chunk },
+                { "INI3", ReadIni3Chunk },
+                { "CMB1", ReadCmb1Chunk },
+                { "CMB2", ReadCmb2Chunk },
+                { "PRG1", ReadPrg1Chunk },
+                { "PRG2", ReadPrg2Chunk },
+                { "SLS1", ReadSls1Chunk },
+                { "STL2", ReadStl2Chunk },
+                { "WSQ1", ReadWsq1Chunk },
+                { "DKT1", ReadDkt1Chunk },
+                { "GLB1", ReadGlb1Chunk },
+                { "DPI1", ReadDpi1Chunk }
             };
 
             if (map.ContainsKey(chunkName))
@@ -111,7 +109,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Kronos has checksum bytes.
+        ///     Kronos has checksum bytes.
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadIni2Chunk(int chunkSize)
@@ -122,7 +120,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Kronos has checksum bytes. Used in OS Update 1.5 and 1.6.
+        ///     Kronos has checksum bytes. Used in OS Update 1.5 and 1.6.
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadIni3Chunk(int chunkSize)
@@ -138,7 +136,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadCmb1Chunk(int chunkSize)
@@ -153,7 +150,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Returns bank index.
+        ///     Returns bank index.
         /// </summary>
         /// <returns></returns>
         private void ReadCbk1Chunk()
@@ -174,7 +171,7 @@ namespace PcgTools.Model.Common.File
             var bankIndex = CombiBankId2CombiIndex(bankId);
             Index += 4;
 
-            var combiBank = (CombiBank) CurrentPcgMemory.CombiBanks[bankIndex];
+            var combiBank = (CombiBank)CurrentPcgMemory.CombiBanks[bankIndex];
             combiBank.ByteOffset = startIndex;
             combiBank.PatchSize = sizeOfACombi;
             combiBank.IsWritable = true;
@@ -183,7 +180,7 @@ namespace PcgTools.Model.Common.File
             for (var index = 0; index < numberOfCombisInBank; index++)
             {
                 // Place in PcgMemory.
-                var combi = (Combi) combiBank[index];
+                var combi = (Combi)combiBank[index];
                 combi.ByteOffset = Index;
                 combi.ByteLength = sizeOfACombi;
                 combi.IsLoaded = true;
@@ -192,7 +189,7 @@ namespace PcgTools.Model.Common.File
 
                 foreach (var timbre in combi.Timbres.TimbresCollection)
                 {
-                    timbre.ByteOffset = combi.Timbres.ByteOffset + timbre.Index*timbre.TimbresSize;
+                    timbre.ByteOffset = combi.Timbres.ByteOffset + timbre.Index * timbre.TimbresSize;
                 }
 
                 // Skip to next.
@@ -207,7 +204,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Kronos only.
+        ///     Kronos only.
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadCmb2Chunk(int chunkSize)
@@ -220,7 +217,7 @@ namespace PcgTools.Model.Common.File
             {
                 // Find combi bank with index of filled banks.
                 var writableBanks = CurrentPcgMemory.CombiBanks.BankCollection.Where(bank => bank.IsWritable);
-                var combiBank = (KronosCombiBank) writableBanks.ToArray()[bankIndex];
+                var combiBank = (KronosCombiBank)writableBanks.ToArray()[bankIndex];
 
                 // Set offset.
                 combiBank.Cbk2PcgOffset = Index + 16; // 12 = Chunk size, 8 zeros
@@ -231,7 +228,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Kronos only.
+        ///     Kronos only.
         /// </summary>
         private void ReadCbk2Chunk()
         {
@@ -241,27 +238,25 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected abstract int SizeBetweenCmb1AndCbk1 { get; }
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected abstract int Cbk1NumberOfCombisOffset { get; }
 
 
         /// <summary>
-        /// Converts 0 (I-A) to 0 ... 6 (I-G) to 6, 0x20000 (U-A) to 7 ... 0x20006 (U-G) to 13
+        ///     Converts 0 (I-A) to 0 ... 6 (I-G) to 6, 0x20000 (U-A) to 7 ... 0x20006 (U-G) to 13
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         private static int CombiBankId2CombiIndex(int id)
         {
             // Check for virtual bank.
-            if ((id >= CombiBanks.FirstVirtualBankId) &&
-                (id <= (CombiBanks.FirstVirtualBankId + CombiBanks.NumberOfVirtualBanks)))
+            if (id >= CombiBanks.FirstVirtualBankId &&
+                id <= CombiBanks.FirstVirtualBankId + CombiBanks.NumberOfVirtualBanks)
             {
                 return id - CombiBanks.FirstVirtualBankId + 14; // Kronos specific, 14 internal banks
             }
@@ -272,7 +267,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Kronos only. There is only 1 SBK2 chunk.
+        ///     Kronos only. There is only 1 SBK2 chunk.
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadStl2Chunk(int chunkSize)
@@ -284,7 +279,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadPrg1Chunk(int chunkSize)
@@ -311,7 +305,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Kronos only.
+        ///     Kronos only.
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadPrg2Chunk(int chunkSize)
@@ -330,6 +324,7 @@ namespace PcgTools.Model.Common.File
                 {
                     programBank.Pbk2PcgOffset = Index + 16; // 12 = Chunk size, 8 zeros
                 }
+
                 bankIndex++;
                 ReadPbk2Chunk();
             }
@@ -337,7 +332,7 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// Kronos only.
+        ///     Kronos only.
         /// </summary>
         private void ReadPbk2Chunk()
         {
@@ -347,14 +342,13 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected abstract int GapSizeAfterMbk1ChunkName { get; }
 
 
         /// <summary>
-        /// For special banks (EXI, Moss, ...).
-        /// Returns bank index.
+        ///     For special banks (EXI, Moss, ...).
+        ///     Returns bank index.
         /// </summary>
         private void ReadMbk1Chunk()
         {
@@ -370,9 +364,9 @@ namespace PcgTools.Model.Common.File
 // ReSharper restore RedundantStringFormatCall
             var bankId = Util.GetInt(CurrentPcgMemory.Content, Index + 16, 4);
             var bankIndex = ProgramBankId2ProgramIndex(bankId);
-            Index += 5*4;
+            Index += 5 * 4;
 
-            var programBank = (ProgramBank) CurrentPcgMemory.ProgramBanks[bankIndex];
+            var programBank = (ProgramBank)CurrentPcgMemory.ProgramBanks[bankIndex];
             programBank.ByteOffset = startIndex;
             programBank.PatchSize = sizeOfAProgram;
             programBank.BankSynthesisType = programBank.DefaultModeledSynthesisType;
@@ -382,7 +376,7 @@ namespace PcgTools.Model.Common.File
             for (var index = 0; index < numberOfProgramsInBank; index++)
             {
                 // Place in PcgMemory.
-                var program = (Program) programBank[index];
+                var program = (Program)programBank[index];
                 program.ByteOffset = Index;
                 program.ByteLength = sizeOfAProgram;
                 program.IsLoaded = true;
@@ -394,8 +388,8 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// For 'normal' EDS, HD1 like programs.
-        /// Returns the bank index.
+        ///     For 'normal' EDS, HD1 like programs.
+        ///     Returns the bank index.
         /// </summary>
         private void ReadPbk1Chunk()
         {
@@ -415,7 +409,7 @@ namespace PcgTools.Model.Common.File
             var bankIndex = ProgramBankId2ProgramIndex(bankId);
             Index += 4;
 
-            var programBank = (ProgramBank) CurrentPcgMemory.ProgramBanks[bankIndex];
+            var programBank = (ProgramBank)CurrentPcgMemory.ProgramBanks[bankIndex];
             programBank.ByteOffset = startIndex;
             programBank.PatchSize = sizeOfAProgram;
             programBank.BankSynthesisType = programBank.DefaultSampledSynthesisType;
@@ -425,7 +419,7 @@ namespace PcgTools.Model.Common.File
             for (var index = 0; index < numberOfProgramsInBank; index++)
             {
                 // Place in PcgMemory.
-                var program = (Program) programBank[index];
+                var program = (Program)programBank[index];
                 program.ByteOffset = Index;
                 program.ByteLength = sizeOfAProgram;
                 program.IsLoaded = true;
@@ -437,51 +431,48 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected abstract int Pbk1NumberOfProgramsOffset { get; }
 
 
         /// <summary>
-        /// Kronos specific function for MBK1/PBK1 chunks.
-        /// 
-        /// ModelType ID        Name     Index
-        ///           Kronos Triton
-        ///           Oasys
-        /// MBK 00000  IA       A     0
-        /// PBK 00001  IB       B     1
-        /// PBK 00002  IC       C     2
-        /// PBK 00003  ID       D     3
-        /// PBK 00004  IE       E     4
-        /// PBK 08000  IF       F     5
-        /// PBK 20000  UA       H     6
-        /// MBK 20001  UB       I     7
-        /// MBK 20002  UC       J     8
-        /// MBK 20003  UD       K     9
-        /// MBK 20004  UE       L    10
-        /// MBK 20005  UF       M    11
-        /// MBK 20006  UG       N    12
+        ///     Kronos specific function for MBK1/PBK1 chunks.
+        ///     ModelType ID        Name     Index
+        ///     Kronos Triton
+        ///     Oasys
+        ///     MBK 00000  IA       A     0
+        ///     PBK 00001  IB       B     1
+        ///     PBK 00002  IC       C     2
+        ///     PBK 00003  ID       D     3
+        ///     PBK 00004  IE       E     4
+        ///     PBK 08000  IF       F     5
+        ///     PBK 20000  UA       H     6
+        ///     MBK 20001  UB       I     7
+        ///     MBK 20002  UC       J     8
+        ///     MBK 20003  UD       K     9
+        ///     MBK 20004  UE       L    10
+        ///     MBK 20005  UF       M    11
+        ///     MBK 20006  UG       N    12
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         private static int ProgramBankId2ProgramIndex(int id)
         {
             // Check for virtual bank.
-            if ((id >= ProgramBanks.FirstVirtualBankId) &&
-                (id <= (ProgramBanks.FirstVirtualBankId + ProgramBanks.NumberOfVirtualBanks)))
+            if (id >= ProgramBanks.FirstVirtualBankId &&
+                id <= ProgramBanks.FirstVirtualBankId + ProgramBanks.NumberOfVirtualBanks)
             {
                 return id - ProgramBanks.FirstVirtualBankId + 20; // Kronos specific
             }
 
             // Non virtual banks.
-            return (id == 0x8000 ? 5 : (id < 0x8000 ? id : id - 0x20000 + 6)); // Kronos specific
+            return id == 0x8000 ? 5 : id < 0x8000 ? id : id - 0x20000 + 6; // Kronos specific
         }
 
 
         // Set lists.
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSls1Chunk(int chunkSize)
         {
@@ -495,7 +486,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadSetList()
         {
@@ -512,13 +502,13 @@ namespace PcgTools.Model.Common.File
             var numberOfSetLists = Util.GetInt(CurrentPcgMemory.Content, Index, 4);
             Index += 4;
             var chunkSize = Util.GetInt(CurrentPcgMemory.Content, Index, 4);
-            var sizeOfASetListSlot = chunkSize/numberOfSetLists;
+            var sizeOfASetListSlot = chunkSize / numberOfSetLists;
             Index += 8; // Skip 8 other bytes
 
             for (var setListIndex = 0; setListIndex < numberOfSetLists; setListIndex++)
             {
                 // Place in PcgMemory.
-                var setList = (SetList) CurrentPcgMemory.SetLists[setListIndex];
+                var setList = (SetList)CurrentPcgMemory.SetLists[setListIndex];
                 setList.ByteOffset = Index;
                 setList.PatchSize = sizeOfASetListSlot;
                 setList.Name = Util.GetChars(CurrentPcgMemory.Content, Index, 24);
@@ -528,8 +518,8 @@ namespace PcgTools.Model.Common.File
 
                 for (var slotIndex = 0; slotIndex < 128; slotIndex++)
                 {
-                    var setList2 = (SetList) CurrentPcgMemory.SetLists[setListIndex];
-                    var slot = (SetListSlot) setList2[slotIndex];
+                    var setList2 = (SetList)CurrentPcgMemory.SetLists[setListIndex];
+                    var slot = (SetListSlot)setList2[slotIndex];
                     slot.ByteOffset = Index;
                     slot.ByteLength = sizeOfASetListSlot;
                     slot.IsLoaded = true;
@@ -537,13 +527,13 @@ namespace PcgTools.Model.Common.File
                     // Skip to next.
                     Index += sizeOfASetListSlot;
                 }
+
                 Index += 16;
             }
         }
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadWsq1Chunk(int chunkSize)
@@ -558,7 +548,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadWbk1Chunk()
         {
@@ -578,7 +567,7 @@ namespace PcgTools.Model.Common.File
             var bankIndex = WaveSequenceBankId2WaveSequenceIndex(bankId);
             Index += 4;
 
-            var waveSeqBank = (WaveSequenceBank) CurrentPcgMemory.WaveSequenceBanks[bankIndex];
+            var waveSeqBank = (WaveSequenceBank)CurrentPcgMemory.WaveSequenceBanks[bankIndex];
             waveSeqBank.ByteOffset = startIndex;
             waveSeqBank.PatchSize = sizeOfAWaveSeq;
             waveSeqBank.IsWritable = true;
@@ -587,7 +576,7 @@ namespace PcgTools.Model.Common.File
             for (var index = 0; index < numberOfWaveSeqsInBank; index++)
             {
                 // Place in PcgMemory.
-                var waveSeq = (WaveSequence) waveSeqBank[index];
+                var waveSeq = (WaveSequence)waveSeqBank[index];
                 waveSeq.ByteOffset = Index;
                 waveSeq.ByteLength = sizeOfAWaveSeq;
                 waveSeq.IsLoaded = true;
@@ -598,13 +587,12 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected abstract int Dbk1NumberOfDrumKitsOffset { get; }
 
 
         /// <summary>
-        /// Converts 0 (INT) to 0, 0x20000 (USER-A) to 1 ... 0x20006 (USER-GG) to 14
+        ///     Converts 0 (INT) to 0, 0x20000 (USER-A) to 1 ... 0x20006 (USER-GG) to 14
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -615,7 +603,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkSize"></param>
         private void ReadDkt1Chunk(int chunkSize)
@@ -630,7 +617,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         private void ReadDbk1Chunk()
         {
@@ -650,7 +636,7 @@ namespace PcgTools.Model.Common.File
             var bankIndex = DrumKitBankId2DrumKitIndex(bankId);
             Index += 4;
 
-            var drumKitBank = (DrumKitBank) CurrentPcgMemory.DrumKitBanks[bankIndex];
+            var drumKitBank = (DrumKitBank)CurrentPcgMemory.DrumKitBanks[bankIndex];
             drumKitBank.ByteOffset = startIndex;
             drumKitBank.PatchSize = sizeOfADrumKit;
             drumKitBank.IsWritable = true;
@@ -659,7 +645,7 @@ namespace PcgTools.Model.Common.File
             for (var index = 0; index < numberOfDrumKitsInBank; index++)
             {
                 // Place in PcgMemory.
-                var drumKit = (DrumKit) drumKitBank[index];
+                var drumKit = (DrumKit)drumKitBank[index];
                 drumKit.ByteOffset = Index;
                 drumKit.ByteLength = sizeOfADrumKit;
                 drumKit.IsLoaded = true;
@@ -670,16 +656,15 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// LV: This function might require attention for Triton models. I don't have PCG files to verify.
-        ///
-        /// For all models except Triton:
+        ///     LV: This function might require attention for Triton models. I don't have PCG files to verify.
+        ///     For all models except Triton:
         ///     Converts 0 (INT) to 0, 0x20000 (USER-A) to 1 ... 0x2000c (USER-GG) to 14
-        /// For Triton Extreme model:
+        ///     For Triton Extreme model:
         ///     Converts 0 (A/B) to 0, 0x20000 (H) to 1 ... 0x20006 (N) to 7, 0x20007 (USER) to 8
-        /// For other Triton models (???):
+        ///     For other Triton models (???):
         ///     Converts 0 (A/B) to 0, 1 (C) to 1, 2 (D) to 2, 3 or 0x20000???? (USER) to 3
         ///     If "USER" has id 0x20000 then this function will not work, it overwrites an Int index...
-        /// Sorry but I could not do better than this at the moment, the Triton Drumkit banks are very differently organized...
+        ///     Sorry but I could not do better than this at the moment, the Triton Drumkit banks are very differently organized...
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -690,7 +675,6 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected virtual void ReadGlb1Chunk(int chunkSizeNotUsed)
         {
@@ -711,11 +695,11 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// DPI1 chunk consists of:
-        /// - DPN1  size x01D8
-        /// - DPD1  size x1CCC contains drum pattern names + other (see documentation).
-        /// - DPS1  size x4F4B8 containing
-        ///   - multiple DPV1 0x17C00 probably containing the drum kit sequences 
+        ///     DPI1 chunk consists of:
+        ///     - DPN1  size x01D8
+        ///     - DPD1  size x1CCC contains drum pattern names + other (see documentation).
+        ///     - DPS1  size x4F4B8 containing
+        ///     - multiple DPV1 0x17C00 probably containing the drum kit sequences
         /// </summary>
         private void ReadDpi1Chunk(int chunkSize)
         {
@@ -741,8 +725,8 @@ namespace PcgTools.Model.Common.File
             var bankId = 1; // User bank
             var bankIndex = DrumPatternBankId2DrumPatternIndex(bankId);
 
-            var drumPatternBank = (DrumPatternBank) CurrentPcgMemory.DrumPatternBanks[bankIndex];
-            drumPatternBank.ByteOffset = Index + 12; 
+            var drumPatternBank = (DrumPatternBank)CurrentPcgMemory.DrumPatternBanks[bankIndex];
+            drumPatternBank.ByteOffset = Index + 12;
             drumPatternBank.PatchSize = sizeOfADrumPattern;
             drumPatternBank.IsWritable = true;
             drumPatternBank.IsLoaded = true;
@@ -752,7 +736,7 @@ namespace PcgTools.Model.Common.File
             for (index = 0; index < numberOfDrumPatternsInBank; index++)
             {
                 // Place in PcgMemory.
-                var drumPattern = (DrumPattern) drumPatternBank[index];
+                var drumPattern = (DrumPattern)drumPatternBank[index];
                 drumPattern.ByteOffset = Index;
                 drumPattern.ByteLength = sizeOfADrumPattern;
                 drumPattern.IsLoaded = true;
@@ -769,22 +753,20 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         protected abstract int Dpi1NumberOfDrumPatternsOffset { get; }
 
 
         /// <summary>
-        /// LV: This function might require attention for Triton models. I don't have PCG files to verify.
-        ///
-        /// For all models except Triton:
+        ///     LV: This function might require attention for Triton models. I don't have PCG files to verify.
+        ///     For all models except Triton:
         ///     Converts 0 (INT) to 0, 0x20000 (USER-A) to 1 ... 0x2000c (USER-GG) to 14
-        /// For Triton Extreme model:
+        ///     For Triton Extreme model:
         ///     Converts 0 (A/B) to 0, 0x20000 (H) to 1 ... 0x20006 (N) to 7, 0x20007 (USER) to 8
-        /// For other Triton models (???):
+        ///     For other Triton models (???):
         ///     Converts 0 (A/B) to 0, 1 (C) to 1, 2 (D) to 2, 3 or 0x20000???? (USER) to 3
         ///     If "USER" has id 0x20000 then this function will not work, it overwrites an Int index...
-        /// Sorry but I could not do better than this at the moment, the Triton Drumkit banks are very differently organized...
+        ///     Sorry but I could not do better than this at the moment, the Triton Drumkit banks are very differently organized...
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -794,4 +776,3 @@ namespace PcgTools.Model.Common.File
         }
     }
 }
-

@@ -1,6 +1,11 @@
-﻿using System.Diagnostics;
-using Common.Utils;
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System.Diagnostics;
+using Common.Utils;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
@@ -9,30 +14,10 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.Common.File
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class SysExFileReader : PatchesFileReader
     {
         /// <summary>
-        /// 
-        /// </summary>
-        protected PcgMemory.ContentType ContentType { get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected int SysExStartOffset { get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private int SysExEndOffset { [UsedImplicitly] get; set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -48,16 +33,29 @@ namespace PcgTools.Model.Common.File
             SysExEndOffset = sysExEndOffset;
         }
 
+        /// <summary>
+        /// </summary>
+        protected PcgMemory.ContentType ContentType { get; set; }
+
 
         /// <summary>
-        /// 
+        /// </summary>
+        protected int SysExStartOffset { get; set; }
+
+
+        /// <summary>
+        /// </summary>
+        private int SysExEndOffset { [UsedImplicitly] get; }
+
+
+        /// <summary>
         /// </summary>
         /// <param name="programPatchSize"></param>
         /// <param name="combiPatchSize"></param>
         /// <param name="globalSize"></param>
         /// <param name="startProgramBank"></param>
         /// <param name="startCombiBank"></param>
-        protected void ReadAllData(int programPatchSize, int combiPatchSize, int globalSize, 
+        protected void ReadAllData(int programPatchSize, int combiPatchSize, int globalSize,
             int startProgramBank = 0, int startCombiBank = 0)
         {
             Index = SysExStartOffset;
@@ -68,7 +66,7 @@ namespace PcgTools.Model.Common.File
             if (ContentType == PcgMemory.ContentType.All)
             {
                 // Skip global.
-                Index += globalSize; 
+                Index += globalSize;
             }
 
             ReadCombis(combiPatchSize, startCombiBank);
@@ -78,22 +76,22 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiPatchSize"></param>
         /// <param name="startCombiBank"></param>
         private void ReadCombis(int combiPatchSize, int startCombiBank)
         {
-            if ((ContentType == PcgMemory.ContentType.All) ||
-                (ContentType == PcgMemory.ContentType.AllCombis))
+            if (ContentType == PcgMemory.ContentType.All ||
+                ContentType == PcgMemory.ContentType.AllCombis)
             {
                 // Read combi data.
-                var combiBank = (CombiBank) CurrentPcgMemory.CombiBanks[0];
+                var combiBank = (CombiBank)CurrentPcgMemory.CombiBanks[0];
 
-                for (var bankIndex = startCombiBank; bankIndex < CurrentPcgMemory.CombiBanks.BankCollection.Count; 
-                    bankIndex++)
+                for (var bankIndex = startCombiBank;
+                     bankIndex < CurrentPcgMemory.CombiBanks.BankCollection.Count;
+                     bankIndex++)
                 {
-                    var bank = (ICombiBank) (CurrentPcgMemory.CombiBanks[bankIndex]);
+                    var bank = (ICombiBank)CurrentPcgMemory.CombiBanks[bankIndex];
                     if (bank.Type != BankType.EType.Virtual)
                     {
                         bank.ByteOffset = Index;
@@ -101,7 +99,7 @@ namespace PcgTools.Model.Common.File
                         bank.IsWritable = true;
                         bank.IsLoaded = true;
 
-                        foreach (IPatch combi in bank.Patches)
+                        foreach (var combi in bank.Patches)
                         {
                             combi.ByteOffset = Index;
                             combi.ByteLength = combiBank.PatchSize;
@@ -119,19 +117,18 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programPatchSize"></param>
         /// <param name="startProgramBank"></param>
         private void ReadPrograms(int programPatchSize, int startProgramBank)
         {
-            if ((ContentType == PcgMemory.ContentType.All) ||
-                (ContentType == PcgMemory.ContentType.AllPrograms))
+            if (ContentType == PcgMemory.ContentType.All ||
+                ContentType == PcgMemory.ContentType.AllPrograms)
             {
                 // Read program data.
                 for (var bankIndex = startProgramBank;
-                    bankIndex < CurrentPcgMemory.ProgramBanks.BankCollection.Count;
-                    bankIndex++)
+                     bankIndex < CurrentPcgMemory.ProgramBanks.BankCollection.Count;
+                     bankIndex++)
                 {
                     ReadProgram(programPatchSize, bankIndex);
                 }
@@ -140,14 +137,13 @@ namespace PcgTools.Model.Common.File
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programPatchSize"></param>
         /// <param name="bankIndex"></param>
         private void ReadProgram(int programPatchSize, int bankIndex)
         {
-            var bank = (IProgramBank) (CurrentPcgMemory.ProgramBanks[bankIndex]);
-            if ((bank.Type != BankType.EType.Virtual) && (bank.Type != BankType.EType.Gm))
+            var bank = (IProgramBank)CurrentPcgMemory.ProgramBanks[bankIndex];
+            if (bank.Type != BankType.EType.Virtual && bank.Type != BankType.EType.Gm)
             {
                 bank.ByteOffset = Index;
                 bank.ByteLength = programPatchSize;

@@ -1,30 +1,32 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Windows.Input;
 
 namespace PcgTools.Mvvm.ViewModel
 {
     /// <summary>
-    /// This ViewModelBase subclass requests to be removed 
-    /// from the UI when its CloseCommand executes.
-    /// This class is abstract.
+    ///     This ViewModelBase subclass requests to be removed
+    ///     from the UI when its CloseCommand executes.
+    ///     This class is abstract.
     /// </summary>
     public abstract class WorkspaceViewModel : ViewModelBase
     {
         #region Fields
 
-        RelayCommand _closeCommand;
+        private RelayCommand _closeCommand;
 
         #endregion // Fields
-
-        #region Constructor
-
-        #endregion // Constructor
 
         #region CloseCommand
 
         /// <summary>
-        /// Returns the command that, when invoked, attempts
-        /// to remove this workspace from the user interface.
+        ///     Returns the command that, when invoked, attempts
+        ///     to remove this workspace from the user interface.
         /// </summary>
         public ICommand CloseCommand
         {
@@ -33,16 +35,20 @@ namespace PcgTools.Mvvm.ViewModel
 
         #endregion // CloseCommand
 
+        #region Constructor
+
+        #endregion // Constructor
+
         #region RequestClose [event]
 
         /// <summary>
-        /// Raised when this workspace should be removed from the UI.
+        ///     Raised when this workspace should be removed from the UI.
         /// </summary>
         public event EventHandler RequestClose;
 
-        void OnRequestClose()
+        private void OnRequestClose()
         {
-            EventHandler handler = RequestClose;
+            var handler = RequestClose;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }

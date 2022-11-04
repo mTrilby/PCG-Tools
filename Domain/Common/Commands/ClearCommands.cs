@@ -1,4 +1,10 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Common.PcgToolsResources;
@@ -8,50 +14,45 @@ using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.PcgToolsResources;
 
 namespace PcgTools.ViewModels.Commands.PcgCommands
 {
     /// <summary>
-    ///
     /// </summary>
     public class ClearCommands
     {
         /// <summary>
-        ///
         /// </summary>
         public enum ClearPatchesAlgorithm
         {
             /// <summary>
-            /// Don't clear both used and unused patches.
+            ///     Don't clear both used and unused patches.
             /// </summary>
             None,
 
             /// <summary>
-            /// Skip patches which are used, clear unused.
+            ///     Skip patches which are used, clear unused.
             /// </summary>
             UnusedOnly,
 
             /// <summary>
-            /// If patches are used, ask to continue (and clean all).
+            ///     If patches are used, ask to continue (and clean all).
             /// </summary>
             Ask,
 
             /// <summary>
-            /// Always clear both unused and used patches.
+            ///     Always clear both unused and used patches.
             /// </summary>
             UnusedAndUsed
         }
 
 
         /// <summary>
-        ///
         /// </summary>
         private IPcgViewModel _pcgViewModel;
 
 
         /// <summary>
-        ///
         /// </summary>
         /// <param name="pcgViewModel"></param>
         /// <param name="selectedPatches"></param>
@@ -74,14 +75,15 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
             var atLeastOnePatchCleared = false;
 
             foreach (var patch in selectedPatches.Where(
-                patch => !(patch is IReferencable) || // Set list slots
-                         ((((IReferencable) patch).NumberOfReferences > 0) && clearUsedPatches) || // Used patch
-                         ((((IReferencable) patch).NumberOfReferences == 0) && clearUnusedPatches))) // Unused patch
+                         patch => !(patch is IReferencable) || // Set list slots
+                                  (((IReferencable)patch).NumberOfReferences > 0 && clearUsedPatches) || // Used patch
+                                  (((IReferencable)patch).NumberOfReferences == 0 &&
+                                   clearUnusedPatches))) // Unused patch
             {
                 if (SettingsDefault.UI_ClearPatchesFixReferences)
                 {
                     IPatch firstDuplicate = null;
-                    if ((patch is IProgram) || (patch is ICombi))
+                    if (patch is IProgram || patch is ICombi)
                     {
                         firstDuplicate = patch.FirstDuplicate;
                     }
@@ -101,7 +103,6 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
 
 
         /// <summary>
-        ///
         /// </summary>
         /// <param name="atLeastOnePatchUsedAsReference"></param>
         /// <param name="clearUnusedPatches"></param>
@@ -125,11 +126,12 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
 
                 case ClearPatchesAlgorithm.Ask:
                     if (CheckPatchesToClearAfterWarning(atLeastOnePatchUsedAsReference, ref clearUnusedPatches,
-                        ref clearUsedPatches))
+                            ref clearUsedPatches))
                     {
                         clearUnusedPatches = false;
                         clearUsedPatches = false;
                     }
+
                     break;
 
                 case ClearPatchesAlgorithm.UnusedAndUsed:
@@ -141,7 +143,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
 
 
         /// <summary>
-        /// Shows a warning to decide which patches to clear.
+        ///     Shows a warning to decide which patches to clear.
         /// </summary>
         /// <param name="atLeastOnePatchUsedAsReference"></param>
         /// <param name="clearUnusedPatches"></param>
@@ -177,12 +179,13 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
                 default:
                     throw new ApplicationException("Illegal case");
             }
+
             return false;
         }
 
 
         /// <summary>
-        /// Clear duplicates only.
+        ///     Clear duplicates only.
         /// </summary>
         /// <param name="pcgViewModel"></param>
         /// <param name="selectedPatches"></param>
@@ -198,7 +201,7 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
                 var firstDuplicate = patch.FirstDuplicate;
                 if (firstDuplicate != null)
                 {
-                    ((IReferencable) (patch)).ChangeReferences(firstDuplicate);
+                    ((IReferencable)patch).ChangeReferences(firstDuplicate);
                     patch.Clear();
                     atLeastOneCleared = true;
                 }

@@ -1,16 +1,18 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 
 namespace PcgTools.Model.KronosOasysSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class KronosOasysPcgMemory : PcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="modelType"></param>
@@ -21,19 +23,16 @@ namespace PcgTools.Model.KronosOasysSpecific.Pcg
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasSubCategories => true;
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override int NumberOfCategories => 18;
 
 
         /// <summary>
-        /// 
         /// </summary>
         public override int NumberOfSubCategories => 8;
     }

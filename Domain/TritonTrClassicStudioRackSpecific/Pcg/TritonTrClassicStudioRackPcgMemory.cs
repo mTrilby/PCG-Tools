@@ -1,19 +1,20 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth;
 using PcgTools.Model.TritonSpecific.Pcg;
+using PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth;
 
 namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonTrClassicStudioRackPcgMemory : TritonPcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public TritonTrClassicStudioRackPcgMemory(string fileName)
@@ -28,6 +29,5 @@ namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Pcg
             Global = new TritonTrClassicStudioRackGlobal(this);
             Model = Models.Find(Models.EOsVersion.EOsVersionTritonTrClassicStudioRack);
         }
-
     }
 }

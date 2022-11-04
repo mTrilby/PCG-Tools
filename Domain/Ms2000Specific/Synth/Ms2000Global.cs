@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using PcgTools.Model.Common.Synth.Global;
@@ -10,38 +14,10 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 namespace PcgTools.Model.Ms2000Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Ms2000Global : Global
     {
         /// <summary>
-        /// Category names are not in PCG.
-        /// </summary>
-        protected override int CategoryNameLength => 16;
-
-
-        /// <summary>
-        /// Hardcoded.
-        /// </summary>
-        protected override int PcgOffsetCategories => -1;
-
-
-        /// <summary>
-        /// Categories are taken from Mode.
-        /// </summary>
-        protected override int NrOfCategories => 4;
-
-
-        /// <summary>
-        /// </summary>
-        protected override int NrOfSubCategories
-        {
-            get { throw new NotSupportedException("No sub categories available"); }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public Ms2000Global(PcgMemory pcgMemory)
@@ -49,9 +25,30 @@ namespace PcgTools.Model.Ms2000Specific.Synth
         {
         }
 
+        /// <summary>
+        ///     Category names are not in PCG.
+        /// </summary>
+        protected override int CategoryNameLength => 16;
+
 
         /// <summary>
-        /// 
+        ///     Hardcoded.
+        /// </summary>
+        protected override int PcgOffsetCategories => -1;
+
+
+        /// <summary>
+        ///     Categories are taken from Mode.
+        /// </summary>
+        protected override int NrOfCategories => 4;
+
+
+        /// <summary>
+        /// </summary>
+        protected override int NrOfSubCategories => throw new NotSupportedException("No sub categories available");
+
+
+        /// <summary>
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>
@@ -59,7 +56,7 @@ namespace PcgTools.Model.Ms2000Specific.Synth
         {
             string name;
 
-            var mode = (Ms2000Program.EMode) (((IProgram) patch).GetParam(ParameterNames.ProgramParameterName.Mode).Value);
+            var mode = (Ms2000Program.EMode)((IProgram)patch).GetParam(ParameterNames.ProgramParameterName.Mode).Value;
 
             switch (mode)
             {

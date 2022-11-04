@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
@@ -8,16 +12,14 @@ using PcgTools.Model.Z1Specific.Synth;
 namespace PcgTools.Model.Z1Specific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Z1SongFileReader : MntxSongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public Z1SongFileReader(ISongMemory songMemory, byte[] content) 
+        public Z1SongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }

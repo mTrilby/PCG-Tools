@@ -1,30 +1,37 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common;
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.SongsRelated;
 
 namespace PcgTools.Model.TritonSpecific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
-    public abstract class TritonSongFileReader: SongFileReader
+    public abstract class TritonSongFileReader : SongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        protected TritonSongFileReader(ISongMemory songMemory, byte[] content) 
+        protected TritonSongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }
 
 
         /// <summary>
-        /// Tritons do not use chunks.
+        ///     Number of song tracks (equal to combi timbres)
+        /// </summary>
+        public override int NumberOfSongTracks => 8;
+
+
+        /// <summary>
+        ///     Tritons do not use chunks.
         /// </summary>
         public override void ReadChunks()
         {
@@ -40,11 +47,5 @@ namespace PcgTools.Model.TritonSpecific.Song
                 songIndex++;
             }
         }
-
-
-        /// <summary> 
-        /// Number of song tracks (equal to combi timbres)
-        /// </summary>
-        public override int NumberOfSongTracks => 8;
     }
 }

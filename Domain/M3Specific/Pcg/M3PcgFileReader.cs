@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.MSpecific.Pcg;
@@ -6,12 +10,10 @@ using PcgTools.Model.MSpecific.Pcg;
 namespace PcgTools.Model.M3Specific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M3PcgFileReader : MPcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -29,8 +31,9 @@ namespace PcgTools.Model.M3Specific.Pcg
             // Arp1Chunk Arp1Chunk;
             // Glb1Chunk Glb1Chunk;
 
-            currentPcgMemory.Model = Models.Find(content[9] == 1 
-                ? Models.EOsVersion.EOsVersionM3_20 : Models.EOsVersion.EOsVersionM3_1X);
+            currentPcgMemory.Model = Models.Find(content[9] == 1
+                ? Models.EOsVersion.EOsVersionM3_20
+                : Models.EOsVersion.EOsVersionM3_1X);
             if (content[9] == 1)
             {
                 currentPcgMemory.PcgChecksumType = PcgMemory.ChecksumType.M3;

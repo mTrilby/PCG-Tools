@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
@@ -7,19 +10,11 @@ using PcgTools.Model.MntxSeriesSpecific.Synth;
 namespace PcgTools.Model.TSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     // ReSharper disable once InconsistentNaming
     public sealed class TSeriesTimbres : MntxTimbres
     {
         /// <summary>
-        /// 
-        /// </summary>
-        static int TimbresOffsetConstant => 36;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         public TSeriesTimbres(ICombi combi)
@@ -31,9 +26,12 @@ namespace PcgTools.Model.TSeries.Synth
             }
         }
 
+        /// <summary>
+        /// </summary>
+        private static int TimbresOffsetConstant => 36;
+
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -41,6 +39,5 @@ namespace PcgTools.Model.TSeries.Synth
         {
             return new TSeriesTimbre(this, index);
         }
-
     }
 }

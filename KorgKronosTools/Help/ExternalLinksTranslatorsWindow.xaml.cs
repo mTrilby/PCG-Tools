@@ -1,22 +1,25 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Help
 {
     /// <summary>
-    ///
     /// </summary>
     public partial class ExternalLinksTranslatorsWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public ExternalLinksTranslatorsWindow()
         {
@@ -24,103 +27,103 @@ namespace PcgTools.Help
 
             var externalItems = new List<ExternalItem>
             {
-                new ExternalItem
+                new()
                 {
                     Name = "Syntey", Description = "Czech Translator",
                     Url = "https://soundcloud.com/syntey", BitmapPath = "syntey.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Yuma", Description = "Dutch and German Translator", 
-                    Url = "http://soundcloud.com/rmyuma", BitmapPath = "Yuma.jpg", 
+                    Name = "Yuma", Description = "Dutch and German Translator",
+                    Url = "http://soundcloud.com/rmyuma", BitmapPath = "Yuma.jpg"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Mathieu Maes", Description = "Dutch Translator",
                     Url = "http://partycoverband.wix.com/cupsandplates", BitmapPath = "Cupsandplates.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Francois", Description = "French Translator",
                     Url = "http://www.kronoscopie.fr", BitmapPath = "Kronoscopie.jpg"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Frank Callies (Spare)", Description = "German Translator",
+                    Name = "Frank Callies (Spare)", Description = "German Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Jens", Description = "German Translator",
+                    Name = "Jens", Description = "German Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Timo Lill", Description = "German Translator",
+                    Name = "Timo Lill", Description = "German Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Jim Dijkstra", Description = "Greek Translator"
+                    Name = "Jim Dijkstra", Description = "Greek Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Giorgos", Description = "Greek Translator",
-                    Url="http://www.reverbnation.com/giorgostrichopoulos", BitmapPath = "giorgostrichopoulos.png"
+                    Name = "Giorgos", Description = "Greek Translator",
+                    Url = "http://www.reverbnation.com/giorgostrichopoulos", BitmapPath = "giorgostrichopoulos.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Enrico Puglisi", Description = "Italian Translator",
-                    Url="https://www.facebook.com/kronospatchlab", BitmapPath = "KronosPatchLab.png"
+                    Name = "Enrico Puglisi", Description = "Italian Translator",
+                    Url = "https://www.facebook.com/kronospatchlab", BitmapPath = "KronosPatchLab.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Gianluca Calesso", Description = "Italian Translator"
+                    Name = "Gianluca Calesso", Description = "Italian Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name ="DamianoMusic", Description = "Polish Translator"
+                    Name = "DamianoMusic", Description = "Polish Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name ="Adrian Craig", Description = "Polish Translator"
+                    Name = "Adrian Craig", Description = "Polish Translator"
                 },
-                 new ExternalItem
+                new()
                 {
-                    Name ="Marcin Aleksander", Description = "Polish Translator"
+                    Name = "Marcin Aleksander", Description = "Polish Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name ="Rubens S. Felicio", Description = "Portuguese (Brazilian) Translator",
-                    Url=   "http://facebook.com/rsfmusictech", BitmapPath = "rsfmusictech.jpg",
+                    Name = "Rubens S. Felicio", Description = "Portuguese (Brazilian) Translator",
+                    Url = "http://facebook.com/rsfmusictech", BitmapPath = "rsfmusictech.jpg"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Thiago Costa", Description="Portuguese (Brazilian) Translator"
+                    Name = "Thiago Costa", Description = "Portuguese (Brazilian) Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name ="Luis Costa", Description="Portuguese (Portugal) Translator",
-                    Url = "http://palcoprincipal.sapo.pt/user/luiscosta", BitmapPath = "LuisCosta.png", 
+                    Name = "Luis Costa", Description = "Portuguese (Portugal) Translator",
+                    Url = "http://palcoprincipal.sapo.pt/user/luiscosta", BitmapPath = "LuisCosta.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name ="Luis Costa", Description="Portuguese (Portugal) Translator",
-                    Url = "http://palcoprincipal.sapo.pt/user/luiscosta", BitmapPath = "LuisCosta.png", 
+                    Name = "Luis Costa", Description = "Portuguese (Portugal) Translator",
+                    Url = "http://palcoprincipal.sapo.pt/user/luiscosta", BitmapPath = "LuisCosta.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Saša Rajak", Description="Serbian Translator"
+                    Name = "Saša Rajak", Description = "Serbian Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Bernardo W.", Description="Spanish Translator"
+                    Name = "Bernardo W.", Description = "Spanish Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Mario Pablo", Description="Spanish Translator"
+                    Name = "Mario Pablo", Description = "Spanish Translator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Umut Erhan", Description="Turkish Translator",
-                    Url ="http://www.youtube.com/user/slimhan", BitmapPath = "UmutErhan.jpg"
+                    Name = "Umut Erhan", Description = "Turkish Translator",
+                    Url = "http://www.youtube.com/user/slimhan", BitmapPath = "UmutErhan.jpg"
                 }
             };
 
@@ -174,7 +177,6 @@ namespace PcgTools.Help
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="mouseButtonEventArgs"></param>
@@ -184,16 +186,15 @@ namespace PcgTools.Help
             if (userControlExternalLink != null)
             {
                 var item = userControlExternalLink.Tag as ExternalItem;
-                if ((item != null) && (item.Url != null))
+                if (item != null && item.Url != null)
                 {
                     ShowUrl(item.Url);
                 }
             }
         }
-        
+
 
         /// <summary>
-        /// 
         /// </summary>
         private void ShowUrl(string url)
         {
@@ -203,12 +204,10 @@ namespace PcgTools.Help
             }
             catch (Exception exception)
             {
-                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}:{exception.Message}", 
+                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}:{exception.Message}",
                     Strings.PcgTools,
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
 }
-
-

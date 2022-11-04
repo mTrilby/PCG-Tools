@@ -1,4 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -57,7 +61,7 @@ namespace PcgTools.Gui
 
 
         /// <summary>
-        /// Returns a random logo based on donated money.
+        ///     Returns a random logo based on donated money.
         /// </summary>
         /// <returns></returns>
         public Logo GetRandomLogo()

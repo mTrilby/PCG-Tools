@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.MSpecific.Synth;
@@ -7,18 +10,10 @@ using PcgTools.Model.MSpecific.Synth;
 namespace PcgTools.Model.M50Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public sealed class M50Timbres : MTimbres
     {
         /// <summary>
-        /// 
-        /// </summary>
-        static int TimbresOffsetConstant => 836;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         public M50Timbres(ICombi combi)
@@ -30,9 +25,12 @@ namespace PcgTools.Model.M50Specific.Synth
             }
         }
 
+        /// <summary>
+        /// </summary>
+        private static int TimbresOffsetConstant => 836;
+
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -40,6 +38,5 @@ namespace PcgTools.Model.M50Specific.Synth
         {
             return new M50Timbre(this, index);
         }
-
     }
 }

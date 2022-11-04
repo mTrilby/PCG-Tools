@@ -1,5 +1,8 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2022 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchSetLists;
@@ -7,18 +10,10 @@ using PcgTools.Model.Common.Synth.PatchSetLists;
 namespace PcgTools.Model.KronosSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KronosSetLists : SetLists
     {
         /// <summary>
-        /// 
-        /// </summary>
-        static int NrOfSetLists => 128;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public KronosSetLists(IPcgMemory pcgMemory)
@@ -26,9 +21,12 @@ namespace PcgTools.Model.KronosSpecific.Synth
         {
         }
 
+        /// <summary>
+        /// </summary>
+        private static int NrOfSetLists => 128;
+
 
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateSetLists()
         {

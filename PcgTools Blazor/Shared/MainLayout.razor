@@ -1,17 +1,39 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+<MudLayout>
 
-        <article class="content px-4">
+    <MudPaper Elevation="25">
+        <MudToolBar>
+            <MudIconButton Icon="@Icons.Material.Outlined.FileOpen" Color="Color.Inherit" Class="mr-5" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Save" />
+            <MudIconButton Icon="@Icons.Material.Outlined.SaveAs" />
+            <MudIconButton Icon="@Icons.Material.Outlined.EditNote" Color="Color.Inherit" />
+            <MudIconButton Icon="@Icons.Material.Outlined.BookmarkAdd" Color="Color.Inherit" />
+            <MudIconButton Icon="@Icons.Material.Outlined.BookmarkRemove" Color="Color.Inherit" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Deselect" />
+            <MudIconButton Icon="@Icons.Material.Outlined.ArrowCircleUp" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Tune" />
+            <MudIconButton Icon="@Icons.Material.Outlined.FileCopy" />
+            <MudIconButton Icon="@Icons.Material.Outlined.ContentPaste" />
+            <MudIconButton Icon="@Icons.Material.Outlined.SettingsApplications" />
+            <MudIconButton Icon="@Icons.Material.Outlined.ContentPasteOff" />
+            <MudIconButton Icon="@Icons.Material.Outlined.ContentPasteGo" />
+            <MudIconButton Icon="@Icons.Material.Outlined.ExpandLess" />
+            <MudIconButton Icon="@Icons.Material.Outlined.ExpandMore" />
+            <MudIconButton Icon="@Icons.Material.Outlined.ViewList" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Info" />
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Outlined.AutoAwesome" />
+        </MudToolBar>
+    </MudPaper>
+
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Medium">
             @Body
-        </article>
-    </main>
-</div>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>

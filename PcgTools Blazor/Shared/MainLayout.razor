@@ -1,142 +1,20 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
-<MudDialogProvider />
-<MudSnackbarProvider />
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
 
 <MudLayout>
-    <MudMenu Label="File">
-        <MudMenuItem>Open</MudMenuItem>
-        <MudMenuItem Disabled="true">Save</MudMenuItem>
-        <MudMenuItem Disabled="true">Save As...</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Export for Sequencer (Cubase)</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Revert to Saved</MudMenuItem>
-        <MudMenuItem>Close</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Exit</MudMenuItem>
-    </MudMenu>
+    @* TODO: Move this to VerHeader (and add a bit of interesting styling) *@
+    <MudStack Row="true" Spacing="3">
+        <MudImage Src="images/pcgtools.ico" Alt="PCG Tools" Elevation="25" Height="16" Width="16"/>
+        <MudText Typo="Typo.body2">PCG Tools 3.1.0 (c)2011-2019 Michel Keijzers</MudText>
+    </MudStack>
 
-    <MudMenu Label="Edit" Dense="true">
-        <MudMenuItem>Edit</MudMenuItem>
-        <MudMenuItem>Set Favorite</MudMenuItem>
-        <MudMenuItem>Unset Favorite</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Clear</MudMenuItem>
-        <MudMenuItem>Clear Duplicates</MudMenuItem>
-        <MudMenuItem>Compact</MudMenuItem>
-        <MudMenuItem>Sort</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Cut</MudMenuItem>
-        <MudMenuItem>Copy</MudMenuItem>
-        <MudMenuItem>Paste</MudMenuItem>
-        <MudMenuItem>Exit Cut/Copy/Paste Mode</MudMenuItem>
-        <MudMenuItem>Recall</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Move Up</MudMenuItem>
-        <MudMenuItem>Move Down</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Change Volume</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Init as MPE Combi</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Assign To Set List Slot</MudMenuItem>
-        <MudMenuItem>Auto Fill In Set List Slot Names</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Capitalization (sub-menu items not supported?)</MudMenuItem>
-    </MudMenu>
-
-    <MudMenu Label="Show">
-        <MudMenuItem>Timbrees...</MudMenuItem>
-        <MudMenuItem>Hex Export</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Single Lined Set List Slot Descriptions</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Special Event</MudMenuItem>
-    </MudMenu>
-
-    <MudMenu Label="Tools" Dense="true">
-        <MudMenuItem>Master Files...(not sure sub-items are supported)</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Generate List...</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Program Reference Changer</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>Double to Single Keyboard Setup</MudMenuItem>
-    </MudMenu>
-    <MudMenu Label="Theme">
-        <MudMenuItem>Generic</MudMenuItem>
-        <MudMenuItem>Luna</MudMenuItem>
-        <MudMenuItem IconSize="Size.Small" IconColor="Color.Primary"Icon="@Icons.Material.Filled.Check">Aero</MudMenuItem>
-    </MudMenu>
-
-    <MudMenu Label="Language" Dense="true">
-        <MudMenuItem>Czech (Czech)</MudMenuItem>
-        <MudMenuItem>Dutch (Dutch)</MudMenuItem>
-        <MudMenuItem IconSize="Size.Small" IconColor="Color.Primary" Icon="@Icons.Material.Filled.Check">English (English)</MudMenuItem>
-        <MudMenuItem>French (French)</MudMenuItem>
-        <MudMenuItem>German (German)</MudMenuItem>
-        <MudMenuItem>Greek (Greek)</MudMenuItem>
-        <MudMenuItem>Italian (Italian)</MudMenuItem>
-        <MudMenuItem>Polish (Polish)</MudMenuItem>
-        <MudMenuItem>Portuguese, Brazil (Portuguese, Brazil)</MudMenuItem>
-        <MudMenuItem>Portuguese, Portugal (Portuguese, Portugal)</MudMenuItem>
-        <MudMenuItem>Russian (Russian)</MudMenuItem>
-        <MudMenuItem>Serbian Latin (Serbian Latin)</MudMenuItem>
-        <MudMenuItem>Spanish (Spanish)</MudMenuItem>
-        <MudMenuItem>Turkish (Turkish)</MudMenuItem>
-    </MudMenu>
-    <MudMenu Label="Options">
-        <MudMenuItem>Settings...</MudMenuItem>
-        <MudMenuItem>Assign Clear Program...</MudMenuItem>
-    </MudMenu>
-
-    <MudMenu Label="Windows" Dense="true">
-        <MudMenuItem>Goto Next Window</MudMenuItem>
-        <MudMenuItem>Goto Previous Window</MudMenuItem>
-    </MudMenu>
-
-    <MudMenu Label="Help" Dense="true">
-        <MudMenuItem>About...</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>PCG Tools Home Page</MudMenuItem>
-        <MudMenuItem>Manual...</MudMenuItem>
-        <MudDivider />
-        <MudMenuItem>External Links Korg Related...</MudMenuItem>
-        <MudMenuItem>External Links Contributors...</MudMenuItem>
-        <MudMenuItem>External Links Video Creators...</MudMenuItem>
-        <MudMenuItem>External Links Donators...</MudMenuItem>
-        <MudMenuItem>External Links Translators...</MudMenuItem>
-        <MudMenuItem>External Links Third Parties...</MudMenuItem>
-        <MudMenuItem>External Links Oasys Voucher Code Sponsors...</MudMenuItem>
-        <MudMenuItem>External Links Personal Links</MudMenuItem>
-    </MudMenu>
-
-    <MudPaper Elevation="25">
-        <MudToolBar>
-            <MudIconButton Icon="@Icons.Material.Outlined.FileOpen" Color="Color.Inherit" Class="mr-5" />
-            <MudIconButton Disabled="true" Icon="@Icons.Material.Outlined.Save" />
-            <MudIconButton Disabled="true" Icon="@Icons.Material.Outlined.SaveAs" />
-            <MudIconButton Icon="@Icons.Material.Outlined.EditNote" Color="Color.Inherit" />
-            <MudIconButton Icon="@Icons.Material.Outlined.BookmarkAdd" Color="Color.Inherit" />
-            <MudIconButton Icon="@Icons.Material.Outlined.BookmarkRemove" Color="Color.Inherit" />
-            <MudIconButton Icon="@Icons.Material.Outlined.Deselect" />
-            <MudIconButton Icon="@Icons.Material.Outlined.ArrowCircleUp" />
-            <MudIconButton Icon="@Icons.Material.Outlined.Tune" />
-            <MudIconButton Icon="@Icons.Material.Outlined.FileCopy" />
-            <MudIconButton Icon="@Icons.Material.Outlined.ContentPaste" />
-            <MudIconButton Icon="@Icons.Material.Outlined.SettingsApplications" />
-            <MudIconButton Icon="@Icons.Material.Outlined.ContentPasteOff" />
-            <MudIconButton Icon="@Icons.Material.Outlined.ContentPasteGo" />
-            <MudIconButton Icon="@Icons.Material.Outlined.ExpandLess" />
-            <MudIconButton Icon="@Icons.Material.Outlined.ExpandMore" />
-            <MudIconButton Icon="@Icons.Material.Outlined.ViewList" />
-            <MudIconButton Icon="@Icons.Material.Outlined.Info" />
-            <MudSpacer />
-            <MudIconButton Icon="@Icons.Material.Outlined.AutoAwesome" />
-        </MudToolBar>
-    </MudPaper>
+    <MudContainer MaxWith="MaxWidth.Medium">
+        <NavMenu/>
+        <NavToolbar/>
+    </MudContainer>
 
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.Medium">

@@ -2469,4 +2469,286 @@ Inner exception:
     <value>_Smart Mapped</value>
     <comment>Change volume window</comment>
   </data>
+  <data name="Menu_File" xml:space="preserve">
+	  <value>File</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+	  <value>Open</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+	  <value>Save</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+	  <value>Save As...</value>
+  </data>
+  <data name="Menu_File_ExportForSequencer_Cubase" xml:space="preserve">
+	  <value>Export for sequencer: Cubase</value>
+  </data>
+  <data name="Menu_File_RevertToSaved" xml:space="preserve">
+	  <value>Revert to Saved</value>
+  </data>
+  <data name="Menu_File_Close" xml:space="preserve">
+	  <value>Close</value>
+  </data>
+  <data name="Menu_File_Exit" xml:space="preserve">
+	  <value>Exit</value>
+  </data>
+  <data name="Menu_Edit" xml:space="preserve">
+	  <value>Edit</value>
+  </data>
+  <data name="Menu_Edit_Edit" xml:space="preserve">
+	  <value>Edit</value>
+  </data>
+  <data name="Menu_Edit_SetFavorite" xml:space="preserve">
+	  <value>Set Favorite</value>
+  </data>
+  <data name="Menu_Edit_UnsetFavorite" xml:space="preserve">
+	  <value>Unset Favorite</value>
+  </data>
+  <data name="Menu_Edit_Clear" xml:space="preserve">
+	  <value>Clear</value>
+  </data>
+  <data name="Menu_Edit_ClearDuplicates" xml:space="preserve">
+	  <value>Clear Duplicates</value>
+  </data>
+  <data name="Menu_Edit_Compact" xml:space="preserve">
+	  <value>Compact</value>
+  </data>
+  <data name="Menu_Edit_Sort" xml:space="preserve">
+	  <value>Sort</value>
+  </data>
+  <data name="Menu_Edit_Cut" xml:space="preserve">
+	  <value>Cut</value>
+  </data>
+  <data name="Menu_Edit_Copy" xml:space="preserve">
+	  <value>Copy</value>
+  </data>
+  <data name="Menu_Edit_Paste" xml:space="preserve">
+	  <value>Paste</value>
+  </data>
+  <data name="Menu_Edit_ExitCutCopyPasteMode" xml:space="preserve">
+	  <value>Exit Cut/CopyPaste Mode</value>
+  </data>
+  <data name="Menu_Edit_Recall" xml:space="preserve">
+	  <value>Recall</value>
+  </data>
+  <data name="Menu_Edit_MoveUp" xml:space="preserve">
+	  <value>Move Up</value>
+  </data>
+  <data name="Menu_Edit_MoveDown" xml:space="preserve">
+	  <value>Move Down</value>
+  </data>
+  <data name="Menu_Edit_ChangeVolume" xml:space="preserve">
+	  <value>Change Volume</value>
+  </data>
+  <data name="Menu_Edit_InitAsMPECombi" xml:space="preserve">
+	  <value>Init as MPE Combi</value>
+  </data>
+  <data name="Menu_Edit_AssignToSetListSlot" xml:space="preserve">
+	  <value>Assign to Set List Slot</value>
+  </data>
+  <data name="Menu_Edit_AutoFillInSetListSlotNames" xml:space="preserve">
+	  <value>Auto Fill In Set List Slot Names</value>
+  </data>
+  <data name="Menu_Edit_Capitalization" xml:space="preserve">
+	  <value>Capitalization</value>
+  </data>
+  <data name="Menu_Edit_CapitalizeName" xml:space="preserve">
+	  <value>Capitalize Name</value>
+  </data>
+  <data name="Menu_Edit_TitleCaseName" xml:space="preserve">
+	  <value>Title Case Name</value>
+  </data>
+  <data name="Menu_Edit_DecapitalizeName" xml:space="preserve">
+	  <value>Decapitalize Name</value>
+  </data>
+  <data name="Menu_Show" xml:space="preserve">
+	  <value>Show</value>
+  </data>
+  <data name="Menu_Show_Timbres" xml:space="preserve">
+	  <value>Timbres...</value>
+  </data>
+  <data name="Menu_Show_HexExport" xml:space="preserve">
+	  <value>Hex Export</value>
+  </data>
+  <data name="Menu_Show_SingleLinedSetListSlotDescriptions" xml:space="preserve">
+	  <value>Single Lined Set List Slot Descriptions</value>
+  </data>
+  <data name="Menu_Show_SpecialEvent" xml:space="preserve">
+	  <value>Special Event</value>
+  </data>
+  <data name="Menu_Tools" xml:space="preserve">
+	  <value>Tools</value>
+  </data>
+  <data name="Menu_Tools_MasterFiles" xml:space="preserve">
+	  <value>Master Files...</value>
+  </data>
+  <data name="Menu_Tools_Show" xml:space="preserve">
+	  <value>Show...</value>
+  </data>
+  <data name="Menu_Tools_SetPCGFileAsMasterFile" xml:space="preserve">
+	  <value>Set PCG File as Master File</value>
+  </data>
+  <data name="Menu_Tools_GenerateList" xml:space="preserve">
+	  <value>Generate List...</value>
+  </data>
+  <data name="Menu_Tools_ProgramReferenceChanger" xml:space="preserve">
+	  <value>Program Reference Changer</value>
+  </data>
+  <data name="Menu_Tools_DoubleToSingleKeyboardSetup" xml:space="preserve">
+	  <value>Double to Single Keyboard Setup</value>
+  </data>
+  <data name="Menu_Theme" xml:space="preserve">
+	  <value>Theme</value>
+  </data>
+  <data name="Menu_Theme_Generic" xml:space="preserve">
+	  <value>Generic</value>
+  </data>
+  <data name="Menu_Theme_Luna" xml:space="preserve">
+	  <value>Luna</value>
+  </data>
+  <data name="Menu_Theme_Aero" xml:space="preserve">
+	  <value>Aero</value>
+  </data>
+  <data name="Menu_Language" xml:space="preserve">
+	  <value>Language</value>
+  </data>
+  <data name="Menu_Language_Czech" xml:space="preserve">
+	  <value>Czech</value>
+  </data>
+  <data name="Menu_Language_Dutch" xml:space="preserve">
+	  <value>Dutch</value>
+  </data>
+  <data name="Menu_Language_English" xml:space="preserve">
+	  <value>English</value>
+  </data>
+  <data name="Menu_Language_French" xml:space="preserve">
+	  <value>French</value>
+  </data>
+  <data name="Menu_Language_German" xml:space="preserve">
+	  <value>German</value>
+  </data>
+  <data name="Menu_Language_Greek" xml:space="preserve">
+	  <value>Greek</value>
+  </data>
+  <data name="Menu_Language_Italian" xml:space="preserve">
+	  <value>Italian</value>
+  </data>
+  <data name="Menu_Language_Polish" xml:space="preserve">
+	  <value>Polish</value>
+  </data>
+  <data name="Menu_Language_PortugueseBrazil" xml:space="preserve">
+	  <value>Portuguese, Brazil</value>
+  </data>
+  <data name="Menu_Language_PortuguesePortugal" xml:space="preserve">
+	  <value>Portuguese, Portugal</value>
+  </data>
+  <data name="Menu_Language_Russian" xml:space="preserve">
+	  <value>Russian</value>
+  </data>
+  <data name="Menu_Language_SerbianLatin" xml:space="preserve">
+	  <value>Serbian Latin</value>
+  </data>
+  <data name="Menu_Language_Spanish" xml:space="preserve">
+	  <value>Spanish</value>
+  </data>
+  <data name="Menu_Language_Turkish" xml:space="preserve">
+	  <value>Turkish</value>
+  </data>
+  <data name="Menu_Language_EN_Czech" xml:space="preserve">
+	  <value>Czech</value>
+  </data>
+  <data name="Menu_Language_EN_Dutch" xml:space="preserve">
+	  <value>Dutch</value>
+  </data>
+  <data name="Menu_Language_EN_English" xml:space="preserve">
+	  <value>English</value>
+  </data>
+  <data name="Menu_Language_EN_French" xml:space="preserve">
+	  <value>French</value>
+  </data>
+  <data name="Menu_Language_EN_German" xml:space="preserve">
+	  <value>German</value>
+  </data>
+  <data name="Menu_Language_EN_Greek" xml:space="preserve">
+	  <value>Greek</value>
+  </data>
+  <data name="Menu_Language_EN_Italian" xml:space="preserve">
+	  <value>Italian</value>
+  </data>
+  <data name="Menu_Language_EN_Polish" xml:space="preserve">
+	  <value>Polish</value>
+  </data>
+  <data name="Menu_Language_EN_PortugueseBrazil" xml:space="preserve">
+	  <value>Portuguese, Brazil</value>
+  </data>
+  <data name="Menu_Language_EN_PortuguesePortugal" xml:space="preserve">
+	  <value>Portuguese, Portugal</value>
+  </data>
+  <data name="Menu_Language_EN_Russian" xml:space="preserve">
+	  <value>Russian</value>
+  </data>
+  <data name="Menu_Language_EN_SerbianLatin" xml:space="preserve">
+	  <value>Serbian Latin</value>
+  </data>
+  <data name="Menu_Language_EN_Spanish" xml:space="preserve">
+	  <value>Spanish</value>
+  </data>
+  <data name="Menu_Language_EN_Turkish" xml:space="preserve">
+	  <value>Turkish</value>
+  </data>
+  <data name="Menu_Options" xml:space="preserve">
+	  <value>Options</value>
+  </data>
+  <data name="Menu_Options_Settings" xml:space="preserve">
+	  <value>Settings...</value>
+  </data>
+  <data name="Menu_Options_AssignClearProgram" xml:space="preserve">
+	  <value>Assign Clear Program...</value>
+  </data>
+  <data name="Menu_Windows" xml:space="preserve">
+	  <value>Windows</value>
+  </data>
+  <data name="Menu_Windows_GotoNextWindow" xml:space="preserve">
+	  <value>Goto Next Window</value>
+  </data>
+  <data name="Menu_Windows_GotoPreviousWindow" xml:space="preserve">
+	  <value>Goto Previous Window</value>
+  </data>
+  <data name="Menu_Help" xml:space="preserve">
+	  <value>Help</value>
+  </data>
+  <data name="Menu_Help_About" xml:space="preserve">
+	  <value>About...</value>
+  </data>
+  <data name="Menu_Help_PCGToolsHomePage" xml:space="preserve">
+	  <value>PCG Tools Home Page</value>
+  </data>
+  <data name="Menu_Help_Manual" xml:space="preserve">
+	  <value>Manual...</value>
+  </data>
+  <data name="Menu_Help_ExternalLinksKorgRelated" xml:space="preserve">
+	  <value>External Links Korg Related...</value>
+  </data>
+  <data name="Menu_Help_ExternalLinksContributors" xml:space="preserve">
+	  <value>External Links Contributors...</value>
+  </data>
+  <data name="Menu_Help_ExternalLinksVideoCreators" xml:space="preserve">
+	  <value>External Links Video Creators...</value>
+  </data>
+  <data name="Menu_Help_ExternalLinksDonators" xml:space="preserve">
+	  <value>External Links Donators...</value>
+  </data>
+  <data name="Menu_Help_ExternalLinksTranslators" xml:space="preserve">
+	  <value>External Links Translators...</value>
+  </data>
+  <data name="Menu_Help_ExternalLinksThirdParties" xml:space="preserve">
+	  <value>External Links Third Parties...</value>
+  </data>
+  <data name="Menu_Help_ExternalLinksOasysVoucerCodeSponsors" xml:space="preserve">
+	  <value>External Links Oasys Voucher Code Sponsors...</value>
+  </data>
+  <data name="Menu_Help_ExternalLinksPersonalLinks" xml:space="preserve">
+	  <value>External Links Personal Links</value>
+  </data>
 </root>

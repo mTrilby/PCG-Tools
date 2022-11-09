@@ -1,9 +1,49 @@
-﻿<MudNavMenu>
-    <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-    <MudNavLink Href="/servers" Match="NavLinkMatch.Prefix">Servers</MudNavLink>
-    <MudNavGroup Title="Settings" Expanded="true">
-        <MudNavLink Href="/users" Match="NavLinkMatch.Prefix">Users</MudNavLink>
-        <MudNavLink Href="/security" Match="NavLinkMatch.Prefix">Security</MudNavLink>
-    </MudNavGroup>
-    <MudNavLink Href="/about" Match="NavLinkMatch.Prefix">About</MudNavLink>
-</MudNavMenu>
+﻿@using PcgTools_Blazor.Menus
+@if (_menuList.Any())
+{
+    @foreach (var menu in _menuList)
+    {
+        <MudMenu Label="@menu.Label" Dense="@menu.IsDense">
+            @if (_menuList.Any())
+            {
+                @foreach (var item in menu.MenuItems)
+                {
+                    if (item.IsDivider)
+                    {
+                        <MudDivider/>
+                    }
+                    else
+                    {
+                        if (item.MenuIcon.IsDefined)
+                        {
+                            <MudMenuItem Disabled="@item.IsDisabled"
+                                         IconSize="@item.MenuIcon.Size"
+                                         IconColor="@item.MenuIcon.Color"
+                                         Icon="@item.MenuIcon.Icon">
+                                @item.Name
+                            </MudMenuItem>
+                        }
+                        else
+                        {
+                            <MudMenuItem Disabled="@item.IsDisabled">
+                                @item.Name
+                            </MudMenuItem>
+                        }
+                    }
+                }
+            }
+        </MudMenu>
+    }
+}
+
+@code {
+
+    private readonly List<Menu> _menuList = new();
+
+    protected override void OnInitialized()
+    {
+        var menuBuilder = new MenuBuilder();
+        _menuList.AddRange(menuBuilder.GetMenu().ToList());
+    }
+
+}

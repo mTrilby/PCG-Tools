@@ -1,0 +1,44 @@
+﻿@using PcgTools_Blazor.Menus
+@if (_toolbarList.Any())
+{
+    <MudPaper Elevation="25">
+        <MudToolBar>
+
+            @foreach (var item in _toolbarList)
+            {
+                if (item.IsSpacer)
+                {
+                    <MudSpacer/>
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(item.CustomClass))
+                    {
+                        <MudTooltip Text="@item.Tooltip" Arrow="true" Placement="Placement.Bottom">
+                            <MudIconButton Icon="@item.Icon" Color="@item.IconColor" Disabled="@item.IsDisabled"/>
+                        </MudTooltip>
+                    }
+                    else
+                    {
+                        <MudTooltip Text="@item.Tooltip" Arrow="true" Placement="Placement.Bottom">
+                            <MudIconButton Icon="@item.Icon" Color="@item.IconColor" Disabled="@item.IsDisabled" Class="@item.CustomClass"/>
+                        </MudTooltip>
+                    }
+                }
+            }
+
+        </MudToolBar>
+    </MudPaper>
+}
+
+@code {
+
+    private readonly List<ToolbarItem> _toolbarList = new();
+
+    protected override void OnInitialized()
+    {
+        var toolBarBuilder = new ToolbarBuilder();
+        _toolbarList.AddRange(toolBarBuilder.GetToolbarItems().ToList());
+    }
+
+}

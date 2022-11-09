@@ -3388,6 +3388,852 @@ namespace Common.PcgToolsResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Menu_Edit {
+            get {
+                return ResourceManager.GetString("Menu_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign to Set List Slot.
+        /// </summary>
+        public static string Menu_Edit_AssignToSetListSlot {
+            get {
+                return ResourceManager.GetString("Menu_Edit_AssignToSetListSlot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Fill In Set List Slot Names.
+        /// </summary>
+        public static string Menu_Edit_AutoFillInSetListSlotNames {
+            get {
+                return ResourceManager.GetString("Menu_Edit_AutoFillInSetListSlotNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capitalization.
+        /// </summary>
+        public static string Menu_Edit_Capitalization {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Capitalization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capitalize Name.
+        /// </summary>
+        public static string Menu_Edit_CapitalizeName {
+            get {
+                return ResourceManager.GetString("Menu_Edit_CapitalizeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Volume.
+        /// </summary>
+        public static string Menu_Edit_ChangeVolume {
+            get {
+                return ResourceManager.GetString("Menu_Edit_ChangeVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string Menu_Edit_Clear {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Duplicates.
+        /// </summary>
+        public static string Menu_Edit_ClearDuplicates {
+            get {
+                return ResourceManager.GetString("Menu_Edit_ClearDuplicates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compact.
+        /// </summary>
+        public static string Menu_Edit_Compact {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Compact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string Menu_Edit_Copy {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        public static string Menu_Edit_Cut {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decapitalize Name.
+        /// </summary>
+        public static string Menu_Edit_DecapitalizeName {
+            get {
+                return ResourceManager.GetString("Menu_Edit_DecapitalizeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Menu_Edit_Edit {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit Cut/CopyPaste Mode.
+        /// </summary>
+        public static string Menu_Edit_ExitCutCopyPasteMode {
+            get {
+                return ResourceManager.GetString("Menu_Edit_ExitCutCopyPasteMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Init as MPE Combi.
+        /// </summary>
+        public static string Menu_Edit_InitAsMPECombi {
+            get {
+                return ResourceManager.GetString("Menu_Edit_InitAsMPECombi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Down.
+        /// </summary>
+        public static string Menu_Edit_MoveDown {
+            get {
+                return ResourceManager.GetString("Menu_Edit_MoveDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Up.
+        /// </summary>
+        public static string Menu_Edit_MoveUp {
+            get {
+                return ResourceManager.GetString("Menu_Edit_MoveUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        public static string Menu_Edit_Paste {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recall.
+        /// </summary>
+        public static string Menu_Edit_Recall {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Recall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Favorite.
+        /// </summary>
+        public static string Menu_Edit_SetFavorite {
+            get {
+                return ResourceManager.GetString("Menu_Edit_SetFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort.
+        /// </summary>
+        public static string Menu_Edit_Sort {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title Case Name.
+        /// </summary>
+        public static string Menu_Edit_TitleCaseName {
+            get {
+                return ResourceManager.GetString("Menu_Edit_TitleCaseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unset Favorite.
+        /// </summary>
+        public static string Menu_Edit_UnsetFavorite {
+            get {
+                return ResourceManager.GetString("Menu_Edit_UnsetFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string Menu_File {
+            get {
+                return ResourceManager.GetString("Menu_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Menu_File_Close {
+            get {
+                return ResourceManager.GetString("Menu_File_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string Menu_File_Exit {
+            get {
+                return ResourceManager.GetString("Menu_File_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export for sequencer: Cubase.
+        /// </summary>
+        public static string Menu_File_ExportForSequencer_Cubase {
+            get {
+                return ResourceManager.GetString("Menu_File_ExportForSequencer_Cubase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string Menu_File_Open {
+            get {
+                return ResourceManager.GetString("Menu_File_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert to Saved.
+        /// </summary>
+        public static string Menu_File_RevertToSaved {
+            get {
+                return ResourceManager.GetString("Menu_File_RevertToSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Menu_File_Save {
+            get {
+                return ResourceManager.GetString("Menu_File_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As....
+        /// </summary>
+        public static string Menu_File_SaveAs {
+            get {
+                return ResourceManager.GetString("Menu_File_SaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string Menu_Help {
+            get {
+                return ResourceManager.GetString("Menu_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About....
+        /// </summary>
+        public static string Menu_Help_About {
+            get {
+                return ResourceManager.GetString("Menu_Help_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Links Contributors....
+        /// </summary>
+        public static string Menu_Help_ExternalLinksContributors {
+            get {
+                return ResourceManager.GetString("Menu_Help_ExternalLinksContributors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Links Donators....
+        /// </summary>
+        public static string Menu_Help_ExternalLinksDonators {
+            get {
+                return ResourceManager.GetString("Menu_Help_ExternalLinksDonators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Links Korg Related....
+        /// </summary>
+        public static string Menu_Help_ExternalLinksKorgRelated {
+            get {
+                return ResourceManager.GetString("Menu_Help_ExternalLinksKorgRelated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Links Oasys Voucher Code Sponsors....
+        /// </summary>
+        public static string Menu_Help_ExternalLinksOasysVoucerCodeSponsors {
+            get {
+                return ResourceManager.GetString("Menu_Help_ExternalLinksOasysVoucerCodeSponsors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Links Personal Links.
+        /// </summary>
+        public static string Menu_Help_ExternalLinksPersonalLinks {
+            get {
+                return ResourceManager.GetString("Menu_Help_ExternalLinksPersonalLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Links Third Parties....
+        /// </summary>
+        public static string Menu_Help_ExternalLinksThirdParties {
+            get {
+                return ResourceManager.GetString("Menu_Help_ExternalLinksThirdParties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Links Translators....
+        /// </summary>
+        public static string Menu_Help_ExternalLinksTranslators {
+            get {
+                return ResourceManager.GetString("Menu_Help_ExternalLinksTranslators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Links Video Creators....
+        /// </summary>
+        public static string Menu_Help_ExternalLinksVideoCreators {
+            get {
+                return ResourceManager.GetString("Menu_Help_ExternalLinksVideoCreators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual....
+        /// </summary>
+        public static string Menu_Help_Manual {
+            get {
+                return ResourceManager.GetString("Menu_Help_Manual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PCG Tools Home Page.
+        /// </summary>
+        public static string Menu_Help_PCGToolsHomePage {
+            get {
+                return ResourceManager.GetString("Menu_Help_PCGToolsHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Menu_Language {
+            get {
+                return ResourceManager.GetString("Menu_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Czech.
+        /// </summary>
+        public static string Menu_Language_Czech {
+            get {
+                return ResourceManager.GetString("Menu_Language_Czech", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dutch.
+        /// </summary>
+        public static string Menu_Language_Dutch {
+            get {
+                return ResourceManager.GetString("Menu_Language_Dutch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Czech.
+        /// </summary>
+        public static string Menu_Language_EN_Czech {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_Czech", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dutch.
+        /// </summary>
+        public static string Menu_Language_EN_Dutch {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_Dutch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string Menu_Language_EN_English {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        public static string Menu_Language_EN_French {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to German.
+        /// </summary>
+        public static string Menu_Language_EN_German {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_German", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greek.
+        /// </summary>
+        public static string Menu_Language_EN_Greek {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_Greek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italian.
+        /// </summary>
+        public static string Menu_Language_EN_Italian {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_Italian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polish.
+        /// </summary>
+        public static string Menu_Language_EN_Polish {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_Polish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portuguese, Brazil.
+        /// </summary>
+        public static string Menu_Language_EN_PortugueseBrazil {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_PortugueseBrazil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portuguese, Portugal.
+        /// </summary>
+        public static string Menu_Language_EN_PortuguesePortugal {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_PortuguesePortugal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Russian.
+        /// </summary>
+        public static string Menu_Language_EN_Russian {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_Russian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serbian Latin.
+        /// </summary>
+        public static string Menu_Language_EN_SerbianLatin {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_SerbianLatin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spanish.
+        /// </summary>
+        public static string Menu_Language_EN_Spanish {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_Spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turkish.
+        /// </summary>
+        public static string Menu_Language_EN_Turkish {
+            get {
+                return ResourceManager.GetString("Menu_Language_EN_Turkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string Menu_Language_English {
+            get {
+                return ResourceManager.GetString("Menu_Language_English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        public static string Menu_Language_French {
+            get {
+                return ResourceManager.GetString("Menu_Language_French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to German.
+        /// </summary>
+        public static string Menu_Language_German {
+            get {
+                return ResourceManager.GetString("Menu_Language_German", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greek.
+        /// </summary>
+        public static string Menu_Language_Greek {
+            get {
+                return ResourceManager.GetString("Menu_Language_Greek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italian.
+        /// </summary>
+        public static string Menu_Language_Italian {
+            get {
+                return ResourceManager.GetString("Menu_Language_Italian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polish.
+        /// </summary>
+        public static string Menu_Language_Polish {
+            get {
+                return ResourceManager.GetString("Menu_Language_Polish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portuguese, Brazil.
+        /// </summary>
+        public static string Menu_Language_PortugueseBrazil {
+            get {
+                return ResourceManager.GetString("Menu_Language_PortugueseBrazil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portuguese, Portugal.
+        /// </summary>
+        public static string Menu_Language_PortuguesePortugal {
+            get {
+                return ResourceManager.GetString("Menu_Language_PortuguesePortugal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Russian.
+        /// </summary>
+        public static string Menu_Language_Russian {
+            get {
+                return ResourceManager.GetString("Menu_Language_Russian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serbian Latin.
+        /// </summary>
+        public static string Menu_Language_SerbianLatin {
+            get {
+                return ResourceManager.GetString("Menu_Language_SerbianLatin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spanish.
+        /// </summary>
+        public static string Menu_Language_Spanish {
+            get {
+                return ResourceManager.GetString("Menu_Language_Spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turkish.
+        /// </summary>
+        public static string Menu_Language_Turkish {
+            get {
+                return ResourceManager.GetString("Menu_Language_Turkish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string Menu_Options {
+            get {
+                return ResourceManager.GetString("Menu_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign Clear Program....
+        /// </summary>
+        public static string Menu_Options_AssignClearProgram {
+            get {
+                return ResourceManager.GetString("Menu_Options_AssignClearProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings....
+        /// </summary>
+        public static string Menu_Options_Settings {
+            get {
+                return ResourceManager.GetString("Menu_Options_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show.
+        /// </summary>
+        public static string Menu_Show {
+            get {
+                return ResourceManager.GetString("Menu_Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hex Export.
+        /// </summary>
+        public static string Menu_Show_HexExport {
+            get {
+                return ResourceManager.GetString("Menu_Show_HexExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Lined Set List Slot Descriptions.
+        /// </summary>
+        public static string Menu_Show_SingleLinedSetListSlotDescriptions {
+            get {
+                return ResourceManager.GetString("Menu_Show_SingleLinedSetListSlotDescriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special Event.
+        /// </summary>
+        public static string Menu_Show_SpecialEvent {
+            get {
+                return ResourceManager.GetString("Menu_Show_SpecialEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timbres....
+        /// </summary>
+        public static string Menu_Show_Timbres {
+            get {
+                return ResourceManager.GetString("Menu_Show_Timbres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string Menu_Theme {
+            get {
+                return ResourceManager.GetString("Menu_Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aero.
+        /// </summary>
+        public static string Menu_Theme_Aero {
+            get {
+                return ResourceManager.GetString("Menu_Theme_Aero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic.
+        /// </summary>
+        public static string Menu_Theme_Generic {
+            get {
+                return ResourceManager.GetString("Menu_Theme_Generic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Luna.
+        /// </summary>
+        public static string Menu_Theme_Luna {
+            get {
+                return ResourceManager.GetString("Menu_Theme_Luna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        public static string Menu_Tools {
+            get {
+                return ResourceManager.GetString("Menu_Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double to Single Keyboard Setup.
+        /// </summary>
+        public static string Menu_Tools_DoubleToSingleKeyboardSetup {
+            get {
+                return ResourceManager.GetString("Menu_Tools_DoubleToSingleKeyboardSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate List....
+        /// </summary>
+        public static string Menu_Tools_GenerateList {
+            get {
+                return ResourceManager.GetString("Menu_Tools_GenerateList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master Files....
+        /// </summary>
+        public static string Menu_Tools_MasterFiles {
+            get {
+                return ResourceManager.GetString("Menu_Tools_MasterFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program Reference Changer.
+        /// </summary>
+        public static string Menu_Tools_ProgramReferenceChanger {
+            get {
+                return ResourceManager.GetString("Menu_Tools_ProgramReferenceChanger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set PCG File as Master File.
+        /// </summary>
+        public static string Menu_Tools_SetPCGFileAsMasterFile {
+            get {
+                return ResourceManager.GetString("Menu_Tools_SetPCGFileAsMasterFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show....
+        /// </summary>
+        public static string Menu_Tools_Show {
+            get {
+                return ResourceManager.GetString("Menu_Tools_Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows.
+        /// </summary>
+        public static string Menu_Windows {
+            get {
+                return ResourceManager.GetString("Menu_Windows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goto Next Window.
+        /// </summary>
+        public static string Menu_Windows_GotoNextWindow {
+            get {
+                return ResourceManager.GetString("Menu_Windows_GotoNextWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goto Previous Window.
+        /// </summary>
+        public static string Menu_Windows_GotoPreviousWindow {
+            get {
+                return ResourceManager.GetString("Menu_Windows_GotoPreviousWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message.
         /// </summary>
         public static string Message {

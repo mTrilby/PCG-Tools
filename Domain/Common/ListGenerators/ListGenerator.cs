@@ -310,14 +310,13 @@ namespace Domain.Common.ListGenerators
                 errorText = exception.Message;
             }
 
-#endif
-
             if (!string.IsNullOrEmpty(errorText))
             {
                 throw new ApplicationException(errorText);
             }
 
             return null;
+#endif
         }
 
 

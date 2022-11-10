@@ -11,15 +11,17 @@ public struct MenuItem
     private MenuItem(bool isDivider)
     {
         Name = string.Empty;
+        HRef = string.Empty;
         IsDivider = isDivider;
         IsDisabled = false;
         MenuIcon = MenuIcon.Empty();
         OnClick = null;
     }
 
-    public MenuItem(string name, bool isDisabled, MenuIcon menuIcon)
+    public MenuItem(string name, string hrefLink, bool isDisabled, MenuIcon menuIcon)
     {
         Name = name;
+        HRef = hrefLink;
         IsDivider = false;
         IsDisabled = isDisabled;
         MenuIcon = menuIcon;
@@ -27,28 +29,21 @@ public struct MenuItem
     }
 
     public string Name { get; init; }
+    public string HRef { get; init; }
     public bool IsDisabled { get; init; }
     public bool IsDivider { get; init; }
     public MenuIcon MenuIcon { get; init; }
     public Func<EventArgs>? OnClick { get; init; }
 
-    public static MenuItem CreateEnabled(string name)
-    {
-        return new(name, false, MenuIcon.Empty());
-    }
+    public static MenuItem CreateEnabled(string name, string href) =>
+        new(name, href, false, MenuIcon.Empty());
 
-    public static MenuItem CreateDisabled(string name)
-    {
-        return new(name, true, MenuIcon.Empty());
-    }
+    public static MenuItem CreateDisabled(string name) =>
+        new(name, string.Empty, true, MenuIcon.Empty());
 
-    public static MenuItem CreateWithIcon(string name, bool isDisabled, MenuIcon icon)
-    {
-        return new(name, isDisabled, icon);
-    }
+    public static MenuItem CreateWithIcon(string name, string href, bool isDisabled, MenuIcon icon) =>
+        new(name, href, isDisabled, icon);
 
-    public static MenuItem CreateDivider()
-    {
-        return new(true);
-    }
+    public static MenuItem CreateDivider() =>
+        new(true);
 }

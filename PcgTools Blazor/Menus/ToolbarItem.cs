@@ -14,16 +14,18 @@ public struct ToolbarItem
     {
         IsSpacer = isSpacer;
         Icon = Icons.Material.Outlined.Window;
+        HRef = string.Empty;
         Tooltip = string.Empty;
         IsDisabled = false;
         IconColor = Color.Default;
         CustomClass = string.Empty;
     }
 
-    public ToolbarItem(string icon, string tooltip, bool isDisabled, Color color, string className)
+    public ToolbarItem(string icon, string href, string tooltip, bool isDisabled, Color color, string className)
     {
         IsSpacer = false;
         Icon = icon;
+        HRef = href;
         Tooltip = tooltip;
         IsDisabled = isDisabled;
         IconColor = color;
@@ -32,6 +34,7 @@ public struct ToolbarItem
 
     public bool IsSpacer { get; init; }
     public string Icon { get; init; }
+    public string HRef { get; init; }
     public string Tooltip { get; init; }
     public bool IsDisabled { get; init; }
     public Color IconColor { get; init; }
@@ -40,9 +43,9 @@ public struct ToolbarItem
     public static ToolbarItem GetSpacerIcon() =>
         new(true);
 
-    public static ToolbarItem GetEnabledIcon(string icon, string tooltip, Color color = Color.Inherit, string className = "") =>
-        new(icon, tooltip, false, color, className);
+    public static ToolbarItem GetEnabledIcon(string icon, string href, string tooltip, Color color = Color.Inherit, string className = "") =>
+        new(icon, href, tooltip, false, color, className);
 
-    public static ToolbarItem GetDisabledIcon(string icon, string tooltip, Color color = Color.Inherit, string className = "") =>
-        new (icon, tooltip, true, color, className);
+    public static ToolbarItem GetDisabledIcon(string icon, string href, string tooltip, Color color = Color.Inherit, string className = "") =>
+        new (icon, href, tooltip, true, color, className);
 }

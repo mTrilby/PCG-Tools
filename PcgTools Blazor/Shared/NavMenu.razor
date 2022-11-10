@@ -17,6 +17,8 @@
                         if (item.MenuIcon.IsDefined)
                         {
                             <MudMenuItem Disabled="@item.IsDisabled"
+                                         OnClick="@OpenFileOnClick"
+                                         OnTouch="@OpenFileOnTouch"
                                          IconSize="@item.MenuIcon.Size"
                                          IconColor="@item.MenuIcon.Color"
                                          Icon="@item.MenuIcon.Icon">
@@ -37,6 +39,7 @@
 }
 
 @code {
+    [Inject] private IDialogService? DialogService { get; set; }
 
     private readonly List<Menu> _menuList = new();
 
@@ -46,4 +49,20 @@
         _menuList.AddRange(menuBuilder.GetMenu().ToList());
     }
 
+    private async void OpenFileOnClick(MouseEventArgs args)
+    {
+        var result = await DialogService!.ShowMessageBox(
+            "Warning",
+            "Deleting can not be undone!",
+            yesText: "Delete!", cancelText: "Cancel");
+        StateHasChanged();
+    }
+    private async void OpenFileOnTouch(TouchEventArgs args)
+    {
+        var result = await DialogService!.ShowMessageBox(
+            "Warning",
+            "Deleting can not be undone!",
+            yesText: "Delete!", cancelText: "Cancel");
+        StateHasChanged();
+    }
 }

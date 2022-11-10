@@ -31,8 +31,6 @@ public struct MenuIcon
     public Size Size { get; init; }
     public Color Color { get; init; }
 
-    public static MenuIcon Empty()
-    {
-        return new(false);
-    }
+    public static MenuIcon Empty() =>
+        new(false);
 }

@@ -1,10 +1,11 @@
-﻿@using PcgTools_Blazor.Menus
-@if (_menuList.Any())
+﻿@inherits PcgTools_Blazor.Menus.NavMenuBase;
+
+@if (MenuList.Any())
 {
-    @foreach (var menu in _menuList)
+    @foreach (var menu in MenuList)
     {
         <MudMenu Label="@menu.Label" Dense="@menu.IsDense">
-            @if (_menuList.Any())
+            @if (MenuList.Any())
             {
                 @foreach (var item in menu.MenuItems)
                 {
@@ -14,20 +15,40 @@
                     }
                     else
                     {
-                        if (item.MenuIcon.IsDefined)
+                        if (!string.IsNullOrEmpty(item.Link) && item.MenuIcon.IsDefined)
                         {
-                            <MudMenuItem Disabled="@item.IsDisabled"
-                                         OnClick="@OpenFileOnClick"
-                                         OnTouch="@OpenFileOnTouch"
-                                         IconSize="@item.MenuIcon.Size"
-                                         IconColor="@item.MenuIcon.Color"
-                                         Icon="@item.MenuIcon.Icon">
+                            <MudMenuItem
+                                Disabled="@item.IsDisabled"
+                                Link="@item.Link"
+                                IconSize="@item.MenuIcon.Size"
+                                IconColor="@item.MenuIcon.Color"
+                                Icon="@item.MenuIcon.Icon">
+                                @item.Name
+                            </MudMenuItem>
+                        }
+                        else if (item.MenuIcon.IsDefined)
+                        {
+                            <MudMenuItem
+                                Disabled="@item.IsDisabled"
+                                OnClick="@item.OnClickEventHandler"
+                                IconSize="@item.MenuIcon.Size"
+                                IconColor="@item.MenuIcon.Color"
+                                Icon="@item.MenuIcon.Icon">
+                                @item.Name
+                            </MudMenuItem>
+                        }
+                        else if (!string.IsNullOrEmpty(item.Link))
+                        {
+                            <MudMenuItem
+                                Disabled="@item.IsDisabled"
+                                Link="@item.Link">
                                 @item.Name
                             </MudMenuItem>
                         }
                         else
                         {
-                            <MudMenuItem Disabled="@item.IsDisabled">
+                            <MudMenuItem Disabled="@item.IsDisabled"
+                                         OnClick="@item.OnClickEventHandler">
                                 @item.Name
                             </MudMenuItem>
                         }
@@ -35,34 +56,5 @@
                 }
             }
         </MudMenu>
-    }
-}
-
-@code {
-    [Inject] private IDialogService? DialogService { get; set; }
-
-    private readonly List<Menu> _menuList = new();
-
-    protected override void OnInitialized()
-    {
-        var menuBuilder = new MenuBuilder();
-        _menuList.AddRange(menuBuilder.GetMenu().ToList());
-    }
-
-    private async void OpenFileOnClick(MouseEventArgs args)
-    {
-        var result = await DialogService!.ShowMessageBox(
-            "Warning",
-            "Deleting can not be undone!",
-            yesText: "Delete!", cancelText: "Cancel");
-        StateHasChanged();
-    }
-    private async void OpenFileOnTouch(TouchEventArgs args)
-    {
-        var result = await DialogService!.ShowMessageBox(
-            "Warning",
-            "Deleting can not be undone!",
-            yesText: "Delete!", cancelText: "Cancel");
-        StateHasChanged();
     }
 }

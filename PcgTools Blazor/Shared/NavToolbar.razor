@@ -15,13 +15,13 @@
                     if (string.IsNullOrEmpty(item.CustomClass))
                     {
                         <MudTooltip Text="@item.Tooltip" Arrow="true" Placement="Placement.Bottom">
-                            <MudIconButton Icon="@item.Icon" Color="@item.IconColor" Disabled="@item.IsDisabled"/>
+                            <MudIconButton Link="@item.HRef" Icon="@item.Icon" Color="@item.IconColor" Disabled="@item.IsDisabled"/>
                         </MudTooltip>
                     }
                     else
                     {
                         <MudTooltip Text="@item.Tooltip" Arrow="true" Placement="Placement.Bottom">
-                            <MudIconButton Icon="@item.Icon" Color="@item.IconColor" Disabled="@item.IsDisabled" Class="@item.CustomClass"/>
+                            <MudIconButton Link="@item.HRef" Icon="@item.Icon" Color="@item.IconColor" Disabled="@item.IsDisabled" Class="@item.CustomClass"/>
                         </MudTooltip>
                     }
                 }

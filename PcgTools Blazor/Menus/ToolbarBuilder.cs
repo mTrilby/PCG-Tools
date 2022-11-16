@@ -14,7 +14,7 @@ public class ToolbarBuilder
     public IEnumerable<ToolbarItem> GetToolbarItems()
     {
         //TODO: Will require a service that provides Enabled/Disable statuses for toggle-able toolbar items
-        yield return ToolbarItem.GetEnabledIcon(Icons.Material.Outlined.FileOpen, "/OpenFile", Strings.OpenFileCommand_mainw_tt);
+        yield return ToolbarItem.GetEnabledIcon(Icons.Material.Outlined.FileOpen, "/OpenPcgFile", Strings.OpenFileCommand_mainw_tt);
         yield return ToolbarItem.GetDisabledIcon(Icons.Material.Outlined.Save, "/", Strings.SaveFileCommand_mainw_tt);
         yield return ToolbarItem.GetDisabledIcon(Icons.Material.Outlined.SaveAs, "/", Strings.SaveFileAsCommand_mainw_tt);
         yield return ToolbarItem.GetEnabledIcon(Icons.Material.Outlined.EditNote, "/", Strings.EditSelectedPatch);

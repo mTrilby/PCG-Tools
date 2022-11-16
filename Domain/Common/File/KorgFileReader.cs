@@ -5,6 +5,7 @@
 #endregion
 
 using System;
+using System.IO;
 using System.Linq;
 using Domain.Common.Synth.MemoryAndFactory;
 using Domain.Common.Synth.Meta;
@@ -188,7 +189,32 @@ namespace Domain.Common.File
         /// <returns></returns>
         public IMemory Read(string fileName)
         {
-            ReadFile(fileName);
+            GetFileContents(fileName);
+
+            ReadFileContents();
+
+            IMemory memory = null;
+            if (Content != null)
+            {
+                var factory = Factory;
+
+                memory = ReadContent(fileName, factory);
+            }
+
+            return memory;
+        }
+
+
+        /// <summary>
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="fileContents"></param>
+        /// <returns></returns>
+        public IMemory Read(string fileName, byte[] fileContents)
+        {
+            Content = fileContents;
+
+            ReadFileContents();
 
             IMemory memory = null;
             if (Content != null)
@@ -433,10 +459,8 @@ namespace Domain.Common.File
         ///     D2                                       Krome Ex
         ///     MemoryFileType: 00 = PCG 01=SNG 02=EXL
         /// </summary>
-        private void ReadFile(string fileName)
+        private void ReadFileContents()
         {
-            ReadAllBytes(fileName);
-
             switch ((char)Content[0])
             {
                 case (char)0x00:
@@ -484,7 +508,7 @@ namespace Domain.Common.File
         /// <summary>
         /// </summary>
         /// <param name="fileName"></param>
-        private void ReadAllBytes(string fileName)
+        private void GetFileContents(string fileName)
         {
             try
             {
@@ -857,11 +881,11 @@ namespace Domain.Common.File
         {
             if (Util.GetChars(Content, 0, 4) != "MThd" ||
                 Util.GetInt(Content, 4, 4) != 6) // Length: always 6, see website link above
-                //(Util.GetInt(Content, 8, 2) != 0)) // Format: 0=Single Multi Track Channel, 
+                //(Util.GetInt(Content, 8, 2) != 0)) // Format: 0=Single Multi Track Channel,
                 //         1=One or more simultanious tracks of a sequence
                 //         2=One or more sequentially independant single-track patterns
                 //(Util.GetInt(Content, 10, 2) != 1)) // Number of tracks, for Format 0 always 1
-                // bytes 12/13: Division: bit15=0: b14..0  =ticks per quarter note, 
+                // bytes 12/13: Division: bit15=0: b14..0  =ticks per quarter note,
                 //                        bit15=1: bit14..8=negative SMPTE format, bit7..0=ticks per frame
             {
                 throw new NotSupportedException("Unsupported MIDI format");
@@ -980,7 +1004,7 @@ namespace Domain.Common.File
             SkipMetaMessages(ref index);
 
             ReadVariableLengthQuality(ref index); // Read delta time (unused return parameter)
-            if (Content[index] == 0x90) // Unknown 
+            if (Content[index] == 0x90) // Unknown
             {
                 // Very dirty: Might be a T series chunk.
                 index += 0x1F;

@@ -57,6 +57,9 @@ public struct MenuItem
     public static MenuItem CreateEventHandlerEnabled(string name, Action eventHandler) =>
         new(name, eventHandler, false, MenuIcon.Empty());
 
+    public static MenuItem CreateEventHandlerDisabled(string name, Action eventHandler) =>
+        new(name, eventHandler, true, MenuIcon.Empty());
+
     public static MenuItem CreateDisabled(string name) =>
         new(name, string.Empty, true, MenuIcon.Empty());
 

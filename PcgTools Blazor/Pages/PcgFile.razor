@@ -1,4 +1,6 @@
 ﻿@page "/OpenPcgFile"
+@using Domain.Common.File
+@using PcgTools_Blazor.Components
 <PageTitle>PcgFile</PageTitle>
 @if (!_files.Any())
 {
@@ -23,18 +25,43 @@
         @foreach (var file in _files)
         {
             <MudListItem Icon="@Icons.Filled.AttachFile" @key="@file">
-                @file.Name <code>@file.Size bytes</code>
+                @file.Name (@file.Info) <code>@file.Size bytes</code> [@file.LastModified]
             </MudListItem>
         }
     </MudList>
 }
 @code
 {
-    readonly IList<IBrowserFile> _files = new List<IBrowserFile>();
+    readonly IList<PcgToolsFileInfo> _files = new List<PcgToolsFileInfo>();
+    private long maxFileSize = 1024 * 1024 * 50;
 
-    private void UploadFiles(IBrowserFile file)
+    private async Task UploadFiles(IBrowserFile file)
     {
-        _files.Add(file);
-        //TODO upload the files to the server
+        var fileInfo = new PcgToolsFileInfo()
+        {
+            Name = file.Name,
+            Size = file.Size,
+            LastModified = file.LastModified.ToUniversalTime().ToString(),
+            Content = new byte[file.Size]
+        };
+
+        try
+        {
+            _ = await file.OpenReadStream(maxFileSize).ReadAsync(fileInfo.Content);
+
+            var korgFileReader = new KorgFileReader();
+            var memory = korgFileReader.Read(file.Name, fileInfo.Content); // Model type/file type only used when error
+
+            fileInfo.Info = memory.Model.ModelAndVersionAsString;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            fileInfo.Info = $"Error loading file: {e.Message}";
+        }
+        finally
+        {
+            _files.Add(fileInfo);
+        }
     }
 }

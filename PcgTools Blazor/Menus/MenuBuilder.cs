@@ -64,7 +64,7 @@ public class MenuBuilder
     private static Menu GetFileMenu(NavMenuBase navMenu)
     {
         var menu = new Menu(Strings.Menu_File, isDense: true);
-        menu.MenuItems.Add(MenuItem.CreateLinkEnabled(Strings.Menu_File_Open, "/OpenPcgFile"));
+        menu.MenuItems.Add(MenuItem.CreateEventHandlerEnabled(Strings.Menu_File_Open, navMenu.OpenFileOnClick));
         menu.MenuItems.Add(MenuItem.CreateDisabled(Strings.Menu_File_Save));
         menu.MenuItems.Add(MenuItem.CreateDisabled(Strings.Menu_File_SaveAs));
         menu.MenuItems.Add(MenuItem.CreateDivider());

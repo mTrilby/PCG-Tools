@@ -37,6 +37,7 @@
 
     private async Task UploadFiles(IBrowserFile file)
     {
+        _files.Clear();
         var fileInfo = new PcgToolsFileInfo()
         {
             Name = file.Name,
@@ -47,7 +48,7 @@
 
         try
         {
-            _ = await file.OpenReadStream(maxFileSize).ReadAsync(fileInfo.Content);
+            _ = await file.OpenReadStream(fileInfo.Size).ReadAsync(fileInfo.Content);
 
             var korgFileReader = new KorgFileReader();
             var memory = korgFileReader.Read(file.Name, fileInfo.Content); // Model type/file type only used when error

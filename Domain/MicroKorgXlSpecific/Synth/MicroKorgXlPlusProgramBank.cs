@@ -1,24 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+#endregion
+
 namespace PcgTools.Model.MicroKorgXlSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MicroKorgXlPlusProgramBank : ProgramBank
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public override int NrOfPatches => 1;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBanks"></param>
         /// <param name="type"></param>
@@ -32,29 +32,25 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Synth
         {
         }
 
+        /// <summary>
+        /// </summary>
+        public override int NrOfPatches => 1;
 
         /// <summary>
-        /// 
+        /// </summary>
+        public override SynthesisType DefaultModeledSynthesisType =>
+            throw new NotSupportedException("Unsupported synthesis engine");
+
+        /// <summary>
+        /// </summary>
+        public override SynthesisType DefaultSampledSynthesisType => SynthesisType.Mmt;
+
+        /// <summary>
         /// </summary>
         /// <param name="index"></param>
         public override void CreatePatch(int index)
         {
             Add(new MicroKorgXlProgram(this, index));
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override SynthesisType DefaultModeledSynthesisType
-        {
-            get { throw new NotSupportedException("Unsupported synthesis engine"); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override SynthesisType DefaultSampledSynthesisType => SynthesisType.Mmt;
     }
 }

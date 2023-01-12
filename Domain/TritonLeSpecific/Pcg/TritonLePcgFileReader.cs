@@ -1,17 +1,23 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.TritonSpecific.Pcg;
 
+#endregion
+
 namespace PcgTools.Model.TritonLeSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
-    public class TritonLePcgFileReader: TritonPcgFileReader
+    public class TritonLePcgFileReader : TritonPcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>

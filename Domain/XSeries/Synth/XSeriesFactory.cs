@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Diagnostics;
@@ -9,39 +15,31 @@ using PcgTools.Model.MntxSeriesSpecific.Synth;
 using PcgTools.Model.XSeries.Pcg;
 using PcgTools.Model.XSeries.Song;
 
+#endregion
+
 namespace PcgTools.Model.XSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class XSeriesFactory : MntxFactory
     {
         /// <summary>
-        /// 
-        /// </summary>
-        readonly Memory.FileType _fileType ;
-
-        
-        /// <summary>
-        /// 
         /// </summary>
         private readonly PcgMemory.ContentType _contentType;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        private readonly int _sysExStartOffset;
-
+        private readonly Memory.FileType _fileType;
 
         /// <summary>
-        /// 
         /// </summary>
         private readonly int _sysExEndOffset;
 
+        /// <summary>
+        /// </summary>
+        private readonly int _sysExStartOffset;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileType"></param>
         /// <param name="contentType"></param>
@@ -56,9 +54,7 @@ namespace PcgTools.Model.XSeries.Synth
             _sysExEndOffset = sysExEndOffset;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -72,7 +68,7 @@ namespace PcgTools.Model.XSeries.Synth
                 case Memory.FileType.Mid:
                     pcgMemory = new XSeriesSysExMemory(fileName, _contentType, _sysExStartOffset, _sysExEndOffset);
                     break;
-                    
+
                 default:
                     throw new NotSupportedException("Unsupported file type");
             }
@@ -82,9 +78,7 @@ namespace PcgTools.Model.XSeries.Synth
             return pcgMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -94,9 +88,7 @@ namespace PcgTools.Model.XSeries.Synth
             return new XSeriesFileReader(pcgMemory, content, _contentType, _sysExStartOffset, _sysExEndOffset);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -106,9 +98,7 @@ namespace PcgTools.Model.XSeries.Synth
             return songMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

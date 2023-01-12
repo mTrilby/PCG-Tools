@@ -1,22 +1,27 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.KronosOasysSpecific.Synth;
 using PcgTools.Model.OasysSpecific.Pcg;
 using PcgTools.Model.OasysSpecific.Song;
 
+#endregion
+
 namespace PcgTools.Model.OasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class OasysFactory : KronosOasysFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -27,9 +32,7 @@ namespace PcgTools.Model.OasysSpecific.Synth
             return pcgMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -39,9 +42,7 @@ namespace PcgTools.Model.OasysSpecific.Synth
             return new OasysPcgFileReader(pcgMemory, content);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -51,9 +52,7 @@ namespace PcgTools.Model.OasysSpecific.Synth
             return songMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

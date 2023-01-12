@@ -1,30 +1,35 @@
-﻿using System.Windows;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.Windows;
 using System.Windows.Controls;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 
+#endregion
+
 namespace PcgTools.ViewModels.Commands.PcgCommands
 {
     /// <summary>
-    /// Interaction logic for DoubleToSingleKeyboardWindow.xaml
+    ///     Interaction logic for DoubleToSingleKeyboardWindow.xaml
     /// </summary>
     public partial class DoubleToSingleKeyboardWindow : Window
     {
         /// <summary>
-        /// 
+        /// </summary>
+        private readonly DoubleToSingleKeyboardCommands _commands;
+
+        /// <summary>
         /// </summary>
         private readonly IPcgMemory _memory;
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        private DoubleToSingleKeyboardCommands _commands;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public DoubleToSingleKeyboardWindow(IPcgMemory memory, DoubleToSingleKeyboardCommands commands)
         {
@@ -32,7 +37,6 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
             _commands = commands;
             InitializeComponent();
         }
-
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
@@ -56,7 +60,6 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
                     var item2 = new ComboBoxItem();
                     item2.Tag = setList;
                     item2.Content = $"{setList.Id} {setList.Name}";
-                
 
                     SourceSetListListBox.Items.Add(item);
                     TargetSetListListBox.Items.Add(item2);
@@ -100,16 +103,15 @@ namespace PcgTools.ViewModels.Commands.PcgCommands
 
         private void ButtonOkClick(object sender, RoutedEventArgs e)
         {
-            _commands.Process((ISetList) ((SourceSetListListBox.SelectedItem as ComboBoxItem).Tag), 
-                (ISetList) ((TargetSetListListBox.SelectedItem as ComboBoxItem).Tag),
-                (ICombiBank) ((TargetCombiBankListBox.SelectedItem as ComboBoxItem).Tag),
+            _commands.Process((ISetList)(SourceSetListListBox.SelectedItem as ComboBoxItem).Tag,
+                (ISetList)(TargetSetListListBox.SelectedItem as ComboBoxItem).Tag,
+                (ICombiBank)(TargetCombiBankListBox.SelectedItem as ComboBoxItem).Tag,
                 // ReSharper disable once PossibleInvalidOperationException
                 NumericUpDownMidiChannelMainKeyboard.Value.Value, // Value is preset 
                 // ReSharper disable once PossibleInvalidOperationException
                 NumericUpDownMidiChannelSecondaryKeyboard.Value.Value); // Value is preset
             Close();
         }
-
 
         private void ButtonCancelClick(object sender, RoutedEventArgs e)
         {

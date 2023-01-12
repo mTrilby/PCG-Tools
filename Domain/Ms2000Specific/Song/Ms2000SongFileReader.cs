@@ -1,27 +1,32 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common.File;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
 
+#endregion
+
 namespace PcgTools.Model.Ms2000Specific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Ms2000SongFileReader : SongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public Ms2000SongFileReader(ISongMemory songMemory, byte[] content) 
+        public Ms2000SongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }
-
 
         /// <summary>
         /// </summary>

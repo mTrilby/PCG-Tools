@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Diagnostics;
@@ -8,15 +14,15 @@ using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+#endregion
+
 namespace PcgTools.Model.ZeroSeries.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ZeroSeriesFileReader : SysExFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -30,9 +36,7 @@ namespace PcgTools.Model.ZeroSeries.Pcg
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="filetype"></param>
         /// <param name="modelType"></param>
@@ -57,9 +61,7 @@ namespace PcgTools.Model.ZeroSeries.Pcg
             }
         }
 
-        
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         private void ReadSyxMidContent(ISysExMemory memory)
@@ -95,25 +97,25 @@ namespace PcgTools.Model.ZeroSeries.Pcg
             }
         }
 
-
         /// <summary>
-        /// Skip Mode Change (not for Sysex Manager file and OrigKorg file).
+        ///     Skip Mode Change (not for Sysex Manager file and OrigKorg file).
         /// </summary>
         /// <param name="filetype"></param>
         /// <returns></returns>
         private ISysExMemory SkipModeChange(Memory.FileType filetype)
         {
-            var memory = (ISysExMemory) CurrentPcgMemory;
+            var memory = (ISysExMemory)CurrentPcgMemory;
             switch (filetype)
             {
                 case Memory.FileType.Syx:
-                    if ((Util.GetChars(memory.Content, 0, 14) != "Sysex Manager-") &&
-                        (Util.GetChars(memory.Content, 2, 8) != "OrigKorg"))
+                    if (Util.GetChars(memory.Content, 0, 14) != "Sysex Manager-" &&
+                        Util.GetChars(memory.Content, 2, 8) != "OrigKorg")
                     {
                         var offset = SkipModeChanges();
                         SysExStartOffset += offset;
-                        ContentType = (PcgMemory.ContentType) memory.Content[offset + 4];
+                        ContentType = (PcgMemory.ContentType)memory.Content[offset + 4];
                     }
+
                     break;
 
                 case Memory.FileType.Mid:
@@ -121,37 +123,37 @@ namespace PcgTools.Model.ZeroSeries.Pcg
 
                 // default: Do nothing.
             }
+
             return memory;
         }
 
-
         /// <summary>
-        /// Skip mode changes.
-        /// Also adapts the contentType.
+        ///     Skip mode changes.
+        ///     Also adapts the contentType.
         /// </summary>
-        int SkipModeChanges()
+        private int SkipModeChanges()
         {
             var offset = 0;
             var memory = (ISysExMemory)CurrentPcgMemory;
 
-            while ((memory.Content[offset] == 0xF0) && // MIDI SysEx
-                   (memory.Content[offset + 1] == 0x42) && // Korg
-                   (memory.Content[offset + 4] == (int) PcgMemory.ContentType.ModeChange))
+            while (memory.Content[offset] == 0xF0 && // MIDI SysEx
+                   memory.Content[offset + 1] == 0x42 && // Korg
+                   memory.Content[offset + 4] == (int)PcgMemory.ContentType.ModeChange)
             {
                 offset += 8;
             }
+
             memory.SysExStartOffset += offset;
             return offset;
         }
 
-        
         /// <summary>
-        /// Improve: use parent method, set patch size in base class.
+        ///     Improve: use parent method, set patch size in base class.
         /// </summary>
         /// <param name="offset"></param>
         protected virtual void ReadSingleProgram(int offset)
         {
-            var bank = (IProgramBank) (CurrentPcgMemory.ProgramBanks[0]);
+            var bank = (IProgramBank)CurrentPcgMemory.ProgramBanks[0];
             bank.ByteOffset = 0;
             bank.BankSynthesisType = ProgramBank.SynthesisType.Ai2;
             bank.ByteLength = 172;
@@ -164,9 +166,7 @@ namespace PcgTools.Model.ZeroSeries.Pcg
             program.IsLoaded = true;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="offset"></param>
         private void ReadSingleCombi(int offset)
@@ -183,18 +183,16 @@ namespace PcgTools.Model.ZeroSeries.Pcg
             combi.IsLoaded = true;
         }
 
-
         /// <summary>
-        /// Use base class, pass values in constructor.
+        ///     Use base class, pass values in constructor.
         /// </summary>
         protected virtual void ReadAllData()
         {
             ReadAllData(172, 128, 1701, 2, 2); // 2, 2: Skip A/B banks for programs/combis
         }
 
-
         /// <summary>
-        /// Read raw disk image format.
+        ///     Read raw disk image format.
         /// </summary>
         private void ReadRawDiskImage()
         {
@@ -240,15 +238,13 @@ namespace PcgTools.Model.ZeroSeries.Pcg
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiBankIndex"></param>
         /// <returns></returns>
         private int ReadCombiData(int combiBankIndex)
         {
-            var combiBank = (ICombiBank) CurrentPcgMemory.CombiBanks[combiBankIndex];
+            var combiBank = (ICombiBank)CurrentPcgMemory.CombiBanks[combiBankIndex];
 
             combiBank.ByteOffset = Index;
             combiBank.ByteLength = 128;
@@ -269,15 +265,13 @@ namespace PcgTools.Model.ZeroSeries.Pcg
             return combiBankIndex;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBankIndex"></param>
         /// <returns></returns>
         private int ReadProgramData(int programBankIndex)
         {
-            var programBank = (IProgramBank) (CurrentPcgMemory.ProgramBanks[programBankIndex]);
+            var programBank = (IProgramBank)CurrentPcgMemory.ProgramBanks[programBankIndex];
             programBank.ByteOffset = Index;
 
             programBank.BankSynthesisType = ProgramBank.SynthesisType.Ai;

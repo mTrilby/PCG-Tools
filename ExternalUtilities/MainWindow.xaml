@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button Content="Show Language Cross Reference List" 
-                HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30" 
-                Click="ButtonShowLanguageCrossReferenceList_Click"/>
-        <Button Content="Show Number of Code Lines" 
-        	HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Height="30"
-                Click="ButtonShowNumberOfCodeLines_Click"/>
+        <Button Content="Show Language Cross Reference List"
+                HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30"
+                Click="ButtonShowLanguageCrossReferenceList_Click" />
+        <Button Content="Show Number of Code Lines"
+                HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Height="30"
+                Click="ButtonShowNumberOfCodeLines_Click" />
 
     </Grid>
 </Window>

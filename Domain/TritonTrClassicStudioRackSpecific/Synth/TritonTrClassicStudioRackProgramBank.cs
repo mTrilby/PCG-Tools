@@ -1,18 +1,23 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.TritonSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonTrClassicStudioRackProgramBank : TritonProgramBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBanks"></param>
         /// <param name="type"></param>
@@ -26,26 +31,20 @@ namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth
         {
         }
 
+        /// <summary>
+        /// </summary>
+        public override SynthesisType DefaultModeledSynthesisType => SynthesisType.MossZ1;
 
         /// <summary>
-        /// 
+        /// </summary>
+        public override SynthesisType DefaultSampledSynthesisType => SynthesisType.Hi;
+
+        /// <summary>
         /// </summary>
         /// <param name="index"></param>
         public override void CreatePatch(int index)
         {
             Add(new TritonTrClassicStudioRackProgram(this, index));
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override SynthesisType DefaultModeledSynthesisType => SynthesisType.MossZ1;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override SynthesisType DefaultSampledSynthesisType => SynthesisType.Hi;
     }
 }

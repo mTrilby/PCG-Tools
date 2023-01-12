@@ -1,40 +1,20 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using Common.Utils;
+
+#endregion
 
 namespace PcgTools.Gui
 {
     public class Logo
     {
         /// <summary>
-        /// False = anonymous person.
-        /// </summary>
-        public string Name { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string ImageName { get; private set; }
-
-
-        /// <summary>
-        /// IMPR: Check if really used in xaml.
-        /// </summary>
-        [UsedImplicitly]
-// ReSharper disable MemberCanBePrivate.Global
-        public string Url { get; private set; }
-// ReSharper restore MemberCanBePrivate.Global
-
-
-        /// <summary>
-        /// Donated money in cents. One CD is considered as 10 euro, 2 CDs as 15 euros.
-        /// </summary>
-        public int DonatedMoney { get; private set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <param name="imageName"></param>
@@ -47,5 +27,27 @@ namespace PcgTools.Gui
             Url = url;
             DonatedMoney = donatedMoney;
         }
+
+        /// <summary>
+        ///     False = anonymous person.
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
+        /// </summary>
+        public string ImageName { get; }
+
+        /// <summary>
+        ///     IMPR: Check if really used in xaml.
+        /// </summary>
+        [UsedImplicitly]
+// ReSharper disable MemberCanBePrivate.Global
+        public string Url { get; }
+// ReSharper restore MemberCanBePrivate.Global
+
+/// <summary>
+///     Donated money in cents. One CD is considered as 10 euro, 2 CDs as 15 euros.
+/// </summary>
+public int DonatedMoney { get; }
     }
 }

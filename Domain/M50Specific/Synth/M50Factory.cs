@@ -1,22 +1,27 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.M50Specific.Pcg;
 using PcgTools.Model.M50Specific.Song;
 using PcgTools.Model.MSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.M50Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M50Factory : MFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -27,9 +32,7 @@ namespace PcgTools.Model.M50Specific.Synth
             return pcgMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -39,9 +42,7 @@ namespace PcgTools.Model.M50Specific.Synth
             return new M50PcgFileReader(pcgMemory, content);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -51,9 +52,7 @@ namespace PcgTools.Model.M50Specific.Synth
             return songMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

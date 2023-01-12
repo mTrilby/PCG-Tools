@@ -1,12 +1,19 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common;
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
+#endregion
 
 namespace PcgTools.Model.M1Specific.Pcg
 {
@@ -14,7 +21,6 @@ namespace PcgTools.Model.M1Specific.Pcg
     public class M1FileReader : SysExFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -28,9 +34,7 @@ namespace PcgTools.Model.M1Specific.Pcg
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="filetype"></param>
         /// <param name="modelType"></param>
@@ -42,9 +46,9 @@ namespace PcgTools.Model.M1Specific.Pcg
             switch (filetype)
             {
                 case Memory.FileType.Syx: // Fall through
-                case Memory.FileType.Mid: 
+                case Memory.FileType.Mid:
                     memory.Convert7To8Bits();
-                    
+
                     switch (ContentType)
                     {
                         case PcgMemory.ContentType.CurrentProgram:
@@ -67,10 +71,11 @@ namespace PcgTools.Model.M1Specific.Pcg
                         case PcgMemory.ContentType.AllSequence:
                             // Do not read anything.
                             break;
-                        
+
                         default:
                             throw new NotSupportedException("Unsupported SysEx function");
                     }
+
                     break;
 
                 default:
@@ -78,83 +83,80 @@ namespace PcgTools.Model.M1Specific.Pcg
             }
         }
 
-
         /// <summary>
-        /// Skip Mode Change (not for Sysex Manager file and OrigKorg file).
+        ///     Skip Mode Change (not for Sysex Manager file and OrigKorg file).
         /// </summary>
         /// <param name="filetype"></param>
         /// <returns></returns>
         private SysExMemory SkipModeChange(Memory.FileType filetype)
         {
-            var memory = (SysExMemory) CurrentPcgMemory;
+            var memory = (SysExMemory)CurrentPcgMemory;
             switch (filetype)
             {
                 case Memory.FileType.Syx:
-                    if ((Util.GetChars(memory.Content, 0, 14) != "Sysex Manager-") &&
-                        (Util.GetChars(memory.Content, 2, 8) != "OrigKorg"))
+                    if (Util.GetChars(memory.Content, 0, 14) != "Sysex Manager-" &&
+                        Util.GetChars(memory.Content, 2, 8) != "OrigKorg")
                     {
                         var offset = SkipModeChanges();
                         SysExStartOffset += offset;
-                        ContentType = (PcgMemory.ContentType) memory.Content[offset + 4];
+                        ContentType = (PcgMemory.ContentType)memory.Content[offset + 4];
                     }
+
                     break;
 
                 case Memory.FileType.Mid:
                     break;
 
-                    //default: // Do nothing
+                //default: // Do nothing
             }
+
             return memory;
         }
 
-
         /// <summary>
-        /// Skip mode changes.
-        /// Also adapts the contentType.
+        ///     Skip mode changes.
+        ///     Also adapts the contentType.
         /// </summary>
-        int SkipModeChanges()
+        private int SkipModeChanges()
         {
             var offset = 0;
             var memory = (SysExMemory)CurrentPcgMemory;
 
-            while ((memory.Content[offset] == 0xF0) && // MIDI SysEx
-                   (memory.Content[offset + 1] == 0x42) && // Korg
-                   (memory.Content[offset + 4] == (int) PcgMemory.ContentType.ModeChange))
+            while (memory.Content[offset] == 0xF0 && // MIDI SysEx
+                   memory.Content[offset + 1] == 0x42 && // Korg
+                   memory.Content[offset + 4] == (int)PcgMemory.ContentType.ModeChange)
             {
                 offset += 8;
             }
+
             memory.SysExStartOffset += offset;
             return offset;
         }
 
-        
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="offset"></param>
         private void ReadSingleProgram(int offset)
         {
-            var bank = (ProgramBank) (CurrentPcgMemory.ProgramBanks[0]);
+            var bank = (ProgramBank)CurrentPcgMemory.ProgramBanks[0];
             bank.ByteOffset = 0;
             bank.BankSynthesisType = ProgramBank.SynthesisType.AnalogModeling;
             bank.PatchSize = 143;
             bank.IsWritable = true;
             bank.IsLoaded = true;
 
-            var program = (Program) bank[0];
+            var program = (Program)bank[0];
             program.ByteOffset = offset;
             program.ByteLength = bank.PatchSize;
             program.IsLoaded = true;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="offset"></param>
         private void ReadSingleCombi(int offset)
         {
-            var bank = (CombiBank)(CurrentPcgMemory.CombiBanks[0]);
+            var bank = (CombiBank)CurrentPcgMemory.CombiBanks[0];
             bank.ByteOffset = 0;
             bank.PatchSize = 124;
             bank.IsWritable = true;
@@ -166,9 +168,7 @@ namespace PcgTools.Model.M1Specific.Pcg
             combi.IsLoaded = true;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void ReadAllData()
         {
@@ -189,19 +189,17 @@ namespace PcgTools.Model.M1Specific.Pcg
             ReadAllPrograms(bankIndex, nrOfPatches);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="bankIndex"></param>
         /// <param name="nrOfPatches"></param>
         private void ReadAllCombis(int bankIndex, int nrOfPatches)
         {
-            if ((ContentType == PcgMemory.ContentType.All) ||
-                (ContentType == PcgMemory.ContentType.AllCombis))
+            if (ContentType == PcgMemory.ContentType.All ||
+                ContentType == PcgMemory.ContentType.AllCombis)
             {
                 // Read combi data.
-                var bank = (CombiBank) (CurrentPcgMemory.CombiBanks[bankIndex]);
+                var bank = (CombiBank)CurrentPcgMemory.CombiBanks[bankIndex];
                 bank.ByteOffset = Index;
                 bank.PatchSize = 124;
                 bank.IsWritable = true;
@@ -210,7 +208,7 @@ namespace PcgTools.Model.M1Specific.Pcg
                 for (var index = 0; index < nrOfPatches; index++)
                 {
                     // Place in PcgMemory.
-                    var combi = (Combi) bank[index];
+                    var combi = (Combi)bank[index];
                     combi.ByteOffset = Index;
                     combi.ByteLength = bank.PatchSize;
                     combi.IsLoaded = true;
@@ -223,20 +221,18 @@ namespace PcgTools.Model.M1Specific.Pcg
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="bankIndex"></param>
         /// <param name="nrOfPatches"></param>
         private void ReadAllPrograms(int bankIndex, int nrOfPatches)
         {
-            if ((ContentType == PcgMemory.ContentType.All) ||
-                (ContentType == PcgMemory.ContentType.AllPrograms))
+            if (ContentType == PcgMemory.ContentType.All ||
+                ContentType == PcgMemory.ContentType.AllPrograms)
             {
                 // Read program data.
 
-                var bank = (ProgramBank) (CurrentPcgMemory.ProgramBanks[bankIndex]);
+                var bank = (ProgramBank)CurrentPcgMemory.ProgramBanks[bankIndex];
                 bank.ByteOffset = Index;
 
                 bank.BankSynthesisType = ProgramBank.SynthesisType.Ai;
@@ -247,7 +243,7 @@ namespace PcgTools.Model.M1Specific.Pcg
                 for (var index = 0; index < nrOfPatches; index++)
                 {
                     // Place in PcgMemory.
-                    var program = (Program) bank[index];
+                    var program = (Program)bank[index];
                     program.ByteOffset = Index;
                     program.ByteLength = bank.PatchSize;
                     program.IsLoaded = true;
@@ -258,15 +254,14 @@ namespace PcgTools.Model.M1Specific.Pcg
             }
         }
 
-
         /// <summary>
-        /// Read length (of a chunk) where all four bytes are swapped: LSB .. .. MSB.
+        ///     Read length (of a chunk) where all four bytes are swapped: LSB .. .. MSB.
         /// </summary>
         /// <returns></returns>
         private int ReadLength()
         {
             var content = CurrentPcgMemory.Content;
-            var value = Util.GetInt(content, Index + 3, 1)*256*256*256 +
+            var value = Util.GetInt(content, Index + 3, 1) * 256 * 256 * 256 +
                         Util.GetInt(content, Index + 2, 1) * 256 * 256 +
                         Util.GetInt(content, Index + 1, 1) * 256 +
                         Util.GetInt(content, Index + 0, 1);

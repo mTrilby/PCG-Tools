@@ -1,20 +1,55 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
+using System.IO;
 using Common.PcgToolsResources;
 using Common.Utils;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Mvvm;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools.MasterFiles
 {
     /// <summary>
-    ///
     /// </summary>
     public class MasterFile : ObservableObject, IMasterFile
     {
         /// <summary>
-        ///
+        /// </summary>
+        [UsedImplicitly]
+        public enum EFileState
+        {
+            Unassigned,
+            NotPresent,
+            Unloaded,
+            Loaded
+        }
+
+        /// <summary>
+        /// </summary>
+        private string _fileName;
+
+        /// <summary>
+        /// </summary>
+        private EFileState _fileState;
+
+        /// <summary>
+        /// </summary>
+        private string _fileStateAsString;
+
+        /// <summary>
+        ///     Used for UI control binding for selections.
+        /// </summary>
+        private bool _isSelected;
+
+        /// <summary>
         /// </summary>
         /// <param name="model"></param>
         /// <param name="fileName"></param>
@@ -24,25 +59,49 @@ namespace PcgTools.MasterFiles
             FileName = fileName;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
-        string _fileName;
-
+        [UsedImplicitly]
+        public string FileStateAsString
+        {
+            get => _fileStateAsString;
+            set
+            {
+                if (_fileStateAsString != value)
+                {
+                    _fileStateAsString = value;
+                    OnPropertyChanged("FileStateAsString");
+                }
+            }
+        }
 
         /// <summary>
-        /// Used for UI control binding for selections.
         /// </summary>
-        bool _isSelected;
-
+        [UsedImplicitly]
+        public string WorkStationModel
+        {
+            get => Model.ModelAsString;
+            set => throw
+                // Needed for WPF.
+                new ApplicationException("Not implemented");
+        }
 
         /// <summary>
-        ///
+        /// </summary>
+        [UsedImplicitly]
+        public string OsVersion
+        {
+            get => Model.OsVersionString;
+            set => throw
+                // Needed for WPF.
+                new NotSupportedException("Not implemented");
+        }
+
+        /// <summary>
         /// </summary>
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get => _isSelected;
             set
             {
                 if (_isSelected != value)
@@ -53,20 +112,16 @@ namespace PcgTools.MasterFiles
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         public IModel Model { get; private set; }
 
-
         /// <summary>
-        ///
         /// </summary>
         [UsedImplicitly]
         public string FileName
         {
-            get { return _fileName; }
+            get => _fileName;
             set
             {
                 if (_fileName != value)
@@ -78,9 +133,8 @@ namespace PcgTools.MasterFiles
             }
         }
 
-
         /// <summary>
-        /// Sets a master file with file name to the model specified. Use an empty string to remove.
+        ///     Sets a master file with file name to the model specified. Use an empty string to remove.
         /// </summary>
         /// <param name="model"></param>
         /// <param name="fileName"></param>
@@ -174,9 +228,23 @@ namespace PcgTools.MasterFiles
             UpdateState();
         }
 
+        [UsedImplicitly]
+        public EFileState FileState
+        {
+            get => _fileState;
+            private set
+            {
+                if (_fileState != value)
+                {
+                    _fileState = value;
+                    FileStateAsString = FileState2String();
+                    //Console.WriteLine("propertychanged"); //TMP
+                    OnPropertyChanged("FileState");
+                }
+            }
+        }
 
         /// <summary>
-        ///
         /// </summary>
         public void UpdateState()
         {
@@ -192,7 +260,7 @@ namespace PcgTools.MasterFiles
                     var pcgWindow = masterFiles.MainViewModel.FindPcgViewModelWithName(FileName);
                     if (pcgWindow == null)
                     {
-                        FileState = System.IO.File.Exists(FileName) ? EFileState.Unloaded : EFileState.NotPresent;
+                        FileState = File.Exists(FileName) ? EFileState.Unloaded : EFileState.NotPresent;
                     }
                     else
                     {
@@ -202,46 +270,10 @@ namespace PcgTools.MasterFiles
             }
         }
 
-
         /// <summary>
-        ///
-        /// </summary>
-        [UsedImplicitly]
-        public enum EFileState
-        {
-            Unassigned,
-            NotPresent,
-            Unloaded,
-            Loaded
-        }
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        EFileState _fileState;
-        [UsedImplicitly]
-        public EFileState FileState
-        {
-            get { return _fileState; }
-            private set
-            {
-                if (_fileState != value)
-                {
-                    _fileState = value;
-                    FileStateAsString = FileState2String();
-                    //Console.WriteLine("propertychanged"); //TMP
-                    OnPropertyChanged("FileState");
-                }
-            }
-        }
-
-
-        /// <summary>
-        ///
         /// </summary>
         /// <returns></returns>
-        string FileState2String()
+        private string FileState2String()
         {
             string str;
             switch (FileState)
@@ -265,54 +297,8 @@ namespace PcgTools.MasterFiles
                 default:
                     throw new ApplicationException("Illegal file state enum");
             }
+
             return str;
-        }
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        string _fileStateAsString;
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        [UsedImplicitly]
-        public string FileStateAsString
-        {
-            get { return _fileStateAsString; }
-            set { if (_fileStateAsString != value) { _fileStateAsString = value; OnPropertyChanged("FileStateAsString"); } }
-        }
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        [UsedImplicitly]
-        public string WorkStationModel
-        {
-            get { return Model.ModelAsString; }
-            set
-            {
-                // Needed for WPF.
-                throw new ApplicationException("Not implemented");
-            }
-        }
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        [UsedImplicitly]
-        public string OsVersion
-        {
-            get { return Model.OsVersionString; }
-            set
-            {
-                // Needed for WPF.
-                throw new NotSupportedException("Not implemented");
-            }
         }
     }
 }

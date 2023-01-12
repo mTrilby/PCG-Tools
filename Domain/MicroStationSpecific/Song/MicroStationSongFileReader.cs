@@ -1,27 +1,32 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.File;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.MicroStationSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.MicroStationSpecific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
-    public class MicroStationSongFileReader: SongFileReader
+    public class MicroStationSongFileReader : SongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public MicroStationSongFileReader(ISongMemory songMemory, byte[] content) 
+        public MicroStationSongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }
-
 
         /// <summary>
         /// </summary>

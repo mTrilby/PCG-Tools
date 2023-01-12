@@ -1,28 +1,32 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.TritonKarmaSpecific.Synth;
 using PcgTools.Model.TritonSpecific.Song;
 
+#endregion
+
 namespace PcgTools.Model.TritonKarmaSpecific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
-    public class TritonKarmaSongFileReader: TritonSongFileReader
+    public class TritonKarmaSongFileReader : TritonSongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public TritonKarmaSongFileReader(ISongMemory songMemory, byte[] content) 
+        public TritonKarmaSongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }
-
 
         /// <summary>
         /// </summary>

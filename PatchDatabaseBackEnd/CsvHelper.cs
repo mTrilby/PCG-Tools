@@ -1,22 +1,28 @@
-﻿using System.Collections.Generic;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.Collections.Generic;
 using System.IO;
+
+#endregion
 
 namespace PatchDatabaseBackEnd
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class CsvHelper
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="list"></param>
         public static void WriteAsCsv(PatchDataList list)
         {
-            
         }
-
 
         public static PatchDataList ReadAsCsv()
         {
@@ -30,9 +36,9 @@ namespace PatchDatabaseBackEnd
                 {
                     var patchData = new PatchData
                     {
-                        PatchName = (string) columns[0],
-                        Author = (string) columns[1],
-                        Description = (string) columns[2]
+                        PatchName = (string)columns[0],
+                        Author = (string)columns[1],
+                        Description = (string)columns[2]
                     };
                     patchDataList.PatchList.Add(patchData);
                 }
@@ -41,9 +47,7 @@ namespace PatchDatabaseBackEnd
             return patchDataList;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
@@ -59,15 +63,12 @@ namespace PatchDatabaseBackEnd
                 {
                     columns.Add(column);
                 }
-            }
-            while (column != null);
+            } while (column != null);
 
             return columns;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
@@ -78,6 +79,7 @@ namespace PatchDatabaseBackEnd
             {
                 // Treat as string, read until next ".
             }
+
             return null; //TODO
         }
     }

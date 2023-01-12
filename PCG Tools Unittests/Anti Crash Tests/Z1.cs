@@ -1,6 +1,14 @@
-﻿// (c) 2011-2019 Michel Keijzers
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace PCG_Tools_Unittests
 {
@@ -9024,6 +9032,5 @@ namespace PCG_Tools_Unittests
         {
             TestAll(@"Synths Racks and Modules\Z1\_Z1-VECTOR-BANK.syx");
         }
-
     }
 }

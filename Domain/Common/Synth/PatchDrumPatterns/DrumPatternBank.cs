@@ -1,7 +1,16 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
@@ -22,15 +31,13 @@ namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
         {
         }
 
-
         /// <summary>
         /// </summary>
         public override string Name
         {
-            get { return "n.a."; }
-            set { throw new ApplicationException("Not yet implemented"); }
+            get => "n.a.";
+            set => throw new ApplicationException("Not yet implemented");
         }
-
 
         /// <summary>
         /// </summary>

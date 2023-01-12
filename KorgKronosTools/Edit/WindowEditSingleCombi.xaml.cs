@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Diagnostics;
 using System.Windows;
@@ -7,29 +13,25 @@ using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.Global;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools.Edit
 {
     /// <summary>
-    /// Interaction logic for WindowEdit.xaml
+    ///     Interaction logic for WindowEdit.xaml
     /// </summary>
     public partial class WindowEditSingleCombi // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
-        readonly ICombi _patch;
-
+        private readonly ICombi _patch;
 
         /// <summary>
-        /// 
         /// </summary>
-        bool _ok = true;
-
+        private bool _ok = true;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="patch"></param>
         public WindowEditSingleCombi(ICombi patch)
@@ -38,9 +40,7 @@ namespace PcgTools.Edit
             _patch = patch;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -68,19 +68,17 @@ namespace PcgTools.Edit
                 comboBoxSubCategory.Visibility = Visibility.Hidden;
                 return;
             }
-            
+
             if (!_patch.PcgRoot.UsesCategoriesAndSubCategories)
             {
                 labelCategory.Content = Strings.Genre_control;
                 labelSubCategory.Content = Strings.CategoryControl;
             }
-            
+
             FillCategories();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void FillCategories()
         {
@@ -99,7 +97,8 @@ namespace PcgTools.Edit
                     labelSubCategory.IsEnabled = false;
                     if (_patch.PcgRoot.HasSubCategories)
                     {
-                        comboBoxSubCategory.Items.Add(_patch.SubCategoryAsName); // Only number is shown, therefore disable it
+                        comboBoxSubCategory.Items.Add(_patch
+                            .SubCategoryAsName); // Only number is shown, therefore disable it
                         comboBoxSubCategory.SelectedIndex = 0;
                         comboBoxSubCategory.IsEnabled = false;
                     }
@@ -126,9 +125,7 @@ namespace PcgTools.Edit
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -137,12 +134,10 @@ namespace PcgTools.Edit
             Check();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="global"></param>
-        void FillCategoryComboboxes(IGlobal global)
+        private void FillCategoryComboboxes(IGlobal global)
         {
             Debug.Assert(global != null);
 
@@ -160,33 +155,29 @@ namespace PcgTools.Edit
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="global"></param>
-        void FillSubcategoryCombobox(IGlobal global)
+        private void FillSubcategoryCombobox(IGlobal global)
         {
             comboBoxSubCategory.Items.Clear();
             foreach (var subCategoryName in global.GetSubCategoryNames(
-             Global.ECategoryType.Combi, comboBoxCategory.SelectedIndex))
+                         Global.ECategoryType.Combi, comboBoxCategory.SelectedIndex))
             {
                 comboBoxSubCategory.Items.Add(subCategoryName);
             }
 
-            comboBoxSubCategory.SelectedIndex = 
+            comboBoxSubCategory.SelectedIndex =
                 _patch.GetParam(ParameterNames.CombiParameterName.SubCategory).Value;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void Check()
         {
             var usedSize = textBoxName.Text.Length;
 
-            labelNameLength.Text = string.Format('(' + Strings.XOfYCharacters_editw + ')', usedSize, 
+            labelNameLength.Text = string.Format('(' + Strings.XOfYCharacters_editw + ')', usedSize,
                 _patch.MaxNameLength);
 
             labelError.Content = EditUtils.CheckText(
@@ -196,9 +187,7 @@ namespace PcgTools.Edit
             buttonOk.IsEnabled = _ok;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -211,7 +200,7 @@ namespace PcgTools.Edit
 
                 // Set category.
                 var memory = _patch.PcgRoot;
-                if ((memory.AreCategoriesEditable) && (comboBoxCategory.IsEnabled))
+                if (memory.AreCategoriesEditable && comboBoxCategory.IsEnabled)
                 {
                     var param = _patch.GetParam(ParameterNames.CombiParameterName.Category);
                     if (param != null)
@@ -220,7 +209,7 @@ namespace PcgTools.Edit
 
                         if (_patch.PcgRoot.HasSubCategories)
                         {
-                            _patch.GetParam(ParameterNames.CombiParameterName.SubCategory).Value = 
+                            _patch.GetParam(ParameterNames.CombiParameterName.SubCategory).Value =
                                 comboBoxSubCategory.SelectedIndex;
                         }
                     }
@@ -229,7 +218,7 @@ namespace PcgTools.Edit
                 // Set favorite.
                 if (threeStateCheckBoxIsFavorite.IsVisible && memory.AreFavoritesSupported)
                 {
-                    _patch.GetParam(ParameterNames.CombiParameterName.Favorite).Value = 
+                    _patch.GetParam(ParameterNames.CombiParameterName.Favorite).Value =
                         threeStateCheckBoxIsFavorite.IsChecked;
                 }
 
@@ -240,9 +229,7 @@ namespace PcgTools.Edit
             Close();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -252,9 +239,7 @@ namespace PcgTools.Edit
             Close();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

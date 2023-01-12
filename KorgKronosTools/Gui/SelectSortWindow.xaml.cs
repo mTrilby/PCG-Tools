@@ -1,27 +1,32 @@
-﻿using System;
-using System.Windows;
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
+using System.Windows;
+using PcgTools.Extensions;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchSorting;
 using PcgTools.Properties;
-using Common.Extensions;
-using PcgTools.Extensions;
+
+#endregion
 
 namespace PcgTools.Gui
 {
     /// <summary>
-    /// Interaction logic for SelectSortWindow.xaml
+    ///     Interaction logic for SelectSortWindow.xaml
     /// </summary>
     public partial class SelectSortWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly IPcgMemory _memory;
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         public SelectSortWindow(IPcgMemory memory)
@@ -30,15 +35,11 @@ namespace PcgTools.Gui
             _memory = memory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public PatchSorter.SortOrder SortOrder { get; private set; }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -58,9 +59,8 @@ namespace PcgTools.Gui
             WindowLoaded_SelectValidRadioButton();
         }
 
-
         /// <summary>
-        /// Select radio button according setting.
+        ///     Select radio button according setting.
         /// </summary>
         private void WindowLoaded_SelectRadioButtons()
         {
@@ -95,9 +95,8 @@ namespace PcgTools.Gui
             }
         }
 
-
         /// <summary>
-        /// Hide radio buttons when no combis are used.
+        ///     Hide radio buttons when no combis are used.
         /// </summary>
         private void WindowLoaded_HideRadioButtonsIfNoCombiBanks()
         {
@@ -121,30 +120,27 @@ namespace PcgTools.Gui
             }
         }
 
-
         /// <summary>
-        /// In case a radio button is selected that is disabled above, select a valid radio button.
+        ///     In case a radio button is selected that is disabled above, select a valid radio button.
         /// </summary>
         private void WindowLoaded_SelectValidRadioButton()
         {
             if ((radioButtonTitleArtistCategory.IsReallyChecked() ||
-                radioButtonArtistTitleCategory.IsReallyChecked()) &&
+                 radioButtonArtistTitleCategory.IsReallyChecked()) &&
                 string.IsNullOrEmpty(Settings.Default.Sort_SplitCharacter))
             {
                 radioButtonNameCategory.IsChecked = true;
             }
 
             if ((radioButtonCategoryArtistTitle.IsReallyChecked() ||
-                radioButtonCategoryTitleArtist.IsReallyChecked()) &&
+                 radioButtonCategoryTitleArtist.IsReallyChecked()) &&
                 string.IsNullOrEmpty(Settings.Default.Sort_SplitCharacter))
             {
                 radioButtonCategoryName.IsChecked = true;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -162,6 +158,7 @@ namespace PcgTools.Gui
             {
                 SortOrder = PatchSorter.SortOrder.ESortOrderArtistTitleCategory;
             }
+
             if (radioButtonCategoryName.IsReallyChecked())
             {
                 SortOrder = PatchSorter.SortOrder.ESortOrderCategoryName;
@@ -174,10 +171,10 @@ namespace PcgTools.Gui
             {
                 SortOrder = PatchSorter.SortOrder.ESortOrderCategoryArtistTitle;
             }
-            
+
             if (checkBoxRemember.IsReallyChecked())
             {
-                Settings.Default.Sort_Order = (int) SortOrder;
+                Settings.Default.Sort_Order = (int)SortOrder;
                 Settings.Default.Save();
             }
 
@@ -185,9 +182,7 @@ namespace PcgTools.Gui
             Close();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

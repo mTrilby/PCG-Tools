@@ -1,11 +1,16 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
 using Common.Extensions;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
@@ -13,21 +18,19 @@ using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 
+#endregion
+
 namespace PcgTools.ListGenerator
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ListGeneratorProgramUsageList : ListGenerator
     {
         /// <summary>
-        /// 
         /// </summary>
-        Dictionary<Tuple<IProgramBank, IProgram>, LinkedList<IPatch>> _dict;
-
+        private Dictionary<Tuple<IProgramBank, IProgram>, LinkedList<IPatch>> _dict;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="useFileWriter"></param>
         /// <returns></returns>
@@ -57,48 +60,50 @@ namespace PcgTools.ListGenerator
             return OutputFileName;
         }
 
-        
         /// <summary>
-        /// 
         /// </summary>
-        void CreateDictionary()
+        private void CreateDictionary()
         {
             if (_dict == null) throw new ArgumentNullException();
             foreach (var programBank in SelectedProgramBanks)
             {
                 var bank = programBank;
                 foreach (var patch in (from program in programBank.Patches
-                                         where !((IBank) (program.Parent)).IsLoaded || 
-                                         (((IBank) (program.Parent)).IsLoaded && (!IgnoreInitPrograms || !program.IsEmptyOrInit))
-                    select program).Where(program => !IgnoreFirstProgram ||
-                        (PcgMemory.ProgramBanks.BankCollection.IndexOf(bank) != 0) || 
-                        (bank.Patches.IndexOf(program) != 0)).Where(
-                        program => (!PcgMemory.AreFavoritesSupported ||
-                            ((((ProgramBank)(program.Parent)).Type == BankType.EType.Gm) && 
-                            (ListFilterOnFavorites != FilterOnFavorites.Yes)) ||
-                            ((IProgram) program).GetParam(ParameterNames.ProgramParameterName.Favorite) == null) ||
-                            (ListFilterOnFavorites == FilterOnFavorites.All) ||
-                            (((ListFilterOnFavorites == FilterOnFavorites.No) && 
-                            !((IProgram)program).GetParam(ParameterNames.ProgramParameterName.Favorite).Value) || 
-                            ((ListFilterOnFavorites == FilterOnFavorites.Yes) && 
-                            ((IProgram)program).GetParam(ParameterNames.ProgramParameterName.Favorite).Value))))
+                             where !((IBank)program.Parent).IsLoaded ||
+                                   (((IBank)program.Parent).IsLoaded && (!IgnoreInitPrograms || !program.IsEmptyOrInit))
+                             select program).Where(program => !IgnoreFirstProgram ||
+                                                              PcgMemory.ProgramBanks.BankCollection.IndexOf(bank) !=
+                                                              0 ||
+                                                              bank.Patches.IndexOf(program) != 0).Where(
+                             program => !PcgMemory.AreFavoritesSupported ||
+                                        (((ProgramBank)program.Parent).Type == BankType.EType.Gm &&
+                                         ListFilterOnFavorites != FilterOnFavorites.Yes) ||
+                                        ((IProgram)program).GetParam(ParameterNames.ProgramParameterName.Favorite) ==
+                                        null ||
+                                        ListFilterOnFavorites == FilterOnFavorites.All ||
+                                        ((ListFilterOnFavorites == FilterOnFavorites.No &&
+                                          !((IProgram)program).GetParam(ParameterNames.ProgramParameterName.Favorite)
+                                              .Value) ||
+                                         (ListFilterOnFavorites == FilterOnFavorites.Yes &&
+                                          ((IProgram)program).GetParam(ParameterNames.ProgramParameterName.Favorite)
+                                          .Value))))
                 {
-                    var program = (IProgram) patch;
+                    var program = (IProgram)patch;
                     _dict.Add(new Tuple<IProgramBank, IProgram>(programBank, program), new LinkedList<IPatch>());
                 }
             }
         }
 
-
         /// <summary>
-        /// Fills combis. Ignore favorites for combis.
+        ///     Fills combis. Ignore favorites for combis.
         /// </summary>
-        void FillDictionary()
+        private void FillDictionary()
         {
             if (_dict == null) throw new ArgumentNullException();
             FillDictionaryWithCombis();
 
-            if ((PcgMemory.SetLists == null) || !SetListsEnabled || !PcgMemory.SetLists.BankCollection.Any(setList => setList.IsFilled))
+            if (PcgMemory.SetLists == null || !SetListsEnabled ||
+                !PcgMemory.SetLists.BankCollection.Any(setList => setList.IsFilled))
             {
                 return;
             }
@@ -106,9 +111,7 @@ namespace PcgTools.ListGenerator
             FillDictionaryWithSetListSlots();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void FillDictionaryWithCombis()
         {
@@ -123,16 +126,19 @@ namespace PcgTools.ListGenerator
 
                     var combi1 = combi;
                     var bank = combiBank;
-                    foreach (var key in from timbre in ((ICombi) combi).Timbres.TimbresCollection
-                        where !bank.IsLoaded || (bank.IsLoaded && !IgnoreMutedOffTimbres ||
-                                                      (((timbre.GetParam(ParameterNames.TimbreParameterName.Mute) == null) ||
-                                                      !timbre.GetParam(ParameterNames.TimbreParameterName.Mute).Value) &&
-                                                       (new List<string> {"Int", "On", "Both"}.Contains(
-                                                           timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value))))
-                        select new Tuple<IProgramBank, IProgram>(timbre.UsedProgramBank, timbre.UsedProgram)
-                        into key
-                        where _dict.ContainsKey(key) && !_dict[key].Contains(combi1)
-                        select key)
+                    foreach (var key in from timbre in ((ICombi)combi).Timbres.TimbresCollection
+                             where !bank.IsLoaded || ((bank.IsLoaded && !IgnoreMutedOffTimbres) ||
+                                                      ((timbre.GetParam(ParameterNames.TimbreParameterName.Mute) ==
+                                                        null ||
+                                                        !timbre.GetParam(ParameterNames.TimbreParameterName.Mute)
+                                                            .Value) &&
+                                                       new List<string> { "Int", "On", "Both" }.Contains(
+                                                           timbre.GetParam(ParameterNames.TimbreParameterName.Status)
+                                                               .Value)))
+                             select new Tuple<IProgramBank, IProgram>(timbre.UsedProgramBank, timbre.UsedProgram)
+                             into key
+                             where _dict.ContainsKey(key) && !_dict[key].Contains(combi1)
+                             select key)
                     {
                         _dict[key].AddLast(combi);
                     }
@@ -144,41 +150,39 @@ namespace PcgTools.ListGenerator
         {
             for (var setListIndex = 0; setListIndex < 128; setListIndex++)
             {
-                if ((setListIndex < SetListsRangeFrom) ||
-                    (setListIndex > SetListsRangeTo))
+                if (setListIndex < SetListsRangeFrom ||
+                    setListIndex > SetListsRangeTo)
                 {
                     continue;
                 }
 
-                var setList = ((ISetList) PcgMemory.SetLists[setListIndex]);
+                var setList = (ISetList)PcgMemory.SetLists[setListIndex];
                 foreach (var setListSlot in setList.Patches.Where(
-                    setListSlot => setList.IsLoaded && !setListSlot.IsEmptyOrInit))
+                             setListSlot => setList.IsLoaded && !setListSlot.IsEmptyOrInit))
                 {
-                    switch (((ISetListSlot) setListSlot).SelectedPatchType)
+                    switch (((ISetListSlot)setListSlot).SelectedPatchType)
                     {
                         case SetListSlot.PatchType.Program:
                         {
-                            var usedProgramBank = ((ISetListSlot) setListSlot).UsedPatch.Parent as IProgramBank;
+                            var usedProgramBank = ((ISetListSlot)setListSlot).UsedPatch.Parent as IProgramBank;
                             var key = new Tuple<IProgramBank, IProgram>(usedProgramBank,
-                                ((ISetListSlot) setListSlot).UsedPatch as IProgram);
+                                ((ISetListSlot)setListSlot).UsedPatch as IProgram);
 
                             if (_dict.ContainsKey(key) && !_dict[key].Contains(setListSlot))
                             {
                                 _dict[key].AddLast(setListSlot);
                             }
                         }
-                        break;
+                            break;
                     }
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
-        void WriteToFile(TextWriter writer)
+        private void WriteToFile(TextWriter writer)
         {
             string columnText;
             var maxTimbresPerCombi = PrintHeader(writer, out columnText);
@@ -188,9 +192,8 @@ namespace PcgTools.ListGenerator
             PrintFooter(writer, maxTimbresPerCombi, columnText);
         }
 
-
         /// <summary>
-        /// Prints header, find maximum elements for a line (key).
+        ///     Prints header, find maximum elements for a line (key).
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="columnText"></param>
@@ -200,24 +203,25 @@ namespace PcgTools.ListGenerator
             var maxTimbresPerCombi = (from programBank in SelectedProgramBanks
                 from program in programBank.Patches
                 select
-                    new Tuple<IProgramBank, IProgram>(programBank, (IProgram) program)
+                    new Tuple<IProgramBank, IProgram>(programBank, (IProgram)program)
                 into key
                 where
-                    _dict.ContainsKey(key) && (_dict[key].Count > 0)
+                    _dict.ContainsKey(key) && _dict[key].Count > 0
                 select key).Aggregate(
-                    0, (current, key) => Math.Max(current, _dict[key].Count()));
+                0, (current, key) => Math.Max(current, _dict[key].Count()));
 
             columnText = "Used in Combi and Set List Slot IDs"; // Only used for Ascii Table
 
             switch (ListOutputFormat)
             {
                 case OutputFormat.AsciiTable:
-                    writer.WriteLine("+--------+{0}+", new string('-', Math.Max(maxTimbresPerCombi*9, columnText.Length)));
+                    writer.WriteLine("+--------+{0}+",
+                        new string('-', Math.Max(maxTimbresPerCombi * 9, columnText.Length)));
                     writer.WriteLine("|PRG ID  |{0}{1}|", columnText, new string(
                         ' ',
-                        Math.Max(0, maxTimbresPerCombi*9 - columnText.Length)));
+                        Math.Max(0, maxTimbresPerCombi * 9 - columnText.Length)));
                     writer.WriteLine(
-                        "+--------+{0}+", new string('-', Math.Max(maxTimbresPerCombi*9, columnText.Length)));
+                        "+--------+{0}+", new string('-', Math.Max(maxTimbresPerCombi * 9, columnText.Length)));
                     break;
 
                 case OutputFormat.Xml:
@@ -227,18 +231,17 @@ namespace PcgTools.ListGenerator
                     writer.WriteLine("<program_usage_list name=\"Program usage list\" xml:lang=\"en\">");
                     break;
 
-                    //default:
-                    // No action required.
-                    //break;
+                //default:
+                // No action required.
+                //break;
 
-                    // ReSharper restore RedundantStringFormatCall
+                // ReSharper restore RedundantStringFormatCall
             }
+
             return maxTimbresPerCombi;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="maxTimbresPerCombi"></param>
@@ -254,9 +257,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="maxTimbresPerCombi"></param>
@@ -266,8 +267,8 @@ namespace PcgTools.ListGenerator
         private void PrintLine(TextWriter writer, int maxTimbresPerCombi, string columnText, IProgramBank programBank,
             IPatch program)
         {
-            var key = new Tuple<IProgramBank, IProgram>(programBank, (Program) program);
-            if (!_dict.ContainsKey(key) || (_dict[key].Count <= 0))
+            var key = new Tuple<IProgramBank, IProgram>(programBank, (Program)program);
+            if (!_dict.ContainsKey(key) || _dict[key].Count <= 0)
             {
                 return;
             }
@@ -295,16 +296,14 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="maxTimbresPerCombi"></param>
         /// <param name="columnText"></param>
         /// <param name="program"></param>
         /// <param name="key"></param>
-        private void PrintAsciiTableLine(TextWriter writer, int maxTimbresPerCombi, string columnText, IPatch program, 
+        private void PrintAsciiTableLine(TextWriter writer, int maxTimbresPerCombi, string columnText, IPatch program,
             Tuple<IProgramBank, IProgram> key)
         {
             writer.Write("|{0,-8}|", program.Id);
@@ -312,14 +311,13 @@ namespace PcgTools.ListGenerator
             {
                 writer.Write("{0,-8} ", item.Id);
             }
+
 // ReSharper disable RedundantStringFormatCall
             writer.WriteLine(
-                $"{new string(' ', /* ReSharper restore RedundantStringFormatCall */ Math.Max((maxTimbresPerCombi - _dict[key].Count)*9, columnText.Length - _dict[key].Count*9))}|");
+                $"{new string(' ', /* ReSharper restore RedundantStringFormatCall */ Math.Max((maxTimbresPerCombi - _dict[key].Count) * 9, columnText.Length - _dict[key].Count * 9))}|");
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="program"></param>
@@ -331,12 +329,11 @@ namespace PcgTools.ListGenerator
             {
                 writer.Write("{0,-8} ", item.Id);
             }
+
             writer.WriteLine();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="program"></param>
@@ -348,12 +345,11 @@ namespace PcgTools.ListGenerator
             {
                 writer.Write("{0},", item.Id);
             }
+
             writer.WriteLine();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="program"></param>
@@ -376,9 +372,7 @@ namespace PcgTools.ListGenerator
             writer.WriteLine("  </program>");
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="maxTimbresPerCombi"></param>
@@ -389,24 +383,22 @@ namespace PcgTools.ListGenerator
             {
                 case OutputFormat.AsciiTable:
                     writer.WriteLine("+--------+{0}+",
-                        new string('-', Math.Max(maxTimbresPerCombi*9, columnText.Length)));
+                        new string('-', Math.Max(maxTimbresPerCombi * 9, columnText.Length)));
                     break;
 
                 case OutputFormat.Xml:
                     writer.WriteLine("</program_usage_list>");
                     break;
 
-                    //default:
-                    // No action required.
-                    //break;
+                //default:
+                // No action required.
+                //break;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        void WriteXslFile()
+        private void WriteXslFile()
         {
             var builder = new StringBuilder();
             builder.AppendLine("<?xml version=\"1.0\"?>");

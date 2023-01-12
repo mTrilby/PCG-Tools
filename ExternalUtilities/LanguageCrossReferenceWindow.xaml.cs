@@ -1,4 +1,12 @@
-﻿using System.Collections.Generic;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -6,14 +14,16 @@ using System.Text;
 using System.Windows;
 using System.Xml.Linq;
 
+#endregion
+
 namespace ExternalUtilities
 {
     /// <summary>
-    /// Interaction logic for LanguageCrossReferenceWindow.xaml
+    ///     Interaction logic for LanguageCrossReferenceWindow.xaml
     /// </summary>
     public partial class LanguageCrossReferenceWindow : Window
     {
-        private const string ResourcePath = 
+        private const string ResourcePath =
             @"c:\users\michel\OneDrive\pcgtools2013\korgkronostools\pcgtoolsresources\";
 
         // Key: text fragment to translate (keyword)
@@ -45,7 +55,7 @@ namespace ExternalUtilities
         }
 
         /// <summary>
-        /// Not used, but maybe for later; shows all strings and values.
+        ///     Not used, but maybe for later; shows all strings and values.
         /// </summary>
         /// <returns></returns>
         private StringBuilder ShowAllTexts()
@@ -59,26 +69,32 @@ namespace ExternalUtilities
                 {
                     languages.Append(langValue);
                 }
+
                 text.AppendLine(languages.ToString());
             }
+
             return text;
         }
 
         private void CheckLanguages()
         {
-            var cultures = new[] { "", "cs", "de", "el", "es", "fr", "nl", "pl",
-                "pt-BR", "pt-BR", "ru", "tr" }; // Removed: "sr-Latn-RS",
+            var cultures = new[]
+            {
+                "", "cs", "de", "el", "es", "fr", "nl", "pl",
+                "pt-BR", "pt-BR", "ru", "tr"
+            }; // Removed: "sr-Latn-RS",
 
             _warnings.Append($"{"Phrase/Word/Item",-50} ");
-            foreach (string culture in cultures)
+            foreach (var culture in cultures)
             {
                 _warnings.Append($"{(culture == "" ? "English" : culture),-6} ");
             }
+
             _warnings.AppendLine("\n");
-            
+
             var dict = new Dictionary<string, List<bool>>(); // Word -> present[culture]
 
-             // Create word list
+            // Create word list
             for (var cultureIndex = 0; cultureIndex < cultures.Length; cultureIndex++)
             {
                 var culture = cultures[cultureIndex];
@@ -86,13 +102,14 @@ namespace ExternalUtilities
                 var xElement = XDocument.Load(fileName).Root;
                 if (xElement != null)
                     foreach (var key in from elem in xElement.Elements("data")
-                        let xAttribute = elem.Attribute("name")
-                        where xAttribute != null
-                        let key = xAttribute.Value
-                        let element = elem.Element("value")
-                        where element != null
-                        let value = element.Value.Replace("\n", "<NL>")
-                        where !key.StartsWith("___") && !key.StartsWith("String") select key)
+                             let xAttribute = elem.Attribute("name")
+                             where xAttribute != null
+                             let key = xAttribute.Value
+                             let element = elem.Element("value")
+                             where element != null
+                             let value = element.Value.Replace("\n", "<NL>")
+                             where !key.StartsWith("___") && !key.StartsWith("String")
+                             select key)
                     {
                         if (dict.ContainsKey(key))
                         {
@@ -105,6 +122,7 @@ namespace ExternalUtilities
                             {
                                 dict[key].Add(false);
                             }
+
                             dict[key][cultureIndex] = true;
                         }
                     }
@@ -130,8 +148,7 @@ namespace ExternalUtilities
             }
         }
 
-
-        void CreateReferenceLanguageList()
+        private void CreateReferenceLanguageList()
         {
             const string fileName = ResourcePath + "Strings.resx";
             var elements = XDocument.Load(fileName).Root.Elements("data").ToList();
@@ -153,10 +170,10 @@ namespace ExternalUtilities
             }
         }
 
-        void CheckOtherLanguages()
+        private void CheckOtherLanguages()
         {
-
-            var cultures = new[] {"cs", "de", "el", "es", "fr", "nl", "pl", "pt-BR", "pt-BR", "ru", "sr-Latn-RS", "tr"};
+            var cultures = new[]
+                { "cs", "de", "el", "es", "fr", "nl", "pl", "pt-BR", "pt-BR", "ru", "sr-Latn-RS", "tr" };
             foreach (var culture in cultures)
             {
                 var dict = new Dictionary<string, string>();
@@ -183,7 +200,7 @@ namespace ExternalUtilities
                         _warnings.AppendLine(
                             $"Reference language does not contain from culture {culture}, fragment {key} with value {value}");
                     }
-                }    
+                }
 
                 // Check if all English words are translated in culture language.
                 foreach (var key in _referenceTranslations.Keys)

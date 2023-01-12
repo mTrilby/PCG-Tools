@@ -1,12 +1,20 @@
-﻿// (c) 2011 Michel Keijzers
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
+
+#endregion
 
 namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class DrumPatternBanks : Banks<IDrumPatternBank>, IDrumPatternBanks
     {
@@ -15,9 +23,9 @@ namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
         {
         }
 
-
-        protected abstract void CreateBanks();
-        
+        /// <summary>
+        /// </summary>
+        public string Name => "n.a.";
 
         public override void Fill()
         {
@@ -25,34 +33,13 @@ namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
             FillDrumPatterns();
         }
 
-
-        void FillDrumPatterns()
-        {
-            foreach (var bank in BankCollection)
-            {
-                for (var index = 0; index < bank.NrOfPatches; index++)
-                {
-                    bank.CreatePatch(index);
-                }
-            }
-        }
-
-
         /// <summary>
-        /// 
-        /// </summary>
-        public string Name => "n.a.";
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public int Drk2PcgOffset { get; set; }
 
-
         /// <summary>
-        /// Returns the indexToSearch, starting with indexToSearch 0 as first bank, first indexToSearch, 
-        /// and continuing over banks.
+        ///     Returns the indexToSearch, starting with indexToSearch 0 as first bank, first indexToSearch,
+        ///     and continuing over banks.
         /// </summary>
         /// <param name="indexToSearch"></param>
         /// <returns></returns>
@@ -81,9 +68,8 @@ namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
             return null;
         }
 
-
         /// <summary>
-        /// Returns the index from the drum Pattern. -1 if not found.
+        ///     Returns the index from the drum Pattern. -1 if not found.
         /// </summary>
         /// <param name="drumPattern"></param>
         /// <returns></returns>
@@ -109,6 +95,7 @@ namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
                     {
                         return foundIndex;
                     }
+
                     foundIndex++;
                 }
             }
@@ -118,7 +105,20 @@ namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
 
         public IDrumPatternBank GetDrumPatternBankWithPcgId(int pcgId)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        protected abstract void CreateBanks();
+
+        private void FillDrumPatterns()
+        {
+            foreach (var bank in BankCollection)
+            {
+                for (var index = 0; index < bank.NrOfPatches; index++)
+                {
+                    bank.CreatePatch(index);
+                }
+            }
         }
     }
 }

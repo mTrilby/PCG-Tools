@@ -1,17 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.MSpecific.Pcg;
+
+#endregion
 
 namespace PcgTools.Model.MicroStationSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
-    public class MicroStationPcgFileReader: MPcgFileReader
+    public class MicroStationPcgFileReader : MPcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -32,9 +39,6 @@ namespace PcgTools.Model.MicroStationSpecific.Pcg
             currentPcgMemory.PcgChecksumType = PcgMemory.ChecksumType.MicroStation;
         }
 
-        protected override int Dpi1NumberOfDrumPatternsOffset
-        {
-            get { throw new System.NotImplementedException(); }
-        }
+        protected override int Dpi1NumberOfDrumPatternsOffset => throw new NotImplementedException();
     }
 }

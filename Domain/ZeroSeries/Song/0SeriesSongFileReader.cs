@@ -1,27 +1,32 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.MntxSeriesSpecific.Song;
 using PcgTools.Model.ZeroSeries.Synth;
 
+#endregion
+
 namespace PcgTools.Model.ZeroSeries.Song
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ZeroSeriesSongFileReader : MntxSongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
-        public ZeroSeriesSongFileReader(ISongMemory songMemory, byte[] content) 
+        public ZeroSeriesSongFileReader(ISongMemory songMemory, byte[] content)
             : base(songMemory, content)
         {
         }
-
 
         /// <summary>
         /// </summary>

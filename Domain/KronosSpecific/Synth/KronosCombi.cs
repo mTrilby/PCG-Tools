@@ -1,23 +1,28 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Diagnostics;
 using PcgTools.ClipBoard;
 using PcgTools.Model.Common;
-
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.KronosOasysSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.KronosSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KronosCombi : KronosOasysCombi
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiBank"></param>
         /// <param name="index"></param>
@@ -27,9 +32,11 @@ namespace PcgTools.Model.KronosSpecific.Synth
             Timbres = new KronosTimbres(this);
         }
 
+        /// <summary>
+        /// </summary>
+        public static int SizeBetweenCmb2AndCbk2 => 8;
 
         /// <summary>
-        /// 
         /// </summary>
         public override void Clear()
         {
@@ -43,17 +50,14 @@ namespace PcgTools.Model.KronosSpecific.Synth
             RaisePropertyChanged(string.Empty, false);
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
 
-        
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -63,40 +67,39 @@ namespace PcgTools.Model.KronosSpecific.Synth
 
             switch (name)
             {
-            case ParameterNames.CombiParameterName.Category:
+                case ParameterNames.CombiParameterName.Category:
                     parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 4790, 4, 0, false, this);
-                break;
+                    break;
 
-            case ParameterNames.CombiParameterName.SubCategory:
-                parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 4790, 7, 5, false, this);
-                break;
+                case ParameterNames.CombiParameterName.SubCategory:
+                    parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 4790, 7, 5, false, this);
+                    break;
 
-            case ParameterNames.CombiParameterName.Favorite:
-                parameter = BoolParameter.Instance.Set(Root, Root.Content, ByteOffset + 4791, 0, this);
-                break;
+                case ParameterNames.CombiParameterName.Favorite:
+                    parameter = BoolParameter.Instance.Set(Root, Root.Content, ByteOffset + 4791, 0, this);
+                    break;
 
-            case ParameterNames.CombiParameterName.Tempo:
-                parameter = WordParameter.Instance.Set(Root, Root.Content, ByteOffset + 1304, false, 100, this);
-                break;
+                case ParameterNames.CombiParameterName.Tempo:
+                    parameter = WordParameter.Instance.Set(Root, Root.Content, ByteOffset + 1304, false, 100, this);
+                    break;
 
-            case ParameterNames.CombiParameterName.DrumTrackCommonPatternNumber:
-                parameter = WordParameter.Instance.Set(Root, Root.Content, ByteOffset + 1292, true, 1, this);
-                break;
+                case ParameterNames.CombiParameterName.DrumTrackCommonPatternNumber:
+                    parameter = WordParameter.Instance.Set(Root, Root.Content, ByteOffset + 1292, true, 1, this);
+                    break;
 
-            case ParameterNames.CombiParameterName.DrumTrackCommonPatternBank:
-                parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 1294, 1, 0, false, this);
-                break;
+                case ParameterNames.CombiParameterName.DrumTrackCommonPatternBank:
+                    parameter = IntParameter.Instance.Set(Root, Root.Content, ByteOffset + 1294, 1, 0, false, this);
+                    break;
 
-            default:
-                parameter = base.GetParam(name);
-                break;
+                default:
+                    parameter = base.GetParam(name);
+                    break;
             }
+
             return parameter;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="otherPatch"></param>
         /// <param name="includingName"></param>
@@ -107,26 +110,30 @@ namespace PcgTools.Model.KronosSpecific.Synth
             var diffs = base.CalcByteDifferences(otherPatch, includingName, maxDiffs);
 
             // Take CBK2 differences into account.
-            if (((KronosCombiBank)(Parent)).Cbk2PcgOffset != 0)
+            if (((KronosCombiBank)Parent).Cbk2PcgOffset != 0)
             {
                 for (var parameterIndex = 0; parameterIndex < KronosCombiBanks.ParametersInCbk2Chunk; parameterIndex++)
                 {
                     for (var timbre = 0; timbre < Timbres.TimbresCollection.Count; timbre++)
                     {
-                        var patchIndex = ((KronosCombiBank) Parent).GetParameterOffsetInCbk2(Index, timbre, parameterIndex);
-                        var otherPatchIndex = ((KronosCombiBank) otherPatch.Parent).GetParameterOffsetInCbk2(Index, timbre, parameterIndex);
+                        var patchIndex =
+                            ((KronosCombiBank)Parent).GetParameterOffsetInCbk2(Index, timbre, parameterIndex);
+                        var otherPatchIndex =
+                            ((KronosCombiBank)otherPatch.Parent).GetParameterOffsetInCbk2(Index, timbre,
+                                parameterIndex);
 
-                        diffs += (Util.GetInt(PcgRoot.Content, patchIndex, 1) != Util.GetInt(
-                            otherPatch.PcgRoot.Content, otherPatchIndex, 1)) ? 1 : 0;
+                        diffs += Util.GetInt(PcgRoot.Content, patchIndex, 1) != Util.GetInt(
+                            otherPatch.PcgRoot.Content, otherPatchIndex, 1)
+                            ? 1
+                            : 0;
                     }
                 }
             }
+
             return diffs;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="otherPatch"></param>
         /// <param name="includingName"></param>
@@ -140,24 +147,23 @@ namespace PcgTools.Model.KronosSpecific.Synth
             var diffs = base.CalcByteDifferences(otherPatch, includingName, maxDiffs);
 
             // Take CBK2 differences into account.
-            if (((KronosCombiBank)(Parent)).Cbk2PcgOffset != 0)
+            if (((KronosCombiBank)Parent).Cbk2PcgOffset != 0)
             {
                 for (var parameterIndex = 0; parameterIndex < KronosCombiBanks.ParametersInCbk2Chunk; parameterIndex++)
                 {
                     for (var timbre = 0; timbre < Timbres.TimbresCollection.Count; timbre++)
                     {
-                        var patchIndex = ((KronosCombiBank)Parent).GetParameterOffsetInCbk2(Index, timbre, parameterIndex);
-                        diffs += (Util.GetInt(PcgRoot.Content, patchIndex, 1) != otherCombi.KronosOs1516Content[parameterIndex]) ? 1 : 0;
+                        var patchIndex =
+                            ((KronosCombiBank)Parent).GetParameterOffsetInCbk2(Index, timbre, parameterIndex);
+                        diffs += Util.GetInt(PcgRoot.Content, patchIndex, 1) !=
+                                 otherCombi.KronosOs1516Content[parameterIndex]
+                            ? 1
+                            : 0;
                     }
                 }
             }
+
             return diffs;
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static int SizeBetweenCmb2AndCbk2 => 8;
     }
 }

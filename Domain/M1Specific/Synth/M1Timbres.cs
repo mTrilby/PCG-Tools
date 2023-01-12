@@ -1,24 +1,23 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.M1Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public sealed class M1Timbres : MntxTimbres
     {
         /// <summary>
-        /// 
-        /// </summary>
-        static int TimbresOffsetConstant => 36;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         public M1Timbres(ICombi combi)
@@ -30,9 +29,11 @@ namespace PcgTools.Model.M1Specific.Synth
             }
         }
 
+        /// <summary>
+        /// </summary>
+        private static int TimbresOffsetConstant => 36;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -40,6 +41,5 @@ namespace PcgTools.Model.M1Specific.Synth
         {
             return new M1Timbre(this, index);
         }
-
     }
 }

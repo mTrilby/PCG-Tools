@@ -1,13 +1,18 @@
-﻿namespace PcgTools.Model.Common.Synth.Meta
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+namespace PcgTools.Model.Common.Synth.Meta
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class BankType
     {
         /// <summary>
-        /// Used for programs, combis, set list slots etc.
-        /// Gm is only used for programs.
+        ///     Used for programs, combis, set list slots etc.
+        ///     Gm is only used for programs.
         /// </summary>
         public enum EType
         {

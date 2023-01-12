@@ -1,19 +1,25 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.File;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.KromeSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.KromeSpecific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KromeSongFileReader : SongFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="songMemory"></param>
         /// <param name="content"></param>
@@ -22,14 +28,10 @@ namespace PcgTools.Model.KromeSpecific.Song
         {
         }
 
-
-
-
         /// <summary>
-        /// Number of bytes in a song track (equal to length of a combi timbre).
+        ///     Number of bytes in a song track (equal to length of a combi timbre).
         /// </summary>
         public override int SongTrackByteLength => 112;
-
 
         /// <summary>
         /// </summary>

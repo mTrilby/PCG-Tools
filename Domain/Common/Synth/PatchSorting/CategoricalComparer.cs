@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,110 +17,81 @@ using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 using PcgTools.Model.Common.Synth.PatchWaveSequences;
 
+#endregion
+
 namespace PcgTools.Model.Common.Synth.PatchSorting
 {
     /// <summary>
-    /// Set list slots are sorted by ListSubType/bank/index.
-    ///  but have no (Sub)Category) affects this CategoricalComparer class. Add a guard to return 
-    /// immediately in those cases?
-    /// Drum kits and wave sequences do not have categories, and are sorted by name.
+    ///     Set list slots are sorted by ListSubType/bank/index.
+    ///     but have no (Sub)Category) affects this CategoricalComparer class. Add a guard to return
+    ///     immediately in those cases?
+    ///     Drum kits and wave sequences do not have categories, and are sorted by name.
     /// </summary>
     internal sealed class CategoricalComparer : Comparer<IPatch>
     {
         /// <summary>
-        /// 
         /// </summary>
-        private static CategoricalComparer _instance = new CategoricalComparer();
-
+        private static readonly CategoricalComparer _instance = new();
 
         /// <summary>
-        /// 
-        /// </summary>
-        public static CategoricalComparer Instance => _instance;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         private static int _p1Category;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private static int _p2Category;
-        
 
         /// <summary>
-        /// 
         /// </summary>
         private static string _p1CategoryName;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private static string _p2CategoryName;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private static int _p1SubCategory;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private static int _p2SubCategory;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private static string _p1SubCategoryName;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private static string _p2SubCategoryName;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private static bool _hasSubCategories;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private static bool _hasCategoryNames;
 
+        /// <summary>
+        /// </summary>
+        private static IPatch _p1;
 
         /// <summary>
-        /// 
+        /// </summary>
+        private static IPatch _p2;
+
+        /// <summary>
         /// </summary>
         private CategoricalComparer()
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        private static IPatch _p1;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private static IPatch _p2;
-
+        public static CategoricalComparer Instance => _instance;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -153,9 +130,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             return compare;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -168,12 +143,11 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             _p2 = p2;
 
             _hasSubCategories = p1.PcgRoot.HasSubCategories;
-            _hasCategoryNames = (p1.PcgRoot.Global != null);
+            _hasCategoryNames = p1.PcgRoot.Global != null;
         }
 
-
         /// <summary>
-        /// Categories are equal, check sub categories if present.
+        ///     Categories are equal, check sub categories if present.
         /// </summary>
         /// <returns></returns>
         private static int HandleCategoriesEqualSubCategories()
@@ -191,9 +165,8 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             return _p1SubCategory > _p2SubCategory ? 1 : 0;
         }
 
-
         /// <summary>
-        /// No category (nor sub category) names.
+        ///     No category (nor sub category) names.
         /// </summary>
         /// <returns></returns>
         private static int HandleNoCategoryNoSubCategoryName()
@@ -206,6 +179,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
                         return -1;
                     }
                 }
+
                 if (_p1Category > _p2Category)
                 {
                     {
@@ -214,13 +188,12 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
                 }
             }
 
-           return 0;
+            return 0;
         }
 
-
         /// <summary>
-        /// Both p1 and p2 are no set list slots.
-        /// SortMethod on category name if available.
+        ///     Both p1 and p2 are no set list slots.
+        ///     SortMethod on category name if available.
         /// </summary>
         /// <returns></returns>
         private static int HandleBothNoSetListSlot()
@@ -256,14 +229,12 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             return 0;
         }
 
-
         /// <summary>
-        /// If one of the patches does not have a category it is 'last'. 
+        ///     If one of the patches does not have a category it is 'last'.
         /// </summary>
         /// <returns></returns>
-        private static int HandleOnlyOneHasCategory()        
+        private static int HandleOnlyOneHasCategory()
         {
-
             var p1HasCategory = PatchHasCategory(_p1);
             var p2HasCategory = PatchHasCategory(_p2);
 
@@ -287,26 +258,23 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             return 0;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         private static bool PatchHasCategory(IPatch patch)
         {
-            return ((patch is Program) && (patch.PcgRoot.HasProgramCategories)) ||
-                   ((patch is Combi) && (patch.PcgRoot.HasCombiCategories));
+            return (patch is Program && patch.PcgRoot.HasProgramCategories) ||
+                   (patch is Combi && patch.PcgRoot.HasCombiCategories);
         }
 
-
         /// <summary>
-        /// Check for GM programs (always come last but before set list slots).
+        ///     Check for GM programs (always come last but before set list slots).
         /// </summary>
         /// <returns></returns>
         private static int HandleGmPrograms()
         {
-            var p1IsGm = (_p1 is Program) && (((IBank) (_p1).Parent).Type == BankType.EType.Gm);
-            var p2IsGm = (_p2 is Program) && (((IBank) (_p2).Parent).Type == BankType.EType.Gm);
+            var p1IsGm = _p1 is Program && ((IBank)_p1.Parent).Type == BankType.EType.Gm;
+            var p2IsGm = _p2 is Program && ((IBank)_p2.Parent).Type == BankType.EType.Gm;
 
             if (p1IsGm)
             {
@@ -321,16 +289,15 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             return 0;
         }
 
-
         /// <summary>
-        /// Handle drum kits, wave sequences and set list slot (do not have categories).
+        ///     Handle drum kits, wave sequences and set list slot (do not have categories).
         /// </summary>
         /// <returns></returns>
         private static int HandlePatchesWithoutCategories()
         {
-            if ((_p1 is DrumKit) || (_p1 is DrumPattern) || (_p1 is WaveSequence) || (_p1 is SetListSlot))
+            if (_p1 is DrumKit || _p1 is DrumPattern || _p1 is WaveSequence || _p1 is SetListSlot)
             {
-                if ((_p2 is DrumKit) || (_p2 is DrumPattern) || (_p2 is WaveSequence) || (_p2 is SetListSlot))
+                if (_p2 is DrumKit || _p2 is DrumPattern || _p2 is WaveSequence || _p2 is SetListSlot)
                 {
                     return 0;
                 }
@@ -338,7 +305,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
                 return 1;
             }
 
-            if ((_p2 is DrumKit) || (_p2 is DrumPattern) || (_p2 is WaveSequence) || (_p2 is SetListSlot))
+            if (_p2 is DrumKit || _p2 is DrumPattern || _p2 is WaveSequence || _p2 is SetListSlot)
             {
                 return -1;
             }
@@ -346,9 +313,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             return 0;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <returns></returns>
@@ -356,16 +321,17 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
         {
             if (p1 is IProgram)
             {
-                _p1Category = ((IProgram) p1).GetParam(ParameterNames.ProgramParameterName.Category).Value;
-            } else if (p1 is ICombi)
+                _p1Category = ((IProgram)p1).GetParam(ParameterNames.ProgramParameterName.Category).Value;
+            }
+            else if (p1 is ICombi)
             {
                 _p1Category = ((ICombi)p1).GetParam(ParameterNames.CombiParameterName.Category).Value;
             }
-            
+
             if (_hasCategoryNames)
             {
                 var program = p1 as Program;
-                _p1CategoryName = program != null ? program.CategoryAsName : ((Combi) p1).CategoryAsName;
+                _p1CategoryName = program != null ? program.CategoryAsName : ((Combi)p1).CategoryAsName;
             }
 
             if (_hasSubCategories)
@@ -382,14 +348,12 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
                 if (_hasCategoryNames)
                 {
                     var program = p1 as Program;
-                    _p1SubCategoryName = program != null ? program.SubCategoryAsName : ((Combi) p1).SubCategoryAsName;
+                    _p1SubCategoryName = program != null ? program.SubCategoryAsName : ((Combi)p1).SubCategoryAsName;
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p2"></param>
         /// <returns></returns>
@@ -407,7 +371,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             if (_hasCategoryNames)
             {
                 var program = p2 as Program;
-                _p2CategoryName = program != null ? program.CategoryAsName : ((Combi) p2).CategoryAsName;
+                _p2CategoryName = program != null ? program.CategoryAsName : ((Combi)p2).CategoryAsName;
             }
 
             if (_hasSubCategories)
@@ -424,7 +388,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
                 if (_hasCategoryNames)
                 {
                     var program = p2 as Program;
-                    _p2SubCategoryName = program != null ? program.SubCategoryAsName : ((Combi) p2).SubCategoryAsName;
+                    _p2SubCategoryName = program != null ? program.SubCategoryAsName : ((Combi)p2).SubCategoryAsName;
                 }
             }
         }

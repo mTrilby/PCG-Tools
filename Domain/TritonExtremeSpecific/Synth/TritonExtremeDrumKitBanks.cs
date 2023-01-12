@@ -1,19 +1,24 @@
-﻿
+﻿#region copyright
 
-// (c) 2011 Michel Keijzers
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 
+#endregion
+
 namespace PcgTools.Model.TritonExtremeSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonExtremeDrumKitBanks : DrumKitBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public TritonExtremeDrumKitBanks(IPcgMemory pcgMemory)
@@ -33,7 +38,7 @@ namespace PcgTools.Model.TritonExtremeSpecific.Synth
             // Sorry but I could not do better than this at the moment, the Triton Drumkit banks are very differently organized...
 
             foreach (var id in new[] { "A/B", "H", "I", "J", "K", "L", "M", "N" })
-            
+
             {
                 Add(new TritonExtremeDrumKitBank(this, BankType.EType.Int, id, -1));
             }

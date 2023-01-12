@@ -1,19 +1,23 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.MicroKorgXlSpecific.Synth;
 
+#endregion
 
 namespace PcgTools.Model.MicroKorgXlSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MicroKorgXlMkxlPProgMemory : MkxlAllMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public MicroKorgXlMkxlPProgMemory(string fileName)

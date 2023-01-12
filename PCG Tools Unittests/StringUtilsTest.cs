@@ -1,5 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using Common.Extensions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
@@ -56,7 +66,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(0, "ABA".CountCharsAroundIndex(2, 'A'));
         }
 
-
         [TestMethod]
         public void Expand0()
         {
@@ -80,8 +89,5 @@ namespace PCG_Tools_Unittests
         {
             Assert.AreEqual("test Tes T", "testTesT".Expand());
         }
-
-
-
     }
 }

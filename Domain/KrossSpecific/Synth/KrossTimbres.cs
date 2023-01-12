@@ -1,24 +1,23 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.MSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.KrossSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public sealed class KrossTimbres : MTimbres
     {
         /// <summary>
-        /// 
-        /// </summary>
-        static int TimbresOffsetConstant => 1276;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         public KrossTimbres(Combi combi)
@@ -30,9 +29,11 @@ namespace PcgTools.Model.KrossSpecific.Synth
             }
         }
 
+        /// <summary>
+        /// </summary>
+        private static int TimbresOffsetConstant => 1276;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -40,6 +41,5 @@ namespace PcgTools.Model.KrossSpecific.Synth
         {
             return new KrossTimbre(this, index);
         }
-
     }
 }

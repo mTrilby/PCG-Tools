@@ -1,34 +1,38 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+#endregion
+
 namespace PcgTools.Model.MicroKorgXlSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MicroKorgXlProgram : Program
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
         public MicroKorgXlProgram(IProgramBank programBank, int index)
             : base(programBank, index)
         {
-            Id = $"{programBank.Id}{index/8 + 1}{index%8 + 1}";
+            Id = $"{programBank.Id}{index / 8 + 1}{index % 8 + 1}";
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override string Name
         {
-            get { return GetChars(0, MaxNameLength); }
+            get => GetChars(0, MaxNameLength);
 
             set
             {
@@ -40,21 +44,16 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Synth
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override int MaxNameLength => 8;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public override bool IsEmptyOrInit => ((Name == string.Empty) || (Name.Contains("Init") && Name.Contains("Prog")));
-
+        public override bool IsEmptyOrInit => Name == string.Empty || (Name.Contains("Init") && Name.Contains("Prog"));
 
         /// <summary>
-        /// As overridden, but without changing genre/category (is fixed in MicroKorg XL).
+        ///     As overridden, but without changing genre/category (is fixed in MicroKorg XL).
         /// </summary>
         public override void Clear()
         {
@@ -62,17 +61,14 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Synth
             RaisePropertyChanged(string.Empty, false);
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -97,12 +93,11 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Synth
                 default:
                     throw new ApplicationException("Illegal case");
             }
+
             return parameter;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -113,11 +108,11 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Synth
             switch (type)
             {
                 case FixedParameter.EType.Genre:
-                    value = Index/8;
+                    value = Index / 8;
                     break;
 
                 case FixedParameter.EType.Category:
-                    value = Index%8;
+                    value = Index % 8;
                     break;
 
                 default:

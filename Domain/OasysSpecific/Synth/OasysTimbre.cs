@@ -1,25 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.KronosOasysSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.OasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class OasysTimbre : KronosOasysTimbre
     {
         /// <summary>
-        /// 
-        /// </summary>
-        static int TimbresSizeConstant => 186;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="index"></param>
@@ -28,9 +27,11 @@ namespace PcgTools.Model.OasysSpecific.Synth
         {
         }
 
+        /// <summary>
+        /// </summary>
+        private static int TimbresSizeConstant => 186;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -44,6 +45,7 @@ namespace PcgTools.Model.OasysSpecific.Synth
                     parameter = base.GetParam(name);
                     break;
             }
+
             return parameter;
         }
     }

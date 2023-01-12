@@ -1,19 +1,24 @@
-﻿
+﻿#region copyright
 
-// (c) 2011 Michel Keijzers
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 
+#endregion
+
 namespace PcgTools.Model.M50Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M50DrumKitBanks : DrumKitBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public M50DrumKitBanks(IPcgMemory pcgMemory)
@@ -21,9 +26,7 @@ namespace PcgTools.Model.M50Specific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {

@@ -1,18 +1,28 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.IO;
 using System.Text;
 using System.Windows;
 
+#endregion
+
 namespace ExternalUtilities
 {
     /// <summary>
-    /// Interaction logic for NumberOfCodeLinesWindow.xaml
+    ///     Interaction logic for NumberOfCodeLinesWindow.xaml
     /// </summary>
     public partial class NumberOfCodeLinesWindow : Window
     {
         private const string ProjectFolder = @"C:/Users/Michel/OneDrive/PcgTools2013";
 
-        private StringBuilder output = new StringBuilder();
+        private readonly StringBuilder output = new();
 
         public NumberOfCodeLinesWindow()
         {
@@ -23,7 +33,7 @@ namespace ExternalUtilities
         {
             try
             {
-               IterateThroughFolder(ProjectFolder, 0, 0);
+                IterateThroughFolder(ProjectFolder, 0, 0);
             }
             catch (Exception)
             {
@@ -33,7 +43,6 @@ namespace ExternalUtilities
 
             TextBoxOutput.Text = output.ToString();
         }
-
 
         private int IterateThroughFolder(string folder, int level, int numberOfLines)
         {
@@ -49,7 +58,8 @@ namespace ExternalUtilities
                 {
                     var lineCount = ReadLineCount(file);
                     numberOfLinesInFolder += lineCount;
-                    output.AppendFormat("{0}{1,-120}{2,8}\n", indentation, file.Remove(0, ProjectFolder.Length + 1), lineCount);
+                    output.AppendFormat("{0}{1,-120}{2,8}\n", indentation, file.Remove(0, ProjectFolder.Length + 1),
+                        lineCount);
                 }
             }
 
@@ -62,8 +72,8 @@ namespace ExternalUtilities
                     numberOfLinesInFolder += IterateThroughFolder(subFolder, level + 1, numberOfLinesInFolder);
                 }
             }
-            
-            output.AppendFormat("{0}Total number of lines in this folder and Total:{1}{2} / {3}\n", 
+
+            output.AppendFormat("{0}Total number of lines in this folder and Total:{1}{2} / {3}\n",
                 indentation, new string(' ', 85), numberOfLinesInFolder, numberOfLines + numberOfLinesInFolder);
 
             return numberOfLinesInFolder;
@@ -78,7 +88,7 @@ namespace ExternalUtilities
                 subFolder != @"\Debug" &&
                 subFolder != @"\Documentation" &&
                 subFolder != @"\Extended WPF Toolkit Binaries" &&
-                subFolder != @"\Installation\Installation"&& 
+                subFolder != @"\Installation\Installation" &&
                 subFolder != @"\KorgKronosTools\Help\External Links" &&
                 subFolder != @"\KorgKronosTools\Gui\Images" &&
                 subFolder != @"\KorgKronosTools\Gui\Tool Bar Icons" &&
@@ -92,7 +102,6 @@ namespace ExternalUtilities
                 subFolder != @"\_Website\Counters" &&
                 subFolder != @"\_Website\Files" &&
                 subFolder != @"\_Website\Pictures" &&
-
                 !subFolder.EndsWith(@"\bin") && // Generic
                 !subFolder.EndsWith(@"\obj"); // Generic
         }
@@ -107,7 +116,7 @@ namespace ExternalUtilities
                    file.EndsWith(".DotSettings") ||
                    file.EndsWith(".pfx") ||
                    file.EndsWith(".isl") || // Installer
-                   file.EndsWith(".isproj") ||  // Installer
+                   file.EndsWith(".isproj") || // Installer
                    file.EndsWith(".psess") ||
                    file.EndsWith(".ReSharper") ||
                    file.EndsWith(".testsettings") ||
@@ -117,13 +126,9 @@ namespace ExternalUtilities
                    file.EndsWith(".css");
         }
 
-
         private int ReadLineCount(string file)
         {
-
             return File.ReadAllLines(file).Length;
         }
-
-        
     }
 }

@@ -1,40 +1,40 @@
-﻿using Common.Utils;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using Common.Utils;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Mvvm;
+
+#endregion
 
 namespace PcgTools.Model.Common.Synth.NewParameters
 {
     /// <summary>
-    /// 
     /// </summary>
     public class IntParameterBitsInByte : ObservableObject, IIntParameter
     {
         /// <summary>
-        /// 
-        /// </summary>
-        private readonly IPatch _patch;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         private readonly int _byteOffset;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private readonly int _highBit;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private readonly int _lowBit;
 
+        /// <summary>
+        /// </summary>
+        private readonly IPatch _patch;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <param name="patch"></param>
@@ -43,7 +43,7 @@ namespace PcgTools.Model.Common.Synth.NewParameters
         /// <param name="lowBit"></param>
         /// <param name="minRange"></param>
         /// <param name="maxRange"></param>
-        public IntParameterBitsInByte(string name, 
+        public IntParameterBitsInByte(string name,
             IPatch patch, int byteOffset, int highBit, int lowBit, int minRange, int maxRange)
         {
             Name = Name;
@@ -55,13 +55,11 @@ namespace PcgTools.Model.Common.Synth.NewParameters
             MaxRange = maxRange;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int Value
         {
-            get { return BitsUtil.GetBits(_patch.Root.Content, _byteOffset, _highBit, _lowBit); }
+            get => BitsUtil.GetBits(_patch.Root.Content, _byteOffset, _highBit, _lowBit);
 
             set
             {
@@ -69,27 +67,21 @@ namespace PcgTools.Model.Common.Synth.NewParameters
                 {
                     _patch.Root.IsDirty = true;
                     BitsUtil.SetBits(_patch.Root.Content, _byteOffset, _highBit, _lowBit, value);
-                    _patch.RaisePropertyChanged(Name, false); 
+                    _patch.RaisePropertyChanged(Name, false);
                 }
             }
         }
 
+        /// <summary>
+        /// </summary>
+        public string Name { get; }
 
         /// <summary>
-        /// 
         /// </summary>
-        public string Name { get; private set; }
-
+        public int MinRange { get; }
 
         /// <summary>
-        /// 
         /// </summary>
-        public int MinRange { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int MaxRange { get; private set; }
+        public int MaxRange { get; }
     }
 }

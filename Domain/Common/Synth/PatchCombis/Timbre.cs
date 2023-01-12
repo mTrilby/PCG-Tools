@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.ComponentModel;
@@ -17,72 +23,29 @@ using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Mvvm;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools.Model.Common.Synth.PatchCombis
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class Timbre : ObservableObject, ITimbre
     {
         /// <summary>
-        /// 
-        /// </summary>
-        private int _index;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Index
-        {
-            get { return _index;  }
-            set
-            {
-                _index = value;
-                RefillColumns();
-            }
-        }
-
-
-        /// <summary>
-        /// Used for UI control binding for selections.
-        /// </summary>
-        bool _isSelected;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool IsSelected
-        {
-            get { return _isSelected; }
-            set
-            {
-                if (_isSelected != value)
-                {
-                    _isSelected = value;
-                    RaisePropertyChanged("IsSelected");
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         private readonly ITimbres _timbres;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public int TimbresSize { get; set; }
-
+        private int _index;
 
         /// <summary>
-        /// 
+        ///     Used for UI control binding for selections.
+        /// </summary>
+        private bool _isSelected;
+
+        /// <summary>
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="index"></param>
@@ -97,14 +60,343 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             ByteOffset = timbres.ByteOffset + index * timbresSize;
         }
 
+        /// <summary>
+        /// </summary>
+        protected ICombi Combi => (ICombi)Parent.Parent;
 
         /// <summary>
-        /// 
+        /// </summary>
+        public bool HasMidiChannelGch
+        {
+            get
+            {
+                var param = GetParam(ParameterNames.TimbreParameterName.MidiChannel);
+                return param != null && param.Value == ParameterValues.MidiChannelGch;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        protected PcgMemory PcgRoot => (PcgMemory)Root;
+
+        /// <summary>
+        /// </summary>
+        protected virtual int UsedProgramBankId => Combi.PcgRoot.Content[TimbresOffset + 1];
+
+        /// <summary>
+        /// </summary>
+        protected virtual int UsedProgramId => Combi.PcgRoot.Content[TimbresOffset];
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        private bool IsGmTimbre => ((ProgramBank)UsedProgram.Parent).Type == BankType.EType.Gm;
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public virtual string ColumnIndex => (Index + 1).ToString(CultureInfo.InvariantCulture);
+
+        /// <summary>
+        /// </summary>
+        public virtual int ProgramRawIndex => throw new ApplicationException("Not supported");
+
+        /// <summary>
+        /// </summary>
+        public virtual int ProgramRawBankIndex => throw new ApplicationException("Not supported");
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnCategory
+        {
+            get
+            {
+                var usedProgram = UsedProgram;
+                return usedProgram == null ? Strings.Unknown : UsedProgram.CategoryAsName;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnSubCategory
+        {
+            get
+            {
+                var usedProgram = UsedProgram;
+                return usedProgram == null ? Strings.Unknown : UsedProgram.SubCategoryAsName;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnVolume => (string)GetParam(ParameterNames.TimbreParameterName.Volume).Value.ToString();
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnStatus => GetParam(ParameterNames.TimbreParameterName.Status).Value;
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnMute => GetParam(ParameterNames.TimbreParameterName.Mute) == null
+            ? "-"
+            : ((bool)GetParam(ParameterNames.TimbreParameterName.Mute).Value).ToYesNo();
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnPriority => GetParam(ParameterNames.TimbreParameterName.Priority) == null
+            ? "-"
+            : ((bool)GetParam(ParameterNames.TimbreParameterName.Priority).Value).ToYesNo();
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnMidiChannel => GetParam(ParameterNames.TimbreParameterName.MidiChannel) == null
+            ? "-"
+            : ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.MidiChannel,
+                (int)GetParam(ParameterNames.TimbreParameterName.MidiChannel).Value);
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnKeyZone => string.Format(
+            "{0}~{1}",
+            ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.BottomKey,
+                GetParam(ParameterNames.TimbreParameterName.BottomKey).Value),
+            ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.TopKey,
+                GetParam(ParameterNames.TimbreParameterName.TopKey).Value));
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnVelocityZone => string.Format("{0}~{1}",
+            (string)GetParam(ParameterNames.TimbreParameterName.BottomVelocity).Value.ToString(),
+            GetParam(ParameterNames.TimbreParameterName.TopVelocity).Value.ToString());
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public virtual string ColumnOscMode => (string)GetParam(ParameterNames.TimbreParameterName.OscMode).Value;
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public virtual string ColumnOscSelect => (string)GetParam(ParameterNames.TimbreParameterName.OscSelect).Value;
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnTranspose => (string)ParameterValues.GetStringValue(
+            ParameterNames.TimbreParameterName.Transpose,
+            GetParam(ParameterNames.TimbreParameterName.Transpose).Value);
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public string ColumnDetune => (string)
+            ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.Detune,
+                GetParam(ParameterNames.TimbreParameterName.Detune).Value);
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public virtual string ColumnPortamento
+        {
+            get
+            {
+                var parameter = GetParam(ParameterNames.TimbreParameterName.Portamento);
+                return parameter == null
+                    ? "-"
+                    : (string)ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.Portamento,
+                        parameter.Value);
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        public virtual string ColumnBendRange => (string)
+            ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.BendRange,
+                GetParam(ParameterNames.TimbreParameterName.BendRange).Value);
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        private string CategoryAsName
+        {
+            get
+            {
+                // If the program is a GM patch, it is unknown what the category is since GM program parameters are unknown.
+                if (UsedProgramBank == null || UsedProgramBank.Type == BankType.EType.Gm)
+                {
+                    //ColumnCategory = "(unknown)";
+                    return UsedProgram.SubCategoryAsName;
+                }
+
+                // Use the global setting, if not available, check the Master PCG file, else use just the number.
+                var global = FindGlobal();
+
+                // Return either the value if no global/Master file pressent otherwise the name.
+                var category = global == null
+                    ? UsedProgram.GetParam(ParameterNames.ProgramParameterName.Category).Value.ToString()
+                    : global.GetCategoryName(UsedProgram);
+
+                return category;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        private string SubCategoryAsName
+        {
+            get
+            {
+                // If the model does not support sub categories, return an empty string.
+                if (!PcgRoot.HasSubCategories)
+                {
+                    return UsedProgram.SubCategoryAsName;
+                }
+
+                // If the program is a GM patch, it is unknown what the category is since GM program parameters are unknown.
+                if (UsedProgramBank == null || UsedProgramBank.Type == BankType.EType.Gm)
+                {
+                    return "(unknown)";
+                }
+
+                // Use the global setting, if not available, check the Master PCG file, else use just the number.
+                var global = FindGlobal();
+
+                // Return either the value if no global/Master file pressent otherwise the name.
+                return global == null
+                    ? UsedProgram.GetParam(ParameterNames.ProgramParameterName.SubCategory).Value.ToString()
+                    : global.GetSubCategoryName(UsedProgram);
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Local
+        private string ProgramName
+        {
+            get
+            {
+                if (UsedProgram == null)
+                {
+                    return "(unknown)";
+                }
+
+                if (UsedProgram.ByteOffset == 0)
+                {
+                    // Find master PCG memory (except when file is master file itself).
+                    var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(Root.Model);
+                    if (masterPcgMemory != null && masterPcgMemory.FileName != Root.FileName)
+                    {
+                        // Iterate through bank IDs.
+                        var masterBank =
+                            masterPcgMemory.ProgramBanks.BankCollection.FirstOrDefault(bank =>
+                                bank.Id == UsedProgramBank.Id);
+                        if (masterBank != null)
+                        {
+                            var masterProgram = masterBank[UsedProgram.Index];
+                            return masterProgram.Name;
+                        }
+
+                        // Program not present in master file either.
+                        return "(unknown)";
+                    }
+
+                    // NO master file present.
+                    return "(unknown)";
+                }
+
+                // Program available in PCG file.
+                return UsedProgram.Name;
+            }
+        }
+
+        /// <summary>
+        ///     Returns true if the timbre has the drum category (actual string depends per workstation model,
+        ///     but since user categories are possible, 'drum' case insensitive should be part of the category name.
+        /// </summary>
+        // ReSharper disable once UnusedMember.Global
+        public bool HasDrumCategory
+        {
+            get
+            {
+                var usedProgram = UsedProgram;
+                if (usedProgram != null)
+                {
+                    var category = usedProgram.GetParam(ParameterNames.ProgramParameterName.Category);
+                    return category != null && category.Value.ToString().ToUpper().Contains("DRUM");
+                }
+
+                return false; // No program
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public int Index
+        {
+            get => _index;
+            set
+            {
+                _index = value;
+                RefillColumns();
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                if (_isSelected != value)
+                {
+                    _isSelected = value;
+                    RaisePropertyChanged("IsSelected");
+                }
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public int TimbresSize { get; set; }
+
+        /// <summary>
         /// </summary>
         public void SetNotifications()
         {
             var masterFile = MasterFiles.MasterFiles.Instances.FindMasterFile(Root.Model);
-            if ((masterFile != null) && !PcgRoot.FileName.IsEqualFileAs(masterFile.FileName))
+            if (masterFile != null && !PcgRoot.FileName.IsEqualFileAs(masterFile.FileName))
             {
                 masterFile.PropertyChanged += OnMasterPcgFilePropertyChanged;
             }
@@ -112,15 +404,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             PcgRoot.PropertyChanged += OnPcgRootPropertyChanged;
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        protected ICombi Combi => (ICombi) (Parent.Parent);
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -163,13 +447,11 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             return parameter;
         }
 
-
         // ReSharper disable once UnusedMember.Global
         public int GetInt(int offset, int length)
         {
-            return (PcgRoot.Content == null) ? 0 : Util.GetInt(PcgRoot.Content, ByteOffset + offset, length);
+            return PcgRoot.Content == null ? 0 : Util.GetInt(PcgRoot.Content, ByteOffset + offset, length);
         }
-
 
         // ReSharper disable once UnusedMember.Global
         public void SetInt(int offset, int length, int value)
@@ -177,52 +459,20 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             Util.SetInt(PcgRoot, PcgRoot.Content, ByteOffset + offset, length, value);
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool HasMidiChannelGch
-        {
-            get
-            {
-                var param = GetParam(ParameterNames.TimbreParameterName.MidiChannel);
-                return ((param != null) && (param.Value == ParameterValues.MidiChannelGch)); 
-            }
-        }
-
-
-        public virtual IMemory Root => (IMemory) 
+        public virtual IMemory Root => (IMemory)
             (_timbres is SongTimbres ? _timbres.Parent.Parent : _timbres.Parent.Parent.Parent.Parent);
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected PcgMemory PcgRoot => (PcgMemory) Root;
-
 
         // INavigable
 
         /// <summary>
-        /// 
         /// </summary>
         public virtual INavigable Parent => _timbres;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int ByteOffset { get; set; }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        protected virtual int UsedProgramBankId => Combi.PcgRoot.Content[TimbresOffset + 1];
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public virtual IProgramBank UsedProgramBank
         {
@@ -230,7 +480,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             {
                 // If Combi.Id seems to be null, check in the call stack if bank.IsWritable() should be added.
                 var pcgData = Combi.PcgRoot.Content;
-                return pcgData == null ? null : (IProgramBank) (PcgRoot.ProgramBanks.GetBankWithPcgId(UsedProgramBankId));
+                return pcgData == null ? null : (IProgramBank)PcgRoot.ProgramBanks.GetBankWithPcgId(UsedProgramBankId);
             }
             protected set
             {
@@ -240,15 +490,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             }
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        protected virtual int UsedProgramId => Combi.PcgRoot.Content[TimbresOffset];
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public virtual IProgram UsedProgram
         {
@@ -272,32 +514,31 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                     return null;
                 }
 
-                var program = (Program) UsedProgramBank[programId];
-                if (!UsedProgramBank.IsWritable && ((ProgramBank) (program.Bank)).Type != BankType.EType.Gm)
+                var program = (Program)UsedProgramBank[programId];
+                if (!UsedProgramBank.IsWritable && ((ProgramBank)program.Bank).Type != BankType.EType.Gm)
                 {
                     // Try to find it in the master file.
                     var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(Root.Model);
-                    if ((masterPcgMemory != null) && (masterPcgMemory.FileName != Root.FileName))
+                    if (masterPcgMemory != null && masterPcgMemory.FileName != Root.FileName)
                     {
                         var programBank = masterPcgMemory.ProgramBanks.BankCollection.FirstOrDefault(
-                            item => (item.PcgId == UsedProgramBank.PcgId) && item.IsFilled);
+                            item => item.PcgId == UsedProgramBank.PcgId && item.IsFilled);
                         return programBank == null ? null : programBank[programId] as Program;
                     }
                 }
+
                 return program;
             }
             set
             {
                 Combi.PcgRoot.Content[TimbresOffset] = (byte)value.Index;
-                UsedProgramBank = (ProgramBank) value.Parent;
+                UsedProgramBank = (ProgramBank)value.Parent;
                 RaisePropertyChanged("UsedProgram", false);
                 RefillColumns();
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int TimbresOffset
         {
@@ -309,13 +550,11 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                     return ByteOffset;
                 }
 
-                return Combi.ByteOffset + ((Timbres) Parent).TimbresOffset + Index*TimbresSize;
+                return Combi.ByteOffset + ((Timbres)Parent).TimbresOffset + Index * TimbresSize;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="otherTimbre"></param>
         public virtual void Swap(ITimbre otherTimbre)
@@ -323,7 +562,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             if (otherTimbre.TimbresOffset != TimbresOffset)
             {
                 Util.SwapBytes(PcgRoot, Root.Content, TimbresOffset, Root.Content, otherTimbre.TimbresOffset,
-                               TimbresSize);
+                    TimbresSize);
                 RaisePropertyChanged(string.Empty, false);
                 otherTimbre.RaisePropertyChanged(string.Empty, false);
 
@@ -333,9 +572,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fromTimbre"></param>
         public virtual void CopyFrom(ITimbre fromTimbre)
@@ -350,16 +587,14 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public virtual void Clear()
         {
-            var memory = (PcgMemory) Root;
+            var memory = (PcgMemory)Root;
             if (memory.AssignedClearProgram == null)
             {
-                UsedProgram = (Program) (((ProgramBank) (PcgRoot.ProgramBanks[0]))[0]);
+                UsedProgram = (Program)((ProgramBank)PcgRoot.ProgramBanks[0])[0];
             }
             else
             {
@@ -371,6 +606,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             {
                 GetParam(ParameterNames.TimbreParameterName.Mute).Value = true;
             }
+
             GetParam(ParameterNames.TimbreParameterName.Volume).Value = 0;
             GetParam(ParameterNames.TimbreParameterName.MidiChannel).Value = 15;
 
@@ -408,25 +644,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             RefillColumns();
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        private bool IsGmTimbre => ((ProgramBank) (UsedProgram.Parent)).Type == BankType.EType.Gm;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public virtual string ColumnIndex => (Index + 1).ToString(CultureInfo.InvariantCulture);
-
-
-        /// <summary>
-        /// 
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Local
@@ -440,41 +658,13 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                     var rawProgramIndex = ProgramRawIndex;
                     return Root.ProgramIdByIndex(rawBankIndex, rawProgramIndex);
                 }
-                else
-                {
-                    var usedProgram = UsedProgram;
-                    return usedProgram == null ? Strings.Unknown : usedProgram.Id;
-                }
+
+                var usedProgram = UsedProgram;
+                return usedProgram == null ? Strings.Unknown : usedProgram.Id;
             }
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        public virtual int ProgramRawIndex
-        {
-            get
-            {
-                throw new ApplicationException("Not supported");
-            }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual int ProgramRawBankIndex
-        {
-            get
-            {
-                throw new ApplicationException("Not supported");
-            }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once UnusedMember.Local
@@ -487,270 +677,49 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             }
         }
 
-
         /// <summary>
-        /// 
+        ///     Not used (yet).
         /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnCategory
+        public void SetParameters()
         {
-            get
-            {
-                var usedProgram = UsedProgram;
-                return usedProgram == null ? Strings.Unknown : UsedProgram.CategoryAsName;
-            }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnSubCategory
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public virtual int GetFixedParameterValue(FixedParameter.EType type)
         {
-            get
-            {
-                var usedProgram = UsedProgram;
-                return usedProgram == null ? Strings.Unknown : UsedProgram.SubCategoryAsName;
-            }
+            throw new ApplicationException();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnVolume => (string) GetParam(ParameterNames.TimbreParameterName.Volume).Value.ToString();
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnStatus => GetParam(ParameterNames.TimbreParameterName.Status).Value;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnMute => GetParam(ParameterNames.TimbreParameterName.Mute) == null 
-            ? "-" 
-            : ((bool) (GetParam(ParameterNames.TimbreParameterName.Mute).Value)).ToYesNo();
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnPriority => ((GetParam(ParameterNames.TimbreParameterName.Priority) == null) 
-            ? "-" : 
-            ((bool) GetParam(ParameterNames.TimbreParameterName.Priority).Value).ToYesNo());
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnMidiChannel => (GetParam(ParameterNames.TimbreParameterName.MidiChannel) == null)
-            ? "-"
-            : ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.MidiChannel, 
-                (int)GetParam(ParameterNames.TimbreParameterName.MidiChannel).Value);
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnKeyZone => (string.Format(
-            "{0}~{1}",
-            ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.BottomKey,
-                GetParam(ParameterNames.TimbreParameterName.BottomKey).Value),
-            ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.TopKey, 
-                GetParam(ParameterNames.TimbreParameterName.TopKey).Value)));
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnVelocityZone => (string.Format("{0}~{1}", (string) GetParam(ParameterNames.TimbreParameterName.BottomVelocity).Value.ToString(),
-            GetParam(ParameterNames.TimbreParameterName.TopVelocity).Value.ToString()));
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public virtual string ColumnOscMode => (string) GetParam(ParameterNames.TimbreParameterName.OscMode).Value;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public virtual string ColumnOscSelect => (string) GetParam(ParameterNames.TimbreParameterName.OscSelect).Value;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnTranspose => (string) ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.Transpose,
-            GetParam(ParameterNames.TimbreParameterName.Transpose).Value);
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public string ColumnDetune => (string)
-            ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.Detune, GetParam(ParameterNames.TimbreParameterName.Detune).Value);
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public virtual string ColumnPortamento
+        /// <param name="type"></param>
+        /// <param name="value"></param>
+        public virtual void SetFixedParameterValue(FixedParameter.EType type, int value)
         {
-            get
-            {
-                var parameter = GetParam(ParameterNames.TimbreParameterName.Portamento);
-                return parameter == null ? "-" :
-                           (string) ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.Portamento, parameter.Value);
-            }
+            throw new ApplicationException();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        public virtual string ColumnBendRange => (string)
-            ParameterValues.GetStringValue(ParameterNames.TimbreParameterName.BendRange, 
-                GetParam(ParameterNames.TimbreParameterName.BendRange).Value);
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        private string CategoryAsName
+        public virtual bool IsLoaded
         {
-            get
-            {
-                // If the program is a GM patch, it is unknown what the category is since GM program parameters are unknown.
-                if ((UsedProgramBank == null) || (UsedProgramBank.Type == BankType.EType.Gm))
-                {
-                    //ColumnCategory = "(unknown)";
-                    return UsedProgram.SubCategoryAsName;
-                }
-
-                // Use the global setting, if not available, check the Master PCG file, else use just the number.
-                var global = FindGlobal();
-
-                // Return either the value if no global/Master file pressent otherwise the name.
-                var category = (global == null)
-                                   ? UsedProgram.GetParam(ParameterNames.ProgramParameterName.Category).Value.ToString()
-                                   : global.GetCategoryName(UsedProgram);
-
-                return category;
-            }
+            get => ((ICombi)Parent.Parent).IsLoaded;
+            set => ((ICombi)Parent.Parent).IsLoaded = value;
         }
 
-
         /// <summary>
-        /// 
+        ///     Not used yet; needed when copying timbres will be supported.
         /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        private string SubCategoryAsName
+        public int ByteLength
         {
-            get
-            {
-                // If the model does not support sub categories, return an empty string.
-                if (!PcgRoot.HasSubCategories)
-                {
-                    return UsedProgram.SubCategoryAsName;
-                }
-
-                // If the program is a GM patch, it is unknown what the category is since GM program parameters are unknown.
-                if ((UsedProgramBank == null) || (UsedProgramBank.Type == BankType.EType.Gm))
-                {
-                    return "(unknown)";
-                }
-
-                // Use the global setting, if not available, check the Master PCG file, else use just the number.
-                var global = FindGlobal();
-
-                // Return either the value if no global/Master file pressent otherwise the name.
-                return (global == null)
-                           ? UsedProgram.GetParam(ParameterNames.ProgramParameterName.SubCategory).Value.ToString()
-                           : global.GetSubCategoryName(UsedProgram);
-            }
+            get => TimbresSize;
+            set => throw new NotImplementedException();
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Local
-        private string ProgramName
-        {
-            get
-            {
-                if (UsedProgram == null)
-                {
-                    return "(unknown)";
-                }
-                if (UsedProgram.ByteOffset == 0)
-                {
-                    // Find master PCG memory (except when file is master file itself).
-                    var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(Root.Model);
-                    if ((masterPcgMemory != null) && (masterPcgMemory.FileName != Root.FileName))
-                    {
-                        // Iterate through bank IDs.
-                        var masterBank =
-                            masterPcgMemory.ProgramBanks.BankCollection.FirstOrDefault(bank => bank.Id == UsedProgramBank.Id);
-                        if (masterBank != null)
-                        {
-                            var masterProgram = masterBank[UsedProgram.Index];
-                            return masterProgram.Name;
-                        }
-
-                        // Program not present in master file either.
-                        return "(unknown)";
-                    }
-
-                    // NO master file present.
-                    return "(unknown)";
-                }
-
-                // Program available in PCG file.
-                return UsedProgram.Name;
-            }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -776,13 +745,11 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                     break;
 
                 //default:
-                   // break;
+                // break;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -793,21 +760,21 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                 case "ReadingFinished": // Fall through
                 case "Global": // Fall through
                 case "":
-                    if (((ICombi) (Parent.Parent)).IsLoaded && (UsedProgramBank != null))
+                    if (((ICombi)Parent.Parent).IsLoaded && UsedProgramBank != null)
                     {
                         RefillColumns();
                     }
+
                     break;
 
                 //default:
-                   // break;
+                // break;
             }
         }
 
-
         /// <summary>
-        /// Returns the global of this PCG or if no global present, the Master PCG file's global.
-        /// This code is a copy from Patch class.
+        ///     Returns the global of this PCG or if no global present, the Master PCG file's global.
+        ///     This code is a copy from Patch class.
         /// </summary>
         /// <returns></returns>
         private IGlobal FindGlobal()
@@ -817,17 +784,16 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             {
                 // Find master PCG memory (except when file is master file itself).
                 var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(Root.Model);
-                if ((masterPcgMemory != null) && (masterPcgMemory.FileName != Root.FileName))
+                if (masterPcgMemory != null && masterPcgMemory.FileName != Root.FileName)
                 {
                     global = masterPcgMemory.Global;
                 }
             }
+
             return global;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected void RefillColumns()
         {
@@ -843,9 +809,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         // ReSharper disable once UnusedMember.Global
@@ -858,80 +822,6 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                     break;
 
                 //default: No action needed.
-            }
-        }
-
-
-        /// <summary>
-        /// Returns true if the timbre has the drum category (actual string depends per workstation model,
-        /// but since user categories are possible, 'drum' case insensitive should be part of the category name.
-        /// </summary>
-        // ReSharper disable once UnusedMember.Global
-        public bool HasDrumCategory
-        {
-            get
-            {
-                var usedProgram = UsedProgram;
-                if (usedProgram != null)
-                {
-                    var category = usedProgram.GetParam(ParameterNames.ProgramParameterName.Category);
-                    return ((category != null) && category.Value.ToString().ToUpper().Contains("DRUM"));
-                }
-
-                return false; // No program
-            }
-        }
-
-
-        /// <summary>
-        /// Not used (yet).
-        /// </summary>
-        public void SetParameters()
-        {
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public virtual int GetFixedParameterValue(FixedParameter.EType type)
-        {
-            throw new ApplicationException();
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="value"></param>
-        public virtual void SetFixedParameterValue(FixedParameter.EType type, int value)
-        {
-            throw new ApplicationException();
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual bool IsLoaded
-        {
-            get { return ((ICombi) (Parent.Parent)).IsLoaded; }
-            set { ((ICombi) (Parent.Parent)).IsLoaded = value; }
-        }
-
-
-        /// <summary>
-        /// Not used yet; needed when copying timbres will be supported.
-        /// </summary>
-        public int ByteLength
-        {
-            get { return TimbresSize; }
-            set
-            {
-                throw new NotImplementedException();
             }
         }
     }

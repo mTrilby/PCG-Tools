@@ -1,6 +1,13 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using PcgTools.Edit;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -9,33 +16,16 @@ using PcgTools.Properties;
 using PcgTools.ViewModels;
 using WPF.MDI;
 
+#endregion
+
 namespace PcgTools
 {
     /// <summary>
-    /// Interaction logic for CombiWindow.xaml
+    ///     Interaction logic for CombiWindow.xaml
     /// </summary>
     public partial class CombiWindow : IChildWindow
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public IViewModel ViewModel { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICombiViewModel CombiViewModel => (ICombiViewModel) ViewModel;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public MdiChild MdiChild { private get; set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgViewModel"></param>
         /// <param name="combi"></param>
@@ -48,7 +38,7 @@ namespace PcgTools
                 {
                     var window = new WindowEditSingleCombi(CombiViewModel.Combi);
                     var result = window.ShowDialog();
-                    return (result.HasValue && result.Value);
+                    return result.HasValue && result.Value;
                 },
 
                 UpdateUiContent = () =>
@@ -63,17 +53,37 @@ namespace PcgTools
             DataContext = ViewModel;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public CombiWindow()
         {
         }
 
+        /// <summary>
+        /// </summary>
+        public ICombiViewModel CombiViewModel => (ICombiViewModel)ViewModel;
 
         /// <summary>
-        /// 
+        /// </summary>
+        public MdiChild MdiChild { private get; set; }
+
+        /// <summary>
+        /// </summary>
+        public IViewModel ViewModel { get; }
+
+        /// <summary>
+        /// </summary>
+        public IMemory Memory => ViewModel.SelectedMemory;
+
+        /// <summary>
+        /// </summary>
+        /// <param name="property"></param>
+        public void ActOnSettingsChanged(string property)
+        {
+            // No action needed.
+        }
+
+        /// <summary>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -84,13 +94,11 @@ namespace PcgTools
             view.Filter = bank => true;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ListViewTimbresSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ListViewTimbresSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
             {
@@ -99,35 +107,17 @@ namespace PcgTools
             }
         }
 
-
         // IChildWindow
 
         /// <summary>
-        /// 
         /// </summary>
-        void CloseWindow()
+        private void CloseWindow()
         {
             MdiChild.Close();
-            
-            Settings.Default.UI_CombiWindowWidth = (int) MdiChild.Width;
-            Settings.Default.UI_CombiWindowHeight = (int) MdiChild.Height;
+
+            Settings.Default.UI_CombiWindowWidth = (int)MdiChild.Width;
+            Settings.Default.UI_CombiWindowHeight = (int)MdiChild.Height;
             Settings.Default.Save();
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IMemory Memory => ViewModel.SelectedMemory;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="property"></param>
-        public void ActOnSettingsChanged(string property)
-        {
-            // No action needed.
         }
     }
 }

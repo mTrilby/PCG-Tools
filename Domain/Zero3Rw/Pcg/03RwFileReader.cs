@@ -1,18 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.ZeroSeries.Pcg;
 
+#endregion
+
 namespace PcgTools.Model.Zero3Rw.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Zero3RwFileReader : ZeroSeriesFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -26,14 +32,12 @@ namespace PcgTools.Model.Zero3Rw.Pcg
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="offset"></param>
         protected override void ReadSingleProgram(int offset)
         {
-            var bank = (IProgramBank) (CurrentPcgMemory.ProgramBanks[0]);
+            var bank = (IProgramBank)CurrentPcgMemory.ProgramBanks[0];
             bank.ByteOffset = 0;
             bank.BankSynthesisType = ProgramBank.SynthesisType.Ai2;
             bank.ByteLength = 172; // 172 bytes despite of 164 according to manual
@@ -46,14 +50,12 @@ namespace PcgTools.Model.Zero3Rw.Pcg
             program.IsLoaded = true;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override void ReadAllData()
         {
             // 172 bytes despite of 164 according to manual
-            ReadAllData(172, 128, 21 + 840, 0, 0); // 21+840 = global/drum data length
+            ReadAllData(172, 128, 21 + 840); // 21+840 = global/drum data length
         }
     }
 }

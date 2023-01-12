@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common;
@@ -6,39 +12,34 @@ using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.Z1Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Z1Program : MntxProgram
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
         public Z1Program(IBank programBank, int index)
             : base(programBank, index)
         {
-            Id = $"{programBank.Id}{(index).ToString("00")}";
+            Id = $"{programBank.Id}{index.ToString("00")}";
         }
-     
 
         /// <summary>
-        /// 
         /// </summary>
         public override int MaxNameLength => 16;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public override bool IsEmptyOrInit => ((Name == string.Empty) || (Name.Contains("INIT") && Name.Contains("Prog")));
-
+        public override bool IsEmptyOrInit => Name == string.Empty || (Name.Contains("INIT") && Name.Contains("Prog"));
 
         /// <summary>
-        /// As overridden, but without changing genre/category
+        ///     As overridden, but without changing genre/category
         /// </summary>
         public override void Clear()
         {
@@ -46,17 +47,14 @@ namespace PcgTools.Model.Z1Specific.Synth
             RaisePropertyChanged(string.Empty, false);
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -77,9 +75,7 @@ namespace PcgTools.Model.Z1Specific.Synth
             return parameter;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -99,10 +95,8 @@ namespace PcgTools.Model.Z1Specific.Synth
 
             return value;
         }
-        
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="type"></param>
         /// <param name="value"></param>
@@ -121,4 +115,3 @@ namespace PcgTools.Model.Z1Specific.Synth
         }
     }
 }
-

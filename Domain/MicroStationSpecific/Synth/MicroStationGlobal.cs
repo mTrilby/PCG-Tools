@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common.Synth.Global;
@@ -8,40 +14,15 @@ using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+#endregion
+
 namespace PcgTools.Model.MicroStationSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MicroStationGlobal : Global
     {
         /// <summary>
-        /// 
-        /// </summary>
-        protected override int CategoryNameLength => 24;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int PcgOffsetCategories => 5312;
-
-
-        /// <summary>
-        /// Despite the system exclusive information which allow for 18 values, only 8 are 
-        /// shown in the manual (and are hardcoded).
-        /// </summary>
-        protected override int NrOfCategories => 8;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected override int NrOfSubCategories => 8;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public MicroStationGlobal(IPcgMemory pcgMemory)
@@ -49,9 +30,26 @@ namespace PcgTools.Model.MicroStationSpecific.Synth
         {
         }
 
+        /// <summary>
+        /// </summary>
+        protected override int CategoryNameLength => 24;
 
         /// <summary>
-        /// Hardcoded prog/combi.
+        /// </summary>
+        protected override int PcgOffsetCategories => 5312;
+
+        /// <summary>
+        ///     Despite the system exclusive information which allow for 18 values, only 8 are
+        ///     shown in the manual (and are hardcoded).
+        /// </summary>
+        protected override int NrOfCategories => 8;
+
+        /// <summary>
+        /// </summary>
+        protected override int NrOfSubCategories => 8;
+
+        /// <summary>
+        ///     Hardcoded prog/combi.
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>
@@ -77,9 +75,7 @@ namespace PcgTools.Model.MicroStationSpecific.Synth
             return categories[category];
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="type"></param>
         /// <param name="index"></param>
@@ -90,9 +86,8 @@ namespace PcgTools.Model.MicroStationSpecific.Synth
             //Util.SetChars(_pcgMemory, _pcgMemory.Content, CalcCategoryNameOffset(type, index), CategoryNameLength, name);
         }
 
-
         /// <summary>
-        /// Returns offset from global.
+        ///     Returns offset from global.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="index"></param>
@@ -103,7 +98,7 @@ namespace PcgTools.Model.MicroStationSpecific.Synth
             var offset = ByteOffset + PcgOffsetCategories;
             var typeSize = PcgMemory.HasSubCategories ? NrOfCategories * NrOfSubCategories * CategoryNameLength : 0;
 
-            offset += (type == ECategoryType.Program) ? 0 : typeSize;
+            offset += type == ECategoryType.Program ? 0 : typeSize;
             //offset += NrOfCategories*CategoryNameLength; // Categories size
             offset += index * NrOfSubCategories * CategoryNameLength;
             offset += subIndex * CategoryNameLength;

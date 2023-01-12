@@ -1,26 +1,27 @@
-﻿using PcgTools.Model.Common.Synth.MemoryAndFactory;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Mvvm;
+
+#endregion
 
 namespace PcgTools.Model.Common.Synth.SongsRelated
 {
     public class SongTimbres : ISongTimbres
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public ObservableCollectionEx<ITimbre> TimbresCollection { get; private set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         private readonly ISong _song;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public SongTimbres(ISong song)
         {
@@ -28,28 +29,24 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             TimbresCollection = new ObservableCollectionEx<ITimbre>();
         }
 
+        /// <summary>
+        /// </summary>
+        public int ByteLength { get; set; }
 
         /// <summary>
-        /// 
+        /// </summary>
+        public ObservableCollectionEx<ITimbre> TimbresCollection { get; }
+
+        /// <summary>
         /// </summary>
         public IMemory Root => _song.Memory;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public INavigable Parent => _song;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int ByteOffset { get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int ByteLength { get; set; }
     }
 }

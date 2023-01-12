@@ -1,19 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.MSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.M3Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M3Combi : MCombi
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiBank"></param>
         /// <param name="index"></param>
@@ -23,17 +28,14 @@ namespace PcgTools.Model.M3Specific.Synth
             Timbres = new M3Timbres(this);
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -59,6 +61,7 @@ namespace PcgTools.Model.M3Specific.Synth
                     parameter = base.GetParam(name);
                     break;
             }
+
             return parameter;
         }
     }

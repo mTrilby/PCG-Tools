@@ -1,6 +1,14 @@
-﻿// (c) 2011-2019 Michel Keijzers
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace PCG_Tools_Unittests
 {
@@ -1290,7 +1298,7 @@ namespace PCG_Tools_Unittests
         {
             TestAll(@"Workstations\M1\Padecod1.syx");
         }
-        
+
         [TestMethod]
         public void Test_M1_Padecode_syx()
         {
@@ -1944,6 +1952,5 @@ namespace PCG_Tools_Unittests
         {
             TestAll(@"Workstations\M1\VOICE2_1.syx");
         }
-
     }
 }

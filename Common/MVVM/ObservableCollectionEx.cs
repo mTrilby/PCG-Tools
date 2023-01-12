@@ -1,18 +1,26 @@
-﻿using System.Collections;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
+#endregion
+
 namespace PcgTools.Mvvm
 {
     /// <summary>
-    /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ObservableCollectionEx<T> : ObservableCollection<T> where T : INotifyPropertyChanged
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="e"></param>
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
@@ -22,9 +30,7 @@ namespace PcgTools.Mvvm
             base.OnCollectionChanged(e);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override void ClearItems()
         {
@@ -33,9 +39,7 @@ namespace PcgTools.Mvvm
             base.ClearItems();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="iList"></param>
         private void Subscribe(IList iList)
@@ -47,9 +51,7 @@ namespace PcgTools.Mvvm
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="iList"></param>
         private void Unsubscribe(IList iList)
@@ -61,9 +63,7 @@ namespace PcgTools.Mvvm
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -1,30 +1,34 @@
-﻿using System.Collections.Generic;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.Collections.Generic;
 using System.Linq;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 
+#endregion
+
 namespace PcgTools.Tools
 {
     /// <summary>
-    /// Parses rules.
+    ///     Parses rules.
     /// </summary>
     public class RuleParser
     {
-
         /// <summary>
-        /// 
         /// </summary>
         private readonly IPcgMemory _memory;
 
-
         /// <summary>
-        /// Parse has been ok.
         /// </summary>
-        public bool HasParsedOk { get; private set; }
-
+        private readonly Dictionary<IPatch, IPatch> _parsedRules;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         public RuleParser(IPcgMemory memory)
@@ -33,35 +37,33 @@ namespace PcgTools.Tools
             _parsedRules = new Dictionary<IPatch, IPatch>();
         }
 
-
         /// <summary>
-        /// 
+        ///     Parse has been ok.
         /// </summary>
-        private readonly Dictionary<IPatch, IPatch> _parsedRules;
-
+        public bool HasParsedOk { get; private set; }
 
         /// <summary>
-        /// 
         /// </summary>
         public Dictionary<IPatch, IPatch> ParsedRules => _parsedRules;
 
-
         /// <summary>
-        /// Only used if Parse returns false.
+        ///     Only used if Parse returns false.
         /// </summary>
         public int ParseErrorInLine { get; private set; }
-        
 
         /// <summary>
-        /// Sets _parsedRules, HasParsedOk and ParseErrorInLine (if !HasParsedOk).
+        ///     Sets _parsedRules, HasParsedOk and ParseErrorInLine (if !HasParsedOk).
         /// </summary>
         public void Parse(string rules)
         {
             var lines = rules.Split('\n');
             var lineNumber = 0;
-            foreach (var trimmedLine2 in from line in lines select line.Trim() 
-                                             into trimmedLine select trimmedLine.Replace("->", ">") 
-                                             into trimmedLine1 select trimmedLine1.Replace("=>", ">"))
+            foreach (var trimmedLine2 in from line in lines
+                     select line.Trim()
+                     into trimmedLine
+                     select trimmedLine.Replace("->", ">")
+                     into trimmedLine1
+                     select trimmedLine1.Replace("=>", ">"))
             {
                 ParseLine(trimmedLine2, ref lineNumber);
                 if (!HasParsedOk)
@@ -71,9 +73,8 @@ namespace PcgTools.Tools
             }
         }
 
-
         /// <summary>
-        /// Parse single line.
+        ///     Parse single line.
         /// </summary>
         /// <param name="trimmedLine"></param>
         /// <param name="lineNumber"></param>
@@ -96,7 +97,7 @@ namespace PcgTools.Tools
             }
 
             var parts = trimmedLine.Split('>');
-            if ((parts.Count() != 2) || parts.Any(part => part.Length == 0))
+            if (parts.Count() != 2 || parts.Any(part => part.Length == 0))
             {
                 return;
             }
@@ -119,7 +120,7 @@ namespace PcgTools.Tools
                 HasParsedOk = false;
                 return;
             }
-            
+
             for (var index = 0; index < fromPatches.Count; index++)
             {
                 _parsedRules[fromPatches[index]] = toPatches[index];

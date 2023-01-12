@@ -1,6 +1,14 @@
-﻿// (c) 2011-2019 Michel Keijzers
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace PCG_Tools_Unittests
 {
@@ -31,13 +39,11 @@ namespace PCG_Tools_Unittests
             TestAll(@"Workstations\Krome\Pianos_collections.PCG");
         }
 
-
         [TestMethod]
         public void Test_Krome_DYNOS_KR()
         {
             TestAll(@"Workstations\Krome\DYNOS-KR.PCG");
         }
-
 
         [TestMethod]
         public void Test_Krome_DREAMING_PCG()

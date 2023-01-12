@@ -1,41 +1,41 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Common.Extensions;
 using Common.PcgToolsResources;
 using PcgTools.Extensions;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.PcgToolsResources;
-using Color = System.Windows.Media.Color;
+
+#endregion
 
 namespace PcgTools.Edit
 {
     /// <summary>
-    /// Interaction logic for WindowEdit.xaml
+    ///     Interaction logic for WindowEdit.xaml
     /// </summary>
     public partial class WindowEditSingleSetListSlot // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly ISetListSlot _patch;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private bool _ok = true;
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="patch"></param>
         public WindowEditSingleSetListSlot(ISetListSlot patch)
@@ -44,9 +44,7 @@ namespace PcgTools.Edit
             InitializeComponent();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -66,7 +64,7 @@ namespace PcgTools.Edit
             }
             else
             {
-                comboBoxColor.SelectedIndex = _patch.Color.Value%16;
+                comboBoxColor.SelectedIndex = _patch.Color.Value % 16;
             }
 
             WindowEditLoadedSetTextSize();
@@ -84,9 +82,7 @@ namespace PcgTools.Edit
             Check();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void WindowEditLoadedSetReferences()
         {
@@ -119,9 +115,7 @@ namespace PcgTools.Edit
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void WindowEditLoadedSetTextSize()
         {
@@ -163,9 +157,7 @@ namespace PcgTools.Edit
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -174,9 +166,7 @@ namespace PcgTools.Edit
             Check();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -185,9 +175,7 @@ namespace PcgTools.Edit
             Check();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void Check()
         {
@@ -212,9 +200,7 @@ namespace PcgTools.Edit
             buttonOk.IsEnabled = _ok;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -229,7 +215,7 @@ namespace PcgTools.Edit
                 _patch.Description = textBoxDescription.Text;
 
                 // Set volume.
-                _patch.Volume = intupdownVolume.Value.HasValue ? (int) intupdownVolume.Value : 0;
+                _patch.Volume = intupdownVolume.Value.HasValue ? (int)intupdownVolume.Value : 0;
 
                 // Set color.
                 if (_patch.Color != null)
@@ -240,7 +226,7 @@ namespace PcgTools.Edit
                 // Set transpose/ text size.
                 if (_patch.PcgRoot.Model.OsVersion == Models.EOsVersion.EOsVersionKronos3x)
                 {
-                    _patch.Transpose = intupdownTranspose.Value.HasValue ? (int) intupdownTranspose.Value : 0;
+                    _patch.Transpose = intupdownTranspose.Value.HasValue ? (int)intupdownTranspose.Value : 0;
 
                     ButtonOkSetTextSize();
                 }
@@ -253,9 +239,7 @@ namespace PcgTools.Edit
             Close();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void ButtonOkSetTextSize()
         {
@@ -285,9 +269,7 @@ namespace PcgTools.Edit
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -297,9 +279,7 @@ namespace PcgTools.Edit
             Close();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -346,7 +326,6 @@ namespace PcgTools.Edit
                 // fontFamily = "Verdana";
                 // fontSize = 8;
                 // fontWeight = FontWeights.Bold;
-
             }
 
             // textBoxDescription.FontFamily = new System.Windows.Media.FontFamily(fontFamily);
@@ -354,40 +333,38 @@ namespace PcgTools.Edit
             // textBoxDescription.FontWeight = fontWeight;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void comboBoxColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if ((comboBoxColor.SelectedIndex >= 0) && (comboBoxColor.SelectedIndex <= 15))
+            if (comboBoxColor.SelectedIndex >= 0 && comboBoxColor.SelectedIndex <= 15)
             {
                 var colors = new List<Color>
                 {
-                    new Color {A = 255, R = 77, G = 77, B = 77}, // Default
-                    new Color {A = 255, R = 47, G = 47, B = 47}, // Charcoal
-                    new Color {A = 255, R = 178, G = 63, B = 63}, // Brick
-                    new Color {A = 255, R = 105, G = 27, B = 27}, // Burgundy
-                    new Color {A = 255, R = 145, G = 167, B = 48}, // Ivy
-                    new Color {A = 255, R = 55, G = 69, B = 32}, // Olive
-                    new Color {A = 255, R = 170, G = 132, B = 42}, // Gold
-                    new Color {A = 255, R = 127, G = 66, B = 54}, // Cacao
-                    new Color {A = 255, R = 83, G = 96, B = 165}, // Indigo
-                    new Color {A = 255, R = 26, G = 43, B = 136}, // Navy
-                    new Color {A = 255, R = 171, G = 129, B = 162}, // Rose
-                    new Color {A = 255, R = 146, G = 103, B = 186}, // Lavender
-                    new Color {A = 255, R = 136, G = 164, B = 197}, // Azure
-                    new Color {A = 255, R = 106, G = 127, B = 150}, // Denim
-                    new Color {A = 255, R = 128, G = 128, B = 128}, // Silver
-                    new Color {A = 255, R = 98, G = 98, B = 98}, //  Slate
+                    new() { A = 255, R = 77, G = 77, B = 77 }, // Default
+                    new() { A = 255, R = 47, G = 47, B = 47 }, // Charcoal
+                    new() { A = 255, R = 178, G = 63, B = 63 }, // Brick
+                    new() { A = 255, R = 105, G = 27, B = 27 }, // Burgundy
+                    new() { A = 255, R = 145, G = 167, B = 48 }, // Ivy
+                    new() { A = 255, R = 55, G = 69, B = 32 }, // Olive
+                    new() { A = 255, R = 170, G = 132, B = 42 }, // Gold
+                    new() { A = 255, R = 127, G = 66, B = 54 }, // Cacao
+                    new() { A = 255, R = 83, G = 96, B = 165 }, // Indigo
+                    new() { A = 255, R = 26, G = 43, B = 136 }, // Navy
+                    new() { A = 255, R = 171, G = 129, B = 162 }, // Rose
+                    new() { A = 255, R = 146, G = 103, B = 186 }, // Lavender
+                    new() { A = 255, R = 136, G = 164, B = 197 }, // Azure
+                    new() { A = 255, R = 106, G = 127, B = 150 }, // Denim
+                    new() { A = 255, R = 128, G = 128, B = 128 }, // Silver
+                    new() { A = 255, R = 98, G = 98, B = 98 } //  Slate
                 };
 
                 textBoxColor.Background = new SolidColorBrush(colors[comboBoxColor.SelectedIndex]);
             }
         }
-        
+
         /*
          Buttons to test the width/font of the description control.
         private void ButtonPlusClick(object sender, RoutedEventArgs e)
@@ -402,6 +379,5 @@ namespace PcgTools.Edit
             TextBoxReferenceId.Text = textBoxDescription.Width.ToString();
         }
         */
-
     }
 }

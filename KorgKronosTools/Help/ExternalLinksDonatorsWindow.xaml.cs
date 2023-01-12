@@ -1,22 +1,29 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Help
 {
     /// <summary>
-    /// 
     /// </summary>
     public partial class ExternalLinksDonatorsWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public ExternalLinksDonatorsWindow()
         {
@@ -24,176 +31,176 @@ namespace PcgTools.Help
 
             var externalItems = new List<ExternalItem>
             {
-                new ExternalItem
+                new()
                 {
                     Name = "Smyth Rocks", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "needamuse", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Kevin Nolan", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Mike Hildner", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Bruno Santos", Description = "Donator",
+                    Name = "Bruno Santos", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Joe Keller", Description = "Donator",
+                    Name = "Joe Keller", Description = "Donator",
                     Url = "http://www.keller12.de", BitmapPath = "keller12.jpg"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Synthesaurus", 
-                    Description="Donator",
-                    Url="https://www.patreon.com/synthesaurus",
-                    BitmapPath = "Synthesaurus.png",
+                    Name = "Synthesaurus",
+                    Description = "Donator",
+                    Url = "https://www.patreon.com/synthesaurus",
+                    BitmapPath = "Synthesaurus.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Philip Joseph", Description = "Donator",
+                    Name = "Philip Joseph", Description = "Donator"
                 },
-                new ExternalItem()
+                new()
                 {
-                    Name="Igor Elshaidt", Description = "Donator"
+                    Name = "Igor Elshaidt", Description = "Donator"
                 },
-                 new ExternalItem
+                new()
                 {
-                    Name= "Daan Andriessen", Description = "Donator",
+                    Name = "Daan Andriessen", Description = "Donator",
                     Url = "http://www.studiodebovenkamer.nl", BitmapPath = "BK-facebook.gif"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Mathieu Maes", Description = "Donator",
+                    Name = "Mathieu Maes", Description = "Donator",
                     Url = "http://partycoverband.wix.com/cupsandplates", BitmapPath = "Cupsandplates.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Jim Knopf", Description = "Donator",
+                    Name = "Jim Knopf", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Olaf Arweiler", Description = "Donator",
+                    Name = "Olaf Arweiler", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Martin Hines", Description = "Donator",
+                    Name = "Martin Hines", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Batisse", Description = "Donator",
+                    Name = "Batisse", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Traugott", Description = "Donator",
+                    Name = "Traugott", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Wan Kemper", Description = "Donator",
+                    Name = "Wan Kemper", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "robbie50", Description = "Donator",
+                    Name = "robbie50", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Steffen Traeger", Description = "Donator",
+                    Name = "Steffen Traeger", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Greg Heslington", Description = "Donator",
+                    Name = "Greg Heslington", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Artur Dellarte", Description = "Donator",
+                    Name = "Artur Dellarte", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name="Michael Maschek", Description="Donator",
-                    Url="https://www.facebook.com/celticvoyagerband", BitmapPath= "celticvoyager.png"
+                    Name = "Michael Maschek", Description = "Donator",
+                    Url = "https://www.facebook.com/celticvoyagerband", BitmapPath = "celticvoyager.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Dave Gibson", Description = "Donator",
+                    Name = "Dave Gibson", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Dreamland", Description = "Donator",
+                    Name = "Dreamland", Description = "Donator",
                     Url = "http://www.dreamland-recording.de", BitmapPath = "dreamland.jpg"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Norman Clasper", Description = "Donator",
+                    Name = "Norman Clasper", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Tim Godfrey", Description = "Donator",
+                    Name = "Tim Godfrey", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Yuma", Description = "Donator",
+                    Name = "Yuma", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Ralph Hopstaken", Description = "Donator",
+                    Name = "Ralph Hopstaken", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Enrico Puglisi", Description = "Donator",
-                    Url="https://www.facebook.com/kronospatchlab", BitmapPath = "KronosPatchLab.png"
+                    Name = "Enrico Puglisi", Description = "Donator",
+                    Url = "https://www.facebook.com/kronospatchlab", BitmapPath = "KronosPatchLab.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "phattbuzz", Description = "Donator",
+                    Name = "phattbuzz", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Jerry", Description = "Donator",
+                    Name = "Jerry", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Wilton Vought", Description = "Donator",
+                    Name = "Wilton Vought", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Fred Alberni/Farrokh Kouhang", Description = "Donator",
+                    Name = "Fred Alberni/Farrokh Kouhang", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Toon Martens (Project)", Description = "Donator",
+                    Name = "Toon Martens (Project)", Description = "Donator",
                     Url = "http://www.toonmartensproject.net/", BitmapPath = "tmp.jpg"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Jim G", Description = "Donator",
+                    Name = "Jim G", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Adrian", Description = "Donator",
+                    Name = "Adrian", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Tim Möller", Description = "Donator",
+                    Name = "Tim Möller", Description = "Donator"
                 },
                 //new ExternalItem
                 //{
                 //    Does not want to be on the list
                 //    Name= "Christian Moss", Description = "Donator",
                 //},
-                new ExternalItem
+                new()
                 {
-                    Name= "Sidney Leal", Description = "Donator",
+                    Name = "Sidney Leal", Description = "Donator"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name= "Steve Baker", Description = "Donator",
+                    Name = "Steve Baker", Description = "Donator"
                 }
             };
 
@@ -265,9 +272,7 @@ namespace PcgTools.Help
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="mouseButtonEventArgs"></param>
@@ -277,16 +282,14 @@ namespace PcgTools.Help
             if (userControlExternalLink != null)
             {
                 var item = userControlExternalLink.Tag as ExternalItem;
-                if ((item != null) && (item.Url != null))
+                if (item != null && item.Url != null)
                 {
                     ShowUrl(item.Url);
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void ShowUrl(string url)
         {
@@ -303,5 +306,3 @@ namespace PcgTools.Help
         }
     }
 }
-
-

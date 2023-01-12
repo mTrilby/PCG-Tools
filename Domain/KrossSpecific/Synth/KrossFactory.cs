@@ -1,29 +1,32 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common;
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.KrossSpecific.Pcg;
 using PcgTools.Model.KrossSpecific.Song;
 using PcgTools.Model.MSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.KrossSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KrossFactory : MFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly PcgMemory.ContentType _contentType;
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="contentType"></param>
         public KrossFactory(PcgMemory.ContentType contentType)
@@ -31,9 +34,7 @@ namespace PcgTools.Model.KrossSpecific.Synth
             _contentType = contentType;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -44,9 +45,7 @@ namespace PcgTools.Model.KrossSpecific.Synth
             return pcgMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -62,12 +61,11 @@ namespace PcgTools.Model.KrossSpecific.Synth
             {
                 reader = new KrossPcgFileReader(pcgMemory, content);
             }
+
             return reader;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -77,9 +75,7 @@ namespace PcgTools.Model.KrossSpecific.Synth
             return songMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

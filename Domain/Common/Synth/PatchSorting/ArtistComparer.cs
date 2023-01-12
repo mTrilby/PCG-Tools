@@ -1,39 +1,40 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 
+#endregion
+
 namespace PcgTools.Model.Common.Synth.PatchSorting
 {
     /// <summary>
-    /// Class for comparing artists (i.e. the part before or after the split character.)
+    ///     Class for comparing artists (i.e. the part before or after the split character.)
     /// </summary>
     internal sealed class ArtistComparer : Comparer<IPatch>
     {
         /// <summary>
-        /// 
         /// </summary>
-        private static ArtistComparer _instance = new ArtistComparer();
-
+        private static readonly ArtistComparer _instance = new();
 
         /// <summary>
-        /// 
-        /// </summary>
-        public static ArtistComparer Instance => _instance;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         private ArtistComparer()
         {
         }
 
+        /// <summary>
+        /// </summary>
+        public static ArtistComparer Instance => _instance;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -43,7 +44,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             var patch1 = p1 as IArtistable;
             var patch2 = p2 as IArtistable;
 
-            if ((patch1 == null) || (patch2 == null))
+            if (patch1 == null || patch2 == null)
             {
                 return 0;
             }

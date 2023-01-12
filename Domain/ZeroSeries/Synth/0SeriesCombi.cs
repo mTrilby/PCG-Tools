@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Text;
@@ -6,15 +12,15 @@ using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.ZeroSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ZeroSeriesCombi : MntxCombi
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiBank"></param>
         /// <param name="index"></param>
@@ -23,7 +29,7 @@ namespace PcgTools.Model.ZeroSeries.Synth
         {
             if (combiBank.Type == BankType.EType.Int)
             {
-                Id = $"{combiBank.Id}{(index).ToString("00")}";
+                Id = $"{combiBank.Id}{index.ToString("00")}";
             }
             else if (combiBank.Type == BankType.EType.Virtual)
             {
@@ -37,9 +43,8 @@ namespace PcgTools.Model.ZeroSeries.Synth
             Timbres = new ZeroSeriesTimbres(this);
         }
 
-
         /// <summary>
-        /// Substibute chars.
+        ///     Substibute chars.
         /// </summary>
         public override string Name
         {
@@ -62,7 +67,7 @@ namespace PcgTools.Model.ZeroSeries.Synth
                     }
                     else
                     {
-                        name.Append((char) (character));
+                        name.Append((char)character);
                     }
                 }
 
@@ -83,18 +88,15 @@ namespace PcgTools.Model.ZeroSeries.Synth
 
                     OnPropertyChanged("Name");
                 }
-
             }
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
-
 
         public override IParameter GetParam(ParameterNames.CombiParameterName name)
         {
@@ -102,11 +104,11 @@ namespace PcgTools.Model.ZeroSeries.Synth
 
             switch (name)
             {
-
-            default:
-                parameter = base.GetParam(name);
-                break;
+                default:
+                    parameter = base.GetParam(name);
+                    break;
             }
+
             return parameter;
         }
     }

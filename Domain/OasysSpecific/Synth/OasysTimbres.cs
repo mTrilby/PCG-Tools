@@ -1,29 +1,22 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.PatchCombis;
+
+#endregion
 
 namespace PcgTools.Model.OasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public sealed class OasysTimbres : Timbres
     {
         /// <summary>
-        /// 
-        /// </summary>
-        static int TimbresPerCombiConstant => 16;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        static int TimbresOffsetConstant => 4790;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         public OasysTimbres(ICombi combi)
@@ -35,9 +28,15 @@ namespace PcgTools.Model.OasysSpecific.Synth
             }
         }
 
+        /// <summary>
+        /// </summary>
+        private static int TimbresPerCombiConstant => 16;
 
         /// <summary>
-        /// 
+        /// </summary>
+        private static int TimbresOffsetConstant => 4790;
+
+        /// <summary>
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>

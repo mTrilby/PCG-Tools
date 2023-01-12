@@ -2,33 +2,43 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
-        Title="{x:Static common:Strings.SelectSortSelection_sortw}"  ShowInTaskbar="False" Loaded="Window_Loaded" 
+        Title="{x:Static common:Strings.SelectSortSelection_sortw}" ShowInTaskbar="False" Loaded="Window_Loaded"
         SizeToContent="WidthAndHeight">
-  <StackPanel Width="400" HorizontalAlignment="Left">
-    <RadioButton x:Name="radioButtonNameCategory" Content="{x:Static common:Strings.SortNameCategory_sortw}" Margin="4"/>
-    <RadioButton x:Name="radioButtonTitleArtistCategory" Content="{x:Static common:Strings.SortTitleArtistCategory_sortw}"
-      Visibility="{Binding Path=ArtistTitleSupported, Converter={StaticResource BoolToVisibilityConverter}}" Margin="4"/>
-    <RadioButton x:Name="radioButtonArtistTitleCategory" Content="{x:Static common:Strings.SortArtistTitleCategory_sortw}"
-      Visibility="{Binding Path=ArtistTitleSupported, Converter={StaticResource BoolToVisibilityConverter}}" Margin="4"/>
-    <RadioButton x:Name="radioButtonCategoryName" Content="{x:Static common:Strings.SortCategoryName_sortw}" Margin="4"/>
-    <RadioButton x:Name="radioButtonCategoryTitleArtist" Content="{x:Static common:Strings.SortCategoryTitleArtist_sortw}"
-      Visibility="{Binding Path=ArtistTitleSupported, Converter={StaticResource BoolToVisibilityConverter}}" Margin="4"/>
-    <RadioButton x:Name="radioButtonCategoryArtistTitle" Content="{x:Static common:Strings.SortCategoryArtistTitle_sortw}"
-      Visibility="{Binding Path=ArtistTitleSupported, Converter={StaticResource BoolToVisibilityConverter}}" Margin="4"/>
-    <StackPanel>
-      <CheckBox x:Name="checkBoxRemember" Content="{x:Static common:Strings.Remember_sortw}" Margin="4"/>
+    <StackPanel Width="400" HorizontalAlignment="Left">
+        <RadioButton x:Name="radioButtonNameCategory" Content="{x:Static common:Strings.SortNameCategory_sortw}"
+                     Margin="4" />
+        <RadioButton x:Name="radioButtonTitleArtistCategory"
+                     Content="{x:Static common:Strings.SortTitleArtistCategory_sortw}"
+                     Visibility="{Binding Path=ArtistTitleSupported, Converter={StaticResource BoolToVisibilityConverter}}"
+                     Margin="4" />
+        <RadioButton x:Name="radioButtonArtistTitleCategory"
+                     Content="{x:Static common:Strings.SortArtistTitleCategory_sortw}"
+                     Visibility="{Binding Path=ArtistTitleSupported, Converter={StaticResource BoolToVisibilityConverter}}"
+                     Margin="4" />
+        <RadioButton x:Name="radioButtonCategoryName" Content="{x:Static common:Strings.SortCategoryName_sortw}"
+                     Margin="4" />
+        <RadioButton x:Name="radioButtonCategoryTitleArtist"
+                     Content="{x:Static common:Strings.SortCategoryTitleArtist_sortw}"
+                     Visibility="{Binding Path=ArtistTitleSupported, Converter={StaticResource BoolToVisibilityConverter}}"
+                     Margin="4" />
+        <RadioButton x:Name="radioButtonCategoryArtistTitle"
+                     Content="{x:Static common:Strings.SortCategoryArtistTitle_sortw}"
+                     Visibility="{Binding Path=ArtistTitleSupported, Converter={StaticResource BoolToVisibilityConverter}}"
+                     Margin="4" />
+        <StackPanel>
+            <CheckBox x:Name="checkBoxRemember" Content="{x:Static common:Strings.Remember_sortw}" Margin="4" />
+        </StackPanel>
+        <Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="{x:Static common:Strings.Cancel}"
+                        IsDefault="False" HorizontalAlignment="Right" Margin="4" VerticalAlignment="Top" Width="75"
+                        IsCancel="True" Click="ButtonCancelClick" />
+                <Button Content="{x:Static common:Strings.OK}"
+
+                        HorizontalAlignment="Right" Margin="4"
+                        VerticalAlignment="Top" Width="75" IsDefault="True"
+                        Click="ButtonOkClick" />
+            </StackPanel>
+        </Grid>
     </StackPanel>
-    <Grid>
-      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-        <Button Content="{x:Static common:Strings.Cancel}"
-        IsDefault="False" HorizontalAlignment="Right" Margin="4"  VerticalAlignment="Top" Width="75"
-        IsCancel="True" Click="ButtonCancelClick" />
-        <Button Content="{x:Static common:Strings.OK}"
-                        
-          HorizontalAlignment="Right" Margin="4"
-          VerticalAlignment="Top" Width="75" IsDefault="True"
-          Click="ButtonOkClick" />
-      </StackPanel>
-    </Grid>
-  </StackPanel>
 </Window>

@@ -1,21 +1,26 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.TrinitySpecific.Pcg;
 using PcgTools.Model.TritonSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.TrinitySpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TrinityFactory : TritonFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -26,9 +31,7 @@ namespace PcgTools.Model.TrinitySpecific.Synth
             return pcgMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -38,9 +41,7 @@ namespace PcgTools.Model.TrinitySpecific.Synth
             return new TrinityPcgFileReader(pcgMemory, content);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -49,9 +50,7 @@ namespace PcgTools.Model.TrinitySpecific.Synth
             return null; // Not supported
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>
@@ -60,6 +59,5 @@ namespace PcgTools.Model.TrinitySpecific.Synth
         {
             return null; // Not supported
         }
-
     }
 }

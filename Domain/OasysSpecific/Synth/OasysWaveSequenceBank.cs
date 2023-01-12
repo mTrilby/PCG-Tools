@@ -1,19 +1,26 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchWaveSequences;
 using PcgTools.Model.KronosOasysSpecific.Synth;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Model.OasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class OasysWaveSequenceBank : KronosOasysWaveSequenceBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="waveSeqBanks"></param>
         /// <param name="type"></param>
@@ -24,9 +31,7 @@ namespace PcgTools.Model.OasysSpecific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         public override void CreatePatch(int index)

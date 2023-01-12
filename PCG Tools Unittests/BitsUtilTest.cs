@@ -1,5 +1,15 @@
-﻿using Common.Utils;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using Common.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 

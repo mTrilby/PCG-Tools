@@ -1,9 +1,17 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+
+#endregion
 
 namespace PcgTools.Gui
 {
@@ -55,9 +63,8 @@ namespace PcgTools.Gui
             Add(new Logo("Synthesauris", "Synthesaurus.png", "https://www.patreon.com/synthesaurus", 3000));
         }
 
-
         /// <summary>
-        /// Returns a random logo based on donated money.
+        ///     Returns a random logo based on donated money.
         /// </summary>
         /// <returns></returns>
         public Logo GetRandomLogo()

@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
@@ -9,145 +15,109 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Common.PcgToolsResources;
 using Microsoft.Win32;
-
+using PcgTools.Extensions;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
+using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 using PcgTools.Model.Common.Synth.PatchWaveSequences;
 using PcgTools.Properties;
-using Common.PcgToolsResources;
-using PcgTools.Extensions;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
+
+#endregion
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
-    /// Interaction logic for WindowSortedLists.xaml
+    ///     Interaction logic for WindowSortedLists.xaml
     /// </summary>
     public partial class ListGeneratorWindow // : Window
     {
         /// <summary>
-        ///
         /// </summary>
-        List<CheckBox> _programBankButtons;
-
+        private const int InternalProgramBanksCheckBoxesAmount = 8;
 
         /// <summary>
-        ///
         /// </summary>
-        List<CheckBox> _combiBankButtons;
-
+        private const int UserProgramBanksCheckBoxesAmount = 8;
 
         /// <summary>
-        ///
         /// </summary>
-        readonly IPcgMemory _pcgMemory;
-
+        private const int ExtendedUserProgramBanksCheckBoxesAmount = 8;
 
         /// <summary>
-        ///
         /// </summary>
-        int _setListRangeMin;
-
+        private const int InternalProgramBanksCheckBoxesStart = 0;
 
         /// <summary>
-        ///
         /// </summary>
-        int _setListRangeMax;
-
+        private const int ProgramBankGmCheckBox =
+            InternalProgramBanksCheckBoxesStart + InternalProgramBanksCheckBoxesAmount;
 
         /// <summary>
-        ///
-        /// </summary>
-        const int InternalProgramBanksCheckBoxesAmount = 8;
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        const int UserProgramBanksCheckBoxesAmount = 8;
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        const int ExtendedUserProgramBanksCheckBoxesAmount = 8;
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        const int InternalProgramBanksCheckBoxesStart = 0;
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        const int ProgramBankGmCheckBox = InternalProgramBanksCheckBoxesStart + InternalProgramBanksCheckBoxesAmount;
-
-
-        /// <summary>
-        ///
         /// </summary>
         private const int UserProgramBanksCheckBoxesStart = ProgramBankGmCheckBox + 1;
 
-
         /// <summary>
-        ///
         /// </summary>
         private const int ExtendedUserProgramBanksCheckBoxesStart =
             UserProgramBanksCheckBoxesStart + UserProgramBanksCheckBoxesAmount;
 
-
         /// <summary>
-        ///
         /// </summary>
-        const int ProgramBanksVirtualCheckBox = ExtendedUserProgramBanksCheckBoxesStart + ExtendedUserProgramBanksCheckBoxesAmount;
-
+        private const int ProgramBanksVirtualCheckBox =
+            ExtendedUserProgramBanksCheckBoxesStart + ExtendedUserProgramBanksCheckBoxesAmount;
 
         /// <summary>
-        ///
         /// </summary>
-        const int InternalCombiBanksCheckBoxesStart = 0;
-
+        private const int InternalCombiBanksCheckBoxesStart = 0;
 
         /// <summary>
-        ///
         /// </summary>
-        const int InternalCombiBanksCheckBoxesAmount = 8;
-
+        private const int InternalCombiBanksCheckBoxesAmount = 8;
 
         /// <summary>
-        ///
         /// </summary>
-        const int UserCombiBanksCheckBoxesStart = InternalCombiBanksCheckBoxesAmount;
-
+        private const int UserCombiBanksCheckBoxesStart = InternalCombiBanksCheckBoxesAmount;
 
         /// <summary>
-        ///
         /// </summary>
-        const int UserCombiBanksCheckBoxesAmount = 8;
-
+        private const int UserCombiBanksCheckBoxesAmount = 8;
 
         /// <summary>
-        ///
         /// </summary>
         private const int CombiBanksVirtualCheckBox = UserCombiBanksCheckBoxesStart + UserCombiBanksCheckBoxesAmount;
 
-
         /// <summary>
-        ///
         /// </summary>
-        readonly SaveFileDialog _saveDialog;
-
+        private readonly IPcgMemory _pcgMemory;
 
         /// <summary>
-        ///
+        /// </summary>
+        private readonly SaveFileDialog _saveDialog;
+
+        /// <summary>
+        /// </summary>
+        private List<CheckBox> _combiBankButtons;
+
+        /// <summary>
+        /// </summary>
+        private List<CheckBox> _programBankButtons;
+
+        /// <summary>
+        /// </summary>
+        private int _setListRangeMax;
+
+        /// <summary>
+        /// </summary>
+        private int _setListRangeMin;
+
+        /// <summary>
         /// </summary>
         /// <param name="pcgMemory"></param>
         public ListGeneratorWindow(PcgMemory pcgMemory)
@@ -161,16 +131,16 @@ namespace PcgTools.ListGenerator
 
             InitBanks();
 
-            if ((_pcgMemory.ProgramBanks == null) ||
-                ((((_pcgMemory.CombiBanks == null) || (_pcgMemory.CombiBanks.CountWritablePatches == 0)) &&
-                  (((_pcgMemory.SetLists == null)) || (_pcgMemory.SetLists.CountWritablePatches == 0)))))
+            if (_pcgMemory.ProgramBanks == null ||
+                (_pcgMemory.CombiBanks == null || _pcgMemory.CombiBanks.CountWritablePatches == 0) &&
+                (_pcgMemory.SetLists == null || _pcgMemory.SetLists.CountWritablePatches == 0))
             {
                 radioButtonProgramUsageList.Visibility = Visibility.Collapsed;
             }
 
             // Save dialog.
             var folderName = $"{Settings.Default.Slg_DefaultOutputFolder}";
-            if ((folderName == string.Empty) || !Directory.Exists(folderName))
+            if (folderName == string.Empty || !Directory.Exists(folderName))
             {
                 folderName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
@@ -213,9 +183,34 @@ namespace PcgTools.ListGenerator
                 : Settings.Default.UI_ListGeneratorWindowHeight;
         }
 
+        /// <summary>
+        /// </summary>
+        private bool LongCombiContentListSelected => radioButtonCombiContentList.IsReallyChecked() &&
+                                                     comboBoxListSubType.SelectedItem != null &&
+                                                     SelectedSubType == ListGenerator.SubType.Long;
 
         /// <summary>
-        /// Initializes banks.
+        /// </summary>
+        private bool XmlButtonCheckedButDisabled => radioButtonXml.IsReallyChecked() && !radioButtonXml.IsEnabled;
+
+        /// <summary>
+        /// </summary>
+        private ListGenerator.SubType SelectedSubType =>
+            (ListGenerator.SubType)((ComboBoxItem)comboBoxListSubType.SelectedItem).Tag;
+
+        /// <summary>
+        /// </summary>
+        private bool AreSetListsAvailable
+        {
+            get
+            {
+                return _pcgMemory.SetLists != null &&
+                       _pcgMemory.SetLists.BankCollection.Any(setList => setList.IsFilled);
+            }
+        }
+
+        /// <summary>
+        ///     Initializes banks.
         /// </summary>
         private void InitBanks()
         {
@@ -235,9 +230,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitPrograms()
         {
@@ -254,9 +247,8 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        /// // Set lists. IMPR: Need to copy because cast from IBank to ISetList does not work.
+        ///     // Set lists. IMPR: Need to copy because cast from IBank to ISetList does not work.
         /// </summary>
         private void InitSetLists()
         {
@@ -275,7 +267,7 @@ namespace PcgTools.ListGenerator
             }
             else
             {
-                if (!(setLists.Any(setList => setList.IsFilled)))
+                if (!setLists.Any(setList => setList.IsFilled))
                 {
                     InitNoSetLists();
                 }
@@ -296,9 +288,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitNoSetLists()
         {
@@ -312,7 +302,6 @@ namespace PcgTools.ListGenerator
             buttonSetListsSelectAll.IsEnabled = false;
         }
 
-
         ///
         private void InitNoSetListsFilter()
         {
@@ -325,9 +314,7 @@ namespace PcgTools.ListGenerator
             checkBoxFilterDrumPatternNames.IsEnabled = false;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitCombiBanks()
         {
@@ -348,20 +335,16 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitSorting()
         {
-            radioButtonCategorical.Visibility = (_pcgMemory.HasProgramCategories || _pcgMemory.HasCombiCategories)
+            radioButtonCategorical.Visibility = _pcgMemory.HasProgramCategories || _pcgMemory.HasCombiCategories
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitOutput(string fileName)
         {
@@ -371,9 +354,7 @@ namespace PcgTools.ListGenerator
             textBoxOutputFile.Text = fileName;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitDrumKits()
         {
@@ -388,9 +369,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitDrumPatterns()
         {
@@ -405,9 +384,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitWaveSequences()
         {
@@ -422,9 +399,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void InitFavoriteGroups()
         {
@@ -438,9 +413,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -454,9 +427,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -467,9 +438,7 @@ namespace PcgTools.ListGenerator
             Settings.Default.Save();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -478,9 +447,7 @@ namespace PcgTools.ListGenerator
             PerformPatchListOptions();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptions()
         {
@@ -501,9 +468,7 @@ namespace PcgTools.ListGenerator
             PerformPatchListOptionsSorting();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptionsPrograms()
         {
@@ -511,9 +476,7 @@ namespace PcgTools.ListGenerator
             checkBoxIgnoreFirstProgram.IsEnabled = false;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptionsCombis()
         {
@@ -522,9 +485,7 @@ namespace PcgTools.ListGenerator
             checkBoxIgnoreMutedOffFirstProgramTimbre.IsEnabled = false;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptionsGroupBoxes()
         {
@@ -540,9 +501,7 @@ namespace PcgTools.ListGenerator
             PerformPatchListOptionsGroupBoxesFilters(checkFilterOnText, AreSetListsAvailable);
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="checkFilterOnText"></param>
         /// <param name="setListsAvailable"></param>
@@ -550,54 +509,45 @@ namespace PcgTools.ListGenerator
         {
             checkBoxFilterProgramNames.IsEnabled =
                 checkBoxFilterCombiNames.IsEnabled =
-                checkBoxFilterWaveSequenceNames.IsEnabled =
-                checkBoxFilterDrumKitNames.IsEnabled =
-                checkBoxFilterDrumPatternNames.IsEnabled =
-                checkFilterOnText;
+                    checkBoxFilterWaveSequenceNames.IsEnabled =
+                        checkBoxFilterDrumKitNames.IsEnabled =
+                            checkBoxFilterDrumPatternNames.IsEnabled =
+                                checkFilterOnText;
 
             checkBoxFilterSetListSlotNames.IsEnabled =
                 checkBoxFilterSetListSlotDescriptions.IsEnabled = checkFilterOnText && setListsAvailable;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptionsDrumKits()
         {
-            var drumKitsAvailable = ((_pcgMemory.DrumKitBanks != null) &&
-                                     _pcgMemory.DrumKitBanks.BankCollection.Any(drumKitBank => drumKitBank.IsFilled));
+            var drumKitsAvailable = _pcgMemory.DrumKitBanks != null &&
+                                    _pcgMemory.DrumKitBanks.BankCollection.Any(drumKitBank => drumKitBank.IsFilled);
             checkBoxDrumKitsIgnoreInitDrumKits.IsEnabled = drumKitsAvailable;
         }
 
-
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptionsDrumPatterns()
         {
-            var drumPatternsAvailable = ((_pcgMemory.DrumPatternBanks != null) &&
-                                         _pcgMemory.DrumPatternBanks.BankCollection.Any(
-                                             drumPatternBank => drumPatternBank.IsFilled));
+            var drumPatternsAvailable = _pcgMemory.DrumPatternBanks != null &&
+                                        _pcgMemory.DrumPatternBanks.BankCollection.Any(
+                                            drumPatternBank => drumPatternBank.IsFilled);
             checkBoxDrumPatternsIgnoreInitDrumPatterns.IsEnabled = drumPatternsAvailable;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptionsWaveSequences()
         {
-            var waveSequencesAvailable = ((_pcgMemory.WaveSequenceBanks != null) &&
-                                          _pcgMemory.WaveSequenceBanks.BankCollection.Any(
-                                              waveSequenceBank => waveSequenceBank.IsFilled));
+            var waveSequencesAvailable = _pcgMemory.WaveSequenceBanks != null &&
+                                         _pcgMemory.WaveSequenceBanks.BankCollection.Any(
+                                             waveSequenceBank => waveSequenceBank.IsFilled);
             checkBoxWaveSequencesIgnoreInitWaveSequences.IsEnabled = waveSequencesAvailable;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptionsOptionalColumns()
         {
@@ -607,9 +557,7 @@ namespace PcgTools.ListGenerator
             checkBoxSetListSlotReferenceName.IsChecked = true;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void PerformPatchListOptionsSorting()
         {
@@ -618,9 +566,7 @@ namespace PcgTools.ListGenerator
             groupBoxSorting.IsExpanded = true;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -642,9 +588,7 @@ namespace PcgTools.ListGenerator
             groupBoxSorting.Visibility = Visibility.Collapsed;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -661,15 +605,13 @@ namespace PcgTools.ListGenerator
             checkBoxIgnoreMutedOffTimbres.IsEnabled = true;
             checkBoxIgnoreMutedOffFirstProgramTimbre.IsEnabled = true;
 
-            var longList = (SelectedSubType == ListGenerator.SubType.Long);
+            var longList = SelectedSubType == ListGenerator.SubType.Long;
             UpdateFilterOptions(longList);
 
             groupBoxSorting.Visibility = Visibility.Collapsed; // Always compact
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -691,9 +633,7 @@ namespace PcgTools.ListGenerator
             groupBoxSorting.Visibility = Visibility.Collapsed;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -720,15 +660,13 @@ namespace PcgTools.ListGenerator
             groupBoxSorting.IsExpanded = false;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void UpdateSpecificListOptions()
         {
             // Sub type
-            var subTypeEnabled = (radioButtonCombiContentList.IsReallyChecked() ||
-                                  radioButtonDifferencesList.IsReallyChecked());
+            var subTypeEnabled = radioButtonCombiContentList.IsReallyChecked() ||
+                                 radioButtonDifferencesList.IsReallyChecked();
             comboBoxListSubType.Items.Clear();
             comboBoxListSubType.IsEnabled = subTypeEnabled;
             labelListSubType.IsEnabled = subTypeEnabled;
@@ -777,16 +715,15 @@ namespace PcgTools.ListGenerator
 
             // Optional columns.
             groupBoxOptionalColumns.Visibility = radioButtonPatchList.IsReallyChecked()
-                                         ? Visibility.Visible : Visibility.Collapsed;
+                ? Visibility.Visible
+                : Visibility.Collapsed;
 
             UpdateSetListSlots();
 
             UpdateOutputOptions();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void UpdateDifferencesListOptions()
         {
@@ -799,9 +736,8 @@ namespace PcgTools.ListGenerator
             checkBoxDiffListIgnoreSetListSlotDescriptions.IsChecked = true;
         }
 
-
         /// <summary>
-        /// Options unavailable for Files Bank List
+        ///     Options unavailable for Files Bank List
         /// </summary>
         private void UpdateSetListSlots()
         {
@@ -811,9 +747,7 @@ namespace PcgTools.ListGenerator
             threeStateCheckBoxFavorites.IsEnabled = !radioButtonFileContentList.IsReallyChecked();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="enable"></param>
         private void UpdateFilterOptions(bool enable)
@@ -825,9 +759,7 @@ namespace PcgTools.ListGenerator
             UpdateSortingFilterOptions(enable);
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="enable"></param>
         private void UpdatePatchFilterOptions(bool enable)
@@ -841,9 +773,7 @@ namespace PcgTools.ListGenerator
                                     checkBoxFilterDrumPatternNames.IsEnabled = enable;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="enable"></param>
         private void UpdateSortingFilterOptions(bool enable)
@@ -853,9 +783,7 @@ namespace PcgTools.ListGenerator
             groupBoxSorting.IsExpanded = enable;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void UpdateOutputOptions()
         {
@@ -863,22 +791,13 @@ namespace PcgTools.ListGenerator
             var filter = !LongCombiContentListSelected;
             radioButtonText.IsEnabled = filter;
             radioButtonCsv.IsEnabled = filter;
-            radioButtonXml.IsEnabled = (!radioButtonDifferencesList.IsReallyChecked() && filter);
+            radioButtonXml.IsEnabled = !radioButtonDifferencesList.IsReallyChecked() && filter;
 
             SelectHighestEnabledRadioButton();
         }
 
-
         /// <summary>
-        ///
-        /// </summary>
-        private bool LongCombiContentListSelected => (radioButtonCombiContentList.IsReallyChecked() &&
-                                                      (comboBoxListSubType.SelectedItem != null) &&
-                                                      (SelectedSubType == ListGenerator.SubType.Long));
-
-
-        /// <summary>
-        /// Select only the highest enabled radio button.
+        ///     Select only the highest enabled radio button.
         /// </summary>
         private void SelectHighestEnabledRadioButton()
         {
@@ -905,49 +824,31 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="button"></param>
         /// <returns></returns>
         private bool TextRadioButtonCheckedButDisabled(RadioButton button)
         {
-            return ((Equals(button, radioButtonText)) || radioButtonText.IsReallyChecked()) &&
-                   (radioButtonText != null) && !radioButtonText.IsEnabled;
+            return (Equals(button, radioButtonText) || radioButtonText.IsReallyChecked()) &&
+                   radioButtonText != null && !radioButtonText.IsEnabled;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="button"></param>
         /// <returns></returns>
         private bool CsvRadioButtonCheckedButDisabled(RadioButton button)
         {
-            return radioButtonCsv != null && (((Equals(button, radioButtonCsv)) || radioButtonCsv.IsReallyChecked()) &&
-                                              (radioButtonCsv != null) && !radioButtonCsv.IsEnabled);
+            return radioButtonCsv != null && (Equals(button, radioButtonCsv) || radioButtonCsv.IsReallyChecked()) &&
+                   radioButtonCsv != null && !radioButtonCsv.IsEnabled;
         }
 
-
         /// <summary>
-        ///
-        /// </summary>
-        private bool XmlButtonCheckedButDisabled => radioButtonXml.IsReallyChecked() && !radioButtonXml.IsEnabled;
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        private ListGenerator.SubType SelectedSubType => (ListGenerator.SubType) ((ComboBoxItem) comboBoxListSubType.SelectedItem).Tag;
-
-
-        /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void CheckBoxFilterOnTextChecked(object sender, RoutedEventArgs e)
+        private void CheckBoxFilterOnTextChecked(object sender, RoutedEventArgs e)
         {
             var filterEnabled = checkBoxFilterOnText.IsReallyChecked();
             textBoxTextToFilterOn.IsEnabled = filterEnabled;
@@ -965,9 +866,7 @@ namespace PcgTools.ListGenerator
             CheckBoxFilterOnTextCheckedDrumPatterns(filterEnabled);
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="filterEnabled"></param>
         private void CheckBoxFilterOnTextCheckedPrograms(bool filterEnabled)
@@ -976,9 +875,7 @@ namespace PcgTools.ListGenerator
             checkBoxFilterProgramNames.IsChecked = filterEnabled;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="filterEnabled"></param>
         private void CheckBoxFilterOnTextCheckedCombis(bool filterEnabled)
@@ -987,9 +884,7 @@ namespace PcgTools.ListGenerator
             checkBoxFilterCombiNames.IsChecked = filterEnabled;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="filterEnabled"></param>
         private void CheckBoxFilterOnTextCheckedSetLists(bool filterEnabled)
@@ -1002,65 +897,44 @@ namespace PcgTools.ListGenerator
             checkBoxFilterSetListSlotDescriptions.IsChecked = filter;
         }
 
-
         /// <summary>
-        ///
-        /// </summary>
-        private bool AreSetListsAvailable
-        {
-            get
-            {
-                return (_pcgMemory.SetLists != null) &&
-                       _pcgMemory.SetLists.BankCollection.Any(setList => setList.IsFilled);
-            }
-        }
-
-
-        /// <summary>
-        ///
         /// </summary>
         /// <param name="filterEnabled"></param>
         private void CheckBoxFilterOnTextCheckedWaveSequences(bool filterEnabled)
         {
-            var waveSequencesAvailable = (_pcgMemory.WaveSequenceBanks != null) &&
+            var waveSequencesAvailable = _pcgMemory.WaveSequenceBanks != null &&
                                          _pcgMemory.WaveSequenceBanks.BankCollection.Any(
                                              waveSequenceBank => waveSequenceBank.IsFilled);
             checkBoxFilterWaveSequenceNames.IsEnabled = filterEnabled && waveSequencesAvailable;
             checkBoxFilterWaveSequenceNames.IsChecked = filterEnabled && waveSequencesAvailable;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="filterEnabled"></param>
         private void CheckBoxFilterOnTextCheckedDrumKits(bool filterEnabled)
         {
-            var drumKitsAvailable = (_pcgMemory.DrumKitBanks != null) &&
+            var drumKitsAvailable = _pcgMemory.DrumKitBanks != null &&
                                     _pcgMemory.DrumKitBanks.BankCollection.Any(drumKitBanks => drumKitBanks.IsFilled);
             checkBoxFilterDrumKitNames.IsEnabled = filterEnabled && drumKitsAvailable;
             checkBoxFilterDrumKitNames.IsChecked = filterEnabled && drumKitsAvailable;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="filterEnabled"></param>
         private void CheckBoxFilterOnTextCheckedDrumPatterns(bool filterEnabled)
         {
-            var drumPatternsAvailable = (_pcgMemory.DrumPatternBanks != null) &&
+            var drumPatternsAvailable = _pcgMemory.DrumPatternBanks != null &&
                                         _pcgMemory.DrumPatternBanks.BankCollection.Any(
                                             drumPatternBanks => drumPatternBanks.IsFilled);
             checkBoxFilterDrumPatternNames.IsEnabled = filterEnabled && drumPatternsAvailable;
             checkBoxFilterDrumPatternNames.IsChecked = filterEnabled && drumPatternsAvailable;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
-        void SetProgramBankButtons()
+        private void SetProgramBankButtons()
         {
             var show = !radioButtonFileContentList.IsReallyChecked();
             groupBoxFilterProgramBanks.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
@@ -1077,15 +951,14 @@ namespace PcgTools.ListGenerator
 
             foreach (var bank in _pcgMemory.ProgramBanks.BankCollection)
             {
-                var checkBox = SetProgramBankIsEnabledAndIsChecked(bank, ref internalBanks, ref userBanks, ref extendedUserBanks);
+                var checkBox =
+                    SetProgramBankIsEnabledAndIsChecked(bank, ref internalBanks, ref userBanks, ref extendedUserBanks);
 
                 SetProgramBankContentTagAndVisibility(checkBox, bank);
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void CollapseProgramBankButtons()
         {
@@ -1096,9 +969,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void AssignProgramBankButtons()
         {
@@ -1134,9 +1005,7 @@ namespace PcgTools.ListGenerator
             };
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <param name="internalBanks"></param>
@@ -1177,9 +1046,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <param name="internalBanks"></param>
@@ -1197,9 +1064,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <param name="userBanks"></param>
@@ -1217,9 +1082,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <param name="extendedUserBanks"></param>
@@ -1228,8 +1091,8 @@ namespace PcgTools.ListGenerator
         {
             var checkBox = _programBankButtons[ExtendedUserProgramBanksCheckBoxesStart + extendedUserBanks];
             checkBox.IsEnabled = bank.IsLoaded ||
-                                 (radioButtonProgramUsageList.IsReallyChecked()) &&
-                                 !radioButtonFileContentList.IsReallyChecked() ||
+                                 (radioButtonProgramUsageList.IsReallyChecked() &&
+                                  !radioButtonFileContentList.IsReallyChecked()) ||
                                  radioButtonCombiContentList.IsReallyChecked();
             checkBox.IsChecked = checkBox.IsEnabled;
             extendedUserBanks++;
@@ -1237,9 +1100,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <returns></returns>
         private CheckBox SetGmProgramBankIsEnabledAndIsChecked()
@@ -1252,9 +1113,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <returns></returns>
@@ -1269,9 +1128,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="checkBox"></param>
         /// <param name="bank"></param>
@@ -1296,9 +1153,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1313,9 +1168,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1330,11 +1183,9 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
-        void SetCombiBankButtons()
+        private void SetCombiBankButtons()
         {
             var show = !radioButtonFileContentList.IsReallyChecked();
             groupBoxFilterCombiBanks.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
@@ -1363,9 +1214,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void CollapseCombiBankButtons()
         {
@@ -1376,9 +1225,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void AssignCombiBankButtons()
         {
@@ -1405,9 +1252,7 @@ namespace PcgTools.ListGenerator
             };
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void DisableCombiBankButtons()
         {
@@ -1418,9 +1263,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <param name="internalBanks"></param>
@@ -1447,12 +1290,11 @@ namespace PcgTools.ListGenerator
                 default:
                     throw new ApplicationException("Illegal switch");
             }
+
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <param name="internalBanks"></param>
@@ -1467,9 +1309,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <param name="userBanks"></param>
@@ -1484,9 +1324,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="bank"></param>
         /// <returns></returns>
@@ -1499,9 +1337,7 @@ namespace PcgTools.ListGenerator
             return checkBox;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="checkBox"></param>
         /// <param name="bank"></param>
@@ -1526,22 +1362,19 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        /// FUTURE: Enable for other list types.
+        ///     FUTURE: Enable for other list types.
         /// </summary>
-        void SetDrumKitBankButtons()
+        private void SetDrumKitBankButtons()
         {
             var isSupported = radioButtonPatchList.IsReallyChecked() &&
-                            (_pcgMemory.DrumKitBanks != null);
+                              _pcgMemory.DrumKitBanks != null;
 
             SetDrumKitBankButtonsCheckBoxGroupBox(isSupported);
             SetDrumKitBankButtonsCheckBox(isSupported);
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="isSupported"></param>
         private void SetDrumKitBankButtonsCheckBoxGroupBox(bool isSupported)
@@ -1551,9 +1384,7 @@ namespace PcgTools.ListGenerator
             groupBoxFilterDrumKits.IsExpanded = isSupported;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="isSupported"></param>
         private void SetDrumKitBankButtonsCheckBox(bool isSupported)
@@ -1562,22 +1393,19 @@ namespace PcgTools.ListGenerator
             checkBoxFilterDrumKits.IsChecked = isSupported;
         }
 
-
         /// <summary>
-        /// FUTURE: Enable for other list types.
+        ///     FUTURE: Enable for other list types.
         /// </summary>
-        void SetDrumPatternBankButtons()
+        private void SetDrumPatternBankButtons()
         {
             var isSupported = radioButtonPatchList.IsReallyChecked() &&
-                            (_pcgMemory.DrumPatternBanks != null);
+                              _pcgMemory.DrumPatternBanks != null;
 
             SetDrumPatternBankButtonsCheckBoxGroupBox(isSupported);
             SetDrumPatternBankButtonsCheckBox(isSupported);
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="isSupported"></param>
         private void SetDrumPatternBankButtonsCheckBoxGroupBox(bool isSupported)
@@ -1587,9 +1415,7 @@ namespace PcgTools.ListGenerator
             groupBoxFilterDrumPatterns.IsExpanded = isSupported;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="isSupported"></param>
         private void SetDrumPatternBankButtonsCheckBox(bool isSupported)
@@ -1598,22 +1424,19 @@ namespace PcgTools.ListGenerator
             checkBoxFilterDrumPatterns.IsChecked = isSupported;
         }
 
-
         /// <summary>
-        /// FUTURE: Enable for other list types.
+        ///     FUTURE: Enable for other list types.
         /// </summary>
-        void SetWaveSequenceBankButtons()
+        private void SetWaveSequenceBankButtons()
         {
             var isSupported = radioButtonPatchList.IsReallyChecked() &&
-                              (_pcgMemory.WaveSequenceBanks != null);
+                              _pcgMemory.WaveSequenceBanks != null;
 
             SetWaveSequenceBankButtonsGroupBox(isSupported);
             SetWaveSequenceBankButtonsCheckBox(isSupported);
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="isSupported"></param>
         private void SetWaveSequenceBankButtonsGroupBox(bool isSupported)
@@ -1623,9 +1446,7 @@ namespace PcgTools.ListGenerator
             groupBoxFilterWaveSequences.IsExpanded = isSupported;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="isSupported"></param>
         private void SetWaveSequenceBankButtonsCheckBox(bool isSupported)
@@ -1634,9 +1455,7 @@ namespace PcgTools.ListGenerator
             checkBoxFilterWaveSequences.IsChecked = isSupported;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1648,9 +1467,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1662,9 +1479,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1677,9 +1492,7 @@ namespace PcgTools.ListGenerator
             textBoxSetListsTo.IsEnabled = enabled;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1690,19 +1503,17 @@ namespace PcgTools.ListGenerator
             textBoxSetListsTo.Text = _setListRangeMax.ToString(CultureInfo.InvariantCulture);
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TextBoxSetListsFromLostFocus(object sender, RoutedEventArgs e)
         {
             int fromValue;
-            if (Int32.TryParse(textBoxSetListsFrom.Text, out fromValue))
+            if (int.TryParse(textBoxSetListsFrom.Text, out fromValue))
             {
                 int toValue;
-                if (Int32.TryParse(textBoxSetListsTo.Text, out toValue))
+                if (int.TryParse(textBoxSetListsTo.Text, out toValue))
                 {
                     if (fromValue > toValue)
                     {
@@ -1722,19 +1533,17 @@ namespace PcgTools.ListGenerator
             LimitRanges();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TextBoxSetListsToLostFocus(object sender, RoutedEventArgs e)
         {
             int toValue;
-            if (Int32.TryParse(textBoxSetListsTo.Text, out toValue))
+            if (int.TryParse(textBoxSetListsTo.Text, out toValue))
             {
                 int fromValue;
-                if (Int32.TryParse(textBoxSetListsFrom.Text, out fromValue))
+                if (int.TryParse(textBoxSetListsFrom.Text, out fromValue))
                 {
                     if (fromValue > toValue)
                     {
@@ -1754,13 +1563,11 @@ namespace PcgTools.ListGenerator
             LimitRanges();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         private void LimitRanges()
         {
-            var fromValue = Int32.Parse(textBoxSetListsFrom.Text);
+            var fromValue = int.Parse(textBoxSetListsFrom.Text);
             if (fromValue < 0)
             {
                 textBoxSetListsFrom.Text = _setListRangeMin.ToString(CultureInfo.InvariantCulture);
@@ -1770,7 +1577,7 @@ namespace PcgTools.ListGenerator
                 textBoxSetListsFrom.Text = _setListRangeMax.ToString(CultureInfo.InvariantCulture);
             }
 
-            var toValue = Int32.Parse(textBoxSetListsTo.Text);
+            var toValue = int.Parse(textBoxSetListsTo.Text);
             if (toValue < 0)
             {
                 textBoxSetListsTo.Text = _setListRangeMin.ToString(CultureInfo.InvariantCulture);
@@ -1781,9 +1588,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1841,7 +1646,6 @@ namespace PcgTools.ListGenerator
                     Strings.PcgTools,
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
-
             }
             catch (ApplicationException ex)
             {
@@ -1858,9 +1662,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorOptionalColumnProperties(ListGenerator generator)
@@ -1871,9 +1673,7 @@ namespace PcgTools.ListGenerator
             generator.OptionalColumnSetListSlotReferenceName = checkBoxSetListSlotReferenceName.IsReallyChecked();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorSubTypeProperty(ListGenerator generator)
@@ -1908,9 +1708,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="askForContinuation"></param>
         /// <returns></returns>
@@ -1931,7 +1729,7 @@ namespace PcgTools.ListGenerator
             }
             else if (radioButtonDifferencesList.IsReallyChecked())
             {
-                generator = new ListGeneratorDifferencesList((int)(sliderDiffListMaxNumberOfDifferences.Value),
+                generator = new ListGeneratorDifferencesList((int)sliderDiffListMaxNumberOfDifferences.Value,
                     checkBoxDiffListIgnorePatchNames.IsReallyChecked(),
                     checkBoxDiffListIgnoreSetListSlotDescriptions.IsReallyChecked(),
                     checkBoxDiffListSearchBothDirections.IsReallyChecked());
@@ -1949,9 +1747,7 @@ namespace PcgTools.ListGenerator
             return generator;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorFilterProperties(ListGenerator generator)
@@ -1968,9 +1764,7 @@ namespace PcgTools.ListGenerator
             generator.FilterDrumPatternNames = checkBoxFilterDrumPatternNames.IsReallyChecked();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorProgramParameters(IListGenerator generator)
@@ -1980,9 +1774,9 @@ namespace PcgTools.ListGenerator
                 if (checkBox.Equals(_programBankButtons[ProgramBanksVirtualCheckBox]))
                 {
                     foreach (var programBank in _pcgMemory.ProgramBanks.BankCollection.Where(
-                        bank => bank.Type == BankType.EType.Virtual))
+                                 bank => bank.Type == BankType.EType.Virtual))
                     {
-                        var bank = (IProgramBank) programBank;
+                        var bank = (IProgramBank)programBank;
                         generator.SelectedProgramBanks.Add(bank);
                     }
                 }
@@ -1995,9 +1789,7 @@ namespace PcgTools.ListGenerator
             generator.IgnoreInitPrograms = checkBoxProgramBanksIgnoreInitPrograms.IsReallyChecked();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorCombiParameters(IListGenerator generator)
@@ -2007,7 +1799,7 @@ namespace PcgTools.ListGenerator
                 if (checkBox.Equals(_combiBankButtons[CombiBanksVirtualCheckBox]))
                 {
                     foreach (var bank in _pcgMemory.CombiBanks.BankCollection.Where(
-                        bank => bank.Type == BankType.EType.Virtual).Cast<ICombiBank>())
+                                 bank => bank.Type == BankType.EType.Virtual).Cast<ICombiBank>())
                     {
                         generator.SelectedCombiBanks.Add(bank);
                     }
@@ -2024,9 +1816,7 @@ namespace PcgTools.ListGenerator
             generator.IgnoreMutedOffFirstProgramTimbre = checkBoxIgnoreMutedOffFirstProgramTimbre.IsReallyChecked();
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorSetListProperties(IListGenerator generator)
@@ -2035,14 +1825,13 @@ namespace PcgTools.ListGenerator
             generator.IgnoreInitSetListSlots = checkBoxSetListsIgnoreInitSetListSlots.IsReallyChecked();
             if (generator.SetListsEnabled)
             {
-                generator.SetListsRangeFrom = (Int32.Parse(textBoxSetListsFrom.Text));
-                generator.SetListsRangeTo = (Int32.Parse(textBoxSetListsTo.Text));
+                generator.SetListsRangeFrom = int.Parse(textBoxSetListsFrom.Text);
+                generator.SetListsRangeTo = int.Parse(textBoxSetListsTo.Text);
             }
         }
 
-
         /// <summary>
-        /// FUTURE: Change if check boxes are used for drum kit banks.
+        ///     FUTURE: Change if check boxes are used for drum kit banks.
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorDrumKitProperties(IListGenerator generator)
@@ -2053,15 +1842,14 @@ namespace PcgTools.ListGenerator
             {
                 foreach (var bank1 in _pcgMemory.DrumKitBanks.BankCollection)
                 {
-                    var bank = (IDrumKitBank) bank1;
+                    var bank = (IDrumKitBank)bank1;
                     generator.SelectedDrumKitBanks.Add(bank);
                 }
             }
         }
 
-
         /// <summary>
-        /// FUTURE: Change if check boxes are used for drum Pattern banks.
+        ///     FUTURE: Change if check boxes are used for drum Pattern banks.
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorDrumPatternProperties(IListGenerator generator)
@@ -2078,9 +1866,8 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        /// FUTURE: Change if check boxes are used for wave sequence banks.
+        ///     FUTURE: Change if check boxes are used for wave sequence banks.
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorWaveSequenceProperties(IListGenerator generator)
@@ -2091,15 +1878,13 @@ namespace PcgTools.ListGenerator
             {
                 foreach (var bank1 in _pcgMemory.WaveSequenceBanks.BankCollection)
                 {
-                    var bank = (IWaveSequenceBank) bank1;
+                    var bank = (IWaveSequenceBank)bank1;
                     generator.SelectedWaveSequenceBanks.Add(bank);
                 }
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorOutputProperties(ListGenerator generator)
@@ -2107,9 +1892,7 @@ namespace PcgTools.ListGenerator
             generator.OutputFileName = textBoxOutputFile.Text;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorSortProperties(ListGenerator generator)
@@ -2132,9 +1915,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorOutputFormatProperties(ListGenerator generator)
@@ -2161,9 +1942,7 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="generator"></param>
         private void SetGeneratorFavoriteProperties(ListGenerator generator)
@@ -2182,25 +1961,21 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonOutputFileBrowseClick(object sender, RoutedEventArgs e)
         {
             var showDialog = _saveDialog.ShowDialog();
-            if ((showDialog != null) && showDialog.Value)
+            if (showDialog != null && showDialog.Value)
             {
                 textBoxOutputFile.Text = _saveDialog.FileName;
                 _saveDialog.InitialDirectory = Path.GetDirectoryName(textBoxOutputFile.Text);
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2211,12 +1986,9 @@ namespace PcgTools.ListGenerator
             textBoxOutputFile.Text = Path.ChangeExtension(textBoxOutputFile.Text, Strings.TxtExtension);
             _saveDialog.FileName = textBoxOutputFile.Text;
             _saveDialog.Filter = Strings.AsciiFilter;
-
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2229,9 +2001,7 @@ namespace PcgTools.ListGenerator
             _saveDialog.Filter = Strings.AsciiFilter;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2242,12 +2012,9 @@ namespace PcgTools.ListGenerator
             textBoxOutputFile.Text = Path.ChangeExtension(textBoxOutputFile.Text, "csv");
             _saveDialog.FileName = textBoxOutputFile.Text;
             _saveDialog.Filter = Strings.CsvFileFilter;
-
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2260,9 +2027,7 @@ namespace PcgTools.ListGenerator
             _saveDialog.Filter = Strings.XmlFileFilter;
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2273,18 +2038,16 @@ namespace PcgTools.ListGenerator
                 sliderDiffListMaxNumberOfDifferences.Value.ToString(CultureInfo.InvariantCulture);
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ComboBoxListSubTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBoxListSubTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedItem = comboBoxListSubType.SelectedItem;
             if (selectedItem != null)
             {
-                var longList = (SelectedSubType == ListGenerator.SubType.Long);
+                var longList = SelectedSubType == ListGenerator.SubType.Long;
                 UpdateFilterOptions(longList);
 
                 UpdateOutputOptions();

@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
@@ -7,18 +13,17 @@ using System.Linq;
 using System.Text;
 using Common.PcgToolsResources;
 using PcgTools.ListGenerator;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools
 {
     /// <summary>
-    /// 
     /// </summary>
     [Serializable]
-    public class CommandLineArgumentException: ApplicationException
+    public class CommandLineArgumentException : ApplicationException
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="message"></param>
         public CommandLineArgumentException(string message) : base(message)
@@ -26,50 +31,36 @@ namespace PcgTools
         }
     }
 
-
     /// <summary>
-    /// 
     /// </summary>
     public class CommandLineArguments
     {
         /// <summary>
-        /// 
         /// </summary>
         private string _diagnosticOutput;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        List<string> _parameters;
-
+        private Dictionary<string, string> _options;
 
         /// <summary>
-        /// 
         /// </summary>
-        Dictionary<string, string> _options;
-
+        private List<string> _parameters;
 
         /// <summary>
-        /// 
         /// </summary>
         public string PcgFileName { get; private set; }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public ListGenerator.ListGenerator ListGenerator { get; private set; }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private bool StartWindowsVersion { get; set; }
 
-        
         /// <summary>
-        /// Returns true if handled as command line argument.
+        ///     Returns true if handled as command line argument.
         /// </summary>
         /// <param name="arguments"></param>
         /// <returns></returns>
@@ -87,19 +78,17 @@ namespace PcgTools
                 helpOrError = true;
             }
 
-            StartWindowsVersion = (ListGenerator == null) &&
-                                  !helpOrError && (_options.Count == 0) && (_parameters.Count == 0);
+            StartWindowsVersion = ListGenerator == null &&
+                                  !helpOrError && _options.Count == 0 && _parameters.Count == 0;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="arguments"></param>
         /// <returns></returns>
         private bool HandleArguments(string[] arguments)
         {
-            if ((arguments.Length == 1) && ((arguments[0] == "-h") || (arguments[0] == "-help")))
+            if (arguments.Length == 1 && (arguments[0] == "-h" || arguments[0] == "-help"))
             {
                 ShowHelp();
                 return true;
@@ -113,9 +102,7 @@ namespace PcgTools
             return false;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="exc"></param>
         /// <returns></returns>
@@ -126,12 +113,10 @@ namespace PcgTools
             ListGenerator = null;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="arguments"></param>
-        void ConvertArguments(IList<string> arguments)
+        private void ConvertArguments(IList<string> arguments)
         {
             _parameters = new List<string>();
             _options = new Dictionary<string, string>();
@@ -143,10 +128,11 @@ namespace PcgTools
                     {
                         throw new CommandLineArgumentException(string.Format(Strings.CliOptionError, arguments[i]));
                     }
-                    
+
                     if (i + 1 >= arguments.Count)
                     {
-                        throw new CommandLineArgumentException(string.Format(Strings.CliIllegalOptionError, arguments[i]));
+                        throw new CommandLineArgumentException(string.Format(Strings.CliIllegalOptionError,
+                            arguments[i]));
                     }
 
                     _options[arguments[i]] = arguments[i + 1];
@@ -159,11 +145,9 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        void ParseParameters()
+        private void ParseParameters()
         {
             // Check there are exactly 4 parameters.
             if (_parameters.Count != 4)
@@ -174,59 +158,60 @@ namespace PcgTools
             PcgFileName = _parameters[0];
 
             // Create generator.
-            switch (GetMatch(new List<string> {"PATCH_LIST", "PROGRAM_USAGE_LIST", "COMBI_CONTENT_LIST", "DIFFERENCES_LIST",
-             "FILE_CONTENT_LIST"}, _parameters[1]))
+            switch (GetMatch(new List<string>
+                    {
+                        "PATCH_LIST", "PROGRAM_USAGE_LIST", "COMBI_CONTENT_LIST", "DIFFERENCES_LIST",
+                        "FILE_CONTENT_LIST"
+                    }, _parameters[1]))
             {
-            case "PATCH_LIST":
-                ListGenerator = new ListGeneratorPatchList();
-                break;
+                case "PATCH_LIST":
+                    ListGenerator = new ListGeneratorPatchList();
+                    break;
 
-            case "PROGRAM_USAGE_LIST":
-                ListGenerator = new ListGeneratorProgramUsageList();
-                break;
+                case "PROGRAM_USAGE_LIST":
+                    ListGenerator = new ListGeneratorProgramUsageList();
+                    break;
 
-            case "COMBI_CONTENT_LIST":
-                ListGenerator = new ListGeneratorCombiContentList();
-                break;
+                case "COMBI_CONTENT_LIST":
+                    ListGenerator = new ListGeneratorCombiContentList();
+                    break;
 
-            case "DIFFERENCES_LIST":
-                ListGenerator = new ListGeneratorDifferencesList();
-                break;
+                case "DIFFERENCES_LIST":
+                    ListGenerator = new ListGeneratorDifferencesList();
+                    break;
 
-            case "FILE_CONTENT_LIST":
-                ListGenerator = new ListGeneratorFileContentList();
-                break;
+                case "FILE_CONTENT_LIST":
+                    ListGenerator = new ListGeneratorFileContentList();
+                    break;
 
-            default:
-                throw new CommandLineArgumentException(string.Format(Strings.IllegalListType, _parameters[1]));
+                default:
+                    throw new CommandLineArgumentException(string.Format(Strings.IllegalListType, _parameters[1]));
             } // Default not needed (exception thrown)
 
-            switch (GetMatch(new List<string> {"COMPACT", "SHORT", "DEFAULT"}, _parameters[2]))
+            switch (GetMatch(new List<string> { "COMPACT", "SHORT", "DEFAULT" }, _parameters[2]))
             {
-            case "COMPACT":
-                ListGenerator.ListSubType = PcgTools.ListGenerator.ListGenerator.SubType.Compact;
-                break;
+                case "COMPACT":
+                    ListGenerator.ListSubType = PcgTools.ListGenerator.ListGenerator.SubType.Compact;
+                    break;
 
-            case "SHORT":
-                ListGenerator.ListSubType = PcgTools.ListGenerator.ListGenerator.SubType.Short;
-                break;
+                case "SHORT":
+                    ListGenerator.ListSubType = PcgTools.ListGenerator.ListGenerator.SubType.Short;
+                    break;
 
-            case "DEFAULT":
-                // Do nothing
-                break;
+                case "DEFAULT":
+                    // Do nothing
+                    break;
 
-            default:
-                throw new CommandLineArgumentException(string.Format(Strings.IllegalSubType, _parameters[2]));
+                default:
+                    throw new CommandLineArgumentException(string.Format(Strings.IllegalSubType, _parameters[2]));
             }
 
             ListGenerator.OutputFileName = _parameters[3];
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        void ParseOptions()
+        private void ParseOptions()
         {
             foreach (var optionPair in _options)
             {
@@ -239,21 +224,20 @@ namespace PcgTools
             }
 
             // Check if -h(elp) is used (Quit is true).
-            if (StartWindowsVersion && (_options.Count > 1))
+            if (StartWindowsVersion && _options.Count > 1)
             {
                 throw new CommandLineArgumentException(Strings.CannotMingleOptions);
             }
 
             // Check set list range from/to
-            if ((ListGenerator != null) && ListGenerator.SetListsEnabled && (ListGenerator.SetListsRangeFrom > ListGenerator.SetListsRangeTo))
+            if (ListGenerator != null && ListGenerator.SetListsEnabled &&
+                ListGenerator.SetListsRangeFrom > ListGenerator.SetListsRangeTo)
             {
                 throw new CommandLineArgumentException(Strings.SetListError);
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         private void ParseOption(KeyValuePair<string, string> optionPair)
@@ -310,7 +294,7 @@ namespace PcgTools
                     ListGenerator.FilterDrumKitNames = GetBooleanOptionValue(optionPair);
                     break;
 
-                    //TODO: Drum paterns
+                //TODO: Drum paterns
 
                 case "-fwsn":
                     CheckOption(optionPair, "-f");
@@ -372,7 +356,7 @@ namespace PcgTools
                     ListGenerator.DrumKitsEnabled = GetBooleanOptionValue(optionPair);
                     break;
 
-                    //TODO: Drum paterns
+                //TODO: Drum paterns
 
                 case "-ieid":
                     ListGenerator.IgnoreInitDrumKits = GetBooleanOptionValue(optionPair);
@@ -399,9 +383,7 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         private void ParseOptionDlmnod(KeyValuePair<string, string> optionPair)
@@ -418,9 +400,7 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         private void ParseOptionDlipn(KeyValuePair<string, string> optionPair)
@@ -437,9 +417,7 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         private void ParseOptionDlislsd(KeyValuePair<string, string> optionPair)
@@ -456,9 +434,7 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         private void ParseOptionDlsbd(KeyValuePair<string, string> optionPair)
@@ -475,14 +451,12 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         private void ParseOptionS(KeyValuePair<string, string> optionPair)
         {
-            switch (GetMatch(new List<string> {"TYPE_BANK_INDEX", "TBI", "ALPHABETICAL"}, optionPair.Value))
+            switch (GetMatch(new List<string> { "TYPE_BANK_INDEX", "TBI", "ALPHABETICAL" }, optionPair.Value))
             {
                 case "TYPE_BANK_INDEX": // Fall Through
                 case "TB":
@@ -499,23 +473,21 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         private void ParseOptionO(KeyValuePair<string, string> optionPair)
         {
             switch (GetMatch(new List<string>
-            {
-                "ASCII_TABLE",
-                "ASCII",
-                "TXT",
-                "TEXT",
-                "CSV",
-                "COMMA_SEPARATED_VALUES",
-                "XML"
-            }, optionPair.Value))
+                    {
+                        "ASCII_TABLE",
+                        "ASCII",
+                        "TXT",
+                        "TEXT",
+                        "CSV",
+                        "COMMA_SEPARATED_VALUES",
+                        "XML"
+                    }, optionPair.Value))
             {
                 case "ASCII_TABLE":
                 case "ASCII":
@@ -538,11 +510,10 @@ namespace PcgTools
             } // break not needed  
         }
 
-
         /// <summary>
-        /// Set defaults not set by options. Use the defaults from ShowHelp.
+        ///     Set defaults not set by options. Use the defaults from ShowHelp.
         /// </summary>
-        void SetDefaults()
+        private void SetDefaults()
         {
             if (_options.Keys.Contains("-h"))
             {
@@ -632,9 +603,7 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void SetDefaultsListGeneratorDifferencesList()
         {
@@ -662,9 +631,7 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void SetDefaultsF()
         {
@@ -701,9 +668,7 @@ namespace PcgTools
             // TODO drum patterns
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void SetDefaultsFpb()
         {
@@ -747,9 +712,7 @@ namespace PcgTools
                 };
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void SetDefaultsFcb()
         {
@@ -787,60 +750,55 @@ namespace PcgTools
                 };
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="option"></param>
         /// <param name="requiredOption"></param>
-        void CheckOption(KeyValuePair<string, string> option, string requiredOption)
+        private void CheckOption(KeyValuePair<string, string> option, string requiredOption)
         {
             if (!_options.Keys.Contains(requiredOption))
             {
-                throw new CommandLineArgumentException(string.Format(Strings.CliRequiresError, option.Key, requiredOption));
+                throw new CommandLineArgumentException(string.Format(Strings.CliRequiresError, option.Key,
+                    requiredOption));
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         /// <returns></returns>
-        static bool GetBooleanOptionValue(KeyValuePair<string, string> optionPair)
+        private static bool GetBooleanOptionValue(KeyValuePair<string, string> optionPair)
         {
-            var matchedValue = GetMatch(new List<string> {"1", "ON", "TRUE", "0", "OFF", "FALSE"}, optionPair.Value);
-            return (new List<string> {"1", "ON", "TRUE"}).Contains(matchedValue);
+            var matchedValue = GetMatch(new List<string> { "1", "ON", "TRUE", "0", "OFF", "FALSE" }, optionPair.Value);
+            return new List<string> { "1", "ON", "TRUE" }.Contains(matchedValue);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         /// <param name="minimumValue"></param>
         /// <param name="maximumValue"></param>
         /// <returns></returns>
-        static int GetIntOptionValue(KeyValuePair<string, string> optionPair, int minimumValue, int maximumValue)
+        private static int GetIntOptionValue(KeyValuePair<string, string> optionPair, int minimumValue,
+            int maximumValue)
         {
             int value;
-            Int32.TryParse(optionPair.Value, out value);
-            if ((value < minimumValue) || (value > maximumValue))
+            int.TryParse(optionPair.Value, out value);
+            if (value < minimumValue || value > maximumValue)
             {
                 throw new CommandLineArgumentException(
                     string.Format(Strings.CliOutOfRangeError, optionPair.Value, optionPair.Key,
                         $"[{minimumValue}..{maximumValue}]"));
             }
+
             return value;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         /// <returns></returns>
-        static List<string> GetBankNamesOptionValue(KeyValuePair<string, string> optionPair)
+        private static List<string> GetBankNamesOptionValue(KeyValuePair<string, string> optionPair)
         {
             var bankNames = new string[0];
 
@@ -858,17 +816,17 @@ namespace PcgTools
 
                 adaptedBankNames.Add(adaptedBankName);
             }
+
             return adaptedBankNames;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="optionPair"></param>
         /// <param name="adaptedBankName"></param>
         /// <param name="bank"></param>
-        private static void GetBankNameOptionValue(KeyValuePair<string, string> optionPair, string adaptedBankName, string bank)
+        private static void GetBankNameOptionValue(KeyValuePair<string, string> optionPair, string adaptedBankName,
+            string bank)
         {
             bool error;
             switch (adaptedBankName.Length)
@@ -878,7 +836,7 @@ namespace PcgTools
                     break;
 
                 case 2:
-                    error = (adaptedBankName != "GM");
+                    error = adaptedBankName != "GM";
                     break;
 
                 case 3:
@@ -897,40 +855,34 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="adaptedBankName"></param>
         /// <returns></returns>
         private static bool HandleBankeNameLength1(string adaptedBankName)
         {
-            return ((adaptedBankName[0] < 'A') || ((adaptedBankName[0] > 'F') && (adaptedBankName[0] < 'H')) ||
-                    (adaptedBankName[0] > 'N'));
+            return adaptedBankName[0] < 'A' || (adaptedBankName[0] > 'F' && adaptedBankName[0] < 'H') ||
+                   adaptedBankName[0] > 'N';
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="adaptedBankName"></param>
         /// <returns></returns>
         private static bool HandleBankeNameLength3(string adaptedBankName)
         {
-            return (((adaptedBankName[0] != 'I') && (adaptedBankName[0] != 'U')) ||
-                          (adaptedBankName[1] != '-') ||
-                          ((adaptedBankName[2] < 'A') || ((adaptedBankName[2] > 'F') && (adaptedBankName[2] < 'H')) ||
-                           (adaptedBankName[2] > 'N')));
+            return (adaptedBankName[0] != 'I' && adaptedBankName[0] != 'U') ||
+                   adaptedBankName[1] != '-' ||
+                   adaptedBankName[2] < 'A' || (adaptedBankName[2] > 'F' && adaptedBankName[2] < 'H') ||
+                   adaptedBankName[2] > 'N';
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="values"></param>
         /// <param name="valueToFind"></param>
         /// <returns></returns>
-        static string GetMatch(ICollection<string> values, string valueToFind)
+        private static string GetMatch(ICollection<string> values, string valueToFind)
         {
             Debug.Assert(values.Count > 0);
             var upperValues = (from value in values select value.ToUpper()).ToList();
@@ -945,26 +897,26 @@ namespace PcgTools
             else
             {
                 // Remove all values not starting with the value to find.
-                var startingValues = (from value in upperValues where value.StartsWith(valueToFind) select value).ToList();
+                var startingValues =
+                    (from value in upperValues where value.StartsWith(valueToFind) select value).ToList();
 
                 if (startingValues.Count == 0)
                 {
                     throw new CommandLineArgumentException(string.Format(Strings.CliUnknownOption, valueToFind));
                 }
-                
+
                 if (startingValues.Count > 1)
                 {
                     throw new CommandLineArgumentException(string.Format(Strings.CliAmbiguousOption, valueToFind));
                 }
-                
+
                 matchedValue = startingValues[0];
             }
+
             return matchedValue;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void ShowHelp()
         {
@@ -972,7 +924,8 @@ namespace PcgTools
             builder.AppendLine("pcgtools.exe [options] pcg_file_name list_type sub_list_type output_file_name\n");
             builder.AppendLine("where:");
             builder.AppendLine("  pcg_file_name          File name of the PCG file name [options].");
-            builder.AppendLine("  list_type    : [patch_list | program_usage_list | combi_content_list | differences_list | file_content_list].");
+            builder.AppendLine(
+                "  list_type    : [patch_list | program_usage_list | combi_content_list | differences_list | file_content_list].");
             builder.AppendLine("  sub_list_type: [default | compact | short].");
             builder.AppendLine("  output_file_name         File name of the output file.\n");
             builder.AppendLine("Options:");

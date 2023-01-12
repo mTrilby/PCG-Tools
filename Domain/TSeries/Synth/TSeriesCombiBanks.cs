@@ -1,20 +1,25 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.TSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     // ReSharper disable once InconsistentNaming
     public class TSeriesCombiBanks : MntxCombiBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public TSeriesCombiBanks(IPcgMemory pcgMemory)
@@ -22,9 +27,7 @@ namespace PcgTools.Model.TSeries.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {

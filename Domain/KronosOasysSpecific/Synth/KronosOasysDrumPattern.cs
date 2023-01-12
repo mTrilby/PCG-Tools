@@ -1,35 +1,36 @@
-﻿// (c) 2011 Michel Keijzers
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 
+#endregion
+
 namespace PcgTools.Model.KronosOasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class KronosOasysDrumPattern : DrumPattern
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumPatternBank"></param>
         /// <param name="index"></param>
         protected KronosOasysDrumPattern(IBank drumPatternBank, int index)
-            : base(drumPatternBank, index) 
+            : base(drumPatternBank, index)
         {
         }
-        
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public override string Name
         {
-            get
-            {
-                return GetChars(0, MaxNameLength);
-            }
+            get => GetChars(0, MaxNameLength);
             set
             {
                 if (Name != value)
@@ -40,18 +41,15 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override int MaxNameLength => 24;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public override bool IsEmptyOrInit => ((Name == string.Empty) ||
-                                               Name.StartsWith("DrumPattern      0") ||
-                                               (Name.Contains("Init") && Name.Contains("Drum") && Name.Contains("Pattern")));
+        public override bool IsEmptyOrInit => Name == string.Empty ||
+                                              Name.StartsWith("DrumPattern      0") ||
+                                              (Name.Contains("Init") && Name.Contains("Drum") &&
+                                               Name.Contains("Pattern"));
     }
 }

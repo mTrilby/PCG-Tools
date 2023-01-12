@@ -41,126 +41,126 @@
         <AssemblyOriginatorKeyFile>PcgTools_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="ViewModels\Commands\**" />
-        <Compile Remove="WPF.MDI\**" />
-        <EmbeddedResource Remove="ViewModels\Commands\**" />
-        <EmbeddedResource Remove="WPF.MDI\**" />
-        <None Remove="ViewModels\Commands\**" />
-        <None Remove="WPF.MDI\**" />
-        <Page Remove="ViewModels\Commands\**" />
-        <Page Remove="WPF.MDI\**" />
+        <Compile Remove="ViewModels\Commands\**"/>
+        <Compile Remove="WPF.MDI\**"/>
+        <EmbeddedResource Remove="ViewModels\Commands\**"/>
+        <EmbeddedResource Remove="WPF.MDI\**"/>
+        <None Remove="ViewModels\Commands\**"/>
+        <None Remove="WPF.MDI\**"/>
+        <Page Remove="ViewModels\Commands\**"/>
+        <Page Remove="WPF.MDI\**"/>
     </ItemGroup>
     <ItemGroup>
-        <None Remove=".gitignore" />
-        <None Remove="Gui\favicon.ico" />
-        <None Remove="Gui\Images\korg-kronos-wnamm2011.jpg" />
-        <None Remove="Gui\Images\paypal_donate.gif" />
-        <None Remove="Gui\Images\pcgtoolsnormal.jpg" />
-        <None Remove="Gui\Images\SpecialEvent.jpg" />
-        <None Remove="Gui\pcgtools.ico" />
-        <None Remove="Gui\Tool Bar Icons\about.png" />
-        <None Remove="Gui\Tool Bar Icons\check.png" />
-        <None Remove="Gui\Tool Bar Icons\compact.png" />
-        <None Remove="Gui\Tool Bar Icons\copy - exit.png" />
-        <None Remove="Gui\Tool Bar Icons\copy - help.png" />
-        <None Remove="Gui\Tool Bar Icons\copy - recall.png" />
-        <None Remove="Gui\Tool Bar Icons\copy.png" />
-        <None Remove="Gui\Tool Bar Icons\cut.png" />
-        <None Remove="Gui\Tool Bar Icons\delete.png" />
-        <None Remove="Gui\Tool Bar Icons\disk_blue.png" />
-        <None Remove="Gui\Tool Bar Icons\document.png" />
-        <None Remove="Gui\Tool Bar Icons\document_edit.png" />
-        <None Remove="Gui\Tool Bar Icons\document_gear.png" />
-        <None Remove="Gui\Tool Bar Icons\document_plain.png" />
-        <None Remove="Gui\Tool Bar Icons\folder_out.png" />
-        <None Remove="Gui\Tool Bar Icons\navgate_up2.png" />
-        <None Remove="Gui\Tool Bar Icons\navigate_down.png" />
-        <None Remove="Gui\Tool Bar Icons\navigate_up.png" />
-        <None Remove="Gui\Tool Bar Icons\paste.png" />
-        <None Remove="Gui\Tool Bar Icons\readme.txt" />
-        <None Remove="Gui\Tool Bar Icons\save_as.png" />
-        <None Remove="Gui\Tool Bar Icons\show_timbres.png" />
-        <None Remove="Gui\Tool Bar Icons\sort.png" />
-        <None Remove="Gui\Tool Bar Icons\star_blue - remove.png" />
-        <None Remove="Gui\Tool Bar Icons\star_blue.png" />
-        <None Remove="Gui\Tool Bar Icons\text_align_justified.png" />
-        <None Remove="Help\External Links\AdelTannouriYouTube.png" />
-        <None Remove="Help\External Links\al1editor.png" />
-        <None Remove="Help\External Links\altran.png" />
-        <None Remove="Help\External Links\Artlum.png" />
-        <None Remove="Help\External Links\Assembla.png" />
-        <None Remove="Help\External Links\AudioKeys.png" />
-        <None Remove="Help\External Links\Audora.png" />
-        <None Remove="Help\External Links\basaristudios.png" />
-        <None Remove="Help\External Links\BK-facebook.gif" />
-        <None Remove="Help\External Links\celticvoyager.png" />
-        <None Remove="Help\External Links\cliffcanyon.png" />
-        <None Remove="Help\External Links\co-incidental.png" />
-        <None Remove="Help\External Links\Coincidental.png" />
-        <None Remove="Help\External Links\coreftple.png" />
-        <None Remove="Help\External Links\cupsandplates.png" />
-        <None Remove="Help\External Links\DanStesco.png" />
-        <None Remove="Help\External Links\deuce.png" />
-        <None Remove="Help\External Links\dreamland.jpg" />
-        <None Remove="Help\External Links\facebook.png" />
-        <None Remove="Help\External Links\Flexera.png" />
-        <None Remove="Help\External Links\forum_cifraclub_com_br.png" />
-        <None Remove="Help\External Links\giorgostrichopoulos.png" />
-        <None Remove="Help\External Links\Git.png" />
-        <None Remove="Help\External Links\GitaarDemo.png" />
-        <None Remove="Help\External Links\googleplus.png" />
-        <None Remove="Help\External Links\imprezariat.png" />
-        <None Remove="Help\External Links\IrishActsStudio.png" />
-        <None Remove="Help\External Links\Kapro.png" />
-        <None Remove="Help\External Links\karmalabs.png" />
-        <None Remove="Help\External Links\kelfar.png" />
-        <None Remove="Help\External Links\keller12.jpg" />
-        <None Remove="Help\External Links\KidHeadSpinSM.gif" />
-        <None Remove="Help\External Links\Korg.jpg" />
-        <None Remove="Help\External Links\KorgFans.png" />
-        <None Remove="Help\External Links\korgforums.jpg" />
-        <None Remove="Help\External Links\korgpatches.jpg" />
-        <None Remove="Help\External Links\KromeHeaven.png" />
-        <None Remove="Help\External Links\Kronoscopie.jpg" />
-        <None Remove="Help\External Links\kronoshaven.jpg" />
-        <None Remove="Help\External Links\Kronosmw.jpg" />
-        <None Remove="Help\External Links\KronosPatchLab.png" />
-        <None Remove="Help\External Links\LuisCosta.png" />
-        <None Remove="Help\External Links\Lyana.png" />
-        <None Remove="Help\External Links\MarcioBadaro.png" />
-        <None Remove="Help\External Links\midiox.png" />
-        <None Remove="Help\External Links\NothingElseMatters.png" />
-        <None Remove="Help\External Links\onksor.jpg" />
-        <None Remove="Help\External Links\Oostendorpmuziek.jpg" />
-        <None Remove="Help\External Links\PCGrid.png" />
-        <None Remove="Help\External Links\pcgtoolssmall.jpg" />
-        <None Remove="Help\External Links\pcgtoolssmaller.jpg" />
-        <None Remove="Help\External Links\peakyblinderslogo.png" />
-        <None Remove="Help\External Links\quirobinez.png" />
-        <None Remove="Help\External Links\RadiasLibrarian.png" />
-        <None Remove="Help\External Links\rmmedia.png" />
-        <None Remove="Help\External Links\RobertRosen.jpg" />
-        <None Remove="Help\External Links\rsfmusictech.jpg" />
-        <None Remove="Help\External Links\RubensFelicioYouTube.png" />
-        <None Remove="Help\External Links\soundsofplanet.png" />
-        <None Remove="Help\External Links\stackoverflow.png" />
-        <None Remove="Help\External Links\syntey.png" />
-        <None Remove="Help\External Links\Synthesaurus.png" />
-        <None Remove="Help\External Links\synthysounds.png" />
-        <None Remove="Help\External Links\TidyKronos.png" />
-        <None Remove="Help\External Links\tmp.jpg" />
-        <None Remove="Help\External Links\twitter.png" />
-        <None Remove="Help\External Links\UmutErhan.jpg" />
-        <None Remove="Help\External Links\VisualStudio.png" />
-        <None Remove="Help\External Links\Yahoo.png" />
-        <None Remove="Help\External Links\Yuma.jpg" />
-        <None Remove="Local.testsettings" />
-        <None Remove="output.xml" />
-        <None Remove="PcgTools.csproj.DotSettings" />
-        <None Remove="PcgTools_OLD.ico" />
-        <None Remove="TraceAndTestImpact.testsettings" />
-        <None Remove="WPFControls.dll" />
-        <None Remove="XMLFile2.xml" />
+        <None Remove=".gitignore"/>
+        <None Remove="Gui\favicon.ico"/>
+        <None Remove="Gui\Images\korg-kronos-wnamm2011.jpg"/>
+        <None Remove="Gui\Images\paypal_donate.gif"/>
+        <None Remove="Gui\Images\pcgtoolsnormal.jpg"/>
+        <None Remove="Gui\Images\SpecialEvent.jpg"/>
+        <None Remove="Gui\pcgtools.ico"/>
+        <None Remove="Gui\Tool Bar Icons\about.png"/>
+        <None Remove="Gui\Tool Bar Icons\check.png"/>
+        <None Remove="Gui\Tool Bar Icons\compact.png"/>
+        <None Remove="Gui\Tool Bar Icons\copy - exit.png"/>
+        <None Remove="Gui\Tool Bar Icons\copy - help.png"/>
+        <None Remove="Gui\Tool Bar Icons\copy - recall.png"/>
+        <None Remove="Gui\Tool Bar Icons\copy.png"/>
+        <None Remove="Gui\Tool Bar Icons\cut.png"/>
+        <None Remove="Gui\Tool Bar Icons\delete.png"/>
+        <None Remove="Gui\Tool Bar Icons\disk_blue.png"/>
+        <None Remove="Gui\Tool Bar Icons\document.png"/>
+        <None Remove="Gui\Tool Bar Icons\document_edit.png"/>
+        <None Remove="Gui\Tool Bar Icons\document_gear.png"/>
+        <None Remove="Gui\Tool Bar Icons\document_plain.png"/>
+        <None Remove="Gui\Tool Bar Icons\folder_out.png"/>
+        <None Remove="Gui\Tool Bar Icons\navgate_up2.png"/>
+        <None Remove="Gui\Tool Bar Icons\navigate_down.png"/>
+        <None Remove="Gui\Tool Bar Icons\navigate_up.png"/>
+        <None Remove="Gui\Tool Bar Icons\paste.png"/>
+        <None Remove="Gui\Tool Bar Icons\readme.txt"/>
+        <None Remove="Gui\Tool Bar Icons\save_as.png"/>
+        <None Remove="Gui\Tool Bar Icons\show_timbres.png"/>
+        <None Remove="Gui\Tool Bar Icons\sort.png"/>
+        <None Remove="Gui\Tool Bar Icons\star_blue - remove.png"/>
+        <None Remove="Gui\Tool Bar Icons\star_blue.png"/>
+        <None Remove="Gui\Tool Bar Icons\text_align_justified.png"/>
+        <None Remove="Help\External Links\AdelTannouriYouTube.png"/>
+        <None Remove="Help\External Links\al1editor.png"/>
+        <None Remove="Help\External Links\altran.png"/>
+        <None Remove="Help\External Links\Artlum.png"/>
+        <None Remove="Help\External Links\Assembla.png"/>
+        <None Remove="Help\External Links\AudioKeys.png"/>
+        <None Remove="Help\External Links\Audora.png"/>
+        <None Remove="Help\External Links\basaristudios.png"/>
+        <None Remove="Help\External Links\BK-facebook.gif"/>
+        <None Remove="Help\External Links\celticvoyager.png"/>
+        <None Remove="Help\External Links\cliffcanyon.png"/>
+        <None Remove="Help\External Links\co-incidental.png"/>
+        <None Remove="Help\External Links\Coincidental.png"/>
+        <None Remove="Help\External Links\coreftple.png"/>
+        <None Remove="Help\External Links\cupsandplates.png"/>
+        <None Remove="Help\External Links\DanStesco.png"/>
+        <None Remove="Help\External Links\deuce.png"/>
+        <None Remove="Help\External Links\dreamland.jpg"/>
+        <None Remove="Help\External Links\facebook.png"/>
+        <None Remove="Help\External Links\Flexera.png"/>
+        <None Remove="Help\External Links\forum_cifraclub_com_br.png"/>
+        <None Remove="Help\External Links\giorgostrichopoulos.png"/>
+        <None Remove="Help\External Links\Git.png"/>
+        <None Remove="Help\External Links\GitaarDemo.png"/>
+        <None Remove="Help\External Links\googleplus.png"/>
+        <None Remove="Help\External Links\imprezariat.png"/>
+        <None Remove="Help\External Links\IrishActsStudio.png"/>
+        <None Remove="Help\External Links\Kapro.png"/>
+        <None Remove="Help\External Links\karmalabs.png"/>
+        <None Remove="Help\External Links\kelfar.png"/>
+        <None Remove="Help\External Links\keller12.jpg"/>
+        <None Remove="Help\External Links\KidHeadSpinSM.gif"/>
+        <None Remove="Help\External Links\Korg.jpg"/>
+        <None Remove="Help\External Links\KorgFans.png"/>
+        <None Remove="Help\External Links\korgforums.jpg"/>
+        <None Remove="Help\External Links\korgpatches.jpg"/>
+        <None Remove="Help\External Links\KromeHeaven.png"/>
+        <None Remove="Help\External Links\Kronoscopie.jpg"/>
+        <None Remove="Help\External Links\kronoshaven.jpg"/>
+        <None Remove="Help\External Links\Kronosmw.jpg"/>
+        <None Remove="Help\External Links\KronosPatchLab.png"/>
+        <None Remove="Help\External Links\LuisCosta.png"/>
+        <None Remove="Help\External Links\Lyana.png"/>
+        <None Remove="Help\External Links\MarcioBadaro.png"/>
+        <None Remove="Help\External Links\midiox.png"/>
+        <None Remove="Help\External Links\NothingElseMatters.png"/>
+        <None Remove="Help\External Links\onksor.jpg"/>
+        <None Remove="Help\External Links\Oostendorpmuziek.jpg"/>
+        <None Remove="Help\External Links\PCGrid.png"/>
+        <None Remove="Help\External Links\pcgtoolssmall.jpg"/>
+        <None Remove="Help\External Links\pcgtoolssmaller.jpg"/>
+        <None Remove="Help\External Links\peakyblinderslogo.png"/>
+        <None Remove="Help\External Links\quirobinez.png"/>
+        <None Remove="Help\External Links\RadiasLibrarian.png"/>
+        <None Remove="Help\External Links\rmmedia.png"/>
+        <None Remove="Help\External Links\RobertRosen.jpg"/>
+        <None Remove="Help\External Links\rsfmusictech.jpg"/>
+        <None Remove="Help\External Links\RubensFelicioYouTube.png"/>
+        <None Remove="Help\External Links\soundsofplanet.png"/>
+        <None Remove="Help\External Links\stackoverflow.png"/>
+        <None Remove="Help\External Links\syntey.png"/>
+        <None Remove="Help\External Links\Synthesaurus.png"/>
+        <None Remove="Help\External Links\synthysounds.png"/>
+        <None Remove="Help\External Links\TidyKronos.png"/>
+        <None Remove="Help\External Links\tmp.jpg"/>
+        <None Remove="Help\External Links\twitter.png"/>
+        <None Remove="Help\External Links\UmutErhan.jpg"/>
+        <None Remove="Help\External Links\VisualStudio.png"/>
+        <None Remove="Help\External Links\Yahoo.png"/>
+        <None Remove="Help\External Links\Yuma.jpg"/>
+        <None Remove="Local.testsettings"/>
+        <None Remove="output.xml"/>
+        <None Remove="PcgTools.csproj.DotSettings"/>
+        <None Remove="PcgTools_OLD.ico"/>
+        <None Remove="TraceAndTestImpact.testsettings"/>
+        <None Remove="WPFControls.dll"/>
+        <None Remove="XMLFile2.xml"/>
     </ItemGroup>
     <ItemGroup>
         <Reference Include="Paper, Version=4.0.3852.25197, Culture=neutral, processorArchitecture=MSIL">
@@ -210,8 +210,8 @@
         <None Include="app.config">
             <SubType>Designer</SubType>
         </None>
-        <None Include="ClassDiagram1.cd" />
-        <None Include="ClassDiagram2.cd" />
+        <None Include="ClassDiagram1.cd"/>
+        <None Include="ClassDiagram2.cd"/>
         <Resource Include="Gui\favicon.ico">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
@@ -518,21 +518,21 @@
         <Resource Include="Help\External Links\Yuma.jpg">
             <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </Resource>
-        <None Include="PcgTools_1_TemporaryKey.pfx" />
-        <None Include="PcgTools_TemporaryKey.pfx" />
-        <None Include="Properties\app.manifest" />
+        <None Include="PcgTools_1_TemporaryKey.pfx"/>
+        <None Include="PcgTools_TemporaryKey.pfx"/>
+        <None Include="Properties\app.manifest"/>
         <None Include="Properties\Settings.settings">
             <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
         </None>
-        <AppDesigner Include="Properties\" />
+        <AppDesigner Include="Properties\"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="ViewModels\Commands\DoubleToSingleKeyboardCommands.cs" />
-        <Compile Include="ViewModels\Commands\PcgCommands\DoubleToSingleKeyboardWindow.xaml.cs" />
-        <Compile Include="ViewModels\Commands\PcgCommands\ModelCompatibility.cs" />
-        <Compile Include="ViewModels\Commands\PcgCommands\PcgFileCommands.cs" />
+        <Compile Include="ViewModels\Commands\DoubleToSingleKeyboardCommands.cs"/>
+        <Compile Include="ViewModels\Commands\PcgCommands\DoubleToSingleKeyboardWindow.xaml.cs"/>
+        <Compile Include="ViewModels\Commands\PcgCommands\ModelCompatibility.cs"/>
+        <Compile Include="ViewModels\Commands\PcgCommands\PcgFileCommands.cs"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -541,8 +541,8 @@
         </Page>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Common\Common.csproj" />
-        <ProjectReference Include="..\Domain\Domain.csproj" />
-        <ProjectReference Include="..\WPF.MDI\WPF.MDI.csproj" />
+        <ProjectReference Include="..\Common\Common.csproj"/>
+        <ProjectReference Include="..\Domain\Domain.csproj"/>
+        <ProjectReference Include="..\WPF.MDI\WPF.MDI.csproj"/>
     </ItemGroup>
 </Project>

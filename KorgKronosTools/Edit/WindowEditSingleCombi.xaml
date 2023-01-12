@@ -3,69 +3,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
         Title="{x:Static common:Strings.EditSingleCombi}" Name="windowEdit"
-         ResizeMode="NoResize" ShowInTaskbar="True" Loaded="WindowEditLoaded"
+        ResizeMode="NoResize" ShowInTaskbar="True" Loaded="WindowEditLoaded"
         Icon="/PcgTools;component/Gui/pcgtools.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel>
                 <Label Content="{x:Static common:Strings.ID}" HorizontalAlignment="Left" Name="label1"
-                 VerticalAlignment="Top" Margin="4" />
+                       VerticalAlignment="Top" Margin="4" />
                 <TextBox HorizontalAlignment="Left" Margin="4" Name="textBoxId" VerticalAlignment="Top"
-                 IsReadOnly="True" />
+                         IsReadOnly="True" />
             </StackPanel>
-            <StackPanel >
-                <StackPanel Orientation="Horizontal" >
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <Label Content="{x:Static common:Strings.Name}" HorizontalAlignment="Left"
-                       Margin="4"  VerticalAlignment="Top"/>
-                       <TextBlock HorizontalAlignment="Left" Margin="4" Name="labelNameLength"  Text="X of Y characters"
-                        VerticalAlignment="Top"  Background="{x:Static SystemColors.ControlLightBrush}"/>
+                           Margin="4" VerticalAlignment="Top" />
+                    <TextBlock HorizontalAlignment="Left" Margin="4" Name="labelNameLength" Text="X of Y characters"
+                               VerticalAlignment="Top" Background="{x:Static SystemColors.ControlLightBrush}" />
                 </StackPanel>
 
                 <TextBox HorizontalAlignment="Left" IsReadOnly="False" Margin="4" Name="textBoxName"
-                    VerticalAlignment="Top" TextChanged="TextBoxNameTextChanged" />
+                         VerticalAlignment="Top" TextChanged="TextBoxNameTextChanged" />
             </StackPanel>
 
             <StackPanel VerticalAlignment="Bottom">
                 <CheckBox Content="{x:Static common:Strings.IsFavorite}"
-                  HorizontalAlignment="Left" Margin="4"
-                  Name="threeStateCheckBoxIsFavorite" IsThreeState="False" />
+                          HorizontalAlignment="Left" Margin="4"
+                          Name="threeStateCheckBoxIsFavorite" IsThreeState="False" />
             </StackPanel>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
             <StackPanel>
                 <Label Content="{x:Static common:Strings.CategoryControl}"
-                 HorizontalAlignment="Left" Margin="4"
-                 Name="labelCategory" VerticalAlignment="Top" />
+                       HorizontalAlignment="Left" Margin="4"
+                       Name="labelCategory" VerticalAlignment="Top" />
                 <ComboBox HorizontalAlignment="Left" Margin="4" Name="comboBoxCategory"
-                  VerticalAlignment="Top"
-                  SelectionChanged="ComboBoxCategorySelectionChanged" />
+                          VerticalAlignment="Top"
+                          SelectionChanged="ComboBoxCategorySelectionChanged" />
 
             </StackPanel>
 
             <StackPanel>
                 <Label Content="{x:Static common:Strings.SubCategoryControl}"
-                   HorizontalAlignment="Left" Margin="4"
-                   Name="labelSubCategory" VerticalAlignment="Top" />
+                       HorizontalAlignment="Left" Margin="4"
+                       Name="labelSubCategory" VerticalAlignment="Top" />
                 <ComboBox HorizontalAlignment="Left" Margin="4" Name="comboBoxSubCategory"
-                      VerticalAlignment="Top"/>
+                          VerticalAlignment="Top" />
             </StackPanel>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
             <Label Foreground="#FFD80000" HorizontalAlignment="Left" Margin="4"
-               Name="labelError" VerticalAlignment="Top">
+                   Name="labelError" VerticalAlignment="Top">
                 <Label.Background>
                     <SolidColorBrush />
                 </Label.Background>
             </Label>
             <Button Content="{x:Static common:Strings.Cancel}" HorizontalAlignment="Right"
-                IsDefault="False"
-                Margin="4" Name="buttonCancel" VerticalAlignment="Top" Width="75" IsCancel="True"
-                Click="ButtonCancelClick" />
+                    IsDefault="False"
+                    Margin="4" Name="buttonCancel" VerticalAlignment="Top" Width="75" IsCancel="True"
+                    Click="ButtonCancelClick" />
             <Button Content="{x:Static common:Strings.OK}"
-                Margin="4" Name="buttonOk"
-                VerticalAlignment="Top" Width="75" IsDefault="True" Click="ButtonOkClick"  HorizontalAlignment="Right" />
+                    Margin="4" Name="buttonOk"
+                    VerticalAlignment="Top" Width="75" IsDefault="True" Click="ButtonOkClick"
+                    HorizontalAlignment="Right" />
         </StackPanel>
     </StackPanel>
 </Window>

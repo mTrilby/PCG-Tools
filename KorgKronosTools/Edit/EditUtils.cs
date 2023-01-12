@@ -1,19 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Text.RegularExpressions;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools.Edit
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class EditUtils
     {
         /// <summary>
-        /// 
         /// </summary>
         public enum ECheckType
         {
@@ -22,9 +27,7 @@ namespace PcgTools.Edit
             SplitCharacter
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="text"></param>
         /// <param name="maxLength"></param>
@@ -47,24 +50,27 @@ namespace PcgTools.Edit
                     {
                         return string.Format(Strings.CheckTypeContainsIllegalCharacters, checkType);
                     }
+
                     break;
 
                 case ECheckType.Name:
-                    if (!Regex.IsMatch(text, 
-                        @"^[a-zA-Z0-9 \!\@\#\-\%\+\&\*\'\""\:\<\>\?\,\.\/\~\$\^\/\[\]\{\}\(\)_\=\`\|]*$"))
+                    if (!Regex.IsMatch(text,
+                            @"^[a-zA-Z0-9 \!\@\#\-\%\+\&\*\'\""\:\<\>\?\,\.\/\~\$\^\/\[\]\{\}\(\)_\=\`\|]*$"))
                     {
                         return string.Format(Strings.CheckTypeContainsIllegalCharacters, checkType);
                     }
+
                     break;
 
                 case ECheckType.Description:
                 {
                     // Check is same as name check, except for two additional characters: return (\r\n).
-                    if (!Regex.IsMatch(text, 
-                        @"^[a-zA-Z0-9 \!\@\#\-\%\+\&\*\'\""\:\<\>\?\,\.\/\~\$\^\/\[\]\{\}\(\)_\=\`\|\n\r]*$"))
+                    if (!Regex.IsMatch(text,
+                            @"^[a-zA-Z0-9 \!\@\#\-\%\+\&\*\'\""\:\<\>\?\,\.\/\~\$\^\/\[\]\{\}\(\)_\=\`\|\n\r]*$"))
                     {
                         return string.Format(Strings.CheckTypeContainsIllegalCharacters, checkType);
                     }
+
                     break;
                 }
 

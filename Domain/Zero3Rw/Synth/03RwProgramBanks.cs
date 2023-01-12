@@ -1,19 +1,25 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.ZeroSeries.Synth;
 
+#endregion
+
 namespace PcgTools.Model.Zero3Rw.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Zero3RwProgramBanks : ZeroSeriesProgramBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public Zero3RwProgramBanks(IPcgMemory pcgMemory)
@@ -21,15 +27,13 @@ namespace PcgTools.Model.Zero3Rw.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {
             // Add internal banks.
             var pcgId = 0;
-            foreach (var id in new[] {"A"}) // Banks C and D not used in file, pretending everything is in A.
+            foreach (var id in new[] { "A" }) // Banks C and D not used in file, pretending everything is in A.
             {
                 Add(
                     new Zero3RwProgramBank(

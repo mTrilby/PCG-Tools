@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common.Synth.Meta;
@@ -6,15 +12,15 @@ using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.ZeroSeries.Synth;
 
+#endregion
+
 namespace PcgTools.Model.Zero3Rw.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Zero3RwProgram : ZeroSeriesProgram
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
@@ -30,9 +36,7 @@ namespace PcgTools.Model.Zero3Rw.Synth
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -51,4 +55,3 @@ namespace PcgTools.Model.Zero3Rw.Synth
         }
     }
 }
-

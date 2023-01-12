@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Collections.Generic;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -8,21 +14,15 @@ using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.MSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.Kross2Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Kross2Global : MGlobal
     {
         /// <summary>
-        /// 
-        /// </summary>
-        protected override int PcgOffsetCategories => 334;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public Kross2Global(IPcgMemory pcgMemory)
@@ -30,15 +30,16 @@ namespace PcgTools.Model.Kross2Specific.Synth
         {
         }
 
+        /// <summary>
+        /// </summary>
+        protected override int PcgOffsetCategories => 334;
 
         /// <summary>
-        /// 
         /// </summary>
         protected override int NrOfCategories => 12;
 
-
         /// <summary>
-        /// The category names are hardcoded in Kross2. 
+        ///     The category names are hardcoded in Kross2.
         /// </summary>
         /// <returns></returns>
         public override string GetCategoryName(IPatch patch)
@@ -46,19 +47,18 @@ namespace PcgTools.Model.Kross2Specific.Synth
             var category = -1;
             if (patch is IProgram)
             {
-                category = ((IProgram) patch).GetParam(ParameterNames.ProgramParameterName.Category).Value;
-            } else if (patch is ICombi)
+                category = ((IProgram)patch).GetParam(ParameterNames.ProgramParameterName.Category).Value;
+            }
+            else if (patch is ICombi)
             {
-                category = ((ICombi) patch).GetParam(ParameterNames.CombiParameterName.Category).Value;
+                category = ((ICombi)patch).GetParam(ParameterNames.CombiParameterName.Category).Value;
             }
 
             var categories = GetCategoryNames(ECategoryType.Program); // Ignored
             return categories[category];
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -84,9 +84,8 @@ namespace PcgTools.Model.Kross2Specific.Synth
             return categories;
         }
 
-
         /// <summary>
-        /// Returns offset from global.
+        ///     Returns offset from global.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="index"></param>
@@ -97,7 +96,7 @@ namespace PcgTools.Model.Kross2Specific.Synth
             var offset = ByteOffset + PcgOffsetCategories;
 
             // Skip categories; the Kross2 has no category names in its GLOBAL.
-           
+
             offset += index * SubCategoriesSize;
             offset += subIndex * CategoryNameLength;
             return offset;

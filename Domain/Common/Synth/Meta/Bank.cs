@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Linq;
@@ -6,34 +12,25 @@ using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Mvvm;
 
+#endregion
+
 namespace PcgTools.Model.Common.Synth.Meta
 {
     /// <summary>
-    /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Bank<T> : ObservableObject, IBank where T:IPatch
+    public abstract class Bank<T> : ObservableObject, IBank where T : IPatch
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly IBanks _banks;
 
-
         /// <summary>
-        /// 
+        ///     Used for UI control binding for selections.
         /// </summary>
-        public BankType.EType Type { get; }
-
-
-        /// <summary>
-        /// Default is 128 patches per bank.
-        /// </summary>
-        public virtual int NrOfPatches {  get { return 128; } }
-
+        private bool _isSelected;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="banks"></param>
         /// <param name="type"></param>
@@ -55,9 +52,24 @@ namespace PcgTools.Model.Common.Synth.Meta
             Patches = new ObservablePatchCollection();
         }
 
+        /// <summary>
+        /// </summary>
+        protected IPcgMemory PcgRoot => _banks.Root as IPcgMemory;
 
         /// <summary>
-        /// 
+        /// </summary>
+        public int PatchSize { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public BankType.EType Type { get; }
+
+        /// <summary>
+        ///     Default is 128 patches per bank.
+        /// </summary>
+        public virtual int NrOfPatches => 128;
+
+        /// <summary>
         /// </summary>
         /// <param name="otherName"></param>
         /// <returns></returns>
@@ -66,9 +78,7 @@ namespace PcgTools.Model.Common.Synth.Meta
             throw new NotImplementedException();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="suffix"></param>
         public void SetNameSuffix(string suffix)
@@ -76,97 +86,56 @@ namespace PcgTools.Model.Common.Synth.Meta
             throw new NotImplementedException();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public bool FilterForUi => IsWritable;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int PcgId { get; }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public int Index => ((IBanks) Parent).IndexOfBank(this);
-
+        public int Index => ((IBanks)Parent).IndexOfBank(this);
 
         /// <summary>
-        /// 
         /// </summary>
-        public ObservablePatchCollection Patches { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="patch"></param>
-        protected void Add(T patch)
-        {
-            Patches.Add(patch);
-        }
-
+        public ObservablePatchCollection Patches { get; }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
         public IPatch this[int index] => Patches[index];
 
-
         /// <summary>
-        /// 
         /// </summary>
         public IMemory Root => _banks.Root;
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        protected IPcgMemory PcgRoot => _banks.Root as IPcgMemory;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public bool IsLoaded { get; set; }
-        
 
         /// <summary>
-        /// 
         /// </summary>
         public virtual bool IsWritable { get; set; }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public virtual bool IsFilled { get { return IsLoaded && Patches.Any(program => !program.IsEmptyOrInit); } }
-
+        public virtual bool IsFilled
+        {
+            get { return IsLoaded && Patches.Any(program => !program.IsEmptyOrInit); }
+        }
 
         /// <summary>
-        /// 
         /// </summary>
-        public string Id { get; private set; }
-
-
-        /// <summary>
-        /// Used for UI control binding for selections.
-        /// </summary>
-        bool _isSelected;
-
+        public string Id { get; }
 
         /// <summary>
-        /// 
         /// </summary>
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get => _isSelected;
             set
             {
                 if (_isSelected != value)
@@ -177,71 +146,57 @@ namespace PcgTools.Model.Common.Synth.Meta
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public INavigable Parent => _banks;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public virtual int ByteOffset { get; set; }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int ByteLength { get; set; }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int CountPatches => Patches.Count;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public virtual int CountWritablePatches { get { return Patches.Count(patch => ((IBank)(patch.Parent)).IsWritable); } }
-
+        public virtual int CountWritablePatches
+        {
+            get { return Patches.Count(patch => ((IBank)patch.Parent).IsWritable); }
+        }
 
         /// <summary>
-        /// 
         /// </summary>
-        public virtual int CountFilledPatches { get { return Patches.Count(
-            patch => ((IBank) (patch.Parent)).IsLoaded && !patch.IsEmptyOrInit); } }
+        public virtual int CountFilledPatches
+        {
+            get
+            {
+                return Patches.Count(
+                    patch => ((IBank)patch.Parent).IsLoaded && !patch.IsEmptyOrInit);
+            }
+        }
 
-        
         /// <summary>
-        /// 
         /// </summary>
         public abstract string Name { get; set; }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        public int PatchSize { get; set; }
-
-
-        /// <summary>
-        /// Returns true if the patch is present within the master file (in contrary to the file itsself).
+        ///     Returns true if the patch is present within the master file (in contrary to the file itsself).
         /// </summary>
         public bool IsFromMasterFile
         {
             get
             {
                 var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(Root.Model);
-                return (masterPcgMemory == Root);
+                return masterPcgMemory == Root;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         public void Update(string name)
@@ -252,9 +207,7 @@ namespace PcgTools.Model.Common.Synth.Meta
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public virtual void SetParameters()
         {
@@ -264,45 +217,44 @@ namespace PcgTools.Model.Common.Synth.Meta
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         public abstract void CreatePatch(int index);
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int CountFilledAndNonEmptyPatches
         {
             get
             {
                 return Patches.Count(patch =>
-                    ((IBank) (patch.Parent)).IsLoaded && !patch.IsEmptyOrInit && (Type != BankType.EType.Gm));
+                    ((IBank)patch.Parent).IsLoaded && !patch.IsEmptyOrInit && Type != BankType.EType.Gm);
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public virtual int MaxNameLength { get {  throw new NotImplementedException();} }
-
+        public virtual int MaxNameLength => throw new NotImplementedException();
 
         /// <summary>
-        /// E.g. GM banks have index 0.
+        ///     E.g. GM banks have index 0.
         /// </summary>
         public virtual int IndexOffset => 0;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public virtual void Clear()
         {
             // Nothing to do. Banks do not have any information handled by PCG Tools.
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="patch"></param>
+        protected void Add(T patch)
+        {
+            Patches.Add(patch);
         }
     }
 }

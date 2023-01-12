@@ -1,40 +1,41 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 
+#endregion
+
 namespace PcgTools.Model.Common.Synth.PatchSorting
 {
     /// <summary>
-    /// Class for comparing titles (i.e. the part before or after the split character.)
+    ///     Class for comparing titles (i.e. the part before or after the split character.)
     /// </summary>
     internal sealed class TitleComparer : Comparer<IPatch>
     {
         /// <summary>
-        /// 
         /// </summary>
         // ReSharper disable once FieldCanBeMadeReadOnly.Local
-        private static TitleComparer _instance = new TitleComparer();
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static TitleComparer Instance => _instance;
-
+        private static TitleComparer _instance = new();
 
         /// <summary>
-        /// 
         /// </summary>
         private TitleComparer()
         {
         }
 
+        /// <summary>
+        /// </summary>
+        public static TitleComparer Instance => _instance;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -44,7 +45,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             var patch1 = p1 as IArtistable;
             var patch2 = p2 as IArtistable;
 
-            if ((patch1 == null) || (patch2 == null))
+            if (patch1 == null || patch2 == null)
             {
                 return 0;
             }
@@ -52,5 +53,4 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             return string.Compare(patch1.Title, patch2.Title, StringComparison.Ordinal);
         }
     }
-
 }

@@ -1,19 +1,24 @@
-﻿
+﻿#region copyright
 
-// (c) 2011 Michel Keijzers
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 
+#endregion
+
 namespace PcgTools.Model.KrossSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KrossDrumKitBanks : DrumKitBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public KrossDrumKitBanks(IPcgMemory pcgMemory)
@@ -21,13 +26,11 @@ namespace PcgTools.Model.KrossSpecific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {
-            Add(new KrossDrumKitBank(this, BankType.EType.Int, "INT",  -1));
+            Add(new KrossDrumKitBank(this, BankType.EType.Int, "INT", -1));
 
             // 00(INT)..31(INT)
             //32(USER)..47(USER)

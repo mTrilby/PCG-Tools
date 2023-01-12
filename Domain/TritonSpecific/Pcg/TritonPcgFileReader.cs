@@ -1,18 +1,25 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using PcgTools.Model.Common;
 using PcgTools.Model.Common.File;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 
+#endregion
+
 namespace PcgTools.Model.TritonSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class TritonPcgFileReader : PcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -31,53 +38,41 @@ namespace PcgTools.Model.TritonSpecific.Pcg
             // Glb1Chunk Glb1Chunk;
         }
 
-
         /// <summary>
-        /// LV: I noticed that these are overridden again in TritonExtreme and 
-        /// TritonKarma subclasses with exactly the same values. Remove them there?
+        ///     LV: I noticed that these are overridden again in TritonExtreme and
+        ///     TritonKarma subclasses with exactly the same values. Remove them there?
         /// </summary>
         protected override int Div1Offset => 0x18;
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override int BetweenChunkGapSize => 8;
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override int GapSizeAfterMbk1ChunkName => 0;
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override int Pbk1NumberOfProgramsOffset => 8;
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override int SizeBetweenCmb1AndCbk1 => 4;
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override int Cbk1NumberOfCombisOffset => 8;
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override int Dbk1NumberOfDrumKitsOffset => 8;
 
+        protected override int Dpi1NumberOfDrumPatternsOffset => throw new NotImplementedException();
 
         /// <summary>
-        /// Somehow there is a 4 byte too long GLB1 chunk in Tritons or the starting index should be 8 but then
-        /// the categories offset will not be correct. Maybe that should be the correct solution though.
+        ///     Somehow there is a 4 byte too long GLB1 chunk in Tritons or the starting index should be 8 but then
+        ///     the categories offset will not be correct. Maybe that should be the correct solution though.
         /// </summary>
         protected override void ReadGlb1Chunk(int chunkSizeNotUsed)
         {
@@ -86,16 +81,6 @@ namespace PcgTools.Model.TritonSpecific.Pcg
             //CurrentPcgMemory.Chunks.Add(new Chunk("GLB1", Index, chunkSize));
             CurrentPcgMemory.Global.ByteOffset = Index;
             Index += chunkSize - 4; // 4 because initial 12 was too much (see above).
-        }
-
-
-
-        protected override int Dpi1NumberOfDrumPatternsOffset
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
         }
     }
 }

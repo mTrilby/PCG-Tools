@@ -1,9 +1,19 @@
-﻿using System.Diagnostics;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.KronosSpecific.Pcg;
 using PcgTools.Model.KronosSpecific.Synth;
 using PcgTools.Tools;
+
+#endregion
 
 namespace PCG_Tools_Unittests
 {
@@ -11,7 +21,6 @@ namespace PCG_Tools_Unittests
     public class RuleParserTests
     {
         /// <summary>
-        /// 
         /// </summary>
         [TestMethod]
         public void NoRules()
@@ -23,9 +32,7 @@ namespace PCG_Tools_Unittests
             Debug.Assert(ruleParser.ParsedRules.Count == 0);
         }
 
-        
         /// <summary>
-        /// 
         /// </summary>
         [TestMethod]
         public void SingleRule()
@@ -34,15 +41,13 @@ namespace PCG_Tools_Unittests
             var ruleParser = new RuleParser(pcg);
             ruleParser.Parse("I-A000->I-B000");
             Debug.Assert(ruleParser.HasParsedOk);
-            
+
             Debug.Assert(ruleParser.ParsedRules.Count == 1);
             var rule = ruleParser.ParsedRules[pcg.ProgramBanks[0][0]]; // I-A000
             Debug.Assert(rule == pcg.ProgramBanks[1][0]); // I-B000
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         [TestMethod]
         public void TwoRules()
@@ -60,9 +65,7 @@ namespace PCG_Tools_Unittests
             Debug.Assert(rule == pcg.ProgramBanks[1][1]); // I-B001
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         [TestMethod]
         public void RangeRule()
@@ -77,9 +80,7 @@ namespace PCG_Tools_Unittests
             Debug.Assert(rule == pcg.ProgramBanks[1][10]); // I-B010
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         [TestMethod]
         public void BankRule()
@@ -94,9 +95,8 @@ namespace PCG_Tools_Unittests
             Debug.Assert(rule == pcg.ProgramBanks[1][127]); // I-B127
         }
 
-
         /// <summary>
-        /// Creates PCG memory.
+        ///     Creates PCG memory.
         /// </summary>
         /// <returns></returns>
         private static IPcgMemory CreatePcg()

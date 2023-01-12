@@ -1,34 +1,39 @@
-﻿using System.IO;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+#endregion
+
+// (c) 2011 Michel Keijzers
+
 namespace PCG_Tools_Unittests
 {
     /// <summary>
-    /// Tests Triton Extreme and all other Triton series.
+    ///     Tests Triton Extreme and all other Triton series.
     /// </summary>
     [TestClass]
     public class M3Test
     {
-        const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\M3";
+        private const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\M3";
 
+        private ListGenerator _generator;
 
-        PcgMemory _pcgMemory;
+        private string[] _lines;
 
-
-        ListGenerator _generator;
-
-
-        string[] _lines;
-
+        private PcgMemory _pcgMemory;
 
         private void SetDefaults()
         {
@@ -52,7 +57,7 @@ namespace PCG_Tools_Unittests
             {
                 _generator.SelectedCombiBanks.Add((ICombiBank)item);
             }
-            
+
             _generator.IgnoreInitCombis = true;
             _generator.IgnoreFirstProgram = false;
             _generator.IgnoreMutedOffTimbres = true;
@@ -72,13 +77,11 @@ namespace PCG_Tools_Unittests
             _lines = null;
         }
 
-
         private void Run()
         {
             _generator.Run();
             _lines = File.ReadAllLines($"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt");
         }
-
 
         [TestMethod]
         public void TestDefaultPatchList()
@@ -95,7 +98,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(2179, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestProgramUsageList()
         {
@@ -110,7 +112,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(707, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestDefaultCombiContentList()
@@ -127,7 +128,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(567, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestCombi1()
         {
@@ -139,7 +139,8 @@ namespace PCG_Tools_Unittests
             SetDefaults();
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -147,7 +148,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(130, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestCombi2()
@@ -161,7 +161,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -170,20 +171,20 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(1, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestCombi3()
         {
             // Run.
             var korgFileReader = new KorgFileReader();
             _pcgMemory = (PcgMemory)korgFileReader.Read(PcgDirectory + @"\NEOSOUL.PCG");
-            
+
             _generator = new ListGeneratorPatchList();
             SetDefaults();
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -191,7 +192,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(2, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestCombi4()
@@ -202,10 +202,11 @@ namespace PCG_Tools_Unittests
 
             _generator = new ListGeneratorPatchList();
             SetDefaults();
-            
+
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -213,7 +214,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(1, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestCombi5()
@@ -226,7 +226,8 @@ namespace PCG_Tools_Unittests
             SetDefaults();
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();

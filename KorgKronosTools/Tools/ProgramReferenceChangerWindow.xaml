@@ -4,33 +4,33 @@
         xmlns:common="clr-namespace:Common.PcgToolsResources;assembly=Common"
         Title="{x:Static common:Strings.ProgramReferenceChanger_wt}"
         ShowInTaskbar="True"
-         Icon="/PcgTools;component/Gui/pcgtools.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight">
+        Icon="/PcgTools;component/Gui/pcgtools.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight">
     <StackPanel Orientation="Vertical" Width="500">
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
                 <Expander Header="{x:Static common:Strings.ReferenceRules}" IsExpanded="True">
-                        <TextBox x:Name="TextBoxRules" Margin="4,0" MaxHeight ="400" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="TextBoxRules" Margin="4,0" MaxHeight="400" VerticalScrollBarVisibility="Auto" />
                 </Expander>
 
-                <Button Content="{x:Static common:Strings.FromFile}" Margin="4" Padding="4" 
-                        Click="FromFileButton_Click"/>
+                <Button Content="{x:Static common:Strings.FromFile}" Margin="4" Padding="4"
+                        Click="FromFileButton_Click" />
             </StackPanel>
         </StackPanel>
-        
+
         <StackPanel>
-            <Label x:Name="LabelProgress" Content="{x:Static common:Strings.ProcessingRules}" Margin="4"/>
-            <ProgressBar x:Name="ProgressBarRules" Height="16" Margin="4"/>
+            <Label x:Name="LabelProgress" Content="{x:Static common:Strings.ProcessingRules}" Margin="4" />
+            <ProgressBar x:Name="ProgressBarRules" Height="16" Margin="4" />
         </StackPanel>
-        
-        
+
+
         <StackPanel Orientation="Horizontal">
-            <Button Content="{x:Static common:Strings.Cancel}" HorizontalAlignment="Left" 
-                IsDefault="False"
-                Margin="4" Name="buttonCancel" VerticalAlignment="Top" Width="75" IsCancel="True" 
-                Click="ButtonCancelClick" />
+            <Button Content="{x:Static common:Strings.Cancel}" HorizontalAlignment="Left"
+                    IsDefault="False"
+                    Margin="4" Name="buttonCancel" VerticalAlignment="Top" Width="75" IsCancel="True"
+                    Click="ButtonCancelClick" />
             <Button Content="{x:Static common:Strings.OK}" HorizontalAlignment="Left"
-                Margin="4" Name="buttonOk" 
-                VerticalAlignment="Top" Width="75" IsDefault="True" Click="ButtonOkClick" />
+                    Margin="4" Name="buttonOk"
+                    VerticalAlignment="Top" Width="75" IsDefault="True" Click="ButtonOkClick" />
         </StackPanel>
     </StackPanel>
 </Window>

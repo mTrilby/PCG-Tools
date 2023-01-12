@@ -1,14 +1,20 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using Common.Extensions;
-using Common.Utils;
-using System.Collections.Generic;
 using System.Text;
+using Common.Extensions;
 using Common.PcgToolsResources;
+using Common.Utils;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
@@ -17,17 +23,16 @@ using PcgTools.Model.Common.Synth.PatchDrumKits;
 using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 using PcgTools.Model.Common.Synth.PatchWaveSequences;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools.Model.Common.Synth.PatchPrograms
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class Program : Patch<Program>, IProgram // , INavigable
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
@@ -38,34 +43,90 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             Id = $"{programBank.Id}{index.ToString("000")}";
         }
 
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once UnusedMember.Global
+        public string Favorite =>
+            Root.AreFavoritesSupported && GetParam(ParameterNames.ProgramParameterName.Favorite).Value
+                ? "X"
+                : string.Empty;
 
         /// <summary>
-        /// 
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static bool IsModeled(ProgramBank.SynthesisType type)
+        // ReSharper disable once UnusedMember.Global
+        public string PatchTypeAsString => Strings.Program;
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable UnusedMember.Global
+        public string NumberOfReferencesAsString
+            // ReSharper restore UnusedMember.Global
+            => SettingsDefault.UI_ShowNumberOfReferencesColumn
+                ? NumberOfReferences.ToString(CultureInfo.InvariantCulture)
+                : string.Empty;
+
+        /// <summary>
+        /// </summary>
+        protected virtual int NumberOfZones => 0;
+
+        /// <summary>
+        /// </summary>
+        // ReSharper disable once UnusedMember.Global
+        public bool IsDrumProgram => CategoryAsName.ToUpper().Contains("DRUM");
+
+        /// <summary>
+        /// </summary>
+        public IProgram UsedDrumTrackProgram
         {
-            return (type >= ProgramBank.FirstModeledSynthesisType); // From Prophecy board
+            get
+            {
+                var paramBank = GetParam(ParameterNames.ProgramParameterName.DrumTrackProgramBank);
+                if (paramBank != null)
+                {
+                    var bank = (IProgramBank)PcgRoot.ProgramBanks.GetBankWithPcgId((int)paramBank.Value);
+
+                    var paramNumber = GetParam(ParameterNames.ProgramParameterName.DrumTrackProgramNumber);
+                    if (paramNumber != null)
+                    {
+                        return bank.Patches[paramNumber.Value];
+                    }
+                }
+
+                return null;
+            }
+
+            set
+            {
+                var paramBank = GetParam(ParameterNames.ProgramParameterName.DrumTrackProgramBank);
+                if (paramBank != null)
+                {
+                    paramBank.Value = ((IProgramBank)value.Parent).PcgId;
+
+                    var paramNumber = GetParam(ParameterNames.ProgramParameterName.DrumTrackProgramNumber);
+                    if (paramNumber != null)
+                    {
+                        paramNumber.Value = value.Index;
+                    }
+                }
+            }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override void SetNotifications()
         {
             var masterFile = MasterFiles.MasterFiles.Instances.FindMasterFile(Root.Model);
-            if ((masterFile != null) && !PcgRoot.FileName.IsEqualFileAs(masterFile.FileName))
+            if (masterFile != null && !PcgRoot.FileName.IsEqualFileAs(masterFile.FileName))
             {
                 masterFile.PropertyChanged += OnMasterPcgFilePropertyChanged;
             }
+
             PcgRoot.PropertyChanged += OnPatchPropertyChanged;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override void Clear()
         {
@@ -83,41 +144,14 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
                     }
                 }
             }
+
             Update("Category");
 
             RaisePropertyChanged(string.Empty, false);
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once UnusedMember.Global
-        public string Favorite => Root.AreFavoritesSupported && GetParam(ParameterNames.ProgramParameterName.Favorite).Value ? "X" : string.Empty;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        // ReSharper disable once UnusedMember.Global
-        public string PatchTypeAsString => Strings.Program;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable UnusedMember.Global
-        public string NumberOfReferencesAsString
-            // ReSharper restore UnusedMember.Global
-            => SettingsDefault.UI_ShowNumberOfReferencesColumn
-                ? NumberOfReferences.ToString(CultureInfo.InvariantCulture)
-                : string.Empty;
-
-
-        /// <summary>
-        /// Count number of reference (program used by combis or set list slots.
+        ///     Count number of reference (program used by combis or set list slots.
         /// </summary>
         public int NumberOfReferences
         {
@@ -129,12 +163,12 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
                 {
 // ReSharper disable once UnusedVariable
                     foreach (var timbre in from bank in PcgRoot.CombiBanks.BankCollection
-                        where bank.IsLoaded
-                        from patch in bank.Patches.Cast<ICombi>()
-                        where !patch.IsEmptyOrInit
-                        from timbre in patch.Timbres.TimbresCollection
-                        where timbre.UsedProgram == this
-                        select timbre)
+                             where bank.IsLoaded
+                             from patch in bank.Patches.Cast<ICombi>()
+                             where !patch.IsEmptyOrInit
+                             from timbre in patch.Timbres.TimbresCollection
+                             where timbre.UsedProgram == this
+                             select timbre)
                     {
                         numberOfReferences++;
                     }
@@ -143,11 +177,11 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
                     {
 // ReSharper disable once UnusedVariable
                         foreach (var patch in from bank in PcgRoot.SetLists.BankCollection
-                            where bank.IsLoaded
-                            from ISetListSlot patch in bank.Patches
-                            where !patch.IsEmptyOrInit
-                            where patch.UsedPatch == this
-                            select patch)
+                                 where bank.IsLoaded
+                                 from ISetListSlot patch in bank.Patches
+                                 where !patch.IsEmptyOrInit
+                                 where patch.UsedPatch == this
+                                 select patch)
                         {
                             numberOfReferences++;
                         }
@@ -158,9 +192,7 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public string CategoryAsName
         {
@@ -182,7 +214,7 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
                     var param = GetParam(ParameterNames.ProgramParameterName.Category);
                     if (param != null)
                     {
-                        categoryAsName = GetParam((ParameterNames.ProgramParameterName.Category)).Value.ToString();
+                        categoryAsName = GetParam(ParameterNames.ProgramParameterName.Category).Value.ToString();
                     }
                 }
                 else
@@ -190,14 +222,11 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
                     categoryAsName = global.GetCategoryName(this);
                 }
 
-
                 return categoryAsName;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public string SubCategoryAsName
         {
@@ -210,7 +239,7 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
                 }
 
                 // If the program is a GM patch, it is unknown what the category is since GM program parameters are unknown.
-                if (((ProgramBank) Bank).Type == BankType.EType.Gm)
+                if (((ProgramBank)Bank).Type == BankType.EType.Gm)
                 {
                     return "???";
                 }
@@ -223,10 +252,10 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
 
                 if (global == null)
                 {
-                    var param = GetParam((ParameterNames.ProgramParameterName.SubCategory));
+                    var param = GetParam(ParameterNames.ProgramParameterName.SubCategory);
                     if (param != null)
                     {
-                        subCategoryAsName = GetParam((ParameterNames.ProgramParameterName.SubCategory)).Value.ToString();
+                        subCategoryAsName = GetParam(ParameterNames.ProgramParameterName.SubCategory).Value.ToString();
                     }
                 }
                 else
@@ -238,31 +267,23 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             }
         }
 
-
         /// <summary>
-        /// Return empty list by default. Override when drum kits are supported.
+        ///     Return empty list by default. Override when drum kits are supported.
         /// </summary>
-        public virtual List<IDrumKit> UsedDrumKits => new List<IDrumKit>();
-
+        public virtual List<IDrumKit> UsedDrumKits => new();
 
         /// <summary>
-        ///
         /// </summary>
         /// <param name="changes"></param>
         public virtual void ReplaceDrumKit(Dictionary<IDrumKit, IDrumKit> changes)
         {
-            return;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public virtual IEnumerable<IWaveSequence> UsedWaveSequences => new List<IWaveSequence>();
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="changes"></param>
         public virtual void ReplaceWaveSequence(Dictionary<IWaveSequence, IWaveSequence> changes)
@@ -282,39 +303,29 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             }
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        protected virtual int NumberOfZones => 0;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="osc"></param>
-        /// /// <param name="zone"></param>
+        /// ///
+        /// <param name="zone"></param>
         /// <returns></returns>
         public virtual IWaveSequence GetUsedWaveSequence(int osc, int zone)
         {
             return null;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="osc"></param>
-        /// /// <param name="zone"></param>
+        /// ///
+        /// <param name="zone"></param>
         /// <param name="waveSequence"></param>
         public virtual void SetWaveSequence(int osc, int zone, IWaveSequence waveSequence)
         {
             // Default without implementation
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -323,45 +334,7 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             return null;
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnMasterPcgFilePropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "FileState":
-                case "FileStateAsString":
-                    break;
-            }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPatchPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "ReadingFinished": // Fall through
-                case "Global": // Fall through
-                case "CategoryChanged":
-                    Update("Category");
-                    break;
-
-                    //default: No action needed
-            }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         public override void Update(string name)
@@ -384,25 +357,7 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             }
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        private void UpdateCategory()
-        {
-            // No action needed.
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        // ReSharper disable once UnusedMember.Global
-        public bool IsDrumProgram => (CategoryAsName.ToUpper().Contains("DRUM"));
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -411,9 +366,7 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             throw new NotSupportedException("Not supported fixed parameter value");
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="type"></param>
         /// <param name="value"></param>
@@ -422,9 +375,8 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             throw new NotSupportedException("Not supported fixed parameter value");
         }
 
-
         /// <summary>
-        /// Change all references to the current patch, towards the specified patch.
+        ///     Change all references to the current patch, towards the specified patch.
         /// </summary>
         /// <param name="newPatch"></param>
         public override void ChangeReferences(IPatch newPatch)
@@ -440,70 +392,13 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             }
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="newPatch"></param>
-        private void ChangeReferencesFromCombis(IProgram newPatch)
-        {
-            var combiBanks = (((IPcgMemory) Parent.Parent.Parent).CombiBanks.BankCollection);
-            if (combiBanks == null)
-            {
-                return;
-            }
-
-            foreach (var timbre in from combiBank in combiBanks
-                where combiBank.IsLoaded
-                from patch in combiBank.Patches
-                select (ICombi) patch
-                into combi
-                from timbre in combi.Timbres.TimbresCollection
-                where timbre.UsedProgram == this
-                where ((timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value == "Off") ||
-                       (timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value == "Int"))    
-                select timbre)
-            {
-                timbre.UsedProgram = newPatch;
-            }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="newPatch"></param>
-        private void ChangeReferencesFromSetLists(IPatch newPatch)
-        {
-            var setLists = (((IPcgMemory) Parent.Parent.Parent).SetLists.BankCollection);
-            if (setLists == null)
-            {
-                return;
-            }
-
-            foreach (var setListSlot in
-                from setList in setLists
-                where setList.IsLoaded
-                from ISetListSlot setListSlot in setList.Patches
-                where (setListSlot.SelectedPatchType == SetListSlot.PatchType.Program) &&
-                      (setListSlot.UsedPatch == this)
-                select setListSlot)
-            {
-                setListSlot.UsedPatch = newPatch;
-            }
-        }
-        
-
-        /// <summary>
-        /// 
         /// </summary>
         public override bool ToolTipEnabled => !IsEmptyOrInit;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public override string ToolTip 
+        public override string ToolTip
         {
             get
             {
@@ -550,20 +445,18 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public IProgram UsedDrumTrackProgram
+        public IDrumPattern UsedDrumTrackPattern
         {
             get
             {
-                var paramBank = GetParam(ParameterNames.ProgramParameterName.DrumTrackProgramBank);
+                var paramBank = GetParam(ParameterNames.ProgramParameterName.DrumTrackCommonPatternBank);
                 if (paramBank != null)
                 {
-                    var bank = (IProgramBank) PcgRoot.ProgramBanks.GetBankWithPcgId((int) (paramBank.Value));
+                    var bank = (IDrumPatternBank)PcgRoot.DrumPatternBanks.GetBankWithPcgId((int)paramBank.Value);
 
-                    var paramNumber = GetParam(ParameterNames.ProgramParameterName.DrumTrackProgramNumber);
+                    var paramNumber = GetParam(ParameterNames.ProgramParameterName.DrumTrackCommonPatternNumber);
                     if (paramNumber != null)
                     {
                         return bank.Patches[paramNumber.Value];
@@ -575,12 +468,12 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
 
             set
             {
-                var paramBank = GetParam(ParameterNames.ProgramParameterName.DrumTrackProgramBank);
+                var paramBank = GetParam(ParameterNames.ProgramParameterName.DrumTrackCommonPatternBank);
                 if (paramBank != null)
                 {
-                    paramBank.Value = ((IProgramBank) value.Parent).PcgId;
+                    paramBank.Value = ((IDrumPatternBank)value.Parent).PcgId;
 
-                    var paramNumber = GetParam(ParameterNames.ProgramParameterName.DrumTrackProgramNumber);
+                    var paramNumber = GetParam(ParameterNames.ProgramParameterName.DrumTrackCommonPatternNumber);
                     if (paramNumber != null)
                     {
                         paramNumber.Value = value.Index;
@@ -589,42 +482,100 @@ namespace PcgTools.Model.Common.Synth.PatchPrograms
             }
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsModeled(ProgramBank.SynthesisType type)
+        {
+            return type >= ProgramBank.FirstModeledSynthesisType; // From Prophecy board
+        }
 
         /// <summary>
-        /// 
         /// </summary>
-        public IDrumPattern UsedDrumTrackPattern
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnMasterPcgFilePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            get 
+            switch (e.PropertyName)
             {
-                var paramBank = GetParam(ParameterNames.ProgramParameterName.DrumTrackCommonPatternBank);
-                if (paramBank != null)
-                {
-                    var bank = (IDrumPatternBank) PcgRoot.DrumPatternBanks.GetBankWithPcgId((int) (paramBank.Value));
+                case "FileState":
+                case "FileStateAsString":
+                    break;
+            }
+        }
 
-                    var paramNumber = GetParam(ParameterNames.ProgramParameterName.DrumTrackCommonPatternNumber);
-                    if (paramNumber != null)
-                    {
-                        return bank.Patches[paramNumber.Value];
-                    }
-                }
+        /// <summary>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPatchPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "ReadingFinished": // Fall through
+                case "Global": // Fall through
+                case "CategoryChanged":
+                    Update("Category");
+                    break;
 
-                return null;
+                //default: No action needed
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        private void UpdateCategory()
+        {
+            // No action needed.
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="newPatch"></param>
+        private void ChangeReferencesFromCombis(IProgram newPatch)
+        {
+            var combiBanks = ((IPcgMemory)Parent.Parent.Parent).CombiBanks.BankCollection;
+            if (combiBanks == null)
+            {
+                return;
             }
 
-            set
+            foreach (var timbre in from combiBank in combiBanks
+                     where combiBank.IsLoaded
+                     from patch in combiBank.Patches
+                     select (ICombi)patch
+                     into combi
+                     from timbre in combi.Timbres.TimbresCollection
+                     where timbre.UsedProgram == this
+                     where timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value == "Off" ||
+                           timbre.GetParam(ParameterNames.TimbreParameterName.Status).Value == "Int"
+                     select timbre)
             {
-                var paramBank = GetParam(ParameterNames.ProgramParameterName.DrumTrackCommonPatternBank);
-                if (paramBank != null)
-                {
-                    paramBank.Value = ((IDrumPatternBank) value.Parent).PcgId;
+                timbre.UsedProgram = newPatch;
+            }
+        }
 
-                    var paramNumber = GetParam(ParameterNames.ProgramParameterName.DrumTrackCommonPatternNumber);
-                    if (paramNumber != null)
-                    {
-                        paramNumber.Value = value.Index;
-                    }
-                }
+        /// <summary>
+        /// </summary>
+        /// <param name="newPatch"></param>
+        private void ChangeReferencesFromSetLists(IPatch newPatch)
+        {
+            var setLists = ((IPcgMemory)Parent.Parent.Parent).SetLists.BankCollection;
+            if (setLists == null)
+            {
+                return;
+            }
+
+            foreach (var setListSlot in
+                     from setList in setLists
+                     where setList.IsLoaded
+                     from ISetListSlot setListSlot in setList.Patches
+                     where setListSlot.SelectedPatchType == SetListSlot.PatchType.Program &&
+                           setListSlot.UsedPatch == this
+                     select setListSlot)
+            {
+                setListSlot.UsedPatch = newPatch;
             }
         }
     }

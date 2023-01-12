@@ -1,19 +1,26 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 using PcgTools.Model.TritonSpecific.Synth;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Model.TritonKarmaSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonKarmaDrumKitBank : TritonDrumKitBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumKitBanks"></param>
         /// <param name="type"></param>
@@ -24,9 +31,7 @@ namespace PcgTools.Model.TritonKarmaSpecific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         public override void CreatePatch(int index)

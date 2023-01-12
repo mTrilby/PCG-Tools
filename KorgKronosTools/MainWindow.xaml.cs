@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
@@ -7,12 +13,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Dynamic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
-#if !DEBUG
 using System.Threading;
-#endif
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Common.PcgToolsResources;
 using Microsoft.Win32;
 using PcgTools.Common.Utils;
@@ -21,38 +27,26 @@ using PcgTools.MasterFiles;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.OpenedFiles;
-using PcgTools.ViewModels;
 using PcgTools.Properties;
+using PcgTools.ViewModels;
 using WPF.MDI;
+
+#endregion
+
+#if !DEBUG
+using System.Threading;
+#endif
 
 // Do not remove; used for Release build
 
 namespace PcgTools
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow // : Window
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public MainViewModel ViewModel { get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private enum EWindowState
-        {
-            Minimized = 0, // Used in settings
-            Normal,
-            Maximized
-        };
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public MainWindow()
         {
@@ -60,7 +54,7 @@ namespace PcgTools
             try
             {
 #endif
-            var splashWindow = new SplashWindow {WindowStartupLocation = WindowStartupLocation.CenterScreen};
+            var splashWindow = new SplashWindow { WindowStartupLocation = WindowStartupLocation.CenterScreen };
             splashWindow.Show();
 #if !DEBUG
                 Thread.Sleep(5000);
@@ -70,9 +64,8 @@ namespace PcgTools
             try
             {
                 var culture = new CultureInfo(Settings.Default.UI_Language);
-                System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
-                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
-
+                Thread.CurrentThread.CurrentUICulture = culture;
+                Thread.CurrentThread.CurrentCulture = culture;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
@@ -85,7 +78,7 @@ namespace PcgTools
 
             // Set UI language.
             foreach (var item in menuItemUiLanguages.Items.Cast<MenuItem>().Where(
-                item => item.Tag.ToString().Equals(CultureInfo.CurrentUICulture.Name)))
+                         item => item.Tag.ToString().Equals(CultureInfo.CurrentUICulture.Name)))
             {
                 item.IsChecked = true;
             }
@@ -94,13 +87,11 @@ namespace PcgTools
             ViewModel = new MainViewModel();
             ViewModel.PropertyChanged += OnViewModelChanged;
             Container.Children.CollectionChanged += OnMdiContainerChanged;
-            
 
             ViewModel.UpdateSelectedMemory = () =>
             {
-                ViewModel.SelectedMemory = (FocusedWindow == null) ? null : FocusedWindow.Memory;
+                ViewModel.SelectedMemory = FocusedWindow == null ? null : FocusedWindow.Memory;
             };
-            
 
             ViewModel.OpenFileDialog = (title, filter, filterIndex, multiSelect) =>
             {
@@ -125,9 +116,9 @@ namespace PcgTools
                     result.Success = false;
                     result.Files = null;
                 }
+
                 return result;
             };
-            
 
             ViewModel.SaveFileDialog = (title, filter, fileName) =>
             {
@@ -136,7 +127,7 @@ namespace PcgTools
                     Title = title,
                     Filter = filter,
                     FileName = fileName,
-                    FilterIndex = ViewModel.GetFilterIndexOfFile(System.IO.Path.GetExtension(fileName), filter)
+                    FilterIndex = ViewModel.GetFilterIndexOfFile(Path.GetExtension(fileName), filter)
                 };
 
                 dynamic result = new ExpandoObject();
@@ -151,12 +142,11 @@ namespace PcgTools
                     result.Success = false;
                     result.Files = null;
                 }
+
                 return result;
             };
 
-
             ViewModel.SetCursor = WindowUtils.SetCursor;
-
 
             ViewModel.ShowDialog = windowType =>
             {
@@ -164,15 +154,15 @@ namespace PcgTools
                 switch (windowType)
                 {
                     case MainViewModel.WindowType.Settings:
-                        window = new SettingsWindow {Owner = this};
+                        window = new SettingsWindow { Owner = this };
                         break;
 
                     case MainViewModel.WindowType.About:
-                        window = new AboutWindow(MainViewModel.Version) {Owner = this};
+                        window = new AboutWindow(MainViewModel.Version) { Owner = this };
                         break;
 
                     case MainViewModel.WindowType.ExternalLinksKorgRelated:
-                        window = new ExternalLinksKorgRelatedWindow {Owner = this};
+                        window = new ExternalLinksKorgRelatedWindow { Owner = this };
                         break;
 
                     case MainViewModel.WindowType.ExternalLinksContributors:
@@ -184,19 +174,19 @@ namespace PcgTools
                         break;
 
                     case MainViewModel.WindowType.ExternalLinksDonators:
-                        window = new ExternalLinksDonatorsWindow {Owner = this};
+                        window = new ExternalLinksDonatorsWindow { Owner = this };
                         break;
 
                     case MainViewModel.WindowType.ExternalLinksTranslators:
-                        window = new ExternalLinksTranslatorsWindow {Owner = this};
+                        window = new ExternalLinksTranslatorsWindow { Owner = this };
                         break;
 
                     case MainViewModel.WindowType.ExternalLinksThirdParties:
-                        window = new ExternalLinksThirdPartiesWindow {Owner = this};
+                        window = new ExternalLinksThirdPartiesWindow { Owner = this };
                         break;
 
                     case MainViewModel.WindowType.ExternalLinksOasysVoucherCodeSponsorsWindow:
-                        window = new ExternalLinksOasysVoucherCodeSponsorsWindow{ Owner = this };
+                        window = new ExternalLinksOasysVoucherCodeSponsorsWindow { Owner = this };
                         break;
 
                     case MainViewModel.WindowType.ExternalLinksPersonal:
@@ -210,14 +200,11 @@ namespace PcgTools
                 window.ShowDialog();
             };
 
-
             ViewModel.ShowMessageBox = (text, title, messageBoxButton, messageBoxImage, messageBoxResult) =>
-                                       WindowUtils.ShowMessageBox(
-                                           this, text, title, messageBoxButton, messageBoxImage, messageBoxResult);
-
+                WindowUtils.ShowMessageBox(
+                    this, text, title, messageBoxButton, messageBoxImage, messageBoxResult);
 
             ViewModel.StartProcess = process => Process.Start(process);
-
 
             ViewModel.GotoNextWindow = () =>
             {
@@ -232,12 +219,11 @@ namespace PcgTools
                     }
                 }
 
-                if ((index < nrChildren) && (nrChildren > 0))
+                if (index < nrChildren && nrChildren > 0)
                 {
                     Container.Children[(index + 1) % nrChildren].Focus();
                 }
             };
-
 
             ViewModel.GotoPreviousWindow = () =>
             {
@@ -252,12 +238,11 @@ namespace PcgTools
                     }
                 }
 
-                if ((index < nrChildren) && (nrChildren > 0))
+                if (index < nrChildren && nrChildren > 0)
                 {
-                    Container.Children[(index - 1 + nrChildren ) % nrChildren].Focus();
+                    Container.Children[(index - 1 + nrChildren) % nrChildren].Focus();
                 }
             };
-
 
             ViewModel.CreateMdiChildWindow = (fileName, childWindowType, memory, width, height) =>
             {
@@ -266,7 +251,7 @@ namespace PcgTools
                 switch (childWindowType)
                 {
                     case MainViewModel.ChildWindowType.Pcg:
-                        uiElement = new PcgWindow(this, fileName, (PcgMemory) memory);
+                        uiElement = new PcgWindow(this, fileName, (PcgMemory)memory);
 
                         mdiChild = new MdiChild
                         {
@@ -276,7 +261,7 @@ namespace PcgTools
                             MaximizeBox = false,
                             Width = width,
                             Height = height,
-                            Margin = new Thickness(0, 0, 0, 0),
+                            Margin = new Thickness(0, 0, 0, 0)
                         };
 
                         ((PcgWindow)uiElement).MdiChild = mdiChild;
@@ -285,8 +270,8 @@ namespace PcgTools
                         break;
 
                     case MainViewModel.ChildWindowType.Song:
-                        uiElement = new SongWindow(this, fileName, (SongMemory) memory, ViewModel.OpenedPcgWindows);
-                        
+                        uiElement = new SongWindow(this, fileName, (SongMemory)memory, ViewModel.OpenedPcgWindows);
+
                         mdiChild = new MdiChild
                         {
                             Title = fileName,
@@ -295,7 +280,7 @@ namespace PcgTools
                             MaximizeBox = false,
                             Width = width,
                             Height = height,
-                            Margin = new Thickness(0, 0, 0, 0),
+                            Margin = new Thickness(0, 0, 0, 0)
                         };
 
                         ((SongWindow)uiElement).MdiChild = mdiChild;
@@ -312,7 +297,7 @@ namespace PcgTools
                             MaximizeBox = false,
                             Width = width,
                             Height = height,
-                            Margin = new Thickness(0, 0, 0, 0),
+                            Margin = new Thickness(0, 0, 0, 0)
                         };
 
                         ((MasterFilesWindow)uiElement).MdiChild = mdiChild;
@@ -351,9 +336,29 @@ namespace PcgTools
 #endif
         }
 
+        /// <summary>
+        /// </summary>
+        public MainViewModel ViewModel { get; }
 
         /// <summary>
-        /// 
+        /// </summary>
+        private IChildWindow FocusedWindow
+        {
+            get
+            {
+                if (Container?.Children == null)
+                {
+                    return null;
+                }
+
+                return (from child in Container.Children
+                    where
+                        child.Focused
+                    select (IChildWindow)child.Content).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -390,15 +395,14 @@ namespace PcgTools
 
             // Start timer.
             //  DispatcherTimer setup
-            var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(OnTimerTick);
+            var dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += OnTimerTick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 15);
             dispatcherTimer.Start();
         }
 
-
         /// <summary>
-        /// Backup files if needed.
+        ///     Backup files if needed.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -407,27 +411,20 @@ namespace PcgTools
             ViewModel.OnTimerTick();
         }
 
-
-
-
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="o"></param>
         /// <param name="args"></param>
-        void OnMdiContainerChanged(object o, NotifyCollectionChangedEventArgs args)
+        private void OnMdiContainerChanged(object o, NotifyCollectionChangedEventArgs args)
         {
             ViewModel.ChildWindows.Clear();
             foreach (var child in Container.Children)
             {
-                ViewModel.ChildWindows.Add((IChildWindow) (child.Content));
+                ViewModel.ChildWindows.Add((IChildWindow)child.Content);
             }
         }
-      
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="args"></param>
@@ -487,33 +484,13 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        private IChildWindow FocusedWindow
-        {
-            get
-            {
-                if (Container?.Children == null)
-                {
-                    return null;
-                }
-
-                return (from child in Container.Children where 
-                            child.Focused select (IChildWindow) child.Content).FirstOrDefault();
-            }
-        }
-       
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="args"></param>
         public void MdiClosing(object obj, RoutedEventArgs args)
         {
-            var content = ((IChildWindow) (((MdiChild) obj).Content));
+            var content = (IChildWindow)((MdiChild)obj).Content;
             args.Handled = !content.ViewModel.Close(false);
 
             if (content is PcgWindow)
@@ -525,9 +502,9 @@ namespace PcgTools
             ViewModel.ChildWindows.Clear();
             foreach (var child in Container.Children)
             {
-                ViewModel.ChildWindows.Add((IChildWindow)(child.Content));
+                ViewModel.ChildWindows.Add((IChildWindow)child.Content);
             }
-            
+
             // Set current child view model.
             if (Container.Children.Count > 0)
             {
@@ -538,10 +515,8 @@ namespace PcgTools
                 }
             }
         }
-        
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -572,9 +547,7 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -583,35 +556,35 @@ namespace PcgTools
             var child = Container.Children[index];
             if (child.Content is PcgWindow)
             {
-                if (((PcgWindow) (child.Content)).ViewModel.Close(true))
+                if (((PcgWindow)child.Content).ViewModel.Close(true))
                 {
                     return true;
                 }
             }
             else if (child.Content is CombiWindow)
             {
-                if (((CombiWindow) (child.Content)).ViewModel.Close(true))
+                if (((CombiWindow)child.Content).ViewModel.Close(true))
                 {
                     return true;
                 }
             }
             else if (child.Content is SongWindow)
             {
-                if (((SongWindow) (child.Content)).ViewModel.Close(true))
+                if (((SongWindow)child.Content).ViewModel.Close(true))
                 {
                     return true;
                 }
             }
             else if (child.Content is SongTimbresWindow)
             {
-                if (((SongTimbresWindow)(child.Content)).ViewModel.Close(true))
+                if (((SongTimbresWindow)child.Content).ViewModel.Close(true))
                 {
                     return true;
                 }
             }
             else if (child.Content is MasterFilesWindow)
             {
-                if (((MasterFilesWindow) (child.Content)).ViewModel.Close(true))
+                if (((MasterFilesWindow)child.Content).ViewModel.Close(true))
                 {
                     return true;
                 }
@@ -620,12 +593,11 @@ namespace PcgTools
             {
                 throw new ApplicationException("Illegal child window type");
             }
+
             return false;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void LoadWindowProperties()
         {
@@ -634,7 +606,7 @@ namespace PcgTools
             Top = Settings.Default.UI_MainWindowTop;
             Left = Settings.Default.UI_MainWindowLeft;
 
-            switch ((EWindowState) Settings.Default.UI_MainWindowState)
+            switch ((EWindowState)Settings.Default.UI_MainWindowState)
             {
                 case EWindowState.Minimized:
                     // Do not start in minimized state.
@@ -654,9 +626,7 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void SaveWindowProperties()
         {
@@ -668,15 +638,15 @@ namespace PcgTools
             switch (WindowState)
             {
                 case WindowState.Minimized:
-                    Settings.Default.UI_MainWindowState = (int) EWindowState.Minimized;
+                    Settings.Default.UI_MainWindowState = (int)EWindowState.Minimized;
                     break;
 
                 case WindowState.Normal:
-                    Settings.Default.UI_MainWindowState = (int) EWindowState.Normal;
+                    Settings.Default.UI_MainWindowState = (int)EWindowState.Normal;
                     break;
 
                 case WindowState.Maximized:
-                    Settings.Default.UI_MainWindowState = (int) EWindowState.Maximized;
+                    Settings.Default.UI_MainWindowState = (int)EWindowState.Maximized;
                     break;
 
                 default:
@@ -684,35 +654,31 @@ namespace PcgTools
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="o"></param>
         /// <param name="args"></param>
-        void OnViewModelChanged(object o, PropertyChangedEventArgs args)
+        private void OnViewModelChanged(object o, PropertyChangedEventArgs args)
         {
             switch (args.PropertyName)
             {
-            case "SelectedTheme":
-                var enumConverter = new Dictionary<MainViewModel.Theme, MdiContainer.ThemeType>
-                {
-                    {MainViewModel.Theme.Generic, MdiContainer.ThemeType.Generic},
-                    {MainViewModel.Theme.Luna, MdiContainer.ThemeType.Luna},
-                    {MainViewModel.Theme.Aero, MdiContainer.ThemeType.Aero}
-                };
-                Container.Theme = enumConverter[ViewModel.SelectedTheme];
-                break;
+                case "SelectedTheme":
+                    var enumConverter = new Dictionary<MainViewModel.Theme, MdiContainer.ThemeType>
+                    {
+                        { MainViewModel.Theme.Generic, MdiContainer.ThemeType.Generic },
+                        { MainViewModel.Theme.Luna, MdiContainer.ThemeType.Luna },
+                        { MainViewModel.Theme.Aero, MdiContainer.ThemeType.Aero }
+                    };
+                    Container.Theme = enumConverter[ViewModel.SelectedTheme];
+                    break;
 
-            // default:
+                // default:
                 //throw new ApplicationException("Illegal property name");
                 // break;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -735,10 +701,20 @@ namespace PcgTools
                     Settings.Default.UI_Language = mi.Tag.ToString();
                     Settings.Default.Save();
 
-                    ViewModel.ShowMessageBox(Strings.RestartToChangeLanguage, Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok,
-                                             WindowUtil.EMessageBoxImage.Information, WindowUtil.EMessageBoxResult.Ok);
+                    ViewModel.ShowMessageBox(Strings.RestartToChangeLanguage, Strings.PcgTools,
+                        WindowUtil.EMessageBoxButton.Ok,
+                        WindowUtil.EMessageBoxImage.Information, WindowUtil.EMessageBoxResult.Ok);
                 }
             }
+        }
+
+        /// <summary>
+        /// </summary>
+        private enum EWindowState
+        {
+            Minimized = 0, // Used in settings
+            Normal,
+            Maximized
         }
     }
 }

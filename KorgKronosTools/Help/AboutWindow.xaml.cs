@@ -1,29 +1,35 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools.Help
 {
     /// <summary>
-    /// Interaction logic for AboutWindow.xaml
+    ///     Interaction logic for AboutWindow.xaml
     /// </summary>
     public partial class AboutWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public AboutWindow()
         {
             InitializeComponent();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="version"></param>
         public AboutWindow(string version)
@@ -32,9 +38,7 @@ namespace PcgTools.Help
             labelVersion.Content = version;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -43,9 +47,7 @@ namespace PcgTools.Help
             Close();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -58,15 +60,13 @@ namespace PcgTools.Help
             }
             catch (Exception exception)
             {
-                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}: {exception.Message}", 
+                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}: {exception.Message}",
                     Strings.PcgTools,
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -75,31 +75,27 @@ namespace PcgTools.Help
             ShowDonateButton();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Image2KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.Key == Key.Enter) || (e.Key == Key.Return))
+            if (e.Key == Key.Enter || e.Key == Key.Return)
             {
                 ShowDonateButton();
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        void ShowDonateButton()
+        private void ShowDonateButton()
         {
             try
             {
                 Process.Start(new ProcessStartInfo(
-                 "//www.paypal.com/cgi-bin/webscr?cmd=_donations&business=XC8G28GYMV4VY&lc=US&currency_code=" +
-                 "EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted"));
+                    "//www.paypal.com/cgi-bin/webscr?cmd=_donations&business=XC8G28GYMV4VY&lc=US&currency_code=" +
+                    "EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted"));
             }
             catch (Exception exception)
             {

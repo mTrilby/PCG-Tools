@@ -1,23 +1,22 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.PatchCombis;
+
+#endregion
 
 namespace PcgTools.Model.TritonSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class TritonTimbres : Timbres
     {
         /// <summary>
-        /// 
-        /// </summary>
-        static int TimbresPerCombiConstant => 8;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         /// <param name="timbresOffsetConstant"></param>
@@ -25,5 +24,9 @@ namespace PcgTools.Model.TritonSpecific.Synth
             : base(combi, TimbresPerCombiConstant, timbresOffsetConstant)
         {
         }
+
+        /// <summary>
+        /// </summary>
+        private static int TimbresPerCombiConstant => 8;
     }
 }

@@ -1,20 +1,25 @@
-﻿namespace Common.Behaviors
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+namespace Common.Behaviors
 {
     /// <summary>
-    /// Converts items in the Master list to Items in the target list, and back again.
+    ///     Converts items in the Master list to Items in the target list, and back again.
     /// </summary>
     public interface IListItemConverter
     {
         /// <summary>
-        /// Converts the specified master list item.
+        ///     Converts the specified master list item.
         /// </summary>
         /// <param name="masterListItem">The master list item.</param>
         /// <returns>The result of the conversion.</returns>
         object Convert(object masterListItem);
 
-
         /// <summary>
-        /// Converts the specified target list item.
+        ///     Converts the specified target list item.
         /// </summary>
         /// <param name="targetListItem">The target list item.</param>
         /// <returns>The result of the conversion.</returns>

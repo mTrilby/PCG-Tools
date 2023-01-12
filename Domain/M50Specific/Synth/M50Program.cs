@@ -1,39 +1,41 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Collections.Generic;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.MSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.M50Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class M50Program : MProgram
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
         public M50Program(IProgramBank programBank, int index)
-            : base(programBank, index) 
+            : base(programBank, index)
         {
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -45,15 +47,17 @@ namespace PcgTools.Model.M50Specific.Synth
             {
                 case ParameterNames.ProgramParameterName.OscMode:
                     parameter = EnumParameter.Instance.Set(Root, Root.Content, ByteOffset + 836, 2, 0,
-                        new List<string> {"Single", "Double", "Drums"}, this);
+                        new List<string> { "Single", "Double", "Drums" }, this);
                     break;
 
                 case ParameterNames.ProgramParameterName.Category:
-                    parameter = IntParameter.Instance.Set(PcgRoot, PcgRoot.Content, ByteOffset + 846, 4, 0, false, this);
+                    parameter = IntParameter.Instance.Set(PcgRoot, PcgRoot.Content, ByteOffset + 846, 4, 0, false,
+                        this);
                     break;
 
                 case ParameterNames.ProgramParameterName.SubCategory:
-                    parameter = IntParameter.Instance.Set(PcgRoot, PcgRoot.Content, ByteOffset + 846, 7, 5, false, this);
+                    parameter = IntParameter.Instance.Set(PcgRoot, PcgRoot.Content, ByteOffset + 846, 7, 5, false,
+                        this);
                     break;
 
                 case ParameterNames.ProgramParameterName.DrumTrackCommonPatternNumber:
@@ -68,18 +72,18 @@ namespace PcgTools.Model.M50Specific.Synth
                     parameter = base.GetParam(name);
                     break;
             }
+
             return parameter;
         }
 
-
         /// <summary>
-        /// Do not take drum track program references into account.
+        ///     Do not take drum track program references into account.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
         protected override bool UseIndexForDifferencing(int index)
         {
-            return ((index != 830) && (index != 831));
+            return index != 830 && index != 831;
         }
     }
 }

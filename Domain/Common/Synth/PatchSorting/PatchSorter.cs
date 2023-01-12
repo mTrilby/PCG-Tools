@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
@@ -7,24 +13,35 @@ using Common.Extensions;
 using Common.Utils;
 using PcgTools.Model.Common.Synth.Meta;
 
+#endregion
+
 namespace PcgTools.Model.Common.Synth.PatchSorting
 {
     /// <summary>
-    /// Utility class.
+    ///     Utility class.
     /// </summary>
-    abstract public class PatchSorter
+    public abstract class PatchSorter
     {
         /// <summary>
-        /// 
+        /// </summary>
+        public enum SortOrder
+        {
+            ESortOrderNameCategory,
+            ESortOrderTitleArtistCategory,
+            ESortOrderArtistTitleCategory,
+            ESortOrderCategoryName,
+            ESortOrderCategoryTitleArtist,
+            ESortOrderCategoryArtistTitle
+        }
+
+        /// <summary>
         /// </summary>
         private PatchSorter()
         {
             // Not implemented.
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>
@@ -41,18 +58,16 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             }
             else
             {
-                title = SettingsDefault.Sort_ArtistTitleSortOrder ?
-                            patch.Name.Substring(splitIndex + 1, patch.Name.Length - splitIndex - 1) :
-                            patch.Name.Substring(0, splitIndex);
+                title = SettingsDefault.Sort_ArtistTitleSortOrder
+                    ? patch.Name.Substring(splitIndex + 1, patch.Name.Length - splitIndex - 1)
+                    : patch.Name.Substring(0, splitIndex);
                 title = title.Expand();
             }
 
             return title;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>
@@ -69,32 +84,16 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             }
             else
             {
-                artist = SettingsDefault.Sort_ArtistTitleSortOrder ?
-                             patch.Name.Substring(0, splitIndex) :
-                             patch.Name.Substring(splitIndex + 1, patch.Name.Length - splitIndex - 1);
+                artist = SettingsDefault.Sort_ArtistTitleSortOrder
+                    ? patch.Name.Substring(0, splitIndex)
+                    : patch.Name.Substring(splitIndex + 1, patch.Name.Length - splitIndex - 1);
                 artist = artist.Expand();
             }
 
             return artist;
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        public enum SortOrder
-        {
-            ESortOrderNameCategory,
-            ESortOrderTitleArtistCategory,
-            ESortOrderArtistTitleCategory,
-            ESortOrderCategoryName,
-            ESortOrderCategoryTitleArtist,
-            ESortOrderCategoryArtistTitle
-        };
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="patches"></param>
         /// <param name="sortOrder"></param>
@@ -146,16 +145,13 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
             patches.Sort(comparers);
         }
 
-
         /// <summary>
-        /// Returns the index of the split character. If multiple split characters are found, the one with the
-        ///  most spaces around it is selected;
-        /// otherwise the last one.
-        /// 
-        ///      0         1         2
-        ///      012345678901234567890
-        /// E.g. Good For You - MC-Joe returns 13
-        /// 
+        ///     Returns the index of the split character. If multiple split characters are found, the one with the
+        ///     most spaces around it is selected;
+        ///     otherwise the last one.
+        ///     0         1         2
+        ///     012345678901234567890
+        ///     E.g. Good For You - MC-Joe returns 13
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>

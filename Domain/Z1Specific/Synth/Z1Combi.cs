@@ -1,39 +1,42 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.Z1Specific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Z1Combi : MntxCombi
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiBank"></param>
         /// <param name="index"></param>
         public Z1Combi(IBank combiBank, int index)
             : base(combiBank, index)
         {
-            Id = $"{combiBank.Id}{(index).ToString("00")}";
+            Id = $"{combiBank.Id}{index.ToString("00")}";
             Timbres = new Z1Timbres(this);
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -43,11 +46,11 @@ namespace PcgTools.Model.Z1Specific.Synth
 
             switch (name)
             {
-
-            default:
-                parameter = base.GetParam(name);
-                break;
+                default:
+                    parameter = base.GetParam(name);
+                    break;
             }
+
             return parameter;
         }
     }

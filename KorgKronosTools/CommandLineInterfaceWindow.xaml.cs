@@ -1,22 +1,27 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Windows;
+
+#endregion
 
 namespace PcgTools
 {
     /// <summary>
-    /// Interaction logic for CommandLineInterfaceWindow.xaml
+    ///     Interaction logic for CommandLineInterfaceWindow.xaml
     /// </summary>
     public partial class CommandLineInterfaceWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
-        readonly string _diagnosticsText;
-
+        private readonly string _diagnosticsText;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="diagnosticsText"></param>
         public CommandLineInterfaceWindow(string diagnosticsText)
@@ -25,9 +30,7 @@ namespace PcgTools
             InitializeComponent();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -36,9 +39,7 @@ namespace PcgTools
             textBlock.Text = _diagnosticsText;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -46,6 +47,5 @@ namespace PcgTools
         {
             Close();
         }
-
     }
 }

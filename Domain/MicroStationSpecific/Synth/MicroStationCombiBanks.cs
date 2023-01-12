@@ -1,19 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 
+#endregion
+
 namespace PcgTools.Model.MicroStationSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MicroStationCombiBanks : CombiBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public MicroStationCombiBanks(IPcgMemory pcgMemory)
@@ -21,9 +26,7 @@ namespace PcgTools.Model.MicroStationSpecific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {
@@ -33,6 +36,5 @@ namespace PcgTools.Model.MicroStationSpecific.Synth
                 Add(new MicroStationCombiBank(this, BankType.EType.Int, id, -1));
             }
         }
-
     }
 }

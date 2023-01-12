@@ -1,33 +1,38 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
+#endregion
+
+// (c) 2011 Michel Keijzers
 
 namespace PCG_Tools_Unittests
 {
     [TestClass]
     public class KronosCompletePcgDifferencesListTest
     {
-        const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\PRELOAD.pcg";
+        private const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\PRELOAD.pcg";
 
+        private ListGeneratorDifferencesList _generator;
 
-        PcgMemory _pcgMemory;
+        private string[] _lines;
 
-
-        ListGeneratorDifferencesList _generator;
-
-
-        string[] _lines;
-
+        private PcgMemory _pcgMemory;
 
         [TestInitialize]
         public void SetDefaults()
@@ -37,13 +42,11 @@ namespace PCG_Tools_Unittests
             _lines = null;
         }
 
-
         private void Run()
         {
             _generator.Run();
             _lines = File.ReadAllLines(_generator.OutputFileName);
         }
-
 
         private void AssertExists(string text)
         {
@@ -52,18 +55,15 @@ namespace PCG_Tools_Unittests
             Assert.IsTrue(_lines.Count(line => line.Contains(text)) > 0);
         }
 
-
         private void AssertAll(string text)
         {
             Assert.AreEqual(_lines.Length, _lines.Count(line => line.Contains(text)));
         }
 
-
         private void AssertNotExists(string text)
         {
             Assert.AreEqual(0, _lines.Count(line => line.Contains(text)));
         }
-
 
         [TestMethod]
         public void TestDefault()
@@ -88,7 +88,7 @@ namespace PCG_Tools_Unittests
 
             foreach (var item in _pcgMemory.CombiBanks.BankCollection)
             {
-                _generator.SelectedCombiBanks.Add((ICombiBank) item);
+                _generator.SelectedCombiBanks.Add((ICombiBank)item);
             }
 
             // Run.
@@ -102,7 +102,6 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(27, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestDefaultCombiIgnoreNameCsv()
@@ -119,10 +118,10 @@ namespace PCG_Tools_Unittests
                 OutputFileName = $"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.csv"
             };
 
-            _generator.SelectedCombiBanks.Add((CombiBank) _pcgMemory.CombiBanks[0]); // [0] = I-A
+            _generator.SelectedCombiBanks.Add((CombiBank)_pcgMemory.CombiBanks[0]); // [0] = I-A
             _generator.SelectedCombiBanks.Add((CombiBank)_pcgMemory.CombiBanks[2]); // [2] = I-C
             //foreach (var item in _pcgMemory.CombiBanks)
-           // {
+            // {
             //    _generator.SelectedCombiBanks.Add(item);
             //}
 
@@ -134,7 +133,6 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(2, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestDefaultSetListOutputAsciiTable()
@@ -178,7 +176,6 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(66, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestDefaultSetListOutputAsciiTableCombis()

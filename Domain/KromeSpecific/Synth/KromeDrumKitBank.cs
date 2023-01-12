@@ -1,20 +1,27 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using System;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 using PcgTools.Model.MSpecific.Synth;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Model.KromeSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KromeDrumKitBank : MDrumKitBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumKitBanks"></param>
         /// <param name="type"></param>
@@ -25,19 +32,7 @@ namespace PcgTools.Model.KromeSpecific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        public override void CreatePatch(int index)
-        {
-            Add(new KromeDrumKit(this, index));
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public override int NrOfPatches
         {
@@ -55,6 +50,14 @@ namespace PcgTools.Model.KromeSpecific.Synth
                         throw new NotSupportedException();
                 }
             }
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="index"></param>
+        public override void CreatePatch(int index)
+        {
+            Add(new KromeDrumKit(this, index));
         }
     }
 }

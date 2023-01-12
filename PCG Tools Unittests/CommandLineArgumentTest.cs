@@ -1,26 +1,35 @@
-﻿using System.IO;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
+#endregion
+
+// (c) 2011 Michel Keijzers
 
 namespace PCG_Tools_Unittests
 {
     [TestClass]
     public class CommandLineArgumentTest
     {
-        const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\DEFAULT.pcg";
+        private const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\DEFAULT.pcg";
 
-        static void Run(CommandLineArguments args)
+        private static void Run(CommandLineArguments args)
         {
             var korgFileReader = new KorgFileReader();
             var memory = korgFileReader.Read(args.PcgFileName);
-            
+
             if (memory is PcgMemory)
             {
                 var pcgMemory = memory as PcgMemory;
@@ -30,7 +39,7 @@ namespace PCG_Tools_Unittests
                 {
                     args.ListGenerator.SelectedProgramBanks.Add(item);
                 }
-                
+
                 foreach (ICombiBank item in pcgMemory.CombiBanks.BankCollection)
                 {
                     args.ListGenerator.SelectedCombiBanks.Add(item);
@@ -40,16 +49,14 @@ namespace PCG_Tools_Unittests
             }
         }
 
-
         [TestMethod]
         public void TestHelp()
         {
             File.Delete("output.txt");
             var cla = new CommandLineArguments();
-            cla.Run(new[ ] { "-h"});
+            cla.Run(new[] { "-h" });
             Assert.IsFalse(File.Exists("output.txt"));
         }
-
 
         [TestMethod]
         public void TestWrongArguments()
@@ -59,7 +66,6 @@ namespace PCG_Tools_Unittests
             cla.Run(new[] { "-illegal" });
             Assert.IsFalse(File.Exists("output.txt"));
         }
-
 
         [TestMethod]
         public void TestDefault()
@@ -75,7 +81,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(2178, lines.Length);
         }
 
-
         [TestMethod]
         public void TestOutputXml()
         {
@@ -90,7 +95,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(26140, lines.Length);
         }
 
-
         [TestMethod]
         public void TestFilterText()
         {
@@ -104,7 +108,6 @@ namespace PCG_Tools_Unittests
             var lines = File.ReadAllLines(outputFileName);
             Assert.AreEqual(1312, lines.Length);
         }
-
 
         [TestMethod]
         public void TestSelectedPrograms()

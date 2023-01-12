@@ -1,43 +1,45 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using Common.Behaviors;
 
+#endregion
+
 namespace PcgTools.Behaviors
 {
     /// <summary>
-    /// Keeps two lists synchronized. 
+    ///     Keeps two lists synchronized.
     /// </summary>
     public class TwoListSynchronizer : IWeakEventListener
     {
         /// <summary>
-        /// 
         /// </summary>
         private static readonly IListItemConverter DefaultConverter = new DoNothingListItemConverter();
 
-
         /// <summary>
-        /// 
         /// </summary>
         private readonly IList _masterList;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private readonly IListItemConverter _masterTargetConverter;
 
-
         /// <summary>
-        /// 
         /// </summary>
         private readonly IList _targetList;
 
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="TwoListSynchronizer"/> class.
+        ///     Initializes a new instance of the <see cref="TwoListSynchronizer" /> class.
         /// </summary>
         /// <param name="masterList">The master list.</param>
         /// <param name="targetList">The target list.</param>
@@ -49,9 +51,8 @@ namespace PcgTools.Behaviors
             _masterTargetConverter = masterTargetConverter;
         }
 
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="TwoListSynchronizer"/> class.
+        ///     Initializes a new instance of the <see cref="TwoListSynchronizer" /> class.
         /// </summary>
         /// <param name="masterList">The master list.</param>
         /// <param name="targetList">The target list.</param>
@@ -60,13 +61,30 @@ namespace PcgTools.Behaviors
         {
         }
 
+        /// <summary>
+        ///     Receives events from the centralized event manager.
+        /// </summary>
+        /// <param name="managerType">
+        ///     The type of the <see cref="T:System.Windows.WeakEventManager" />
+        ///     calling this method.
+        /// </param>
+        /// <param name="sender">Object that originated the event.</param>
+        /// <param name="e">Event data.</param>
+        /// <returns>
+        ///     true if the listener handled the event. It is considered an error by the
+        ///     <see cref="T:System.Windows.WeakEventManager" /> handling in WPF to register a listener for
+        ///     an event that the listener does not handle. Regardless, the method should return false if
+        ///     it receives an event that it does not recognize or handle.
+        /// </returns>
+        public bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
+        {
+            HandleCollectionChanged(sender as IList, e as NotifyCollectionChangedEventArgs);
 
-        private delegate void ChangeListAction(IList list, NotifyCollectionChangedEventArgs e, 
-            Converter<object, object> converter);
-
+            return true;
+        }
 
         /// <summary>
-        /// Starts synchronizing the lists.
+        ///     Starts synchronizing the lists.
         /// </summary>
         public void StartSynchronizing()
         {
@@ -86,9 +104,8 @@ namespace PcgTools.Behaviors
             }
         }
 
-
         /// <summary>
-        /// Stop synchronizing the lists.
+        ///     Stop synchronizing the lists.
         /// </summary>
         public void StopSynchronizing()
         {
@@ -96,30 +113,8 @@ namespace PcgTools.Behaviors
             StopListeningForChangeEvents(_targetList);
         }
 
-
         /// <summary>
-        /// Receives events from the centralized event manager.
-        /// </summary>
-        /// <param name="managerType">The type of the <see cref="T:System.Windows.WeakEventManager"/> 
-        /// calling this method.</param>
-        /// <param name="sender">Object that originated the event.</param>
-        /// <param name="e">Event data.</param>
-        /// <returns>
-        /// true if the listener handled the event. It is considered an error by the 
-        /// <see cref="T:System.Windows.WeakEventManager"/> handling in WPF to register a listener for 
-        /// an event that the listener does not handle. Regardless, the method should return false if 
-        /// it receives an event that it does not recognize or handle.
-        /// </returns>
-        public bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
-        {
-            HandleCollectionChanged(sender as IList, e as NotifyCollectionChangedEventArgs);
-
-            return true;
-        }
-
-
-        /// <summary>
-        /// Listens for change events on a list.
+        ///     Listens for change events on a list.
         /// </summary>
         /// <param name="list">The list to listen to.</param>
         protected void ListenForChangeEvents(IList list)
@@ -130,9 +125,8 @@ namespace PcgTools.Behaviors
             }
         }
 
-
         /// <summary>
-        /// Stops listening for change events.
+        ///     Stops listening for change events.
         /// </summary>
         /// <param name="list">The list to stop listening to.</param>
         protected void StopListeningForChangeEvents(IList list)
@@ -143,20 +137,18 @@ namespace PcgTools.Behaviors
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="list"></param>
         /// <param name="e"></param>
         /// <param name="converter"></param>
         private void AddItems(IList list, NotifyCollectionChangedEventArgs e, Converter<object, object> converter)
         {
-            int itemCount = e.NewItems.Count;
+            var itemCount = e.NewItems.Count;
 
-            for (int i = 0; i < itemCount; i++)
+            for (var i = 0; i < itemCount; i++)
             {
-                int insertionPoint = e.NewStartingIndex + i;
+                var insertionPoint = e.NewStartingIndex + i;
 
                 if (insertionPoint > list.Count)
                 {
@@ -169,9 +161,7 @@ namespace PcgTools.Behaviors
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="masterListItem"></param>
         /// <returns></returns>
@@ -180,9 +170,7 @@ namespace PcgTools.Behaviors
             return _masterTargetConverter == null ? masterListItem : _masterTargetConverter.Convert(masterListItem);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="targetListItem"></param>
         /// <returns></returns>
@@ -191,15 +179,13 @@ namespace PcgTools.Behaviors
             return _masterTargetConverter == null ? targetListItem : _masterTargetConverter.ConvertBack(targetListItem);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void HandleCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            IList sourceList = sender as IList;
+            var sourceList = sender as IList;
 
             switch (e.Action)
             {
@@ -218,14 +204,10 @@ namespace PcgTools.Behaviors
                 case NotifyCollectionChangedAction.Reset:
                     UpdateListsFromSource(sender as IList);
                     break;
-                default:
-                    break;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="list"></param>
         /// <param name="e"></param>
@@ -236,14 +218,13 @@ namespace PcgTools.Behaviors
             AddItems(list, e, converter);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="action"></param>
         /// <param name="sourceList"></param>
         /// <param name="collectionChangedArgs"></param>
-        private void PerformActionOnAllLists(ChangeListAction action, IList sourceList, NotifyCollectionChangedEventArgs collectionChangedArgs)
+        private void PerformActionOnAllLists(ChangeListAction action, IList sourceList,
+            NotifyCollectionChangedEventArgs collectionChangedArgs)
         {
             if (sourceList == _masterList)
             {
@@ -255,43 +236,38 @@ namespace PcgTools.Behaviors
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="list"></param>
         /// <param name="action"></param>
         /// <param name="collectionChangedArgs"></param>
         /// <param name="converter"></param>
-        private void PerformActionOnList(IList list, ChangeListAction action, NotifyCollectionChangedEventArgs collectionChangedArgs, Converter<object, object> converter)
+        private void PerformActionOnList(IList list, ChangeListAction action,
+            NotifyCollectionChangedEventArgs collectionChangedArgs, Converter<object, object> converter)
         {
             StopListeningForChangeEvents(list);
             action(list, collectionChangedArgs, converter);
             ListenForChangeEvents(list);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="list"></param>
         /// <param name="e"></param>
         /// <param name="converter"></param>
         private void RemoveItems(IList list, NotifyCollectionChangedEventArgs e, Converter<object, object> converter)
         {
-            int itemCount = e.OldItems.Count;
+            var itemCount = e.OldItems.Count;
 
             // for the number of items being removed, remove the item from the Old Starting Index
             // (this will cause following items to be shifted down to fill the hole).
-            for (int i = 0; i < itemCount; i++)
+            for (var i = 0; i < itemCount; i++)
             {
                 list.RemoveAt(e.OldStartingIndex);
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="list"></param>
         /// <param name="e"></param>
@@ -302,9 +278,7 @@ namespace PcgTools.Behaviors
             AddItems(list, e, converter);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sourceList"></param>
         /// <param name="targetList"></param>
@@ -315,7 +289,7 @@ namespace PcgTools.Behaviors
 
             targetList.Clear();
 
-            foreach (object o in sourceList)
+            foreach (var o in sourceList)
             {
                 targetList.Add(converter(o));
             }
@@ -323,9 +297,7 @@ namespace PcgTools.Behaviors
             ListenForChangeEvents(targetList);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         private bool TargetAndMasterCollectionsAreEqual()
@@ -334,9 +306,8 @@ namespace PcgTools.Behaviors
                 item => ConvertFromTargetToMaster(item)));
         }
 
-
         /// <summary>
-        /// Makes sure that all synchronized lists have the same values as the source list.
+        ///     Makes sure that all synchronized lists have the same values as the source list.
         /// </summary>
         /// <param name="sourceList">The source list.</param>
         private void UpdateListsFromSource(IList sourceList)
@@ -350,15 +321,17 @@ namespace PcgTools.Behaviors
                 SetListValuesFromSource(_targetList, _masterList, ConvertFromTargetToMaster);
             }
         }
-        
+
+        private delegate void ChangeListAction(IList list, NotifyCollectionChangedEventArgs e,
+            Converter<object, object> converter);
 
         /// <summary>
-        /// An implementation that does nothing in the conversions.
+        ///     An implementation that does nothing in the conversions.
         /// </summary>
         internal class DoNothingListItemConverter : IListItemConverter
         {
             /// <summary>
-            /// Converts the specified master list item.
+            ///     Converts the specified master list item.
             /// </summary>
             /// <param name="masterListItem">The master list item.</param>
             /// <returns>The result of the conversion.</returns>
@@ -367,9 +340,8 @@ namespace PcgTools.Behaviors
                 return masterListItem;
             }
 
-
             /// <summary>
-            /// Converts the specified target list item.
+            ///     Converts the specified target list item.
             /// </summary>
             /// <param name="targetListItem">The target list item.</param>
             /// <returns>The result of the conversion.</returns>

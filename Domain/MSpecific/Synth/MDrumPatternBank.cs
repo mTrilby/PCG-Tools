@@ -1,19 +1,26 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using System;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumPatterns;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Model.MSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MDrumPatternBank : DrumPatternBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumPatternBanks"></param>
         /// <param name="type"></param>
@@ -24,19 +31,7 @@ namespace PcgTools.Model.MSpecific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        public override void CreatePatch(int index)
-        {
-            Add(new MDrumPattern(this, index));
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public override int NrOfPatches
         {
@@ -54,6 +49,14 @@ namespace PcgTools.Model.MSpecific.Synth
                         throw new NotSupportedException();
                 }
             }
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="index"></param>
+        public override void CreatePatch(int index)
+        {
+            Add(new MDrumPattern(this, index));
         }
     }
 }

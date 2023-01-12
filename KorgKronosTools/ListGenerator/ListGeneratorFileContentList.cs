@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +14,6 @@ using System.Linq;
 using System.Text;
 using Common.PcgToolsResources;
 using PcgTools.Model.Common;
-
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
@@ -16,23 +21,20 @@ using PcgTools.Model.Common.Synth.PatchDrumPatterns;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 using PcgTools.Model.Common.Synth.PatchWaveSequences;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools.ListGenerator
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ListGeneratorFileContentList : ListGenerator
     {
         /// <summary>
-        /// 
         /// </summary>
         private LinkedList<IBank> _list;
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="useFileWriter"></param>
         /// <returns></returns>
@@ -53,9 +55,7 @@ namespace PcgTools.ListGenerator
             return OutputFileName;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void CreateFileContentList()
         {
@@ -67,41 +67,35 @@ namespace PcgTools.ListGenerator
             CreateFileContentListOfDrumPatternBanks();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void CreateFileContentListOfProgramBanks()
         {
             if (PcgMemory.ProgramBanks != null)
             {
                 foreach (var bank in PcgMemory.ProgramBanks.BankCollection.Where(
-                    programBank => programBank.IsWritable))
+                             programBank => programBank.IsWritable))
                 {
                     _list.AddLast(bank);
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void CreateFileContentListOfCombiBanks()
         {
             if (PcgMemory.CombiBanks != null)
             {
                 foreach (var bank in PcgMemory.CombiBanks.BankCollection.Where(
-                    combiBank => combiBank.IsWritable))
+                             combiBank => combiBank.IsWritable))
                 {
                     _list.AddLast(bank);
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void CreateFileContentListOfSetLists()
         {
@@ -109,18 +103,16 @@ namespace PcgTools.ListGenerator
             {
                 // Although a PCG contains either ALL or NO setlists, we decide to print only the setlists that are 
                 // not empty.
-                foreach (IBank bank in PcgMemory.SetLists.BankCollection.Where(
-                    setList => setList.IsWritable && setList.IsLoaded &&
-                               setList.Patches.Any(setListSlot => !setListSlot.IsEmptyOrInit)))
+                foreach (var bank in PcgMemory.SetLists.BankCollection.Where(
+                             setList => setList.IsWritable && setList.IsLoaded &&
+                                        setList.Patches.Any(setListSlot => !setListSlot.IsEmptyOrInit)))
                 {
                     _list.AddLast(bank);
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void CreateFileContentListOfWaveSequenceBanks()
         {
@@ -128,40 +120,35 @@ namespace PcgTools.ListGenerator
             {
                 foreach (
                     var bank in PcgMemory.WaveSequenceBanks.BankCollection.Where(
-                    waveSeqBank => waveSeqBank.IsWritable))
+                        waveSeqBank => waveSeqBank.IsWritable))
                 {
                     _list.AddLast(bank);
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void CreateFileContentListOfDrumKitBanks()
         {
             if (PcgMemory.DrumKitBanks != null)
             {
                 foreach (var bank in PcgMemory.DrumKitBanks.BankCollection.Where(
-                    drumKitBank => drumKitBank.IsWritable))
+                             drumKitBank => drumKitBank.IsWritable))
                 {
                     _list.AddLast(bank);
                 }
             }
         }
 
-
-
         /// <summary>
-        /// 
         /// </summary>
         private void CreateFileContentListOfDrumPatternBanks()
         {
             if (PcgMemory.DrumPatternBanks != null)
             {
                 foreach (var bank in PcgMemory.DrumPatternBanks.BankCollection.Where(
-                    drumPatternBank => drumPatternBank.IsWritable))
+                             drumPatternBank => drumPatternBank.IsWritable))
                 {
                     _list.AddLast(bank);
                 }
@@ -169,13 +156,12 @@ namespace PcgTools.ListGenerator
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         private void WriteToFile(TextWriter writer)
         {
             var lines = new List<string>();
-                // Only used for asci tables. First add all lines. Then find out the longest line and create
+            // Only used for asci tables. First add all lines. Then find out the longest line and create
             // right table vertical line.
 
             switch (ListOutputFormat)
@@ -183,7 +169,8 @@ namespace PcgTools.ListGenerator
                 case OutputFormat.AsciiTable:
                     // Warning: Font is slightly proportional, do not remove spaces by sight.
                     lines.Add("+-----------+-----------------------+-------+----------+--------+-------+");
-                    lines.Add("|Bank Type  |Content Type           |Bank ID|# Writable|# Filled|# Empty|Patch IDs of filled patches");
+                    lines.Add(
+                        "|Bank Type  |Content Type           |Bank ID|# Writable|# Filled|# Empty|Patch IDs of filled patches");
                     lines.Add("+-----------+-----------------------+-------+----------+--------+-------+");
                     break;
 
@@ -196,13 +183,12 @@ namespace PcgTools.ListGenerator
                     writer.WriteLine("<file_content_list xml:lang=\"en\">");
                     break;
 
-                    //default:
-                    // No action required.
-                    //break;
+                //default:
+                // No action required.
+                //break;
             }
 
             ParseItems(writer, lines);
-
 
             switch (ListOutputFormat)
             {
@@ -215,21 +201,20 @@ namespace PcgTools.ListGenerator
                     {
                         writer.WriteLine(line);
                     }
+
                     break;
 
                 case OutputFormat.Xml:
                     writer.WriteLine("</file_content_list>");
                     break;
 
-                    //default:
-                    // No action required.
-                    //break;
+                //default:
+                // No action required.
+                //break;
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="lines"></param>
@@ -357,14 +342,12 @@ namespace PcgTools.ListGenerator
                     }
                 }
 
-
-                WriteItem(writer, lines, bankType, contentType, bankId, writablePatches, filledPatches, emptyPatches, filledPatchList);
+                WriteItem(writer, lines, bankType, contentType, bankId, writablePatches, filledPatches, emptyPatches,
+                    filledPatchList);
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="lines"></param>
@@ -375,7 +358,8 @@ namespace PcgTools.ListGenerator
         /// <param name="filledPatches"></param>
         /// <param name="emptyPatches"></param>
         /// <param name="filledPatchList"></param>
-        private void WriteItem(TextWriter writer, ICollection<string> lines, string bankType, string contentType, string bankId,
+        private void WriteItem(TextWriter writer, ICollection<string> lines, string bankType, string contentType,
+            string bankId,
             int writablePatches, int filledPatches, int emptyPatches, List<IPatch> filledPatchList)
         {
             switch (ListOutputFormat)
@@ -414,9 +398,8 @@ namespace PcgTools.ListGenerator
             }
         }
 
-
         /// <summary>
-        /// Create a vertical right line because now all line lengths are known.
+        ///     Create a vertical right line because now all line lengths are known.
         /// </summary>
         /// <param name="lines"></param>
         private void CreateVerticalRightLine(List<string> lines)
@@ -435,9 +418,7 @@ namespace PcgTools.ListGenerator
             lines[lines.Count - 1] += new string('-', maxLength - lines[lines.Count - 1].Length) + '+';
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void WriteXslFile()
         {
@@ -479,13 +460,12 @@ namespace PcgTools.ListGenerator
             File.WriteAllText(Path.ChangeExtension(OutputFileName, "xsl"), builder.ToString());
         }
 
-
         /// <summary>
-        /// IMPR: Move to test code.
-        /// Test code for Util.GetPatchIdsString(). Needs to be put elsewhere, e.g. in unit tests. Now it's called when 
-        /// this list is generated (commented out).
-        /// Usage: Please execute this only with the Korg Kronos Factory PRELOAD.PCG loaded because it makes assumptions
-        ///  of the banks (and set lists) there!
+        ///     IMPR: Move to test code.
+        ///     Test code for Util.GetPatchIdsString(). Needs to be put elsewhere, e.g. in unit tests. Now it's called when
+        ///     this list is generated (commented out).
+        ///     Usage: Please execute this only with the Korg Kronos Factory PRELOAD.PCG loaded because it makes assumptions
+        ///     of the banks (and set lists) there!
         /// </summary>
         /// <param name="writer"></param>
         private void TestPatchIdsString(TextWriter writer)
@@ -598,6 +578,7 @@ namespace PcgTools.ListGenerator
             {
                 writer.WriteLine("    {0,-30}: {1}", test.Key, Util.GetPatchIdsString(test.Value));
             }
+
             writer.WriteLine("END TEST");
         }
     }

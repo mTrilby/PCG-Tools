@@ -10,50 +10,50 @@
         <StackPanel Orientation="Vertical" Height="Auto" Width="Auto">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{x:Static common:Strings.SourceSetList}" Margin="4"/>
-                    <ComboBox Name="SourceSetListListBox" Margin="4"/>
+                    <Label Content="{x:Static common:Strings.SourceSetList}" Margin="4" />
+                    <ComboBox Name="SourceSetListListBox" Margin="4" />
                 </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{x:Static common:Strings.TargetSetList}" Margin="4"/>
-                    <ComboBox  Name="TargetSetListListBox" Margin ="4"/>
+                    <Label Content="{x:Static common:Strings.TargetSetList}" Margin="4" />
+                    <ComboBox Name="TargetSetListListBox" Margin="4" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{x:Static common:Strings.TargetCombiBank}" Margin ="4"/>
-                    <ComboBox  Name="TargetCombiBankListBox" Margin ="4"/>
+                    <Label Content="{x:Static common:Strings.TargetCombiBank}" Margin="4" />
+                    <ComboBox Name="TargetCombiBankListBox" Margin="4" />
                 </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{x:Static common:Strings.MidiChannelMainKeyboard}" Margin ="4"/>
-                    <xctk:IntegerUpDown Name="NumericUpDownMidiChannelMainKeyboard" Increment="1" 
-                                            IsEnabled="{Binding ElementName=CheckBoxAutoBackupFilesEnabled, Path=IsChecked}"
-                                            Maximum="60" Minimum="1" Margin="4"  HorizontalAlignment="Left"/>
+                    <Label Content="{x:Static common:Strings.MidiChannelMainKeyboard}" Margin="4" />
+                    <xctk:IntegerUpDown Name="NumericUpDownMidiChannelMainKeyboard" Increment="1"
+                                        IsEnabled="{Binding ElementName=CheckBoxAutoBackupFilesEnabled, Path=IsChecked}"
+                                        Maximum="60" Minimum="1" Margin="4" HorizontalAlignment="Left" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{x:Static common:Strings.MidiChannelSecondaryKeyboard}" Margin ="4"/>
-                    <xctk:IntegerUpDown Name="NumericUpDownMidiChannelSecondaryKeyboard" Increment="1" 
-                                            IsEnabled="{Binding ElementName=CheckBoxAutoBackupFilesEnabled, Path=IsChecked}"
-                                            Maximum="60" Minimum="1" Margin="4"  HorizontalAlignment="Left"/>
+                    <Label Content="{x:Static common:Strings.MidiChannelSecondaryKeyboard}" Margin="4" />
+                    <xctk:IntegerUpDown Name="NumericUpDownMidiChannelSecondaryKeyboard" Increment="1"
+                                        IsEnabled="{Binding ElementName=CheckBoxAutoBackupFilesEnabled, Path=IsChecked}"
+                                        Maximum="60" Minimum="1" Margin="4" HorizontalAlignment="Left" />
                 </StackPanel>
             </StackPanel>
 
 
             <StackPanel Orientation="Horizontal">
                 <Button Content="{x:Static common:Strings.Cancel}"
-                HorizontalAlignment="Left" 
-                IsDefault="False" Margin="4" Name="buttonCancel" 
-                VerticalAlignment="Top" Width="75" IsCancel="True" 
-                Click="ButtonCancelClick"/>
-                <Button Content="{x:Static common:Strings.OK}" 
-                HorizontalAlignment="Left" 
-                Margin="4" Name="buttonOk" VerticalAlignment="Top" 
-                Width="75" IsDefault="True" Click="ButtonOkClick"/>
+                        HorizontalAlignment="Left"
+                        IsDefault="False" Margin="4" Name="buttonCancel"
+                        VerticalAlignment="Top" Width="75" IsCancel="True"
+                        Click="ButtonCancelClick" />
+                <Button Content="{x:Static common:Strings.OK}"
+                        HorizontalAlignment="Left"
+                        Margin="4" Name="buttonOk" VerticalAlignment="Top"
+                        Width="75" IsDefault="True" Click="ButtonOkClick" />
             </StackPanel>
         </StackPanel>
     </Grid>

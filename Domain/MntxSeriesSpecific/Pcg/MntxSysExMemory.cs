@@ -1,17 +1,23 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 
+#endregion
+
 namespace PcgTools.Model.MntxSeriesSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class MntxSysExMemory : SysExMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="modelType"></param>
@@ -25,40 +31,24 @@ namespace PcgTools.Model.MntxSeriesSpecific.Pcg
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasProgramCategories => false;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasCombiCategories => false;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override bool HasSubCategories => false;
 
+        /// <summary>
+        /// </summary>
+        public override int NumberOfCategories => throw new NotSupportedException("No categories");
 
         /// <summary>
-        /// 
         /// </summary>
-        public override int NumberOfCategories
-        {
-            get { throw new NotSupportedException("No categories"); }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override int NumberOfSubCategories
-        {
-            get { throw new NotSupportedException("No subcategories"); }
-        }
+        public override int NumberOfSubCategories => throw new NotSupportedException("No subcategories");
     }
 }

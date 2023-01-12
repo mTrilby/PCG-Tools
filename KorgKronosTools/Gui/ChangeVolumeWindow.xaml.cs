@@ -1,34 +1,29 @@
-﻿using System;
-using System.Windows;
+﻿#region copyright
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchSorting;
-using PcgTools.Properties;
-using Common.Extensions;
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.Windows;
 using PcgTools.Extensions;
 using PcgTools.ViewModels.Commands.PcgCommands;
+
+#endregion
 
 namespace PcgTools.Gui
 {
     /// <summary>
-    /// Interaction logic for SelectSortWindow.xaml
+    ///     Interaction logic for SelectSortWindow.xaml
     /// </summary>
     public partial class ChangeVolumeWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
-        ChangeVolumeParameters _parameters;
-
+        private readonly ChangeVolumeParameters _parameters;
 
         /// <summary>
-        /// 
-        /// </summary>
-        public ChangeVolumeParameters ChangeVolumeParameters { get; protected set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         public ChangeVolumeWindow(ChangeVolumeParameters changeVolumeParameters)
@@ -37,9 +32,11 @@ namespace PcgTools.Gui
             InitializeComponent();
         }
 
+        /// <summary>
+        /// </summary>
+        public ChangeVolumeParameters ChangeVolumeParameters { get; protected set; }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -49,10 +46,7 @@ namespace PcgTools.Gui
             RadioButtonFixed_Checked(null, null);
         }
 
-
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -68,9 +62,7 @@ namespace PcgTools.Gui
             NumericUpDownToValue.Value = 0;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -86,9 +78,7 @@ namespace PcgTools.Gui
             NumericUpDownToValue.Value = 0;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -104,9 +94,7 @@ namespace PcgTools.Gui
             NumericUpDownToValue.Value = 0;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -121,10 +109,8 @@ namespace PcgTools.Gui
             NumericUpDownToValue.IsEnabled = true;
             NumericUpDownToValue.Value = 127;
         }
-        
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -140,15 +126,13 @@ namespace PcgTools.Gui
             NumericUpDownToValue.Value = 127;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonOkClick(object sender, RoutedEventArgs e)
         {
-            if (radioButtonMapped.IsReallyChecked() && 
+            if (radioButtonMapped.IsReallyChecked() &&
                 NumericUpDownValue.Value.Value > NumericUpDownToValue.Value.Value)
             {
                 MessageBox.Show("Value cannot be higher than to value", "Change Volume values incorrect",
@@ -190,9 +174,7 @@ namespace PcgTools.Gui
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

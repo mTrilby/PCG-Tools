@@ -1,35 +1,41 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ClipBoard;
 using PcgTools.Common.Utils;
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Mvvm;
 using PcgTools.Properties;
+using PcgTools.ViewModels.Commands.PcgCommands;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
-using PcgTools.ViewModels;
-using PcgTools.ViewModels.Commands.PcgCommands;
 
 namespace PCG_Tools_Unittests
 {
     [TestClass]
     public class CopyBetweenFilesTests
     {
-        const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\";
-
+        private const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\";
 
         private PcgMemory _pcgOs2;
         private PcgMemory _pcgOs3;
 
-
         private void SetUp()
         {
             var korgFileReader = new KorgFileReader();
-            _pcgOs2 = (PcgMemory) korgFileReader.Read(PcgDirectory + @"\Kronos\all.PCG");
-            _pcgOs3 = (PcgMemory) korgFileReader.Read(PcgDirectory + @"\Kronos2\PRELOAD_V3_2016-10-01-20-23-33.PCG");
+            _pcgOs2 = (PcgMemory)korgFileReader.Read(PcgDirectory + @"\Kronos\all.PCG");
+            _pcgOs3 = (PcgMemory)korgFileReader.Read(PcgDirectory + @"\Kronos2\PRELOAD_V3_2016-10-01-20-23-33.PCG");
 
             // Set settings.
             Settings.Default.CopyPaste_AutoExtendedSinglePatchSelectionPaste = false;
@@ -47,7 +53,7 @@ namespace PCG_Tools_Unittests
             Settings.Default.CopyPaste_PasteDuplicatePrograms = false;
             Settings.Default.CopyPaste_PasteDuplicateSetListSlots = false;
 
-            Settings.Default.CopyPaste_PatchDuplicationName = (int) CopyPaste.PatchDuplication.DoNotUsePatchNames;
+            Settings.Default.CopyPaste_PatchDuplicationName = (int)CopyPaste.PatchDuplication.DoNotUsePatchNames;
             Settings.Default.CopyPaste_IgnoreCharactersForPatchDuplication = "V2";
         }
 
@@ -56,20 +62,20 @@ namespace PCG_Tools_Unittests
         {
             SetUp();
 
-            var program2 = ((ProgramBank) _pcgOs2.ProgramBanks[0])[0];
+            var program2 = ((ProgramBank)_pcgOs2.ProgramBanks[0])[0];
             var commands2 = new CopyPasteCommands();
             var banks = new ObservableCollectionEx<IBank>();
-            var patches = new ObservableCollectionEx<IPatch> {program2};
+            var patches = new ObservableCollectionEx<IPatch> { program2 };
 
             var clipBoard = new PcgClipBoard();
             program2.IsSelected = true;
-            commands2.CopyPasteCopy(clipBoard, _pcgOs2, ScopeSet.Patches, true, 
+            commands2.CopyPasteCopy(clipBoard, _pcgOs2, ScopeSet.Patches, true,
                 false, false, false, false, false, false,
                 null, patches, false);
 
             var commands3 = new CopyPasteCommands();
             var program3 = _pcgOs3.ProgramBanks[0][0];
-            var patches3 = new ObservableCollectionEx<IPatch>() { program3 };
+            var patches3 = new ObservableCollectionEx<IPatch> { program3 };
             banks.Add(program3.Parent as IBank);
 
             program3.Clear();

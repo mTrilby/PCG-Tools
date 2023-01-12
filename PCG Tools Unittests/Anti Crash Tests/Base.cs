@@ -1,39 +1,44 @@
-﻿using System.Diagnostics;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.Diagnostics;
 using System.IO;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 using PcgTools.Model.Common.Synth.PatchSetLists;
 
+#endregion
+
+// (c) 2011 Michel Keijzers
+
 namespace PCG_Tools_Unittests
 {
     /// <summary>
-    /// Tests Triton Extreme and all other Triton series.
+    ///     Tests Triton Extreme and all other Triton series.
     /// </summary>
     public abstract class AntiCrashTests
     {
         private const string DefaultDirectory = @"C:\PCG Tools Test Files\TestFiles\";
 
-
-        private PcgMemory _pcgMemory;
-
-
         private ListGenerator _generator;
-
 
         private string[] _lines;
 
+        private PcgMemory _pcgMemory;
 
         protected void TestAll(string path)
         {
             var korgFileReader = new KorgFileReader();
-            _pcgMemory = (PcgMemory) korgFileReader.Read(DefaultDirectory + path);
+            _pcgMemory = (PcgMemory)korgFileReader.Read(DefaultDirectory + path);
 
             Debug.Assert(_pcgMemory != null);
 
@@ -47,9 +52,9 @@ namespace PCG_Tools_Unittests
             var programBanks = _pcgMemory.ProgramBanks;
             if (programBanks != null)
             {
-                var programBank = (ProgramBank) programBanks[0];
+                var programBank = (ProgramBank)programBanks[0];
 
-                if (programBank.IsFilled && programBank.IsWritable && (programBank.CountPatches > 1))
+                if (programBank.IsFilled && programBank.IsWritable && programBank.CountPatches > 1)
                 {
                     _pcgMemory.SwapPatch(programBank[0], programBank[1]);
                 }
@@ -59,8 +64,8 @@ namespace PCG_Tools_Unittests
             var combiBanks = _pcgMemory.CombiBanks;
             if (combiBanks != null)
             {
-                var combiBank = (CombiBank) combiBanks[0];
-                if (combiBank.IsFilled && combiBank.IsWritable && (combiBank.CountPatches > 1))
+                var combiBank = (CombiBank)combiBanks[0];
+                if (combiBank.IsFilled && combiBank.IsWritable && combiBank.CountPatches > 1)
                 {
                     _pcgMemory.SwapPatch(combiBank[0], combiBank[1]);
                 }
@@ -70,19 +75,17 @@ namespace PCG_Tools_Unittests
             var setLists = _pcgMemory.SetLists;
             if (setLists != null)
             {
-                var setList0 = (SetList) setLists[0];
+                var setList0 = (SetList)setLists[0];
                 if (setList0.IsFilled && setList0.IsWritable)
                 {
-                    _pcgMemory.SwapPatch((SetListSlot) (setList0[0]), (SetListSlot) (setList0[1]));
+                    _pcgMemory.SwapPatch((SetListSlot)setList0[0], (SetListSlot)setList0[1]);
                 }
             }
 
             // Test save.
             _pcgMemory.FileName = "C:\\test.pcg";
             _pcgMemory.SaveFile(false, false);
-
         }
-
 
         private void TestDefaultPatchList()
         {
@@ -91,14 +94,12 @@ namespace PCG_Tools_Unittests
             Run();
         }
 
-
         private void TestProgramUsageList()
         {
             _generator = new ListGeneratorProgramUsageList();
             SetDefaults();
             Run();
         }
-
 
         private void TestDefaultCombiContentList()
         {
@@ -107,7 +108,6 @@ namespace PCG_Tools_Unittests
             Run();
         }
 
-
         private void TestDefaultFileContentList()
         {
             _generator = new ListGeneratorFileContentList();
@@ -115,13 +115,11 @@ namespace PCG_Tools_Unittests
             Run();
         }
 
-
         private void Run()
         {
             _generator.Run(false);
             _lines = File.ReadAllLines($"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt");
         }
-
 
         private void SetDefaults()
         {

@@ -1,34 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Collections.Generic;
 using System.Diagnostics;
-
 using PcgTools.Model.Common.Synth.Meta;
+
+#endregion
 
 namespace PcgTools.ClipBoard
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class ClipBoardPatch : IClipBoardPatch
     {
-        public byte[] Data { get; private set; }
-
-
         /// <summary>
-        /// The original location is only used for cut/paste to fix references.
-        /// </summary>
-        public IPatch OriginalLocation { get; set; }
-
-
-        /// <summary>
-        /// Null if not pasted already.
-        /// </summary>
-        public IPatch PasteDestination { get; set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="data"></param>
         /// <param name="offset"></param>
@@ -44,5 +34,17 @@ namespace PcgTools.ClipBoard
                 Data[index] = data[index + offset];
             }
         }
+
+        public byte[] Data { get; }
+
+        /// <summary>
+        ///     The original location is only used for cut/paste to fix references.
+        /// </summary>
+        public IPatch OriginalLocation { get; set; }
+
+        /// <summary>
+        ///     Null if not pasted already.
+        /// </summary>
+        public IPatch PasteDestination { get; set; }
     }
 }

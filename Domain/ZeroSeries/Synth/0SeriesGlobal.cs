@@ -1,54 +1,25 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.ZeroSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ZeroSeriesGlobal : MntxGlobal
     {
         /// <summary>
-        /// Category names are not in PCG.
-        /// </summary>
-        protected override int CategoryNameLength
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// Hardcoded.
-        /// </summary>
-        protected override int PcgOffsetCategories
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// Categories are taken from Mode.
-        /// </summary>
-        protected override int NrOfCategories
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// </summary>
-        protected override int NrOfSubCategories
-        {
-            get { throw new NotSupportedException(); }
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public ZeroSeriesGlobal(IPcgMemory pcgMemory)
@@ -56,9 +27,26 @@ namespace PcgTools.Model.ZeroSeries.Synth
         {
         }
 
+        /// <summary>
+        ///     Category names are not in PCG.
+        /// </summary>
+        protected override int CategoryNameLength => throw new NotSupportedException();
 
         /// <summary>
-        /// 
+        ///     Hardcoded.
+        /// </summary>
+        protected override int PcgOffsetCategories => throw new NotSupportedException();
+
+        /// <summary>
+        ///     Categories are taken from Mode.
+        /// </summary>
+        protected override int NrOfCategories => throw new NotSupportedException();
+
+        /// <summary>
+        /// </summary>
+        protected override int NrOfSubCategories => throw new NotSupportedException();
+
+        /// <summary>
         /// </summary>
         /// <param name="patch"></param>
         /// <returns></returns>

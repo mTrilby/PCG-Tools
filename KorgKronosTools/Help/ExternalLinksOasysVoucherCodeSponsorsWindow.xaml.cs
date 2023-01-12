@@ -1,22 +1,30 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Help
 {
     /// <summary>
-    /// Interaction logic for AboutWindow.xaml
+    ///     Interaction logic for AboutWindow.xaml
     /// </summary>
     public partial class ExternalLinksOasysVoucherCodeSponsorsWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public ExternalLinksOasysVoucherCodeSponsorsWindow()
         {
@@ -24,34 +32,34 @@ namespace PcgTools.Help
 
             var externalItems = new List<ExternalItem>
             {
-                new ExternalItem
+                new()
                 {
-                    Name = "Ian Hutty (Ianhu)", Description = "Oasys Voucher Code Sponsor",
+                    Name = "Ian Hutty (Ianhu)", Description = "Oasys Voucher Code Sponsor"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Patrick Dumas (Fzero)", Description = "Oasys Voucher Code Sponsor",
+                    Name = "Patrick Dumas (Fzero)", Description = "Oasys Voucher Code Sponsor"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Steve D (steve53)", Description = "Oasys Voucher Code Sponsor",
+                    Name = "Steve D (steve53)", Description = "Oasys Voucher Code Sponsor"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Frans van den Berg (Paulifra)", Description = "Oasys Voucher Code Sponsor",
+                    Name = "Frans van den Berg (Paulifra)", Description = "Oasys Voucher Code Sponsor"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Tim (t_tangent)", Description = "Oasys Voucher Code Sponsor",
+                    Name = "Tim (t_tangent)", Description = "Oasys Voucher Code Sponsor"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "SoulBe", Description = "Oasys Voucher Code Sponsor",
+                    Name = "SoulBe", Description = "Oasys Voucher Code Sponsor"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name = "Adam P (Kontrol 49)", Description = "Oasys Voucher Code Sponsor",
-                },
+                    Name = "Adam P (Kontrol 49)", Description = "Oasys Voucher Code Sponsor"
+                }
             };
 
             var linkButtons = new List<UserControlExternalLink>
@@ -102,23 +110,20 @@ namespace PcgTools.Help
             }
         }
 
-
         private void ButtonLinkOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             var userControlExternalLink = sender as UserControlExternalLink;
             if (userControlExternalLink != null)
             {
                 var item = userControlExternalLink.Tag as ExternalItem;
-                if ((item != null) && (item.Url != null))
+                if (item != null && item.Url != null)
                 {
                     ShowUrl(item.Url);
                 }
             }
         }
-        
 
         /// <summary>
-        /// 
         /// </summary>
         private void ShowUrl(string url)
         {
@@ -128,12 +133,10 @@ namespace PcgTools.Help
             }
             catch (Exception exception)
             {
-                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}:{exception.Message}", 
+                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}:{exception.Message}",
                     Strings.PcgTools,
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
 }
-
-

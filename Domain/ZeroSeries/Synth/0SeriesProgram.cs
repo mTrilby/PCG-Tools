@@ -1,4 +1,10 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Collections.Generic;
 using System.Text;
@@ -6,15 +12,15 @@ using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.ZeroSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ZeroSeriesProgram : MntxProgram
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="programBank"></param>
         /// <param name="index"></param>
@@ -35,9 +41,8 @@ namespace PcgTools.Model.ZeroSeries.Synth
             }
         }
 
-
         /// <summary>
-        /// Note: ZeroSeries program names work different than ZeroSeries combi names.
+        ///     Note: ZeroSeries program names work different than ZeroSeries combi names.
         /// </summary>
         public override string Name
         {
@@ -54,7 +59,7 @@ namespace PcgTools.Model.ZeroSeries.Synth
                 {
                     var character = PcgRoot.Content[ByteOffset + index];
                     // A 0 does not mean end of string.
-                    name.Append((character == 0x00) ? ' ' : (char) character);
+                    name.Append(character == 0x00 ? ' ' : (char)character);
                 }
 
                 return name.ToString().Trim();
@@ -67,25 +72,19 @@ namespace PcgTools.Model.ZeroSeries.Synth
                     SetChars(0, MaxNameLength, value);
                     OnPropertyChanged("Name");
                 }
-
             }
         }
-     
 
         /// <summary>
-        /// 
         /// </summary>
         public override int MaxNameLength => 10;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public override bool IsEmptyOrInit => ((Name == string.Empty) || (Name.Contains("INIT") && Name.Contains("Prog")));
-
+        public override bool IsEmptyOrInit => Name == string.Empty || (Name.Contains("INIT") && Name.Contains("Prog"));
 
         /// <summary>
-        /// As overridden, but without changing genre/category (is fixed in MicroKorg XL).
+        ///     As overridden, but without changing genre/category (is fixed in MicroKorg XL).
         /// </summary>
         public override void Clear()
         {
@@ -93,17 +92,14 @@ namespace PcgTools.Model.ZeroSeries.Synth
             RaisePropertyChanged(string.Empty, false);
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -133,4 +129,3 @@ namespace PcgTools.Model.ZeroSeries.Synth
         }
     }
 }
-

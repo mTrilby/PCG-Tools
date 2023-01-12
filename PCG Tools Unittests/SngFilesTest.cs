@@ -1,6 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.Model.Common.File;
 
+#endregion
 
 // (c) 2011 Michel Keijzers
 
@@ -10,7 +19,6 @@ namespace PCG_Tools_Unittests
     public class SngFilesTest
     {
         private const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\";
-
 
         private static void Run(string fileName)
         {
@@ -54,6 +62,6 @@ namespace PCG_Tools_Unittests
             Run(@"Triton Extreme\PROSHARP.sng");
         }
  * 
- */ 
+ */
     }
 }

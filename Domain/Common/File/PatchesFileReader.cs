@@ -1,31 +1,23 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Linq;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
+
+#endregion
 
 namespace PcgTools.Model.Common.File
 {
     /// <summary>
-    /// 
     /// </summary>
-    public abstract class PatchesFileReader :FileReader, IPatchesFileReader
+    public abstract class PatchesFileReader : FileReader, IPatchesFileReader
     {
         /// <summary>
-        /// 
-        /// </summary>
-        protected int Index { get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected IPcgMemory CurrentPcgMemory { get; private set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -35,18 +27,22 @@ namespace PcgTools.Model.Common.File
             CurrentPcgMemory.Content = content;
         }
 
+        /// <summary>
+        /// </summary>
+        protected int Index { get; set; }
 
         /// <summary>
-        /// 
+        /// </summary>
+        protected IPcgMemory CurrentPcgMemory { get; }
+
+        /// <summary>
         /// </summary>
         /// <param name="fileType"></param>
         /// <param name="modelType"></param>
-        public abstract void ReadContent(Memory.FileType fileType, 
+        public abstract void ReadContent(Memory.FileType fileType,
             Models.EModelType modelType);
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected void SetNotifications()
         {
@@ -62,13 +58,12 @@ namespace PcgTools.Model.Common.File
 
             if (CurrentPcgMemory.SetLists != null)
             {
-                foreach (IPatch patch in CurrentPcgMemory.SetLists.BankCollection.SelectMany(bank => bank.Patches))
+                foreach (var patch in CurrentPcgMemory.SetLists.BankCollection.SelectMany(bank => bank.Patches))
                 {
                     patch.SetNotifications();
                 }
             }
         }
-
 
         // <summary>
         // Length of one timbre.

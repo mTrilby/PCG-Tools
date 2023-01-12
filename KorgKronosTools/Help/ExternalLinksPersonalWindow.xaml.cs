@@ -1,22 +1,29 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Help
 {
     /// <summary>
-    /// 
     /// </summary>
     public partial class ExternalLinksPersonalWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public ExternalLinksPersonalWindow()
         {
@@ -24,55 +31,55 @@ namespace PcgTools.Help
 
             var externalItems = new List<ExternalItem>
             {
-                new ExternalItem
+                new()
                 {
                     Name = "Co-incidental",
                     Description = "Rock-cover band I play in",
                     Url = "http://co-incidental.nl/",
                     BitmapPath = "Co-incidental.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Co-incidental",
                     Description = "FB Page of Co-Incidental",
                     Url = "https://www.facebook.com/Co-incidental-204155766341066/?ref=hl",
                     BitmapPath = "Co-incidental.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Peaky Blinders Rockcovers",
                     Description = "FB Page of Peaky Blinders Rockcovers",
                     Url = "https://www.facebook.com/PeakyBlindersrockcovers/",
                     BitmapPath = "peakyblinderslogo.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Nothing Else Matters",
                     Description = "Yearly Charity Concert",
                     Url = "www.nothingelsematters.nl",
                     BitmapPath = "NothingElseMatters.png"
-                }, 
-                new ExternalItem
+                },
+                new()
                 {
                     Name = "Nothing Else Matters",
                     Description = "FB Page of Nothing Else Matters",
                     Url = "https://www.facebook.com/nothingelsematters.nl/?fref=ts",
                     BitmapPath = "NothingElseMatters.png"
-                }, 
-                new ExternalItem
+                },
+                new()
                 {
                     Name = "GitaarDemo",
                     Description = "Guitar Shop of Co-incidental Guitarist",
                     Url = "https://www.facebook.com/GitaarDemo-1428013174150822/",
                     BitmapPath = "GitaarDemo.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Altran.nl",
                     Description = "My employer",
-                    Url ="http://www.altran.nl/",
+                    Url = "http://www.altran.nl/",
                     BitmapPath = "Altran.png"
-                },
+                }
             };
 
             var linkButtons = new List<UserControlExternalLink>
@@ -143,23 +150,20 @@ namespace PcgTools.Help
             }
         }
 
-
         private void ButtonLinkOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             var userControlExternalLink = sender as UserControlExternalLink;
             if (userControlExternalLink != null)
             {
                 var item = userControlExternalLink.Tag as ExternalItem;
-                if ((item != null) && (item.Url != null))
+                if (item != null && item.Url != null)
                 {
                     ShowUrl(item.Url);
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void ShowUrl(string url)
         {
@@ -176,5 +180,3 @@ namespace PcgTools.Help
         }
     }
 }
-
-

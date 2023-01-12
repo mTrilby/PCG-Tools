@@ -1,41 +1,28 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using Common.Utils;
 using PcgTools.Mvvm;
 
+#endregion
+
 namespace PcgTools.Model.Common.Synth.SongsRelated
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Region : ObservableObject, IRegion
     {
         /// <summary>
-        /// 
+        ///     Used for UI control binding for selections.
         /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once MemberCanBePrivate.Global
-        public int Index { [Annotations.UsedImplicitly] get; private set; }
-
+        private bool _isSelected;
 
         /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once MemberCanBePrivate.Global
-        public string Name { [Annotations.UsedImplicitly] get; private set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [UsedImplicitly]
-        // ReSharper disable once MemberCanBePrivate.Global
-        public string SampleFileName { [Annotations.UsedImplicitly] get; private set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <param name="name"></param>
@@ -47,19 +34,29 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             SampleFileName = sampleFileName;
         }
 
-
         /// <summary>
-        /// Used for UI control binding for selections.
         /// </summary>
-        bool _isSelected;
-
+        [UsedImplicitly]
+        // ReSharper disable once MemberCanBePrivate.Global
+        public int Index { [Annotations.UsedImplicitly] get; }
 
         /// <summary>
-        /// 
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once MemberCanBePrivate.Global
+        public string Name { [Annotations.UsedImplicitly] get; }
+
+        /// <summary>
+        /// </summary>
+        [UsedImplicitly]
+        // ReSharper disable once MemberCanBePrivate.Global
+        public string SampleFileName { [Annotations.UsedImplicitly] get; }
+
+        /// <summary>
         /// </summary>
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get => _isSelected;
             set
             {
                 if (_isSelected != value)
@@ -69,6 +66,5 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
                 }
             }
         }
-
     }
 }

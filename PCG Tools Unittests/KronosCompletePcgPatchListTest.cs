@@ -1,93 +1,98 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
+#endregion
+
+// (c) 2011 Michel Keijzers
 
 namespace PCG_Tools_Unittests
 {
     [TestClass]
     public class KronosCompletePcgPatchListTest
     {
-        const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\DEFAULT.pcg";
+        private const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\DEFAULT.pcg";
 
-        PcgMemory _pcgMemory;
+        private ListGeneratorPatchList _generator;
 
-        ListGeneratorPatchList _generator;
+        private string[] _lines;
 
-        string[] _lines;
+        private PcgMemory _pcgMemory;
 
         [TestInitialize]
         public void SetDefaults()
         {
             var korgFileReader = new KorgFileReader();
-            _pcgMemory = (PcgMemory) korgFileReader.Read(PcgFileName);
+            _pcgMemory = (PcgMemory)korgFileReader.Read(PcgFileName);
 
             _generator = new ListGeneratorPatchList
-                         {
-                             PcgMemory = _pcgMemory,
-                             FilterOnText = false,
-                             FilterText = string.Empty,
-                             FilterCaseSensitive = false,
-                             FilterProgramNames = true,
-                             FilterCombiNames = true,
-                             FilterSetListSlotNames = true,
-                             FilterSetListSlotDescription = true,
-                             FilterWaveSequenceNames = true,
-                             FilterDrumKitNames = true,
-                             FilterDrumPatternNames = true,
-                             IgnoreInitPrograms = true,
-                             IgnoreInitCombis = true,
-                             SetListsEnabled = true,
-                             IgnoreInitSetListSlots = true,
-                             SetListsRangeFrom = 0,
-                             SetListsRangeTo = 0,
-                             DrumKitsEnabled = true,
-                             IgnoreInitDrumKits = true,
-                             DrumPatternsEnabled = true,
-                             IgnoreInitDrumPatterns = true,
-                             WaveSequencesEnabled = true,
-                             IgnoreInitWaveSequences = true,
-                             SortMethod = ListGenerator.Sort.Alphabetical,
-                             ListOutputFormat = ListGenerator.OutputFormat.Text, 
-                             SelectedProgramBanks = new ObservableBankCollection<IProgramBank>(),
-                             SelectedCombiBanks = new ObservableBankCollection<ICombiBank>(),
-                             OutputFileName = $"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt"
-                         };
+            {
+                PcgMemory = _pcgMemory,
+                FilterOnText = false,
+                FilterText = string.Empty,
+                FilterCaseSensitive = false,
+                FilterProgramNames = true,
+                FilterCombiNames = true,
+                FilterSetListSlotNames = true,
+                FilterSetListSlotDescription = true,
+                FilterWaveSequenceNames = true,
+                FilterDrumKitNames = true,
+                FilterDrumPatternNames = true,
+                IgnoreInitPrograms = true,
+                IgnoreInitCombis = true,
+                SetListsEnabled = true,
+                IgnoreInitSetListSlots = true,
+                SetListsRangeFrom = 0,
+                SetListsRangeTo = 0,
+                DrumKitsEnabled = true,
+                IgnoreInitDrumKits = true,
+                DrumPatternsEnabled = true,
+                IgnoreInitDrumPatterns = true,
+                WaveSequencesEnabled = true,
+                IgnoreInitWaveSequences = true,
+                SortMethod = ListGenerator.Sort.Alphabetical,
+                ListOutputFormat = ListGenerator.OutputFormat.Text,
+                SelectedProgramBanks = new ObservableBankCollection<IProgramBank>(),
+                SelectedCombiBanks = new ObservableBankCollection<ICombiBank>(),
+                OutputFileName = $"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt"
+            };
 
             if (_pcgMemory != null)
             {
                 foreach (var item in _pcgMemory.ProgramBanks.BankCollection)
                 {
-                    _generator.SelectedProgramBanks.Add((IProgramBank) item);
+                    _generator.SelectedProgramBanks.Add((IProgramBank)item);
                 }
 
                 foreach (var item in _pcgMemory.CombiBanks.BankCollection)
                 {
-                    _generator.SelectedCombiBanks.Add((ICombiBank) item);
+                    _generator.SelectedCombiBanks.Add((ICombiBank)item);
                 }
             }
-
 
             _lines = null;
         }
 
-
         private void Run()
         {
-
             _generator.Run();
             _lines = File.ReadAllLines($"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt");
         }
-
 
         private void AssertExists(string text)
         {
@@ -96,18 +101,15 @@ namespace PCG_Tools_Unittests
             Assert.IsTrue(_lines.Count(line => line.Contains(text)) > 0);
         }
 
-
         private void AssertAll(string text)
         {
-           Assert.AreEqual(_lines.Length, _lines.Count(line => line.Contains(text)));
+            Assert.AreEqual(_lines.Length, _lines.Count(line => line.Contains(text)));
         }
-
 
         private void AssertNotExists(string text)
         {
             Assert.AreEqual(0, _lines.Count(line => line.Contains(text)));
         }
-
 
         [TestMethod]
         public void TestDefault()
@@ -124,7 +126,7 @@ namespace PCG_Tools_Unittests
 
             // Filter slot list descriptions.
             AssertExists("Rudess");
-            
+
             // All programs (at least one I-A and U-A existing).
             AssertExists(" Program      I-A");
             AssertExists(" Program      U-A");
@@ -150,7 +152,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(2178, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestFilteredText()
         {
@@ -162,7 +163,6 @@ namespace PCG_Tools_Unittests
             var lines = File.ReadAllLines($"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt");
             Assert.AreEqual(58, lines.Length);
         }
-
 
         [TestMethod]
         public void TestFilterCaseSensitive()
@@ -177,7 +177,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(56, lines.Length);
         }
 
-
         [TestMethod]
         public void TestFilterSetListDescriptionOff()
         {
@@ -191,14 +190,13 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(54, lines.Length);
         }
 
-
         [TestMethod]
         public void TestSelectedProgramBanks()
         {
             // Set non defaults and run.
             var selection = new ObservableBankCollection<IProgramBank>
             {
-                (IProgramBank)_pcgMemory.ProgramBanks[0], 
+                (IProgramBank)_pcgMemory.ProgramBanks[0],
                 (IProgramBank)_pcgMemory.ProgramBanks[1]
             };
             _generator.SelectedProgramBanks = selection;
@@ -211,7 +209,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(768, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestIgnoreInitProgramsOff()
         {
@@ -221,10 +218,9 @@ namespace PCG_Tools_Unittests
 
             // U-G010 is INIT (Due to non default Kronos PCG file G000/1 is filled)
             AssertExists(" Program      U-G010");
-            
+
             Assert.AreEqual(2304, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestSelectedCombiBanks()
@@ -232,7 +228,7 @@ namespace PCG_Tools_Unittests
             // Set non defaults and run.
             var selection = new ObservableBankCollection<ICombiBank>
             {
-                (ICombiBank)_pcgMemory.CombiBanks[0], 
+                (ICombiBank)_pcgMemory.CombiBanks[0],
                 (ICombiBank)_pcgMemory.CombiBanks[1]
             };
             _generator.SelectedCombiBanks = selection;
@@ -243,7 +239,6 @@ namespace PCG_Tools_Unittests
             AssertNotExists("Combi        U-A");
             Assert.AreEqual(1954, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestIgnoreInitCombisOff()
@@ -260,7 +255,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(3490, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestSetListsDisabled()
         {
@@ -273,11 +267,9 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(2146, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestSetListsRange()
         {
-
             // Set non defaults and run.
             _generator.SetListsRangeFrom = 1;
             _generator.SetListsRangeTo = 127;
@@ -287,7 +279,6 @@ namespace PCG_Tools_Unittests
             AssertNotExists("/0");
             Assert.AreEqual(2146, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestSortTypeBankIndex()
@@ -300,7 +291,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(2178, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestOutputAsciiTable()
         {
@@ -311,7 +301,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(2182, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestOutputCsv()
         {
@@ -321,7 +310,6 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(2178, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestOutputXml()

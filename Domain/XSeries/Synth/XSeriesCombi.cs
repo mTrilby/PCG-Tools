@@ -1,32 +1,37 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Text;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.XSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class XSeriesCombi : MntxCombi
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="combiBank"></param>
         /// <param name="index"></param>
         public XSeriesCombi(IBank combiBank, int index)
             : base(combiBank, index)
         {
-            Id = $"{combiBank.Id}{(index).ToString("00")}";
+            Id = $"{combiBank.Id}{index.ToString("00")}";
             Timbres = new XSeriesTimbres(this);
         }
 
-
         /// <summary>
-        /// Substibute chars.
+        ///     Substibute chars.
         /// </summary>
         public override string Name
         {
@@ -49,7 +54,7 @@ namespace PcgTools.Model.XSeries.Synth
                     }
                     else
                     {
-                        name.Append((char) (character));
+                        name.Append((char)character);
                     }
                 }
 
@@ -70,21 +75,17 @@ namespace PcgTools.Model.XSeries.Synth
 
                     OnPropertyChanged("Name");
                 }
-
             }
         }
 
-
         /// <summary>
-        /// Sets parameters after initialization.
+        ///     Sets parameters after initialization.
         /// </summary>
         public override void SetParameters()
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -94,11 +95,11 @@ namespace PcgTools.Model.XSeries.Synth
 
             switch (name)
             {
-
-            default:
-                parameter = base.GetParam(name);
-                break;
+                default:
+                    parameter = base.GetParam(name);
+                    break;
             }
+
             return parameter;
         }
     }

@@ -1,28 +1,26 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
+
+#endregion
 
 namespace PcgTools.Model.Common.Synth.SongsRelated
 {
     /// <summary>
-    ///
     /// </summary>
     public abstract class SongMemory : Memory, ISongMemory
     {
         /// <summary>
-        ///
         /// </summary>
-        public ISongs Songs { get; private set; }
-
+        private IPcgMemory _connectedPcgMemory;
 
         /// <summary>
-        ///
-        /// </summary>
-        public IRegions Regions { get; private set; }
-
-
-        /// <summary>
-        ///
         /// </summary>
         /// <param name="fileName"></param>
         protected SongMemory(string fileName)
@@ -35,9 +33,15 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             ConnectedPcgMemory = null;
         }
 
+        /// <summary>
+        /// </summary>
+        public ISongs Songs { get; }
 
         /// <summary>
-        ///
+        /// </summary>
+        public IRegions Regions { get; }
+
+        /// <summary>
         /// </summary>
         /// <param name="saveAs"></param>
         /// <param name="saveToFile"></param>
@@ -47,19 +51,12 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             IsDirty = false;
         }
 
-
         /// <summary>
-        ///
-        /// </summary>
-        private IPcgMemory _connectedPcgMemory;
-
-
-        /// <summary>
-        /// PCG memory is connected with; should be of same model.
+        ///     PCG memory is connected with; should be of same model.
         /// </summary>
         public IPcgMemory ConnectedPcgMemory
         {
-            get { return _connectedPcgMemory; }
+            get => _connectedPcgMemory;
 
             set
             {

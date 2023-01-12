@@ -1,5 +1,12 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using Common.Utils;
 using PcgTools.Model.Common.File;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
@@ -7,51 +14,42 @@ using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Mvvm;
 using PcgTools.OpenedFiles;
 
+#endregion
+
 namespace PcgTools.Model.Common.Synth.SongsRelated
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Song : ObservableObject, ISong
     {
         /// <summary>
-        /// 
         /// </summary>
         // ReSharper disable UnusedAutoPropertyAccessor.Local
         [UsedImplicitly]
-        private int Index { [Annotations.UsedImplicitly] get; set; }
-
+        private int Index { [Annotations.UsedImplicitly] get; }
 
         /// <summary>
-        /// 
         /// </summary>
-        public ISongMemory Memory { get; private set; }
-
+        public ISongMemory Memory { get; }
 
         /// <summary>
-        /// 
         /// </summary>
         public ISongTimbres Timbres { get; set; }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        string _name;
-
+        private string _name;
 
         /// <summary>
-        /// Used for UI control binding for selections.
+        ///     Used for UI control binding for selections.
         /// </summary>
-        bool _isSelected;
-
+        private bool _isSelected;
 
         /// <summary>
-        /// 
         /// </summary>
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get => _isSelected;
             set
             {
                 if (_isSelected != value)
@@ -62,15 +60,13 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable UnusedAutoPropertyAccessor.Local
         public string Name
         {
-            [Annotations.UsedImplicitly] get { return _name; }
+            [Annotations.UsedImplicitly] get => _name;
             set
             {
                 if (value != _name)
@@ -81,39 +77,25 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             }
         }
 
-
-
         /// <summary>
-        /// 
         /// </summary>
-        public int MaxNameLength
-        {
-            get
-            {
-                throw new System.NotImplementedException(); 
-            }
-        }
-
+        public int MaxNameLength => throw new NotImplementedException();
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="strName"></param>
         /// <returns></returns>
         public bool IsNameLike(string strName)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-
 
         public void SetNameSuffix(string suffix)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="index"></param>
@@ -133,34 +115,26 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public IMemory Root => Memory;
 
-
         /// <summary>
-        /// 
         /// </summary>
         public INavigable Parent => Memory;
 
-
         /// <summary>
-        /// Unused for songs.
+        ///     Unused for songs.
         /// </summary>
         public int ByteOffset { get; set; }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public int ByteLength { get; set; }
 
-
         /// <summary>
-        /// PCG file the song is connected with; should be of same model.
+        ///     PCG file the song is connected with; should be of same model.
         /// </summary>
-        public OpenedPcgWindow ConnectedPcgWindow { get;  set; }
+        public OpenedPcgWindow ConnectedPcgWindow { get; set; }
     }
 }

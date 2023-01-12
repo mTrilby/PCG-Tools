@@ -1,24 +1,23 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.MntxSeriesSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.ZeroSeries.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ZeroSeriesTimbres : MntxTimbres
     {
         /// <summary>
-        /// 
-        /// </summary>
-        private static int TimbresOffsetConstant => 40;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="combi"></param>
         public ZeroSeriesTimbres(ICombi combi)
@@ -30,9 +29,11 @@ namespace PcgTools.Model.ZeroSeries.Synth
             }
         }
 
+        /// <summary>
+        /// </summary>
+        private static int TimbresOffsetConstant => 40;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -40,6 +41,5 @@ namespace PcgTools.Model.ZeroSeries.Synth
         {
             return new ZeroSeriesTimbre(this, index);
         }
-
     }
 }

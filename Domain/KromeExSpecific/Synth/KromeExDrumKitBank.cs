@@ -1,20 +1,27 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
 using System;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 using PcgTools.Model.MSpecific.Synth;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Model.KromeExSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KromeExDrumKitBank : MDrumKitBank
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumKitBanks"></param>
         /// <param name="type"></param>
@@ -25,19 +32,7 @@ namespace PcgTools.Model.KromeExSpecific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        public override void CreatePatch(int index)
-        {
-            Add(new KromeExDrumKit(this, index));
-        }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         public override int NrOfPatches
         {
@@ -51,7 +46,7 @@ namespace PcgTools.Model.KromeExSpecific.Synth
                         break;
 
                     case BankType.EType.User:
-                        nrOfPatches = 80 -48;
+                        nrOfPatches = 80 - 48;
                         break;
 
                     case BankType.EType.Gm:
@@ -64,6 +59,14 @@ namespace PcgTools.Model.KromeExSpecific.Synth
 
                 return nrOfPatches;
             }
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="index"></param>
+        public override void CreatePatch(int index)
+        {
+            Add(new KromeExDrumKit(this, index));
         }
     }
 }

@@ -1,22 +1,29 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Help
 {
     /// <summary>
-    ///
     /// </summary>
     public partial class ExternalLinksVideoCreatorsWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public ExternalLinksVideoCreatorsWindow()
         {
@@ -24,27 +31,27 @@ namespace PcgTools.Help
 
             var externalItems = new List<ExternalItem>
             {
-                new ExternalItem
+                new()
                 {
                     Name = "Marcio Badaró",
                     Description = "Video Creator",
                     Url = "https://www.youtube.com/channel/UCP1mBiVbdEZ4yoLcpu7HgEg",
                     BitmapPath = "MarcioBadaro.png"
                 },
-                new ExternalItem
+                new()
                 {
-                    Name ="Rubens S. Felicio",
+                    Name = "Rubens S. Felicio",
                     Description = "Video Creator",
                     Url = "https://www.youtube.com/channel/UCescfsHypLlr36lNyoyFDSw",
                     BitmapPath = "RubensFelicioYouTube.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Adel Tannouri",
                     Description = "Video Creator",
                     Url = "https://www.youtube.com/user/thebestman0001",
                     BitmapPath = "AdelTannouriYouTube.png"
-                },
+                }
             };
 
             var linkButtons = new List<UserControlExternalLink>
@@ -125,9 +132,7 @@ namespace PcgTools.Help
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="mouseButtonEventArgs"></param>
@@ -140,10 +145,8 @@ namespace PcgTools.Help
                 ShowUrl(item.Url);
             }
         }
-        
 
         /// <summary>
-        /// 
         /// </summary>
         private void ShowUrl(string url)
         {
@@ -153,12 +156,10 @@ namespace PcgTools.Help
             }
             catch (Exception exception)
             {
-                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}:{exception.Message}", 
+                MessageBox.Show(this, $"{Strings.LinkWarning}.\n{Strings.Message}:{exception.Message}",
                     Strings.PcgTools,
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
 }
-
-

@@ -1,36 +1,37 @@
-﻿using System.Diagnostics;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
+using System.Diagnostics;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchInterfaces;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+#endregion
+
 namespace PcgTools.Model.Common.Synth.SongsRelated
 {
     /// <summary>
-    /// 
     /// </summary>
     public class SongTimbre : Timbre, ISongTimbre
     {
         /// <summary>
-        /// 
         /// </summary>
         private readonly ITimbres _timbres;
 
-
         /// <summary>
-        /// 
-        /// </summary>
-        private ITimbres Timbres => _timbres;
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="index"></param>
         /// <param name="timbresSize"></param>
-        public SongTimbre(ITimbres timbres, int index, int timbresSize) 
+        public SongTimbre(ITimbres timbres, int index, int timbresSize)
             : base(timbres, index, timbresSize)
         {
             Debug.Assert(timbresSize > 0);
@@ -40,27 +41,26 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             TimbresSize = timbresSize;
         }
 
+        /// <summary>
+        /// </summary>
+        private ITimbres Timbres => _timbres;
 
-        public override IMemory Root => (IMemory)(Timbres.Parent.Parent);
-
+        public override IMemory Root => (IMemory)Timbres.Parent.Parent;
 
         public override INavigable Parent => Timbres;
 
-
         public override bool IsLoaded
         {
-            get { return true; }
-            set { throw new System.NotImplementedException(); }
+            get => true;
+            set => throw new NotImplementedException();
         }
 
         public override void Clear()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -69,30 +69,19 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
             return -1;
         }
 
-        
         /// <summary>
-        /// 
         /// </summary>
         public override IProgramBank UsedProgramBank => null;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public override IProgram UsedProgram
-        {
-            get; set;
-        }
-
+        public override IProgram UsedProgram { get; set; }
 
         /// <summary>
-        /// 
         /// </summary>
         public override string ColumnProgramId => "ID";
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override string ColumnProgramName => "TODO";
 

@@ -1,35 +1,36 @@
-﻿// (c) 2011 Michel Keijzers
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchDrumKits;
 
+#endregion
+
 namespace PcgTools.Model.KronosOasysSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public abstract class KronosOasysDrumKit : DrumKit
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="drumKitBank"></param>
         /// <param name="index"></param>
         protected KronosOasysDrumKit(IBank drumKitBank, int index)
-            : base(drumKitBank, index) 
+            : base(drumKitBank, index)
         {
         }
-        
-        
+
         /// <summary>
-        /// 
         /// </summary>
         public override string Name
         {
-            get
-            {
-                return GetChars(0, MaxNameLength);
-            }
+            get => GetChars(0, MaxNameLength);
             set
             {
                 if (Name != value)
@@ -40,18 +41,14 @@ namespace PcgTools.Model.KronosOasysSpecific.Synth
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override int MaxNameLength => 24;
 
-
         /// <summary>
-        /// 
         /// </summary>
-        public override bool IsEmptyOrInit => ((Name == string.Empty) ||
-                                               Name.StartsWith("Drumkit      0") ||
-                                               (Name.Contains("Init") && Name.Contains("Drum") && Name.Contains("Kit")));
+        public override bool IsEmptyOrInit => Name == string.Empty ||
+                                              Name.StartsWith("Drumkit      0") ||
+                                              (Name.Contains("Init") && Name.Contains("Drum") && Name.Contains("Kit"));
     }
 }

@@ -1,26 +1,34 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using Common.PcgToolsResources;
-using Common.Utils;
 using PcgTools.Common.Utils;
 using PcgTools.MasterFiles;
 using PcgTools.Model.Common.File;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.PcgToolsResources;
 using PcgTools.Properties;
 using WPF.MDI;
+
+#endregion
 
 namespace PcgTools.ViewModels.Commands
 {
     /// <summary>
-    /// Utility class.
+    ///     Utility class.
     /// </summary>
     public static class PcgFileCommands
     {
         private static IMainViewModel _mainViewModel;
 
-
-        public static void LoadFileAndMasterFile(IMainViewModel mainViewModel, string fileName, bool checkAutoLoadMasterFileSetting)
+        public static void LoadFileAndMasterFile(IMainViewModel mainViewModel, string fileName,
+            bool checkAutoLoadMasterFileSetting)
         {
             _mainViewModel = mainViewModel;
 
@@ -49,18 +57,20 @@ namespace PcgTools.ViewModels.Commands
             {
                 var width = Settings.Default.UI_PcgWindowWidth == 0 ? 700 : Settings.Default.UI_PcgWindowWidth;
                 var height = Settings.Default.UI_PcgWindowHeight == 0 ? 500 : Settings.Default.UI_PcgWindowHeight;
-                mdiChild = ((MainViewModel)_mainViewModel).CreateMdiChildWindow(fileName, MainViewModel.ChildWindowType.Pcg, memory, width, height);
-                ((PcgWindow)(mdiChild.Content)).ViewModel.SelectedMemory = memory;
-                _mainViewModel.CurrentChildViewModel = ((PcgWindow)(mdiChild.Content)).ViewModel;
-                ((IPcgMemory) memory).SelectFirstBanks();
+                mdiChild = ((MainViewModel)_mainViewModel).CreateMdiChildWindow(fileName,
+                    MainViewModel.ChildWindowType.Pcg, memory, width, height);
+                ((PcgWindow)mdiChild.Content).ViewModel.SelectedMemory = memory;
+                _mainViewModel.CurrentChildViewModel = ((PcgWindow)mdiChild.Content).ViewModel;
+                ((IPcgMemory)memory).SelectFirstBanks();
             }
             else if (memory is ISongMemory)
             {
                 var width = Settings.Default.UI_SongWindowWidth == 0 ? 700 : Settings.Default.UI_SongWindowWidth;
                 var height = Settings.Default.UI_SongWindowHeight == 0 ? 500 : Settings.Default.UI_SongWindowHeight;
-                mdiChild = ((MainViewModel)_mainViewModel).CreateMdiChildWindow(fileName, MainViewModel.ChildWindowType.Song, memory, width, height);
-                _mainViewModel.CurrentChildViewModel = ((SongWindow)(mdiChild.Content)).ViewModel;
-                ((SongWindow)(mdiChild.Content)).ViewModel.SelectedMemory = memory;
+                mdiChild = ((MainViewModel)_mainViewModel).CreateMdiChildWindow(fileName,
+                    MainViewModel.ChildWindowType.Song, memory, width, height);
+                _mainViewModel.CurrentChildViewModel = ((SongWindow)mdiChild.Content).ViewModel;
+                ((SongWindow)mdiChild.Content).ViewModel.SelectedMemory = memory;
             }
             else
             {
@@ -68,27 +78,26 @@ namespace PcgTools.ViewModels.Commands
             }
         }
 
-
         /// <summary>
-        ///
         /// </summary>
         /// <param name="checkAutoLoadMasterFileSetting"></param>
         /// <param name="loadedPcgFileName"></param>
-        static void LoadMasterFileIfRequested(bool checkAutoLoadMasterFileSetting, string loadedPcgFileName)
+        private static void LoadMasterFileIfRequested(bool checkAutoLoadMasterFileSetting, string loadedPcgFileName)
         {
             if (checkAutoLoadMasterFileSetting)
             {
                 // Get master file name.
                 var masterFile = MasterFiles.MasterFiles.Instances.FindMasterFile(_mainViewModel.SelectedMemory.Model);
-                if ((masterFile != null) && (masterFile.FileState == MasterFile.EFileState.Unloaded))
+                if (masterFile != null && masterFile.FileState == MasterFile.EFileState.Unloaded)
                 {
-                    switch ((MasterFiles.MasterFiles.AutoLoadMasterFiles)(Settings.Default.MasterFiles_AutoLoad))
+                    switch ((MasterFiles.MasterFiles.AutoLoadMasterFiles)Settings.Default.MasterFiles_AutoLoad)
                     {
                         case MasterFiles.MasterFiles.AutoLoadMasterFiles.Always:
                             if (masterFile.FileName != loadedPcgFileName)
                             {
                                 LoadFileAndMasterFile(_mainViewModel, masterFile.FileName, false);
                             }
+
                             break;
 
                         case MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask:
@@ -105,6 +114,7 @@ namespace PcgTools.ViewModels.Commands
                                     LoadFileAndMasterFile(_mainViewModel, masterFile.FileName, false);
                                 }
                             }
+
                             break;
 
                         case MasterFiles.MasterFiles.AutoLoadMasterFiles.Never:

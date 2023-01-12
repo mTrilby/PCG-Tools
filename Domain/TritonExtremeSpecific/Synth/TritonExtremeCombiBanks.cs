@@ -1,19 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.TritonSpecific.Synth;
 
+#endregion
+
 namespace PcgTools.Model.TritonExtremeSpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TritonExtremeCombiBanks : TritonCombiBanks
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         public TritonExtremeCombiBanks(IPcgMemory pcgMemory)
@@ -21,9 +26,7 @@ namespace PcgTools.Model.TritonExtremeSpecific.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         protected override void CreateBanks()
         {

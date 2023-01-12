@@ -9,14 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="_Backup\**" />
-        <Compile Remove="_Example\**" />
-        <EmbeddedResource Remove="_Backup\**" />
-        <EmbeddedResource Remove="_Example\**" />
-        <None Remove="_Backup\**" />
-        <None Remove="_Example\**" />
-        <Page Remove="_Backup\**" />
-        <Page Remove="_Example\**" />
+        <Compile Remove="_Backup\**"/>
+        <Compile Remove="_Example\**"/>
+        <EmbeddedResource Remove="_Backup\**"/>
+        <EmbeddedResource Remove="_Example\**"/>
+        <None Remove="_Backup\**"/>
+        <None Remove="_Example\**"/>
+        <Page Remove="_Backup\**"/>
+        <Page Remove="_Example\**"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -40,7 +40,7 @@
         <Resource Include="Themes\Generic.xaml">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Resource>
-        <AppDesigner Include="Properties\" />
+        <AppDesigner Include="Properties\"/>
     </ItemGroup>
     <ItemGroup>
         <Resource Include="Themes\Luna.xaml">

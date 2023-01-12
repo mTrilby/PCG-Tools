@@ -1,18 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.KronosOasysSpecific.Pcg;
 
+#endregion
+
 namespace PcgTools.Model.KronosSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KronosPcgFileReader : KronosOasysPcgFileReader
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="currentPcgMemory"></param>
         /// <param name="content"></param>
@@ -36,7 +42,7 @@ namespace PcgTools.Model.KronosSpecific.Pcg
             {
                 case 0:
                     currentPcgMemory.Model = Models.Find(Models.EOsVersion.EOsVersionKronos10_11);
-                     // Will be later set to 1.5/1.6 in case an XXX2 or 3 chunk is found.
+                    // Will be later set to 1.5/1.6 in case an XXX2 or 3 chunk is found.
                     break;
 
                 case 1:
@@ -54,9 +60,6 @@ namespace PcgTools.Model.KronosSpecific.Pcg
             }
         }
 
-        protected override int Dpi1NumberOfDrumPatternsOffset
-        {
-            get { throw new NotImplementedException(); }
-        }
+        protected override int Dpi1NumberOfDrumPatternsOffset => throw new NotImplementedException();
     }
 }

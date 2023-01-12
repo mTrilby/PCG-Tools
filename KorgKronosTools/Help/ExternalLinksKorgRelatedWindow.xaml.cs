@@ -1,22 +1,29 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Common.PcgToolsResources;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 // (c) 2011 Michel Keijzers
 
 namespace PcgTools.Help
 {
     /// <summary>
-    /// 
     /// </summary>
     public partial class ExternalLinksKorgRelatedWindow // : Window
     {
         /// <summary>
-        /// 
         /// </summary>
         public ExternalLinksKorgRelatedWindow()
         {
@@ -26,35 +33,35 @@ namespace PcgTools.Help
             {
                 // PCG Tools
 
-                new ExternalItem
+                new()
                 {
                     Name = "PCG Tools website",
                     Description = "PCG Tools main web site",
                     Url = "http://pcgtools.mkspace.nl",
                     BitmapPath = "pcgtoolssmaller.jpg"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "PCG Tools at Facebook",
                     Description = "PCG Tools Facebook group",
                     Url = "https://www.facebook.com/PcgTools",
                     BitmapPath = "facebook.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "PCG Tools at Twitter",
                     Description = "PCG Tools twitter account",
                     Url = "https://twitter.com/pcgtools",
                     BitmapPath = "twitter.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "PCG Tools at Google Plus",
                     Description = "PCG Tools Google Plus account",
                     Url = "https://plus.google.com/#117506377627258933594/posts",
                     BitmapPath = "googleplus.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "PCG Tools at Yahoo",
                     Description = "PCG Tools Yahoo group",
@@ -63,7 +70,7 @@ namespace PcgTools.Help
                 },
 
                 // Korg
-                new ExternalItem
+                new()
                 {
                     Name = "www.korg.com",
                     Description = "Official Korg website",
@@ -73,84 +80,84 @@ namespace PcgTools.Help
 
                 // Fora
 
-                new ExternalItem
+                new()
                 {
                     Name = "KorgForums",
                     Description = "Biggest Korg forum",
                     Url = "http://www.korgforums.com",
                     BitmapPath = "korgforums.jpg"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Korg Fans",
                     Description = "News, tips, downloads",
                     Url = "http://korgfans.wordpress.com",
                     BitmapPath = "korgfans.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Karma-lab",
                     Description = "KARMA by Stephen Kay",
                     Url = "http://karma-lab.com",
                     BitmapPath = "karmalabs.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Korg Patches",
                     Description = "Website for Korg patches",
                     Url = "http://www.korgpatches.com",
                     BitmapPath = "korgpatches.jpg"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Kronoshaven",
                     Description = "Forum for Kronos",
                     Url = "http://www.kronoshaven.com",
                     BitmapPath = "kronoshaven.jpg"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Kromeheaven",
                     Description = "Forum for Krome",
                     Url = "http://www.kromeheaven.com",
                     BitmapPath = "kromeheaven.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Kronoscopie",
                     Description = "Forum for Kronos (French)",
                     Url = "http://www.kronoscopie.fr",
                     BitmapPath = "Kronoscopie.jpg"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Forum Cifraclub",
                     Description = "Forum for Korg (Brazilian)",
                     Url = "http://forum.cifraclub.com.br/forum/8/",
                     BitmapPath = "forum_cifraclub_com_br.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "AudioKeys Forum",
                     Description = "Forum for Korg (French)",
                     Url = "http://www.audiokeys.net",
                     BitmapPath = "AudioKeys.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Cliff Canyon 01/W FAQ",
                     Description = "Forum/Info for Korg 01/W",
                     Url = "http://indra.com/~cliffcan/01faq.htm#editors",
                     BitmapPath = "cliffcanyon.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Qui Robinez",
                     Description = "Producer of Korg Sounds/Tutorials",
                     Url = "http://www.quirobinez.nl",
                     BitmapPath = "quirobinez.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Audora",
                     Description = "Producer of Korg Sounds/Tutorials",
@@ -159,7 +166,7 @@ namespace PcgTools.Help
                 },
                 // Utilities
 
-                new ExternalItem
+                new()
                 {
                     Name = "TidyKronos",
                     Description = "Kronos Application by Joe Keller",
@@ -167,7 +174,7 @@ namespace PcgTools.Help
                     BitmapPath = "tidykronos.png"
                 },
 
-                new ExternalItem
+                new()
                 {
                     Name = "PCGrid",
                     Description = "Kronos Application by KorganizR",
@@ -175,7 +182,7 @@ namespace PcgTools.Help
                     BitmapPath = "pcgrid.png"
                 },
 
-                new ExternalItem
+                new()
                 {
                     Name = "ONKSOR",
                     Description = "Kronos Application by Olaf Arweiler",
@@ -183,8 +190,7 @@ namespace PcgTools.Help
                     BitmapPath = "onksor.jpg"
                 },
 
-
-                new ExternalItem
+                new()
                 {
                     Name = "AL-1 Editor",
                     Description = "Kronos Application by Chris",
@@ -192,13 +198,13 @@ namespace PcgTools.Help
                     BitmapPath = "al1editor.png"
                 },
 
-                new ExternalItem()
+                new()
                 {
                     Name = "MK Editor", Description = "microKORG Editor by JohnS",
                     Url = "http://www.artlum.com/microkorg", BitmapPath = "Artlum.png"
                 },
 
-                new ExternalItem()
+                new()
                 {
                     Name = "Radias Librarian", Description = "Radias Librarian by LiPI",
                     Url = "http://lipi.atw.hu/", BitmapPath = "RadiasLibrarian.png"
@@ -206,7 +212,7 @@ namespace PcgTools.Help
 
                 // Affiliates
 
-                new ExternalItem
+                new()
                 {
                     Name = "Robert Rosen",
                     Description = "Technician/Keyboardist",
@@ -216,45 +222,45 @@ namespace PcgTools.Help
 
                 // Sound designers
 
-                new ExternalItem
+                new()
                 {
                     Name = "KaPro (Kurt Ader Productions)",
                     Description = "Producer of Korg sounds",
                     Url = "https://www.facebook.com/pages/KApro-Kurt-Ader-Productions/323845221074090",
                     BitmapPath = "kapro.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Sounds of Planet",
                     Description = "Producer of Korg sounds",
                     Url = "http://soundsofplanet.manifo.com/",
                     BitmapPath = "soundsofplanet.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Kid Nepro",
                     Description = "Producer of Korg sounds",
                     Url = "http://www.kidnepro.com/KN/Korg/Korg.html",
                     BitmapPath = "kidheadspinsm.gif"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Synthy Sounds",
                     Description = "Producer of Korg sounds",
                     Url = "http://www.synthysounds.co.uk/",
                     BitmapPath = "synthysounds.png"
                 },
-                
+
                 // Shops
 
-                new ExternalItem
+                new()
                 {
                     Name = "Lyana",
                     Description = "Dutch music shop",
                     Url = "http://www.lyana.nl",
                     BitmapPath = "lyana.png"
                 },
-                new ExternalItem
+                new()
                 {
                     Name = "Oostendorp Muziek",
                     Description = "Dutch music shop",
@@ -262,12 +268,12 @@ namespace PcgTools.Help
                     BitmapPath = "Oostendorpmuziek.jpg"
                 },
 
-                new ExternalItem
+                new()
                 {
-                    Name="Dan Stesco",
-                    Description ="Sound creator",
-                    Url="http://www.danstesco.ro",
-                    BitmapPath ="DanStesco.png"
+                    Name = "Dan Stesco",
+                    Description = "Sound creator",
+                    Url = "http://www.danstesco.ro",
+                    BitmapPath = "DanStesco.png"
                 }
             };
 
@@ -339,23 +345,20 @@ namespace PcgTools.Help
             }
         }
 
-
         private void ButtonLinkOnPreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
         {
             var userControlExternalLink = sender as UserControlExternalLink;
             if (userControlExternalLink != null)
             {
                 var item = userControlExternalLink.Tag as ExternalItem;
-                if ((item != null) && (item.Url != null))
+                if (item != null && item.Url != null)
                 {
                     ShowUrl(item.Url);
                 }
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         private void ShowUrl(string url)
         {
@@ -372,5 +375,3 @@ namespace PcgTools.Help
         }
     }
 }
-
-

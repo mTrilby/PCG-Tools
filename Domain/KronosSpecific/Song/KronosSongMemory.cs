@@ -1,26 +1,24 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using Common.PcgToolsResources;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.PcgToolsResources;
+
+#endregion
 
 namespace PcgTools.Model.KronosSpecific.Song
 {
     /// <summary>
-    /// 
     /// </summary>
     public class KronosSongMemory : SongMemory
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public Models.EOsVersion InitOsVersion { private get; set; }
-
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public KronosSongMemory(string fileName)
@@ -29,9 +27,12 @@ namespace PcgTools.Model.KronosSpecific.Song
             Model = Models.Find(Models.EOsVersion.EOsVersionKronos2x); // Songs are always considered Kronos 2.x files
         }
 
+        /// <summary>
+        /// </summary>
+        public Models.EOsVersion InitOsVersion { private get; set; }
 
         /// <summary>
-        /// Returns the program ID; only supported by Kronos.
+        ///     Returns the program ID; only supported by Kronos.
         /// </summary>
         /// <param name="rawBankIndex"></param>
         /// <param name="rawProgramIndex"></param>
@@ -50,8 +51,8 @@ namespace PcgTools.Model.KronosSpecific.Song
                 "U-A", "U-B", "U-C", "U-D", "U-E", "U-F", "U-G", "U-AA", "U-BB", "U-CC", "U-DD", "U-EE", "U-FF", "U-GG"
             };
 
-            var bankId = (rawBankIndex >= 0) && (rawBankIndex < names.Length) ? names[rawBankIndex] : Strings.Unknown;
-            var indexId = (rawProgramIndex >= 6 && rawProgramIndex <= 16) ? rawProgramIndex + 1 : rawProgramIndex;
+            var bankId = rawBankIndex >= 0 && rawBankIndex < names.Length ? names[rawBankIndex] : Strings.Unknown;
+            var indexId = rawProgramIndex >= 6 && rawProgramIndex <= 16 ? rawProgramIndex + 1 : rawProgramIndex;
             return $"{bankId}{indexId:000}";
         }
     }

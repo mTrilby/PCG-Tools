@@ -1,21 +1,31 @@
-﻿
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
 namespace PcgTools.Common.Utils
 {
     public static class WindowUtil
     {
         /// <summary>
-        ///
+        /// </summary>
+        public enum ECursor
+        {
+            Wait,
+            Arrow
+        }
+
+        /// <summary>
         /// </summary>
         public enum EMessageBoxButton
         {
             Ok,
             YesNo,
             YesNoCancel
-        };
-
+        }
 
         /// <summary>
-        ///
         /// </summary>
         public enum EMessageBoxImage
         {
@@ -23,11 +33,9 @@ namespace PcgTools.Common.Utils
             Warning,
             Exclamation,
             Information
-        };
-
+        }
 
         /// <summary>
-        ///
         /// </summary>
         public enum EMessageBoxResult
         {
@@ -36,16 +44,6 @@ namespace PcgTools.Common.Utils
             No,
             None,
             Cancel
-        };
-
-
-        /// <summary>
-        ///
-        /// </summary>
-        public enum ECursor
-        {
-            Wait,
-            Arrow
-        };
+        }
     }
 }

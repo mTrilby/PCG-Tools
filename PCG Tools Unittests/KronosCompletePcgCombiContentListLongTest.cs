@@ -1,34 +1,39 @@
-﻿using System;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
+#endregion
+
+// (c) 2011 Michel Keijzers
 
 namespace PCG_Tools_Unittests
 {
     [TestClass]
     public class KronosCompletePcgCombiContentListLongTest
     {
-        const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\DEFAULT.pcg";
+        private const string PcgFileName = @"C:\PCG Tools Test Files\TestFiles\Workstations\Kronos\DEFAULT.pcg";
 
-        
-        PcgMemory _pcgMemory;
+        private ListGeneratorCombiContentList _generator;
 
+        private string[] _lines;
 
-        ListGeneratorCombiContentList _generator;
+        private PcgMemory _pcgMemory;
 
-
-        string[] _lines;
-
-        
         [TestInitialize]
         public void SetDefaults()
         {
@@ -36,42 +41,40 @@ namespace PCG_Tools_Unittests
             _pcgMemory = (PcgMemory)korgFileReader.Read(PcgFileName);
 
             _generator = new ListGeneratorCombiContentList
-                         {
-                             PcgMemory = _pcgMemory,
-                             ListSubType = ListGenerator.SubType.Long,
-                             IgnoreFirstProgram = false,
-                             IgnoreMutedOffTimbres = true,
-                             IgnoreMutedOffFirstProgramTimbre = true,
-                             IgnoreInitCombis = true,
-                             SelectedProgramBanks = new ObservableBankCollection<IProgramBank>(),
-                             SelectedCombiBanks = new ObservableBankCollection<ICombiBank>(),
-                             ListOutputFormat = ListGenerator.OutputFormat.AsciiTable,
-                             OutputFileName = $"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt"
-                         };
+            {
+                PcgMemory = _pcgMemory,
+                ListSubType = ListGenerator.SubType.Long,
+                IgnoreFirstProgram = false,
+                IgnoreMutedOffTimbres = true,
+                IgnoreMutedOffFirstProgramTimbre = true,
+                IgnoreInitCombis = true,
+                SelectedProgramBanks = new ObservableBankCollection<IProgramBank>(),
+                SelectedCombiBanks = new ObservableBankCollection<ICombiBank>(),
+                ListOutputFormat = ListGenerator.OutputFormat.AsciiTable,
+                OutputFileName = $"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt"
+            };
 
             if (_pcgMemory != null)
             {
                 foreach (var item in _pcgMemory.ProgramBanks.BankCollection)
                 {
-                    _generator.SelectedProgramBanks.Add((IProgramBank) item);
+                    _generator.SelectedProgramBanks.Add((IProgramBank)item);
                 }
-            
+
                 foreach (var item in _pcgMemory.CombiBanks.BankCollection)
                 {
-                    _generator.SelectedCombiBanks.Add((ICombiBank) item);
+                    _generator.SelectedCombiBanks.Add((ICombiBank)item);
                 }
             }
 
             _lines = null;
         }
 
-
         private void Run()
         {
             _generator.Run();
             _lines = File.ReadAllLines(_generator.OutputFileName);
         }
-
 
         private void AssertExists(string text)
         {
@@ -80,18 +83,15 @@ namespace PCG_Tools_Unittests
             Assert.IsTrue(_lines.Count(line => line.Contains(text)) > 0);
         }
 
-
         private void AssertAll(string text)
         {
             Assert.AreEqual(_lines.Length, _lines.Count(line => line.Contains(text)));
         }
 
-
         private void AssertNotExists(string text)
         {
             Assert.AreEqual(0, _lines.Count(line => line.Contains(text)));
         }
-
 
         [TestMethod]
         public void TestDefault()
@@ -119,7 +119,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(9223, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestSelectedProgramBanks()
         {
@@ -140,13 +139,11 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(4816, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestIgnoreInitProgramsOff()
         {
             // Cannot be tested.
         }
-
 
         [TestMethod]
         public void TestIgnoreMutedProgramsOff()
@@ -154,7 +151,6 @@ namespace PCG_Tools_Unittests
             // Cannot be tested since there are no init programs; the programs in U-G are not in the PCG.
             // Tested with TestIgnoreInitCombisOff
         }
-
 
         [TestMethod]
         public void TestDontIgnoreMutedPrograms()
@@ -168,7 +164,6 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(12480, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestSelectedCombiBanks()
@@ -189,7 +184,6 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(4816, _lines.Length);
         }
-        
 
         [TestMethod]
         public void TestIgnoreInitCombisOff()
@@ -206,7 +200,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(46592, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestIgnoreFirstProgram()
         {
@@ -219,7 +212,6 @@ namespace PCG_Tools_Unittests
 
             Assert.AreEqual(9071, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestFilterText()

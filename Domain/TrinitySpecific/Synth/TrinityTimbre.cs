@@ -1,25 +1,27 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System.Collections.Generic;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.OldParameters;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
 
+#endregion
+
 namespace PcgTools.Model.TrinitySpecific.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public sealed class TrinityTimbre : Timbre
     {
-        static int TimbresSizeConstant => 19;
-
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="timbres"></param>
         /// <param name="index"></param>
@@ -28,9 +30,9 @@ namespace PcgTools.Model.TrinitySpecific.Synth
         {
         }
 
+        private static int TimbresSizeConstant => 19;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -42,8 +44,8 @@ namespace PcgTools.Model.TrinitySpecific.Synth
             {
                 case ParameterNames.TimbreParameterName.Status: // Called Timbre Mode
                     parameter = EnumParameter.Instance.Set(
-                     PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 2, 6, 5, 
-                     new List<string> { "Int", "Off", "Both", "Ext" }, Parent as IPatch);
+                        PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 2, 6, 5,
+                        new List<string> { "Int", "Off", "Both", "Ext" }, Parent as IPatch);
                     break;
 
                 case ParameterNames.TimbreParameterName.TopKey:
@@ -68,13 +70,15 @@ namespace PcgTools.Model.TrinitySpecific.Synth
 
                 case ParameterNames.TimbreParameterName.OscMode:
                     parameter = EnumParameter.Instance.Set(
-                        PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 11, 6, 6, new List<string> { "Prg", "Force Poly" },
+                        PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 11, 6, 6,
+                        new List<string> { "Prg", "Force Poly" },
                         Parent as IPatch);
                     break;
 
                 case ParameterNames.TimbreParameterName.OscSelect:
                     parameter = EnumParameter.Instance.Set(
-                        PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 11, 5, 5, new List<string> { "Both", "Hide OSC2" },
+                        PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 11, 5, 5,
+                        new List<string> { "Both", "Hide OSC2" },
                         Parent as IPatch);
                     break;
 
@@ -82,7 +86,7 @@ namespace PcgTools.Model.TrinitySpecific.Synth
 
                 case ParameterNames.TimbreParameterName.Volume:
                     parameter = IntParameter.Instance.Set(
-                        PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 3, 7, 0, false, 
+                        PcgRoot, Combi.PcgRoot.Content, TimbresOffset + 3, 7, 0, false,
                         Parent as IPatch);
                     break;
 
@@ -106,19 +110,18 @@ namespace PcgTools.Model.TrinitySpecific.Synth
                     parameter = base.GetParam(name);
                     break;
             }
+
             return parameter;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         public override void Clear()
         {
             var memory = (IPcgMemory)Root;
             if (memory.AssignedClearProgram == null)
             {
-                UsedProgram = (IProgram)(PcgRoot.ProgramBanks[0][0]);
+                UsedProgram = (IProgram)PcgRoot.ProgramBanks[0][0];
             }
             else
             {
@@ -130,6 +133,7 @@ namespace PcgTools.Model.TrinitySpecific.Synth
             {
                 GetParam(ParameterNames.TimbreParameterName.Mute).Value = true;
             }
+
             GetParam(ParameterNames.TimbreParameterName.Volume).Value = 0;
             GetParam(ParameterNames.TimbreParameterName.MidiChannel).Value = 15;
 

@@ -10,15 +10,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="App.config" />
+        <None Include="App.config"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Page Include="App.xaml" />
+        <Page Include="App.xaml"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\PatchDatabaseBackEnd\PatchDbBackEnd.csproj" />
+        <ProjectReference Include="..\PatchDatabaseBackEnd\PatchDbBackEnd.csproj"/>
     </ItemGroup>
 
 </Project>

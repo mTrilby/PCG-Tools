@@ -1,33 +1,38 @@
-﻿using System.IO;
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
+
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcgTools.ListGenerator;
 using PcgTools.Model.Common.File;
-
-
-// (c) 2011 Michel Keijzers
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.Meta;
 using PcgTools.Model.Common.Synth.PatchCombis;
 using PcgTools.Model.Common.Synth.PatchPrograms;
+
+#endregion
+
+// (c) 2011 Michel Keijzers
 
 namespace PCG_Tools_Unittests
 {
     [TestClass]
     public class OasysTest
     {
-        const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\Oasys";
+        private const string PcgDirectory = @"C:\PCG Tools Test Files\TestFiles\Workstations\Oasys";
 
-        
-        PcgMemory _pcgMemory;
+        private ListGenerator _generator;
 
-        
-        ListGenerator _generator;
+        private string[] _lines;
 
+        private PcgMemory _pcgMemory;
 
-        string[] _lines;
-
-        
         private void SetDefaults()
         {
             _generator.PcgMemory = _pcgMemory;
@@ -36,21 +41,21 @@ namespace PCG_Tools_Unittests
             _generator.FilterCaseSensitive = false;
             _generator.FilterSetListSlotDescription = true;
             _generator.SelectedProgramBanks = new ObservableBankCollection<IProgramBank>();
-            
+
             foreach (var item in _pcgMemory.ProgramBanks.BankCollection)
             {
-                _generator.SelectedProgramBanks.Add((IProgramBank) item);
+                _generator.SelectedProgramBanks.Add((IProgramBank)item);
             }
-            
+
             _generator.IgnoreInitPrograms = true;
 
             _generator.SelectedCombiBanks = new ObservableBankCollection<ICombiBank>();
 
             foreach (var item in _pcgMemory.CombiBanks.BankCollection)
             {
-                _generator.SelectedCombiBanks.Add((ICombiBank) item);
+                _generator.SelectedCombiBanks.Add((ICombiBank)item);
             }
-            
+
             _generator.IgnoreInitCombis = true;
             _generator.IgnoreFirstProgram = false;
             _generator.IgnoreMutedOffTimbres = true;
@@ -68,39 +73,34 @@ namespace PCG_Tools_Unittests
             _lines = null;
         }
 
-
         private void Run()
         {
             _generator.Run();
             _lines = File.ReadAllLines($"{Path.GetFileNameWithoutExtension(_pcgMemory.FileName)}_output.txt");
         }
 
-
         private void AssertExists(string text)
         {
             Assert.IsTrue(_lines.Count(line => line.Contains(text)) > 0);
         }
-
 
         private void AssertAll(string text)
         {
             Assert.AreEqual(_lines.Length, _lines.Count(line => line.Contains(text)));
         }
 
-
         private void AssertNotExists(string text)
         {
             Assert.AreEqual(0, _lines.Count(line => line.Contains(text)));
         }
-
 
         [TestMethod]
         public void TestDefaultPatchList()
         {
             // Run.
             var korgFileReader = new KorgFileReader();
-            _pcgMemory = (PcgMemory) korgFileReader.Read(PcgDirectory + @"\OasysPRELOAD.PCG");
-            
+            _pcgMemory = (PcgMemory)korgFileReader.Read(PcgDirectory + @"\OasysPRELOAD.PCG");
+
             _generator = new ListGeneratorPatchList();
             SetDefaults();
             Run();
@@ -108,7 +108,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(1995, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestDefaultProgramUsageList()
@@ -125,7 +124,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(762, _lines.Length);
         }
 
-
         [TestMethod]
         public void Test01WPack()
         {
@@ -138,7 +136,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -146,7 +145,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(6, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestKnCp80()
@@ -160,7 +158,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -169,20 +168,20 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(10, _lines.Length);
         }
 
-
         [TestMethod]
         public void TestKnal1_3()
         {
             // Run.
             var korgFileReader = new KorgFileReader();
-            _pcgMemory = (PcgMemory)korgFileReader.Read(PcgDirectory +  @"\..\Kronos\\KNAL1_3.PCG");
+            _pcgMemory = (PcgMemory)korgFileReader.Read(PcgDirectory + @"\..\Kronos\\KNAL1_3.PCG");
 
             _generator = new ListGeneratorPatchList();
             SetDefaults();
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -190,7 +189,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(107, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestKNMod7()
@@ -204,7 +202,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -212,7 +211,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(107, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestUg0106_1()
@@ -226,7 +224,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -234,7 +233,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(128, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestAkSons()
@@ -248,7 +246,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -256,7 +255,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(1475, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestAkSonsProgramUsageList()
@@ -270,7 +268,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -278,7 +277,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(683, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestEnigma()
@@ -292,7 +290,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -300,7 +299,6 @@ namespace PCG_Tools_Unittests
             // Length.
             Assert.AreEqual(1, _lines.Length);
         }
-
 
         [TestMethod]
         public void TestGroove01()
@@ -314,7 +312,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();
@@ -323,7 +322,6 @@ namespace PCG_Tools_Unittests
             Assert.AreEqual(64, _lines.Length);
         }
 
-        
         [TestMethod]
         public void TestGroove02()
         {
@@ -336,7 +334,8 @@ namespace PCG_Tools_Unittests
 
             if (_pcgMemory != null)
             {
-                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count - 1); // Last bank is GM bank
+                _generator.SelectedProgramBanks.RemoveAt(_pcgMemory.ProgramBanks.BankCollection.Count -
+                                                         1); // Last bank is GM bank
             }
 
             Run();

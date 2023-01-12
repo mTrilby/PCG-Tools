@@ -1,24 +1,29 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
+
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Diagnostics;
 using PcgTools.Model.Common.File;
-
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
 using PcgTools.Model.Common.Synth.SongsRelated;
 using PcgTools.Model.Zero3Rw.Pcg;
 using PcgTools.Model.Zero3Rw.Song;
 using PcgTools.Model.ZeroSeries.Synth;
 
+#endregion
+
 namespace PcgTools.Model.Zero3Rw.Synth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Zero3RwFactory : ZeroSeriesFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileType"></param>
         /// <param name="contentType"></param>
@@ -30,9 +35,7 @@ namespace PcgTools.Model.Zero3Rw.Synth
         {
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -45,10 +48,11 @@ namespace PcgTools.Model.Zero3Rw.Synth
                 case Memory.FileType.Syx: // Fall through
                 case Memory.FileType.Mid: // Fall through
                 case Memory.FileType.Raw:
-                    pcgMemory = new Zero3RwSysExMemory(fileName, ContentType, SysExStartOffset, SysExEndOffset, FileType == 
+                    pcgMemory = new Zero3RwSysExMemory(fileName, ContentType, SysExStartOffset, SysExEndOffset,
+                        FileType ==
                         Memory.FileType.Raw);
                     break;
-                    
+
                 default:
                     throw new NotSupportedException("Illegal file type");
             }
@@ -58,9 +62,7 @@ namespace PcgTools.Model.Zero3Rw.Synth
             return pcgMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="pcgMemory"></param>
         /// <param name="content"></param>
@@ -70,9 +72,7 @@ namespace PcgTools.Model.Zero3Rw.Synth
             return new Zero3RwFileReader(pcgMemory, content, ContentType, SysExStartOffset, SysExEndOffset);
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -82,9 +82,7 @@ namespace PcgTools.Model.Zero3Rw.Synth
             return songMemory;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="memory"></param>
         /// <param name="content"></param>

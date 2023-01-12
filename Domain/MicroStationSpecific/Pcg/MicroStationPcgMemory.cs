@@ -1,24 +1,28 @@
-﻿// (c) Copyright 2011-2019 MiKeSoft, Michel Keijzers, All rights reserved
+﻿#region copyright
 
+// (c) Copyright 2011-2023 MiKeSoft, Michel Keijzers, All rights reserved
+
+#endregion
+
+#region using
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using PcgTools.Model.Common;
 using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.MSpecific.Pcg;
 using PcgTools.Model.MicroStationSpecific.Synth;
+using PcgTools.Model.MSpecific.Pcg;
 
+#endregion
 
 namespace PcgTools.Model.MicroStationSpecific.Pcg
 {
     /// <summary>
-    /// 
     /// </summary>
     public class MicroStationPcgMemory : MPcgMemory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fileName"></param>
         public MicroStationPcgMemory(string fileName)
@@ -34,12 +38,7 @@ namespace PcgTools.Model.MicroStationSpecific.Pcg
             Model = Models.Find(Models.EOsVersion.EOsVersionMicroStation);
         }
 
-
-
-
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="checksumType"></param>
         protected override void FixChecksumValues(ChecksumType checksumType)
@@ -57,7 +56,8 @@ namespace PcgTools.Model.MicroStationSpecific.Pcg
                     var checksum = 0;
                     for (var dataIndex = chunk.Offset + 12; dataIndex < chunk.Offset + chunk.Size + 12; dataIndex++)
                     {
-                        checksum = (checksum + Content[dataIndex]) % 256; // Since checksum is a byte it will be automatically moduloed by 256
+                        checksum = (checksum + Content[dataIndex]) %
+                                   256; // Since checksum is a byte it will be automatically moduloed by 256
                     }
 
                     // Save in INI2.
@@ -81,9 +81,7 @@ namespace PcgTools.Model.MicroStationSpecific.Pcg
             }
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunk"></param>
         /// <param name="offsetInIni2"></param>
@@ -91,7 +89,8 @@ namespace PcgTools.Model.MicroStationSpecific.Pcg
         /// <param name="mbkIndex"></param>
         /// <param name="cbkIndex"></param>
         /// <returns></returns>
-        private bool SaveIni2Offset(IChunk chunk, out int offsetInIni2, ref int pbkIndex, ref int mbkIndex, ref int cbkIndex)
+        private bool SaveIni2Offset(IChunk chunk, out int offsetInIni2, ref int pbkIndex, ref int mbkIndex,
+            ref int cbkIndex)
         {
             switch (chunk.Name)
             {
@@ -117,17 +116,16 @@ namespace PcgTools.Model.MicroStationSpecific.Pcg
                 default:
                     throw new ApplicationException("Switch error");
             }
+
             return false;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="chunkNameInIni2"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        int FindIni2Offset(string chunkNameInIni2, int index)
+        private int FindIni2Offset(string chunkNameInIni2, int index)
         {
             Debug.Assert(Chunks.Collection[1].Name == "INI2");
             var ini2Start = Chunks.Collection[1].Offset; // Index 1 = INI2
@@ -148,8 +146,8 @@ namespace PcgTools.Model.MicroStationSpecific.Pcg
 
                 offsetInIni += 64; // Size of a chunk in INI2.
             }
+
             return offsetInIni;
         }
-
     }
 }

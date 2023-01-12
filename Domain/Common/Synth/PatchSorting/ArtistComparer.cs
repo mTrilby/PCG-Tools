@@ -8,12 +8,12 @@
 
 using System;
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchInterfaces;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchSorting
+namespace Domain.Common.Synth.PatchSorting
 {
     /// <summary>
     ///     Class for comparing artists (i.e. the part before or after the split character.)

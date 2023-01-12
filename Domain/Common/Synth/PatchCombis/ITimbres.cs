@@ -6,12 +6,12 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Mvvm;
+using Common.MVVM;
+using Domain.Common.Synth.PatchInterfaces;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     /// <summary>
     /// </summary>

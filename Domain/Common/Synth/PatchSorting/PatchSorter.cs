@@ -11,11 +11,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Common.Extensions;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchSorting
+namespace Domain.Common.Synth.PatchSorting
 {
     /// <summary>
     ///     Utility class.

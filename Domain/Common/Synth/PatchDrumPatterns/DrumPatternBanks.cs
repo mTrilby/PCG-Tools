@@ -7,12 +7,12 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
+namespace Domain.Common.Synth.PatchDrumPatterns
 {
     /// <summary>
     /// </summary>

@@ -13,10 +13,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using Common.PcgToolsResources;
-using PcgTools.ClipBoard;
+using Domain.Common.ClipBoard;
+using Domain.Common.Commands;
+using Domain.Common.Synth.PatchSorting;
 using PcgTools.Edit;
 using PcgTools.Extensions;
-using PcgTools.Model.Common.Synth.PatchSorting;
 using PcgTools.Properties;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
@@ -382,17 +383,17 @@ namespace PcgTools
         /// </summary>
         private void WindowLoadedMasterFile()
         {
-            switch ((MasterFiles.MasterFiles.AutoLoadMasterFiles)Settings.Default.MasterFiles_AutoLoad)
+            switch ((Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles)Settings.Default.MasterFiles_AutoLoad)
             {
-                case MasterFiles.MasterFiles.AutoLoadMasterFiles.Always:
+                case Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Always:
                     rbFilesAutoLoadMasterFileAlways.IsChecked = true;
                     break;
 
-                case MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask:
+                case Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask:
                     rbFilesAutoLoadMasterFileAsk.IsChecked = true;
                     break;
 
-                case MasterFiles.MasterFiles.AutoLoadMasterFiles.Never:
+                case Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Never:
                     rbFilesAutoLoadMasterFileNever.IsChecked = true;
                     break;
 
@@ -657,10 +658,10 @@ namespace PcgTools
             // Master files.
             Settings.Default.MasterFiles_AutoLoad =
                 rbFilesAutoLoadMasterFileAlways.IsReallyChecked()
-                    ? (int)MasterFiles.MasterFiles.AutoLoadMasterFiles.Always
+                    ? (int)Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Always
                     : rbFilesAutoLoadMasterFileAsk.IsReallyChecked()
-                        ? (int)MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask
-                        : (int)MasterFiles.MasterFiles.AutoLoadMasterFiles.Never;
+                        ? (int)Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask
+                        : (int)Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Never;
 
             // Output folders.
             Settings.Default.Slg_DefaultOutputFolder = textBoxDefaultOutputDirectory.Text;

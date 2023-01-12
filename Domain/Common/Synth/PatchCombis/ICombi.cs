@@ -6,15 +6,15 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.ViewModels.Commands.PcgCommands;
+using Domain.Common.Commands;
+using Domain.Common.Synth.DrumTrack;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchInterfaces;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     /// <summary>
     /// </summary>

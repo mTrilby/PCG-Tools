@@ -6,14 +6,14 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.TritonLeSpecific.Synth;
-using PcgTools.Model.TritonSpecific.Song;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.TritonLeSpecific.Synth;
+using Domain.TritonSpecific.Song;
 
 #endregion
 
-namespace PcgTools.Model.TritonLeSpecific.Song
+namespace Domain.TritonLeSpecific.Song
 {
     /// <summary>
     /// </summary>

@@ -7,12 +7,12 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Global;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.Model.TritonSpecific.Synth
+namespace Domain.TritonSpecific.Synth
 {
     /// <summary>
     /// </summary>

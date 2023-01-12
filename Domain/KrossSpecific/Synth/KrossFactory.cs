@@ -6,17 +6,17 @@
 
 #region using
 
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.KrossSpecific.Pcg;
-using PcgTools.Model.KrossSpecific.Song;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.KrossSpecific.Pcg;
+using Domain.KrossSpecific.Song;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.KrossSpecific.Synth
+namespace Domain.KrossSpecific.Synth
 {
     /// <summary>
     /// </summary>

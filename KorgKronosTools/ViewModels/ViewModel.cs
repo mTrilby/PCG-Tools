@@ -7,7 +7,9 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Common.MVVM;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
 using PcgTools.Mvvm;
 
 #endregion

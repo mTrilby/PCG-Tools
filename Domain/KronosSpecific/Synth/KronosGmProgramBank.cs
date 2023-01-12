@@ -7,12 +7,12 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.KronosSpecific.Synth
+namespace Domain.KronosSpecific.Synth
 {
     /// <summary>
     /// </summary>

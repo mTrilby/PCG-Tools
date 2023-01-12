@@ -11,7 +11,7 @@ using System.Linq;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchSorting
+namespace Domain.Common.Synth.PatchSorting
 {
     /// <summary>
     ///     Class for comparing multiple keys.

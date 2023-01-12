@@ -7,14 +7,14 @@
 #region using
 
 using System;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.MntxSeriesSpecific.Pcg;
-using PcgTools.Model.ZeroSeries.Synth;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.MntxSeriesSpecific.Pcg;
+using Domain.ZeroSeries.Synth;
 
 #endregion
 
-namespace PcgTools.Model.ZeroSeries.Pcg
+namespace Domain.ZeroSeries.Pcg
 {
     /// <summary>
     /// </summary>

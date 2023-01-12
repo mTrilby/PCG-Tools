@@ -6,11 +6,9 @@
 
 #region using
 
-using Common.PcgToolsResources;
-
 #endregion
 
-namespace PcgTools.PcgToolsResources
+namespace Common.PcgToolsResources
 {
     /// <summary>
     /// </summary>

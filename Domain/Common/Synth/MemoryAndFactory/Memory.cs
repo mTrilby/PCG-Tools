@@ -9,14 +9,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Common.MVVM;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Mvvm;
+using Domain.Common.Synth.PatchInterfaces;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.MemoryAndFactory
+namespace Domain.Common.Synth.MemoryAndFactory
 {
     /// <summary>
     /// </summary>

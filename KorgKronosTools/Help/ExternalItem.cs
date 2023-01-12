@@ -6,7 +6,7 @@
 
 #region using
 
-using PcgTools.Annotations;
+using Common.Properties;
 
 #endregion
 

@@ -16,24 +16,28 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using Common.MVVM;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.ClipBoard;
+using Domain.Common;
+using Domain.Common.ClipBoard;
+using Domain.Common.Commands;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.PatchSorting;
+using Domain.Common.Synth.PatchWaveSequences;
 using PcgTools.Common.Utils;
 using PcgTools.Gui;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchSorting;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
 using PcgTools.Mvvm;
 using PcgTools.Properties;
+using PcgTools.ViewModels.Commands;
 using PcgTools.ViewModels.Commands.PcgCommands;
 
 #endregion
@@ -833,7 +837,7 @@ namespace PcgTools.ViewModels
         /// <summary>
         ///     Tool tip for assign to set list slot.
         /// </summary>
-        [Annotations.UsedImplicitly]
+        [global::Common.Properties.UsedImplicitly]
         public string AssignToolTipText
         {
             get

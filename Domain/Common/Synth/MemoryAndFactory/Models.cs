@@ -8,12 +8,12 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Common.MVVM;
 using Common.PcgToolsResources;
-using PcgTools.Mvvm;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.MemoryAndFactory
+namespace Domain.Common.Synth.MemoryAndFactory
 {
     /// <summary>
     /// </summary>

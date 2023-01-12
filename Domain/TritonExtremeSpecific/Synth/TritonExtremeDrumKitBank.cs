@@ -6,15 +6,15 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.TritonSpecific.Synth;
 
 #endregion
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.TritonExtremeSpecific.Synth
+namespace Domain.TritonExtremeSpecific.Synth
 {
     /// <summary>
     /// </summary>

@@ -10,11 +10,11 @@ using System;
 using System.Text;
 using Common.Extensions;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchDrumPatterns
+namespace Domain.Common.Synth.PatchDrumPatterns
 {
     /// <summary>
     /// </summary>

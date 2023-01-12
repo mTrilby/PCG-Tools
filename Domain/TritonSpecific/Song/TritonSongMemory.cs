@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.Synth.SongsRelated;
 
 #endregion
 
-namespace PcgTools.Model.TritonSpecific.Song
+namespace Domain.TritonSpecific.Song
 {
     /// <summary>
     /// </summary>

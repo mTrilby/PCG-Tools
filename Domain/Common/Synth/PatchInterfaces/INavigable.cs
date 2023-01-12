@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchInterfaces
+namespace Domain.Common.Synth.PatchInterfaces
 {
     /// <summary>
     /// </summary>

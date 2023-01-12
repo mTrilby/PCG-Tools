@@ -10,7 +10,7 @@ using System;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchInterfaces
+namespace Domain.Common.Synth.PatchInterfaces
 {
     /// <summary>
     /// </summary>

@@ -6,14 +6,14 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Mvvm;
+using Common.MVVM;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchInterfaces;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.SongsRelated
+namespace Domain.Common.Synth.SongsRelated
 {
     public class SongTimbres : ISongTimbres
     {

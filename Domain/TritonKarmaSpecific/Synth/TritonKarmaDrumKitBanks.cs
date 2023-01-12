@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchDrumKits;
 
 #endregion
 
-namespace PcgTools.Model.TritonKarmaSpecific.Synth
+namespace Domain.TritonKarmaSpecific.Synth
 {
     /// <summary>
     /// </summary>

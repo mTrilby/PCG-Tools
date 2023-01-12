@@ -8,11 +8,11 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using PcgTools.Model.Common.Synth.PatchSorting;
+using Domain.Common.Synth.PatchSorting;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     /// <summary>
     ///     Utility class.

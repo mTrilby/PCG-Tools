@@ -10,7 +10,7 @@ using Common.PcgToolsResources;
 
 #endregion
 
-namespace PcgTools.Common
+namespace Common.Utils
 {
     /// <summary>
     /// </summary>

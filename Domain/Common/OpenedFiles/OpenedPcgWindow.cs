@@ -6,12 +6,12 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Mvvm;
+using Common.MVVM;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.OpenedFiles
+namespace Domain.Common.OpenedFiles
 {
     /// <summary>
     /// </summary>

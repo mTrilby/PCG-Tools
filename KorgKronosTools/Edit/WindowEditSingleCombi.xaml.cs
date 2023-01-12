@@ -10,9 +10,9 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.Global;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
 
 #endregion
 
@@ -86,7 +86,7 @@ namespace PcgTools.Edit
 
             if (global == null)
             {
-                var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(_patch.Root.Model);
+                var masterPcgMemory = Domain.Common.MasterFiles.MasterFiles.Instances.FindMasterPcg(_patch.Root.Model);
                 if (masterPcgMemory == null)
                 {
                     labelCategory.IsEnabled = false;
@@ -249,7 +249,7 @@ namespace PcgTools.Edit
             {
                 if (_patch.PcgRoot.Global == null)
                 {
-                    var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(_patch.Root.Model);
+                    var masterPcgMemory = Domain.Common.MasterFiles.MasterFiles.Instances.FindMasterPcg(_patch.Root.Model);
                     if (masterPcgMemory != null)
                     {
                         var masterGlobal = masterPcgMemory.Global;

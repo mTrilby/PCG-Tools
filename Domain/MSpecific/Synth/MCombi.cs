@@ -6,12 +6,12 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
 
 #endregion
 
-namespace PcgTools.Model.MSpecific.Synth
+namespace Domain.MSpecific.Synth
 {
     /// <summary>
     /// </summary>

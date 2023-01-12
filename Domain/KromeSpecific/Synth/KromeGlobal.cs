@@ -6,12 +6,12 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.KromeSpecific.Synth
+namespace Domain.KromeSpecific.Synth
 {
     public class KromeGlobal : MGlobal
     {

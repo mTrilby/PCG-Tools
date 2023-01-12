@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.MntxSeriesSpecific.Song;
+using Domain.MntxSeriesSpecific.Song;
 
 #endregion
 
-namespace PcgTools.Model.ZeroSeriesSpecific.Song
+namespace Domain.M1Specific.Song
 {
     /// <summary>
     /// </summary>

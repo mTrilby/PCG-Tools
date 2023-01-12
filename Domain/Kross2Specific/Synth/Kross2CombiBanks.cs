@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.Kross2Specific.Synth
+namespace Domain.Kross2Specific.Synth
 {
     /// <summary>
     /// </summary>

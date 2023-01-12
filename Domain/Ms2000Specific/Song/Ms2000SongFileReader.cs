@@ -7,13 +7,13 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.File;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
 
 #endregion
 
-namespace PcgTools.Model.Ms2000Specific.Song
+namespace Domain.Ms2000Specific.Song
 {
     /// <summary>
     /// </summary>

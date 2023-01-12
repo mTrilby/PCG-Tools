@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth
+namespace Domain.TritonTrClassicStudioRackSpecific.Synth
 {
     /// <summary>
     /// </summary>

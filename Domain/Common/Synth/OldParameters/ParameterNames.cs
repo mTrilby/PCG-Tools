@@ -4,7 +4,7 @@
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.OldParameters
+namespace Domain.Common.Synth.OldParameters
 {
     /// <summary>
     ///     Contains parameter names.

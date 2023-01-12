@@ -8,13 +8,13 @@
 
 using System;
 using System.Linq;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Mvvm;
+using Common.MVVM;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchInterfaces;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.Meta
+namespace Domain.Common.Synth.Meta
 {
     /// <summary>
     /// </summary>

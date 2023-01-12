@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.Synth.PatchWaveSequences;
 
 #endregion
 
-namespace PcgTools.Model.KronosOasysSpecific.Synth
+namespace Domain.KronosOasysSpecific.Synth
 {
     /// <summary>
     /// </summary>

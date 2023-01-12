@@ -8,11 +8,11 @@
 
 using System;
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.OldParameters;
+using Domain.Common.Synth.OldParameters;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     /// <summary>
     ///     Class for comparing on status.

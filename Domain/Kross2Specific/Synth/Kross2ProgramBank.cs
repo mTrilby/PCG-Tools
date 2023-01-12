@@ -7,13 +7,13 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.Kross2Specific.Synth
+namespace Domain.Kross2Specific.Synth
 {
     /// <summary>
     /// </summary>

@@ -6,16 +6,16 @@
 
 #region using
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.M50Specific.Pcg;
-using PcgTools.Model.M50Specific.Song;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.M50Specific.Pcg;
+using Domain.M50Specific.Song;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.M50Specific.Synth
+namespace Domain.M50Specific.Synth
 {
     /// <summary>
     /// </summary>

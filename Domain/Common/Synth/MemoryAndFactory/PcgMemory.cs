@@ -13,20 +13,20 @@ using System.IO;
 using System.Linq;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.ClipBoard;
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
-using PcgTools.Model.KronosSpecific.Synth;
+using Domain.Common.ClipBoard;
+using Domain.Common.Synth.Global;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.PatchWaveSequences;
+using Domain.KronosSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.MemoryAndFactory
+namespace Domain.Common.Synth.MemoryAndFactory
 {
     /// <summary>
     /// </summary>
@@ -425,15 +425,15 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
             }
 
             patch.RaisePropertyChanged(string.Empty, false);
-            if (patch is Program)
+            if (patch is PatchPrograms.Program)
             {
-                (patch as Program).Update("All");
+                (patch as PatchPrograms.Program).Update("All");
             }
 
             otherPatch.RaisePropertyChanged(string.Empty, false);
-            if (otherPatch is Program)
+            if (otherPatch is PatchPrograms.Program)
             {
-                (otherPatch as Program).Update("All");
+                (otherPatch as PatchPrograms.Program).Update("All");
             }
         }
 
@@ -529,7 +529,7 @@ namespace PcgTools.Model.Common.Synth.MemoryAndFactory
         /// </summary>
         public void SynchronizeProgramName()
         {
-            var firstProgram = (Program)((ProgramBank)ProgramBanks[0])[0];
+            var firstProgram = (PatchPrograms.Program)((ProgramBank)ProgramBanks[0])[0];
             if (firstProgram.Name == string.Empty)
             {
                 var fileName = Path.GetFileNameWithoutExtension(FileName);

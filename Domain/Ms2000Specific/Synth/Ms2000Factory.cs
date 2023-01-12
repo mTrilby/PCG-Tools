@@ -8,15 +8,15 @@
 
 using System;
 using System.Diagnostics;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.Ms2000Specific.Pcg;
-using PcgTools.Model.Ms2000Specific.Song;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.Ms2000Specific.Pcg;
+using Domain.Ms2000Specific.Song;
 
 #endregion
 
-namespace PcgTools.Model.Ms2000Specific.Synth
+namespace Domain.Ms2000Specific.Synth
 {
     /// <summary>
     /// </summary>

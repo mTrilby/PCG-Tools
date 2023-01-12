@@ -20,13 +20,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Common.PcgToolsResources;
+using Common.Utils;
+using Domain.Common;
+using Domain.Common.OpenedFiles;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
 using Microsoft.Win32;
 using PcgTools.Common.Utils;
 using PcgTools.Help;
 using PcgTools.MasterFiles;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.OpenedFiles;
 using PcgTools.Properties;
 using PcgTools.ViewModels;
 using WPF.MDI;
@@ -376,7 +378,7 @@ namespace PcgTools
 
             ViewModel.HandleAppArguments();
 
-            MasterFiles.MasterFiles.Instances.UpdateStates();
+            Domain.Common.MasterFiles.MasterFiles.Instances.UpdateStates();
 
 #if !DEBUG
             }

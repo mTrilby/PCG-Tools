@@ -11,7 +11,7 @@ using System.IO;
 
 #endregion
 
-namespace PatchDatabaseBackEnd
+namespace PatchDbBackEnd
 {
     /// <summary>
     /// </summary>

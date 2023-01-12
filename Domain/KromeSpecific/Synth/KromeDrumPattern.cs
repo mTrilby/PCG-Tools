@@ -6,14 +6,14 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.MSpecific.Synth;
 
 #endregion
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.KromeSpecific.Synth
+namespace Domain.KromeSpecific.Synth
 {
     /// <summary>
     /// </summary>

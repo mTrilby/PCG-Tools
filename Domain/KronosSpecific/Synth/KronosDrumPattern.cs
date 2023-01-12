@@ -6,14 +6,14 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.KronosOasysSpecific.Synth;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.KronosOasysSpecific.Synth;
 
 #endregion
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.KronosSpecific.Synth
+namespace Domain.KronosSpecific.Synth
 {
     /// <summary>
     /// </summary>

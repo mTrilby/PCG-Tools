@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 #endregion
 
-namespace PcgTools.ClipBoard
+namespace Domain.Common.ClipBoard
 {
     /// <summary>
     /// </summary>

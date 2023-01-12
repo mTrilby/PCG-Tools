@@ -6,14 +6,14 @@
 
 #region using
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.M50Specific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.M50Specific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.M50Specific.Song
+namespace Domain.M50Specific.Song
 {
     /// <summary>
     /// </summary>

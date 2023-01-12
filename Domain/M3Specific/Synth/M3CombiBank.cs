@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.M3Specific.Synth
+namespace Domain.M3Specific.Synth
 {
     /// <summary>
     /// </summary>

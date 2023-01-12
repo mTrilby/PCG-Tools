@@ -9,11 +9,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchSorting
+namespace Domain.Common.Synth.PatchSorting
 {
     /// <summary>
     ///     Class for comparing names in an ordinal manner.

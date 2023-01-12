@@ -6,12 +6,12 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.MntxSeriesSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.MntxSeriesSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.XSeries.Synth
+namespace Domain.XSeries.Synth
 {
     /// <summary>
     /// </summary>

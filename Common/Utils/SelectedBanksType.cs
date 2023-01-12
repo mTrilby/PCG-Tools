@@ -4,7 +4,7 @@
 
 #endregion
 
-namespace PcgTools.Common.Utils;
+namespace Common.Utils;
 
 /// <summary>
 /// </summary>

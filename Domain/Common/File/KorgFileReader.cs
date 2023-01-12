@@ -8,35 +8,35 @@
 
 using System;
 using System.Linq;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.KromeExSpecific.Synth;
-using PcgTools.Model.KromeSpecific.Synth;
-using PcgTools.Model.KronosSpecific.Synth;
-using PcgTools.Model.Kross2Specific.Synth;
-using PcgTools.Model.KrossSpecific.Synth;
-using PcgTools.Model.M1Specific.Synth;
-using PcgTools.Model.M3rSpecific.Synth;
-using PcgTools.Model.M3Specific.Synth;
-using PcgTools.Model.M50Specific.Synth;
-using PcgTools.Model.MicroKorgXlSpecific.Synth;
-using PcgTools.Model.MicroStationSpecific.Synth;
-using PcgTools.Model.Ms2000Specific.Synth;
-using PcgTools.Model.OasysSpecific.Synth;
-using PcgTools.Model.TrinitySpecific.Synth;
-using PcgTools.Model.TritonExtremeSpecific.Synth;
-using PcgTools.Model.TritonKarmaSpecific.Synth;
-using PcgTools.Model.TritonLeSpecific.Synth;
-using PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth;
-using PcgTools.Model.TSeries.Synth;
-using PcgTools.Model.XSeries.Synth;
-using PcgTools.Model.Z1Specific.Synth;
-using PcgTools.Model.Zero3Rw.Synth;
-using PcgTools.Model.ZeroSeries.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.KromeExSpecific.Synth;
+using Domain.KromeSpecific.Synth;
+using Domain.KronosSpecific.Synth;
+using Domain.Kross2Specific.Synth;
+using Domain.KrossSpecific.Synth;
+using Domain.M1Specific.Synth;
+using Domain.M3rSpecific.Synth;
+using Domain.M3Specific.Synth;
+using Domain.M50Specific.Synth;
+using Domain.MicroKorgXlSpecific.Synth;
+using Domain.MicroStationSpecific.Synth;
+using Domain.Ms2000Specific.Synth;
+using Domain.OasysSpecific.Synth;
+using Domain.TrinitySpecific.Synth;
+using Domain.TritonExtremeSpecific.Synth;
+using Domain.TritonKarmaSpecific.Synth;
+using Domain.TritonLeSpecific.Synth;
+using Domain.TritonTrClassicStudioRackSpecific.Synth;
+using Domain.TSeries.Synth;
+using Domain.XSeries.Synth;
+using Domain.Z1Specific.Synth;
+using Domain.Zero3Rw.Synth;
+using Domain.ZeroSeries.Synth;
 
 #endregion
 
-namespace PcgTools.Model.Common.File
+namespace Domain.Common.File
 {
     /// <summary>
     /// </summary>

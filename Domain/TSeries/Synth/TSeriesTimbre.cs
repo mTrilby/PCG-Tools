@@ -7,13 +7,13 @@
 #region using
 
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.MntxSeriesSpecific.Synth;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.MntxSeriesSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.TSeries.Synth
+namespace Domain.TSeries.Synth
 {
     /// <summary>
     /// </summary>

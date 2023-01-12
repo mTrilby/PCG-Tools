@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.TritonLeSpecific.Synth;
-using PcgTools.Model.TritonSpecific.Pcg;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.TritonLeSpecific.Synth;
+using Domain.TritonSpecific.Pcg;
 
 #endregion
 
-namespace PcgTools.Model.TritonLeSpecific.Pcg
+namespace Domain.TritonLeSpecific.Pcg
 {
     /// <summary>
     /// </summary>

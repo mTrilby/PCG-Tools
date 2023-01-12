@@ -8,16 +8,16 @@
 
 using System;
 using System.Diagnostics;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.Zero3Rw.Pcg;
-using PcgTools.Model.Zero3Rw.Song;
-using PcgTools.Model.ZeroSeries.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.Zero3Rw.Pcg;
+using Domain.Zero3Rw.Song;
+using Domain.ZeroSeries.Synth;
 
 #endregion
 
-namespace PcgTools.Model.Zero3Rw.Synth
+namespace Domain.Zero3Rw.Synth
 {
     /// <summary>
     /// </summary>

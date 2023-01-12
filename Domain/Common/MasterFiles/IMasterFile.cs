@@ -6,12 +6,12 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchInterfaces;
 
 #endregion
 
-namespace PcgTools.MasterFiles
+namespace Domain.Common.MasterFiles
 {
     /// <summary>
     /// </summary>

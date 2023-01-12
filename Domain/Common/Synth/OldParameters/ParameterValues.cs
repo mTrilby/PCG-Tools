@@ -14,7 +14,7 @@ using System.Globalization;
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.Common.Synth.OldParameters
+namespace Domain.Common.Synth.OldParameters
 {
     /// <summary>
     /// </summary>

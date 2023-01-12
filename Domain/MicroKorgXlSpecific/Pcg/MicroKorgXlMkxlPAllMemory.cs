@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.Model.MicroKorgXlSpecific.Pcg
+namespace Domain.MicroKorgXlSpecific.Pcg
 {
     /// <summary>
     /// </summary>

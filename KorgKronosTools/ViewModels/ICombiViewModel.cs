@@ -7,7 +7,8 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.PatchCombis;
+using Domain.Common;
+using Domain.Common.Synth.PatchCombis;
 
 #endregion
 

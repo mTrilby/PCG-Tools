@@ -9,12 +9,11 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using Common.MVVM;
 using Common.Utils;
 
 #endregion
 
-namespace PcgTools.Mvvm
+namespace Common.MVVM
 {
     public abstract class ObservableObject : INotifyPropertyChanged, IObservableObject
     {

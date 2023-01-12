@@ -8,11 +8,11 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.ClipBoard
+namespace Domain.Common.ClipBoard
 {
     /// <summary>
     /// </summary>

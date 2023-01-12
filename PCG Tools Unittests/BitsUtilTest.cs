@@ -13,7 +13,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // (c) 2011 Michel Keijzers
 
-namespace PCG_Tools_Unittests
+namespace PcgTools__UnitTests
 {
     [TestClass]
     public class BitsUtilTest

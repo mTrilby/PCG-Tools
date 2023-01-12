@@ -13,7 +13,7 @@ using System.ComponentModel;
 
 #endregion
 
-namespace PcgTools.Mvvm
+namespace Common.MVVM
 {
     /// <summary>
     /// </summary>

@@ -9,13 +9,13 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using PcgTools.ClipBoard;
-using PcgTools.Common.Utils;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Common.Utils;
+using Domain.Common.ClipBoard;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.ViewModels
+namespace Domain.Common
 {
     /// <summary>
     /// </summary>

@@ -7,14 +7,14 @@
 #region using
 
 using System;
-using PcgTools.Common.Utils;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Mvvm;
+using Common.MVVM;
+using Common.Utils;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.ViewModels
+namespace Domain.Common
 {
     /// <summary>
     /// </summary>

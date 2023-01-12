@@ -8,13 +8,13 @@
 
 using System;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.Common.Synth.PatchWaveSequences
+namespace Domain.Common.Synth.PatchWaveSequences
 {
     /// <summary>
     /// </summary>

@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.KronosOasysSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchCombis;
+using Domain.KronosOasysSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.OasysSpecific.Synth
+namespace Domain.OasysSpecific.Synth
 {
     /// <summary>
     /// </summary>

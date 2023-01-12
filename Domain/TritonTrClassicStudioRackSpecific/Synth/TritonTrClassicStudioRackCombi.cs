@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.TritonSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth
+namespace Domain.TritonTrClassicStudioRackSpecific.Synth
 {
     /// <summary>
     /// </summary>

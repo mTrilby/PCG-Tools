@@ -13,7 +13,7 @@ using Common.Utils;
 
 #endregion
 
-namespace PcgTools.Mvvm.ViewModel
+namespace Common.MVVM.ViewModel
 {
     /// <summary>
     ///     Base class for all ViewModel classes in the application.

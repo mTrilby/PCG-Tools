@@ -7,12 +7,12 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.Zero3Rw.Synth
+namespace Domain.Zero3Rw.Synth
 {
     /// <summary>
     /// </summary>

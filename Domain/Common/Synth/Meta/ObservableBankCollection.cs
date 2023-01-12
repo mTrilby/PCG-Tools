@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Mvvm;
+using Common.MVVM;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.Meta
+namespace Domain.Common.Synth.Meta
 {
     /// <summary>
     /// </summary>

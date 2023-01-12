@@ -11,7 +11,7 @@ using System.Text;
 
 #endregion
 
-namespace PatchDatabaseBackEnd
+namespace PatchDbBackEnd
 {
     /// <summary>
     /// </summary>

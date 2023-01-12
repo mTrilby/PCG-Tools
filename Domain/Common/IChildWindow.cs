@@ -6,12 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.ViewModels;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools
+namespace Domain.Common
 {
     /// <summary>
     /// </summary>

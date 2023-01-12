@@ -7,13 +7,13 @@
 #region using
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.M3Specific.Synth
+namespace Domain.M3Specific.Synth
 {
     /// <summary>
     /// </summary>

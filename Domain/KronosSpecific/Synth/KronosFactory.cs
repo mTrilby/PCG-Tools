@@ -6,16 +6,16 @@
 
 #region using
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.KronosOasysSpecific.Synth;
-using PcgTools.Model.KronosSpecific.Pcg;
-using PcgTools.Model.KronosSpecific.Song;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.KronosOasysSpecific.Synth;
+using Domain.KronosSpecific.Pcg;
+using Domain.KronosSpecific.Song;
 
 #endregion
 
-namespace PcgTools.Model.KronosSpecific.Synth
+namespace Domain.KronosSpecific.Synth
 {
     /// <summary>
     /// </summary>

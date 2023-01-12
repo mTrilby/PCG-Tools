@@ -12,20 +12,21 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Common.Extensions;
+using Common.MVVM;
 using Common.Utils;
-using PcgTools.ClipBoard;
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSorting;
-using PcgTools.Mvvm;
+using Domain.Common.ClipBoard;
+using Domain.Common.ListGenerators;
+using Domain.Common.Synth.Global;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSorting;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.Meta
+namespace Domain.Common.Synth.Meta
 {
     /// <summary>
     /// </summary>
@@ -225,7 +226,7 @@ namespace PcgTools.Model.Common.Synth.Meta
         /// <returns></returns>
         public bool UseInList(
             bool ignoreInit, bool filterOnText, string filterText, bool caseSensitive,
-            ListGenerator.ListGenerator.FilterOnFavorites useFavorites,
+            ListGenerator.FilterOnFavorites useFavorites,
             bool filterDescription)
         {
             // Check ignore.
@@ -473,7 +474,7 @@ namespace PcgTools.Model.Common.Synth.Meta
         /// <param name="useFavorites"></param>
         /// <param name="usePatch"></param>
         /// <returns></returns>
-        private bool CheckFavorite(ListGenerator.ListGenerator.FilterOnFavorites useFavorites, bool usePatch)
+        private bool CheckFavorite(ListGenerator.FilterOnFavorites useFavorites, bool usePatch)
         {
             var areFavoritesSupported = PcgRoot.AreFavoritesSupported;
             if (areFavoritesSupported)
@@ -496,15 +497,15 @@ namespace PcgTools.Model.Common.Synth.Meta
         /// <param name="useFavorites"></param>
         /// <param name="favoriteParameter"></param>
         /// <returns></returns>
-        private static dynamic UseFavorite(ListGenerator.ListGenerator.FilterOnFavorites useFavorites,
+        private static dynamic UseFavorite(ListGenerator.FilterOnFavorites useFavorites,
             IParameter favoriteParameter)
         {
-            return useFavorites == ListGenerator.ListGenerator.FilterOnFavorites.All ||
+            return useFavorites == ListGenerator.FilterOnFavorites.All ||
                    (favoriteParameter != null &&
-                    useFavorites == ListGenerator.ListGenerator.FilterOnFavorites.No &&
+                    useFavorites == ListGenerator.FilterOnFavorites.No &&
                     !favoriteParameter.Value) ||
                    (favoriteParameter != null &&
-                    useFavorites == ListGenerator.ListGenerator.FilterOnFavorites.Yes &&
+                    useFavorites == ListGenerator.FilterOnFavorites.Yes &&
                     favoriteParameter.Value);
         }
 

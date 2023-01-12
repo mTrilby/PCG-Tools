@@ -4,7 +4,7 @@
 
 #endregion
 
-namespace PcgTools.Model.Common.File
+namespace Domain.Common.File
 {
     /// <summary>
     /// </summary>

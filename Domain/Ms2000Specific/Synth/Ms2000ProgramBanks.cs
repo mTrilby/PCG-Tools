@@ -7,14 +7,13 @@
 #region using
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.Ms2000Specific.Synth
+namespace Domain.Ms2000Specific.Synth
 {
     public class Ms2000ProgramBanks : ProgramBanks
     {

@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.ZeroSeries.Pcg;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.ZeroSeries.Pcg;
 
 #endregion
 
-namespace PcgTools.Model.Zero3Rw.Pcg
+namespace Domain.Zero3Rw.Pcg
 {
     /// <summary>
     /// </summary>

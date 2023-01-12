@@ -8,12 +8,12 @@
 
 using System;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Global;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.Model.TrinitySpecific.Synth
+namespace Domain.TrinitySpecific.Synth
 {
     /// <summary>
     /// </summary>

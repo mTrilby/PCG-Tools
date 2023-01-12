@@ -6,14 +6,14 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.TritonSpecific.Synth;
 
 #endregion
 
 // (c) 2011 Michel Keijzers
 
-namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth
+namespace Domain.TritonTrClassicStudioRackSpecific.Synth
 {
     /// <summary>
     /// </summary>

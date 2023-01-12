@@ -7,13 +7,13 @@
 #region using
 
 using System;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.Model.TritonSpecific.Pcg
+namespace Domain.TritonSpecific.Pcg
 {
     /// <summary>
     /// </summary>

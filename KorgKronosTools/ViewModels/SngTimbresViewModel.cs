@@ -10,7 +10,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.Synth.SongsRelated;
 
 #endregion
 

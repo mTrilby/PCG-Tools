@@ -10,18 +10,19 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using Common.Utils;
-using PcgTools.ClipBoard;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.NewParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
+using Domain.Common;
+using Domain.Common.ClipBoard;
+using Domain.Common.MasterFiles;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.NewParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
 
 #endregion
 
-namespace PcgTools.Model.KronosSpecific.Synth
+namespace Domain.KronosSpecific.Synth
 {
     /// <summary>
     /// </summary>
@@ -245,7 +246,7 @@ namespace PcgTools.Model.KronosSpecific.Synth
                 if (!((IBank)combi.Parent).IsWritable)
                 {
                     // Try to find it in the master file.
-                    var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(Root.Model);
+                    var masterPcgMemory = MasterFiles.Instances.FindMasterPcg(Root.Model);
                     if (masterPcgMemory != null && masterPcgMemory.FileName != Root.FileName)
                     {
                         var combiBank = masterPcgMemory.CombiBanks.BankCollection.FirstOrDefault(
@@ -273,12 +274,12 @@ namespace PcgTools.Model.KronosSpecific.Synth
                 if (!((IBank)program.Parent).IsWritable && ((ProgramBank)program.Parent).Type != BankType.EType.Gm)
                 {
                     // Try to find it in the master file.
-                    var masterPcgMemory = MasterFiles.MasterFiles.Instances.FindMasterPcg(Root.Model);
+                    var masterPcgMemory = MasterFiles.Instances.FindMasterPcg(Root.Model);
                     if (masterPcgMemory != null && masterPcgMemory.FileName != Root.FileName)
                     {
                         var programBank = masterPcgMemory.ProgramBanks.BankCollection.FirstOrDefault(
                             item => item.PcgId == UsedProgramBank.PcgId && item.IsFilled);
-                        return programBank == null ? null : programBank[programId] as Program;
+                        return programBank == null ? null : programBank[programId] as Common.Synth.PatchPrograms.Program;
                     }
                 }
 

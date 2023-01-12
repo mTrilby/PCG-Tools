@@ -8,17 +8,17 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.KronosOasysSpecific.Synth
+namespace Domain.KronosOasysSpecific.Synth
 {
     /// <summary>
     /// </summary>
-    public abstract class KronosOasysProgram : Program
+    public abstract class KronosOasysProgram : Common.Synth.PatchPrograms.Program
     {
         /// <summary>
         /// </summary>

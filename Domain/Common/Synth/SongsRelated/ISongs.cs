@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Mvvm;
+using Common.MVVM;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.SongsRelated
+namespace Domain.Common.Synth.SongsRelated
 {
     /// <summary>
     /// </summary>

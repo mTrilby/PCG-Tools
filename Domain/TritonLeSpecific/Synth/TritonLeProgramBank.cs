@@ -7,13 +7,13 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.TritonSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.TritonSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.TritonLeSpecific.Synth
+namespace Domain.TritonLeSpecific.Synth
 {
     /// <summary>
     /// </summary>

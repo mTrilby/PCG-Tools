@@ -7,15 +7,14 @@
 #region using
 
 using System;
-using System.IO;
+using Common.MVVM;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Mvvm;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.MasterFiles
+namespace Domain.Common.MasterFiles
 {
     /// <summary>
     /// </summary>
@@ -260,7 +259,7 @@ namespace PcgTools.MasterFiles
                     var pcgWindow = masterFiles.MainViewModel.FindPcgViewModelWithName(FileName);
                     if (pcgWindow == null)
                     {
-                        FileState = File.Exists(FileName) ? EFileState.Unloaded : EFileState.NotPresent;
+                        FileState = System.IO.File.Exists(FileName) ? EFileState.Unloaded : EFileState.NotPresent;
                     }
                     else
                     {

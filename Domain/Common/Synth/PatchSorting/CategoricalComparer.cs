@@ -8,18 +8,18 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchDrumPatterns;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchSetLists;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchDrumPatterns;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchSetLists;
+using Domain.Common.Synth.PatchWaveSequences;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchSorting
+namespace Domain.Common.Synth.PatchSorting
 {
     /// <summary>
     ///     Set list slots are sorted by ListSubType/bank/index.
@@ -263,7 +263,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
         /// <returns></returns>
         private static bool PatchHasCategory(IPatch patch)
         {
-            return (patch is Program && patch.PcgRoot.HasProgramCategories) ||
+            return (patch is PatchPrograms.Program && patch.PcgRoot.HasProgramCategories) ||
                    (patch is Combi && patch.PcgRoot.HasCombiCategories);
         }
 
@@ -273,8 +273,8 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
         /// <returns></returns>
         private static int HandleGmPrograms()
         {
-            var p1IsGm = _p1 is Program && ((IBank)_p1.Parent).Type == BankType.EType.Gm;
-            var p2IsGm = _p2 is Program && ((IBank)_p2.Parent).Type == BankType.EType.Gm;
+            var p1IsGm = _p1 is PatchPrograms.Program && ((IBank)_p1.Parent).Type == BankType.EType.Gm;
+            var p2IsGm = _p2 is PatchPrograms.Program && ((IBank)_p2.Parent).Type == BankType.EType.Gm;
 
             if (p1IsGm)
             {
@@ -330,7 +330,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
 
             if (_hasCategoryNames)
             {
-                var program = p1 as Program;
+                var program = p1 as PatchPrograms.Program;
                 _p1CategoryName = program != null ? program.CategoryAsName : ((Combi)p1).CategoryAsName;
             }
 
@@ -347,7 +347,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
 
                 if (_hasCategoryNames)
                 {
-                    var program = p1 as Program;
+                    var program = p1 as PatchPrograms.Program;
                     _p1SubCategoryName = program != null ? program.SubCategoryAsName : ((Combi)p1).SubCategoryAsName;
                 }
             }
@@ -370,7 +370,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
 
             if (_hasCategoryNames)
             {
-                var program = p2 as Program;
+                var program = p2 as PatchPrograms.Program;
                 _p2CategoryName = program != null ? program.CategoryAsName : ((Combi)p2).CategoryAsName;
             }
 
@@ -387,7 +387,7 @@ namespace PcgTools.Model.Common.Synth.PatchSorting
 
                 if (_hasCategoryNames)
                 {
-                    var program = p2 as Program;
+                    var program = p2 as PatchPrograms.Program;
                     _p2SubCategoryName = program != null ? program.SubCategoryAsName : ((Combi)p2).SubCategoryAsName;
                 }
             }

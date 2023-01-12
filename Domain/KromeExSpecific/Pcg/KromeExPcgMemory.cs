@@ -9,14 +9,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.KromeExSpecific.Synth;
-using PcgTools.Model.MSpecific.Pcg;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.KromeExSpecific.Synth;
+using Domain.MSpecific.Pcg;
 
 #endregion
 
-namespace PcgTools.Model.KromeExSpecific.Pcg
+namespace Domain.KromeExSpecific.Pcg
 {
     /// <summary>
     /// </summary>

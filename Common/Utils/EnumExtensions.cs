@@ -12,7 +12,7 @@ using System.Linq;
 
 #endregion
 
-namespace PcgTools.Common
+namespace Common.Utils
 {
     /// <summary>
     /// </summary>

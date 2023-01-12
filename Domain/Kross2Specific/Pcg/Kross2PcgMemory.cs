@@ -9,14 +9,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Kross2Specific.Synth;
-using PcgTools.Model.MSpecific.Pcg;
+using Domain.Common;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Kross2Specific.Synth;
+using Domain.MSpecific.Pcg;
 
 #endregion
 
-namespace PcgTools.Model.Kross2Specific.Pcg
+namespace Domain.Kross2Specific.Pcg
 {
     /// <summary>
     /// </summary>

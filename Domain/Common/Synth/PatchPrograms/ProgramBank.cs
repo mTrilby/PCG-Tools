@@ -11,11 +11,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchPrograms
+namespace Domain.Common.Synth.PatchPrograms
 {
     /// <summary>
     /// </summary>

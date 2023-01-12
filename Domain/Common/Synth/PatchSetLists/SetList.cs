@@ -10,11 +10,11 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Meta;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchSetLists
+namespace Domain.Common.Synth.PatchSetLists
 {
     /// <summary>
     /// </summary>

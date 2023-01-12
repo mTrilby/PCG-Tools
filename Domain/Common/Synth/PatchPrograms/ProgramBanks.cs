@@ -8,15 +8,14 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchWaveSequences;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth
+namespace Domain.Common.Synth.PatchPrograms
 {
     /// <summary>
     /// </summary>

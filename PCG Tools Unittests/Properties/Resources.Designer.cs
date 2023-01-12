@@ -8,10 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PCG_Tools_Unittests.Properties {
-    using System;
-    
-    
+namespace PcgTools__UnitTests.Properties {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

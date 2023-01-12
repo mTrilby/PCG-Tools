@@ -4,7 +4,7 @@
 
 #endregion
 
-namespace PcgTools.ClipBoard
+namespace Domain.Common.ClipBoard
 {
     /// <summary>
     ///     Duplicate algorithm (see PcgViewModel).

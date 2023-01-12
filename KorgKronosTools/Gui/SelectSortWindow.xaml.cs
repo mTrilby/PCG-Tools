@@ -8,9 +8,9 @@
 
 using System;
 using System.Windows;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchSorting;
 using PcgTools.Extensions;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchSorting;
 using PcgTools.Properties;
 
 #endregion

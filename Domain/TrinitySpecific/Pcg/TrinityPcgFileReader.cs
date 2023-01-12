@@ -8,16 +8,16 @@
 
 using System;
 using System.Diagnostics;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.TrinitySpecific.Pcg
+namespace Domain.TrinitySpecific.Pcg
 {
     /// <summary>
     /// </summary>
@@ -241,7 +241,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 for (var index = 0; index < patches; index++)
                 {
                     // Place in PcgMemory.
-                    var program = (Program)bank[index];
+                    var program = (Common.Synth.PatchPrograms.Program)bank[index];
                     program.ByteOffset = _index;
                     program.ByteLength = bank.ByteLength;
                     program.IsLoaded = true;
@@ -357,7 +357,7 @@ namespace PcgTools.Model.TrinitySpecific.Pcg
                 for (var patchIndex = 0; patchIndex < patches; patchIndex++)
                 {
                     // Place in PcgMemory.
-                    var program = (Program)bank[index];
+                    var program = (Common.Synth.PatchPrograms.Program)bank[index];
                     program.ByteOffset = _index;
                     program.ByteLength = bank.ByteLength;
                     program.IsLoaded = true;

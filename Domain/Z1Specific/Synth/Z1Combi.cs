@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.MntxSeriesSpecific.Synth;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.MntxSeriesSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.Z1Specific.Synth
+namespace Domain.Z1Specific.Synth
 {
     /// <summary>
     /// </summary>

@@ -6,16 +6,15 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.Model.TritonSpecific.Synth
+namespace Domain.TritonSpecific.Synth
 {
     /// <summary>
     /// </summary>
-    public abstract class TritonProgram : Program
+    public abstract class TritonProgram : Common.Synth.PatchPrograms.Program
     {
         /// <summary>
         /// </summary>

@@ -9,6 +9,8 @@
 using System.Linq;
 using System.Windows.Input;
 using Common.Utils;
+using Domain.Common;
+using Domain.Common.MasterFiles;
 using PcgTools.MasterFiles;
 using PcgTools.Mvvm;
 
@@ -44,7 +46,7 @@ namespace PcgTools.ViewModels
             _mainViewModel = mainViewModel;
 
             // Select first if none selected.
-            var masterFiles = MasterFiles.MasterFiles.Instances;
+            var masterFiles = Domain.Common.MasterFiles.MasterFiles.Instances;
             if (masterFiles.Count > 0 && masterFiles.Count(item => item.IsSelected) == 0)
             {
                 masterFiles[0].IsSelected = true;
@@ -53,7 +55,7 @@ namespace PcgTools.ViewModels
 
         private IMasterFile SelectedMasterFile
         {
-            get { return MasterFiles.MasterFiles.Instances.FirstOrDefault(file => file.IsSelected); }
+            get { return Domain.Common.MasterFiles.MasterFiles.Instances.FirstOrDefault(file => file.IsSelected); }
         }
 
         /// <summary>

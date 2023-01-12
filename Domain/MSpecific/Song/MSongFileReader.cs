@@ -6,12 +6,12 @@
 
 #region using
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.File;
+using Domain.Common.Synth.SongsRelated;
 
 #endregion
 
-namespace PcgTools.Model.MSpecific.Song
+namespace Domain.MSpecific.Song
 {
     /// <summary>
     /// </summary>

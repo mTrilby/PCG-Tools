@@ -14,16 +14,16 @@ using System.Text;
 using Common.Extensions;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.NewParameters;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.ViewModels.Commands.PcgCommands;
+using Domain.Common.Commands;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.NewParameters;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchSetLists
+namespace Domain.Common.Synth.PatchSetLists
 {
     /// <summary>
     /// </summary>
@@ -245,7 +245,7 @@ namespace PcgTools.Model.Common.Synth.PatchSetLists
                 if (isEmpty)
                 {
                     // Check further (Program is from bank 0, index 0.
-                    var usedProgram = (Program)UsedPatch;
+                    var usedProgram = (PatchPrograms.Program)UsedPatch;
                     var usedProgramBank = (ProgramBank)usedProgram.Bank;
                     isEmpty = ((ProgramBanks)usedProgramBank.Parent).BankCollection.IndexOf(usedProgramBank) == 0 &&
                               usedProgram.Index == 0;
@@ -272,7 +272,7 @@ namespace PcgTools.Model.Common.Synth.PatchSetLists
         {
             get
             {
-                if (UsedPatch is Program)
+                if (UsedPatch is PatchPrograms.Program)
                 {
                     return ((IBank)UsedPatch.Parent).IsLoaded ||
                            ((ProgramBank)UsedPatch.Parent).Type != BankType.EType.Gm;

@@ -7,6 +7,7 @@
 #region using
 
 using System.Windows;
+using Domain.Common.Commands;
 using PcgTools.Extensions;
 using PcgTools.ViewModels.Commands.PcgCommands;
 

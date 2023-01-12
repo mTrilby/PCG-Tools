@@ -7,16 +7,16 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.MicroKorgXlSpecific.Pcg;
-using PcgTools.Model.MicroKorgXlSpecific.Song;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.MicroKorgXlSpecific.Pcg;
+using Domain.MicroKorgXlSpecific.Song;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.MicroKorgXlSpecific.Synth
+namespace Domain.MicroKorgXlSpecific.Synth
 {
     /// <summary>
     /// </summary>

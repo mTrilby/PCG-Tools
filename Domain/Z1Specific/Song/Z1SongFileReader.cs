@@ -6,14 +6,14 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.MntxSeriesSpecific.Song;
-using PcgTools.Model.Z1Specific.Synth;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.SongsRelated;
+using Domain.MntxSeriesSpecific.Song;
+using Domain.Z1Specific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.Z1Specific.Song
+namespace Domain.Z1Specific.Song
 {
     /// <summary>
     /// </summary>

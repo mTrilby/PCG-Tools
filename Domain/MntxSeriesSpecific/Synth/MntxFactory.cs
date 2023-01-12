@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.MemoryAndFactory;
 
 #endregion
 
-namespace PcgTools.Model.MntxSeriesSpecific.Synth
+namespace Domain.MntxSeriesSpecific.Synth
 {
     /// <summary>
     /// </summary>

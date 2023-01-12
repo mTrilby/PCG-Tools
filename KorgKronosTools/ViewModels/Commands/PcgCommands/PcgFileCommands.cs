@@ -8,17 +8,18 @@
 
 using System;
 using Common.PcgToolsResources;
-using PcgTools.Common.Utils;
-using PcgTools.MasterFiles;
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Common.Utils;
+using Domain.Common;
+using Domain.Common.File;
+using Domain.Common.MasterFiles;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
 using PcgTools.Properties;
 using WPF.MDI;
 
 #endregion
 
-namespace PcgTools.ViewModels.Commands
+namespace PcgTools.ViewModels.Commands.PcgCommands
 {
     /// <summary>
     ///     Utility class.
@@ -40,7 +41,7 @@ namespace PcgTools.ViewModels.Commands
                 _mainViewModel.ShowMessageBox(
                     string.Format(Strings.FileTypeNotSupportedForThisWorkstation,
                         Memory.FileTypeAsString(korgFileReader.FileType),
-                        Model.Common.Synth.MemoryAndFactory.Model.ModelTypeAsString(korgFileReader.ModelType)),
+                        Model.ModelTypeAsString(korgFileReader.ModelType)),
                     Strings.PcgTools, WindowUtil.EMessageBoxButton.Ok, WindowUtil.EMessageBoxImage.Error,
                     WindowUtil.EMessageBoxResult.Ok);
                 return;
@@ -87,12 +88,12 @@ namespace PcgTools.ViewModels.Commands
             if (checkAutoLoadMasterFileSetting)
             {
                 // Get master file name.
-                var masterFile = MasterFiles.MasterFiles.Instances.FindMasterFile(_mainViewModel.SelectedMemory.Model);
+                var masterFile = Domain.Common.MasterFiles.MasterFiles.Instances.FindMasterFile(_mainViewModel.SelectedMemory.Model);
                 if (masterFile != null && masterFile.FileState == MasterFile.EFileState.Unloaded)
                 {
-                    switch ((MasterFiles.MasterFiles.AutoLoadMasterFiles)Settings.Default.MasterFiles_AutoLoad)
+                    switch ((Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles)Settings.Default.MasterFiles_AutoLoad)
                     {
-                        case MasterFiles.MasterFiles.AutoLoadMasterFiles.Always:
+                        case Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Always:
                             if (masterFile.FileName != loadedPcgFileName)
                             {
                                 LoadFileAndMasterFile(_mainViewModel, masterFile.FileName, false);
@@ -100,7 +101,7 @@ namespace PcgTools.ViewModels.Commands
 
                             break;
 
-                        case MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask:
+                        case Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Ask:
                             if (masterFile.FileName != loadedPcgFileName)
                             {
                                 var result = _mainViewModel.ShowMessageBox(
@@ -117,7 +118,7 @@ namespace PcgTools.ViewModels.Commands
 
                             break;
 
-                        case MasterFiles.MasterFiles.AutoLoadMasterFiles.Never:
+                        case Domain.Common.MasterFiles.MasterFiles.AutoLoadMasterFiles.Never:
                             // Do nothing.
                             break;
 

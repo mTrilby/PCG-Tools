@@ -7,16 +7,16 @@
 #region using
 
 using System;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.MicroKorgXlSpecific.Synth
+namespace Domain.MicroKorgXlSpecific.Synth
 {
     /// <summary>
     /// </summary>
-    public class MicroKorgXlProgram : Program
+    public class MicroKorgXlProgram : Common.Synth.PatchPrograms.Program
     {
         /// <summary>
         /// </summary>

@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.KronosOasysSpecific.Pcg;
-using PcgTools.Model.OasysSpecific.Synth;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.KronosOasysSpecific.Pcg;
+using Domain.OasysSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.OasysSpecific.Pcg
+namespace Domain.OasysSpecific.Pcg
 {
     /// <summary>
     /// </summary>

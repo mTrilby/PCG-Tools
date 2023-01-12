@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.Zero3Rw.Synth
+namespace Domain.Zero3Rw.Synth
 {
     /// <summary>
     /// </summary>

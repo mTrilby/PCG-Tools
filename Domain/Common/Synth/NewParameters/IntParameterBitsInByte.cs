@@ -6,13 +6,13 @@
 
 #region using
 
+using Common.MVVM;
 using Common.Utils;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Mvvm;
+using Domain.Common.Synth.Meta;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.NewParameters
+namespace Domain.Common.Synth.NewParameters
 {
     /// <summary>
     /// </summary>

@@ -7,18 +7,18 @@
 #region using
 
 using System;
-using PcgTools.Model.Common;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.Ms2000Specific.Synth
+namespace Domain.Ms2000Specific.Synth
 {
     /// <summary>
     /// </summary>
-    public class Ms2000Program : Program
+    public class Ms2000Program : Common.Synth.PatchPrograms.Program
     {
         /// <summary>
         /// </summary>

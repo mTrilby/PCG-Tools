@@ -6,16 +6,16 @@
 
 #region using
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.KromeSpecific.Pcg;
-using PcgTools.Model.KromeSpecific.Song;
-using PcgTools.Model.MSpecific.Synth;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.KromeSpecific.Pcg;
+using Domain.KromeSpecific.Song;
+using Domain.MSpecific.Synth;
 
 #endregion
 
-namespace PcgTools.Model.KromeSpecific.Synth
+namespace Domain.KromeSpecific.Synth
 {
     public class KromeFactory : MFactory
     {

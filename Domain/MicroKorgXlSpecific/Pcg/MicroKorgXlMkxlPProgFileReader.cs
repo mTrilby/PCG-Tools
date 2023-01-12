@@ -6,13 +6,13 @@
 
 #region using
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.PatchPrograms;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.PatchPrograms;
 
 #endregion
 
-namespace PcgTools.Model.MicroKorgXlSpecific.Pcg
+namespace Domain.MicroKorgXlSpecific.Pcg
 {
     /// <summary>
     /// </summary>
@@ -41,7 +41,7 @@ namespace PcgTools.Model.MicroKorgXlSpecific.Pcg
             bank.IsLoaded = true;
 
             // Place in PcgMemory.
-            var program = (Program)bank[0];
+            var program = (Common.Synth.PatchPrograms.Program)bank[0];
             program.ByteOffset = 32; // Fixed
             program.ByteLength = bank.PatchSize;
             program.IsLoaded = true;

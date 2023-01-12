@@ -7,13 +7,13 @@
 #region using
 
 using System.Collections.Generic;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.PatchDrumKits;
-using PcgTools.Model.Common.Synth.PatchWaveSequences;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.PatchDrumKits;
+using Domain.Common.Synth.PatchWaveSequences;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchPrograms
+namespace Domain.Common.Synth.PatchPrograms
 {
     /// <summary>
     /// </summary>

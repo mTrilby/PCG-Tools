@@ -9,12 +9,14 @@
 using System;
 using System.Linq;
 using Common.PcgToolsResources;
-using PcgTools.Model.Common.Synth.PatchCombis;
-using PcgTools.Model.Common.Synth.PatchSetLists;
+using Domain.Common;
+using Domain.Common.Synth.PatchCombis;
+using Domain.Common.Synth.PatchSetLists;
+using PcgTools.ViewModels.Commands.PcgCommands;
 
 #endregion
 
-namespace PcgTools.ViewModels.Commands.PcgCommands
+namespace PcgTools.ViewModels.Commands
 {
     /// <summary>
     ///     In case it needs to be implemented for combis:

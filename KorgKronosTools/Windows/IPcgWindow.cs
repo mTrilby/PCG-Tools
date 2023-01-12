@@ -6,6 +6,7 @@
 
 #region using
 
+using Domain.Common;
 using PcgTools.ViewModels;
 
 #endregion

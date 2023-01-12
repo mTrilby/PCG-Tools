@@ -7,11 +7,11 @@
 #region using
 
 using System.ComponentModel;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.PatchInterfaces;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.MemoryAndFactory
+namespace Domain.Common.Synth.MemoryAndFactory
 {
     /// <summary>
     /// </summary>

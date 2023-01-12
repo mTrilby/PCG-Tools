@@ -6,11 +6,11 @@
 
 #region using
 
-using PcgTools.Model.Common.Synth.SongsRelated;
+using Domain.Common.Synth.SongsRelated;
 
 #endregion
 
-namespace PcgTools.Model.MicroKorgXlSpecific.Song
+namespace Domain.MicroKorgXlSpecific.Song
 {
     /// <summary>
     /// </summary>

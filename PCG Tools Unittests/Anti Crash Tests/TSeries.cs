@@ -10,7 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
 
-namespace PCG_Tools_Unittests
+namespace PcgTools__UnitTests.Anti_Crash_Tests
 {
     [TestClass]
     public class AntiCrashTestsTSeries : AntiCrashTests

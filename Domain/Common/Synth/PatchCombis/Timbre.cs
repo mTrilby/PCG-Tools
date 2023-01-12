@@ -12,21 +12,20 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Common.Extensions;
+using Common.MVVM;
 using Common.PcgToolsResources;
 using Common.Utils;
-using PcgTools.Common;
-using PcgTools.Model.Common.Synth.Global;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.Meta;
-using PcgTools.Model.Common.Synth.OldParameters;
-using PcgTools.Model.Common.Synth.PatchInterfaces;
-using PcgTools.Model.Common.Synth.PatchPrograms;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Mvvm;
+using Domain.Common.Synth.Global;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.Meta;
+using Domain.Common.Synth.OldParameters;
+using Domain.Common.Synth.PatchInterfaces;
+using Domain.Common.Synth.PatchPrograms;
+using Domain.Common.Synth.SongsRelated;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.PatchCombis
+namespace Domain.Common.Synth.PatchCombis
 {
     /// <summary>
     /// </summary>
@@ -514,7 +513,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                     return null;
                 }
 
-                var program = (Program)UsedProgramBank[programId];
+                var program = (PatchPrograms.Program)UsedProgramBank[programId];
                 if (!UsedProgramBank.IsWritable && ((ProgramBank)program.Bank).Type != BankType.EType.Gm)
                 {
                     // Try to find it in the master file.
@@ -523,7 +522,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
                     {
                         var programBank = masterPcgMemory.ProgramBanks.BankCollection.FirstOrDefault(
                             item => item.PcgId == UsedProgramBank.PcgId && item.IsFilled);
-                        return programBank == null ? null : programBank[programId] as Program;
+                        return programBank == null ? null : programBank[programId] as PatchPrograms.Program;
                     }
                 }
 
@@ -594,7 +593,7 @@ namespace PcgTools.Model.Common.Synth.PatchCombis
             var memory = (PcgMemory)Root;
             if (memory.AssignedClearProgram == null)
             {
-                UsedProgram = (Program)((ProgramBank)PcgRoot.ProgramBanks[0])[0];
+                UsedProgram = (PatchPrograms.Program)((ProgramBank)PcgRoot.ProgramBanks[0])[0];
             }
             else
             {

@@ -6,12 +6,12 @@
 
 #region using
 
+using Common.MVVM;
 using Common.Utils;
-using PcgTools.Mvvm;
 
 #endregion
 
-namespace PcgTools.Model.Common.Synth.SongsRelated
+namespace Domain.Common.Synth.SongsRelated
 {
     /// <summary>
     /// </summary>
@@ -38,19 +38,19 @@ namespace PcgTools.Model.Common.Synth.SongsRelated
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
-        public int Index { [Annotations.UsedImplicitly] get; }
+        public int Index { [global::Common.Properties.UsedImplicitly] get; }
 
         /// <summary>
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
-        public string Name { [Annotations.UsedImplicitly] get; }
+        public string Name { [global::Common.Properties.UsedImplicitly] get; }
 
         /// <summary>
         /// </summary>
         [UsedImplicitly]
         // ReSharper disable once MemberCanBePrivate.Global
-        public string SampleFileName { [Annotations.UsedImplicitly] get; }
+        public string SampleFileName { [global::Common.Properties.UsedImplicitly] get; }
 
         /// <summary>
         /// </summary>

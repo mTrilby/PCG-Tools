@@ -8,6 +8,7 @@
 
 using System;
 using System.Windows.Input;
+using Common.MVVM.ViewModel;
 
 #endregion
 

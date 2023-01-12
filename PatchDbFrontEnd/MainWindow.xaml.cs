@@ -7,7 +7,7 @@
 #region using
 
 using System.Windows;
-using PatchDatabaseBackEnd;
+using PatchDbBackEnd;
 
 #endregion
 

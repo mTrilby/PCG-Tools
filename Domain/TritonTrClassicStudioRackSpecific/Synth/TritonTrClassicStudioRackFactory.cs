@@ -6,16 +6,16 @@
 
 #region using
 
-using PcgTools.Model.Common.File;
-using PcgTools.Model.Common.Synth.MemoryAndFactory;
-using PcgTools.Model.Common.Synth.SongsRelated;
-using PcgTools.Model.TritonSpecific.Synth;
-using PcgTools.Model.TritonTrClassicStudioRackSpecific.Pcg;
-using PcgTools.Model.TritonTrClassicStudioRackSpecific.Song;
+using Domain.Common.File;
+using Domain.Common.Synth.MemoryAndFactory;
+using Domain.Common.Synth.SongsRelated;
+using Domain.TritonSpecific.Synth;
+using Domain.TritonTrClassicStudioRackSpecific.Pcg;
+using Domain.TritonTrClassicStudioRackSpecific.Song;
 
 #endregion
 
-namespace PcgTools.Model.TritonTrClassicStudioRackSpecific.Synth
+namespace Domain.TritonTrClassicStudioRackSpecific.Synth
 {
     /// <summary>
     /// </summary>

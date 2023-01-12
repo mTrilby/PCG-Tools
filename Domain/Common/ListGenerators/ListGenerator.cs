@@ -270,12 +270,12 @@ public string Run(bool useFileWriter = true)
                 errorText = exception.Message;
             }
 
-#endif
-
             if (!string.IsNullOrEmpty(errorText))
             {
                 throw new ApplicationException(errorText);
             }
+
+#endif
 
             return null;
         }
